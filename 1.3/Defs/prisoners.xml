@@ -368,7 +368,7 @@
 					<li>psychic(INITIATOR_trait==kind,priority=1)->[psy_good_opinion]</li>
 					<li>psychic(INITIATOR_trait==abrasive)->[abrasive]</li>
 					<li>psychic(INITIATOR_trait==brawler)->[brawler]</li>
-						<li>psy_bad_opinion->What!? Your psychic readings are completely fake...</li>
+						<li>psy_bad_opinion->What?! Your psychic readings are completely fake...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>psychic(INITIATOR_opinion>=0)->[psy_good_opinion]</li>
 					<li>psy_good_opinion(p=2,INITIATOR_trait==abrasive)->[psy_bad_opinion]</li>

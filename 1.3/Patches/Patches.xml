@@ -113,7 +113,7 @@
 							
 							<li>billiards_calledshot_start->I'll try [billiards_potting]</li>
 							<li>billiards_calledshot_start->[billiards_potting]</li>
-							<li>billiards_calledshot_start(INITIATOR_intellectual_level&lt;5)->I'm gonna [billiards_pot]</li>
+							<li>billiards_calledshot_start(INITIATOR_intellectual_level&lt;5)->I'm [gonna] [billiards_pot]</li>
 							<li>billiards_calledshot_start(INITIATOR_shooting_level&lt;5)->Mmm... what if I try [billiards_potting]</li>
 							
 							<li>billiards_pocket->corner</li>

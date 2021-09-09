@@ -1671,7 +1671,7 @@
 				<li>r_logentry->At least I have human ancestors, you filthy spawn of worms!</li>
 				<li>r_logentry->My ancestors' souls are well beyond your wicked words!</li>
 				<li>r_logentry->May your ancestors' souls be damned thrice instead!</li>
-				<li>r_logentry->I trust my ancestors will strike you for your words!</li>
+				<li>r_logentry->I trust my ancestors will strike you down for your words!</li>
 				<!-- ===kind=== -->
 				<li>r_logentry(INITIATOR_trait==kind,priority=1)->[kind]</li>
 					<li>kind(RECIPIENT_mood&lt;0.4)->I'm sorry you're so upset, [RECIPIENT_nameDef].</li>
@@ -1792,6 +1792,7 @@
 				<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+					<li>bad_opinion(p=2)->...</li>
 					<li>bad_opinion->...It's fine, I guess...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>

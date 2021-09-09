@@ -448,7 +448,7 @@
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==abrasive)->Why can't I [swearword_adverb]get some undisturbed [swearword]sleep here!?</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==bloodlust)->When I find out [accuse_gender_who] disturbed my [swearword]sleep, I swear I'll shred [accuse_gender_objective] to pieces with my bare hands!</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==brawler)->Next time [accuse_gender_someone] disturbs my [swearword]sleep, I'll get up and punch [accuse_gender_objective] right in the face!</li>
-							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==quick sleeper)->Why can't I [swearword_adverb]get some undisturbed [swearword]quiet in the few hours I sleep!? Is it too much to ask? [damn_it]!</li>
+							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==quick sleeper)->Why can't I [swearword_adverb]get some undisturbed [swearword]quiet in the few hours I sleep?! Is it too much to ask? [damn_it]!</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==tortured artist)->[damn_it]! Someone [swearword_adverb]disturbed me while I was dreaming of my next masterpiece! Such great art — forever lost!</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==industrious)->How am I supposed to have productive working hours if I can't [swearword_adverb]get some [swearword]undisturbed sleep!?</li>	
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==hard worker)->I'd love to help around here — but it's just impossible if I can't [swearword_adverb]get some undisturbed [swearword]sleep!</li>
