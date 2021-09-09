@@ -570,7 +570,8 @@
 				<li>whatsup->what's up?</li>
 				<li>whatsup->what's going on?</li>
 				<li>whatsup->what's on your mind?</li>
-				<li>whatsup->what's new?</li>			
+				<li>whatsup->what's new?</li>
+				<li>whatsup(INITIATOR_intellectual_level>5)->how do you fare?</li>
 		</value>
 	</Operation>
 	

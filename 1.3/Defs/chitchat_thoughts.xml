@@ -904,10 +904,10 @@
 						<li>i_canniblood->Just wait for when that jerk comes back here for more stealing, burning and killing!</li>
 						<li>i_canniblood(RECIPIENT_trait==bloodlust,priority=1)->[i_canniblood_r_canniblood]</li>
 						<li>i_canniblood(RECIPIENT_trait==cannibal,priority=1)->[i_canniblood_r_canniblood]</li>
-						<li>i_canniblood_r_canniblood->Right! We could've used'em as a punching bag!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em for fun!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em to squeeze out some useful intelligence!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've skinned'em — a just punishment!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've used 'em as a punching bag!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em for fun!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em to squeeze out some useful intelligence!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've skinned 'em — a just punishment!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
