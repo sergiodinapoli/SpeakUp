@@ -373,8 +373,8 @@
 						<li>thought_newcolopt(INITIATOR_trait==ascetic)->Are we stranded and lost? No — we are in a motherly wilderness, where we can find our true selves.</li>
 					<!-- ===Other cases=== -->
 						<li>thought_newcolopt(INITIATOR_trait==fast learner)->We're in a rought spot, but I'm sure we can quickly adapt and work things out.</li>
-						<li>thought_newcolopt(INITIATOR_trait==hard worker)->Ok. Let's put our minds and bodies to work. We can do this!</li>
-						<li>thought_newcolopt(INITIATOR_trait==industrious)->Ok. Let's put our minds and bodies to work. We can do this!</li>
+						<li>thought_newcolopt(INITIATOR_trait==hard worker)->OK. Let's put our minds and bodies to work. We can do this!</li>
+						<li>thought_newcolopt(INITIATOR_trait==industrious)->OK. Let's put our minds and bodies to work. We can do this!</li>
 						<li>thought_newcolopt(INITIATOR_trait==iron-willed)->By sheer willpower, we shall come out of this. Mark my words!</li>
 						<li>thought_newcolopt(INITIATOR_trait==optimist)->This is going to be a great challenge — one we can [surely] win!</li>
 						<li>thought_newcolopt(INITIATOR_trait==sanguine)->This is going to be an exciting challenge — one we'll [surely] win!</li>

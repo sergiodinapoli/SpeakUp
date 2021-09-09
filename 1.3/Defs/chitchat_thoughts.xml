@@ -1144,8 +1144,8 @@
 					<li>annoying->unacceptable</li>
 					<li>annoying->not nice</li>
 					<li>annoying->unpleasant</li>
-					<li>annoying->(INITIATOR_intellctual_level&lt;3)->really really bad</li>
-					<li>annoying->(INITIATOR_intellctual_level&lt;5)->the worst</li>
+					<li>annoying->(INITIATOR_intellectual_level&lt;3)->really really bad</li>
+					<li>annoying->(INITIATOR_intellectual_level&lt;5)->the worst</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1170,9 +1170,9 @@
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
 								<li>shut_up->leave me alone</li>
-								<li>shut_up(INITIATOR_intellctual_level>=5)->would be quiet for an extended period of time</li>
-								<li>shut_up(INITIATOR_intellctual_level>=5)->pursue silence henceforth</li>
-								<li>shut_up(INITIATOR_intellctual_level>=7)->rest your overused tongue - immediately</li>
+								<li>shut_up(INITIATOR_intellectual_level>=5)->would be quiet for an extended period of time</li>
+								<li>shut_up(INITIATOR_intellectual_level>=5)->pursue silence henceforth</li>
+								<li>shut_up(INITIATOR_intellectual_level>=7)->rest your overused tongue - immediately</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=5)->You need a heat source, [RECIPIENT_nameDef], you build one yourself — I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->

@@ -84,8 +84,8 @@
 						<!-- ===Invitation=== -->
 						<li>game_billiards(RECIPIENT_jobDefName==Play_Billiards,INITIATOR_moving==Yes,tag=Invite_answer_yes)->[billiards_invite]</li>
 						<li>game_billiards(INITIATOR_moving==Yes,priority=-1,tag=Invite_answer_no)->[billiards_invite]</li>
-							<li>billiards_invite->I'm going to start a new billiards game. Would you like to join me, [RECIPIENT_nameDef]?</li>
-							<li>billiards_invite->Would you like to join me in a new billiards match, [RECIPIENT_nameDef]?</li>
+							<li>billiards_invite->I'm [gonna] start a new billiards game. [wanna] join me, [RECIPIENT_nameDef]?</li>
+							<li>billiards_invite->[wanna] join me in a new billiards match, [RECIPIENT_nameDef]?</li>
 							
 						<!-- ===Ready?=== -->
 							<li>game_billiards(p=0.5,RECIPIENT_jobDefName==Play_Billiards,tag=Billiards_ready)->[billiards_ready]</li>
@@ -93,6 +93,7 @@
 								<li>billiards_ready->Ready for a new game, [RECIPIENT_nameDef]?</li>
 								<li>billiards_ready->Are you in for another game, [RECIPIENT_nameDef]?</li>
 								<li>billiards_ready->Cue is chalked, rack is set up. Ready, [RECIPIENT_nameDef]?</li>
+								<li>billiards_ready->[wanna] get started, [RECIPIENT_nameDef]?</li>
 							
 							<!-- ===Wildcards=== -->
 							<li>billiards_ball->1</li>
@@ -137,8 +138,8 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Chess,INITIATOR_moving==Yes)->[game_chess_going]</li>
 							<li>game_chess_going(RECIPIENT_jobDefName==Play_Chess,tag=Invite_answer_yes)->[game_chess_invite]</li>
 							<li>game_chess_going(RECIPIENT_jobDefName!=Play_Chess,tag=Invite_answer_no)->[game_chess_invite]</li>
-								<li>game_chess_invite->I'm going to play chess. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_chess_invite->Would you like to join me in a chess game, [RECIPIENT_nameDef]?</li>
+								<li>game_chess_invite->I'm [gonna] play chess. [wanna] join me, [RECIPIENT_nameDef]?</li>
+								<li>game_chess_invite->[wanna] join me in a chess game, [RECIPIENT_nameDef]?</li>
 						
 						<!-- ===Playing=== -->
 						<li>r_logentry(INITIATOR_jobDefName==Play_Chess,INITIATOR_seated==Yes,RECIPIENT_jobDefName==Play_Chess,RECIPIENT_seated==Yes,priority=4)->[game_chess]</li>
@@ -244,8 +245,8 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==Yes)->[game_ur_going]</li>
 							<li>game_ur_going(RECIPIENT_jobDefName==Play_GameOfUr,tag=Invite_answer_yes)->[game_ur_invite]</li>
 							<li>game_ur_going(RECIPIENT_jobDefName!=Play_GameOfUr,tag=Invite_answer_no)->[game_ur_invite]</li>
-								<li>game_ur_invite->I'm going to play a game of Ur. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_ur_invite->Would you like to join me in a game of Ur, [RECIPIENT_nameDef]?</li>
+								<li>game_ur_invite->I'm [gonna] play a game of Ur. [wanna] join me, [RECIPIENT_nameDef]?</li>
+								<li>game_ur_invite->[wanna] join me in a game of Ur, [RECIPIENT_nameDef]?</li>
 						
 						<!-- ===Playing=== -->
 						<li>r_logentry(INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==No,RECIPIENT_jobDefName==Play_GameOfUr,RECIPIENT_moving==No,priority=4)->[game_ur]</li>
@@ -274,14 +275,14 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Hoopstone,INITIATOR_moving==Yes)->[game_hoopstone_going]</li>
 							<li>game_hoopstone_going(RECIPIENT_jobDefName==Play_Hoopstone,tag=Invite_answer_yes)->[game_hoopstone_invite]</li>
 							<li>game_hoopstone_going(RECIPIENT_jobDefName!=Play_Hoopstone,tag=Invite_answer_no)->[game_hoopstone_invite]</li>
-								<li>game_hoopstone_invite->I'm going to play hoopstone. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_hoopstone_invite->Would you like to join me in a hoopstone game, [RECIPIENT_nameDef]?</li>
+								<li>game_hoopstone_invite->I'm [gonna] play hoopstone. [wanna] join me, [RECIPIENT_nameDef]?</li>
+								<li>game_hoopstone_invite->[wanna] join me in a hoopstone game, [RECIPIENT_nameDef]?</li>
 							
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Horseshoes,INITIATOR_moving==Yes)->[game_horseshoes_going]</li>
 							<li>game_horseshoes_going(RECIPIENT_jobDefName==Play_Horseshoes,tag=Invite_answer_yes)->[game_horseshoes_invite]</li>
 							<li>game_horseshoes_going(RECIPIENT_jobDefName!=Play_Horseshoes,tag=Invite_answer_no)->[game_horseshoes_invite]</li>
-								<li>game_horseshoes_invite->I'm going to play horseshoes. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_horseshoes_invite->Would you like to join me in a game of horseshoes, [RECIPIENT_nameDef]?</li>
+								<li>game_horseshoes_invite->I'm [gonna] play horseshoes. [wanna] join me, [RECIPIENT_nameDef]?</li>
+								<li>game_horseshoes_invite->[wanna] join me in a game of horseshoes, [RECIPIENT_nameDef]?</li>
 								<li>game_horseshoes_invite->Care for a game of horseshoes, [RECIPIENT_nameDef]?</li>
 							
 						<!-- ===Playing=== -->
@@ -398,12 +399,12 @@
 						<!-- ===Invitation=== -->
 						<li>game_poker(INITIATOR_seated==No,RECIPIENT_jobDefName==Play_Poker,tag=Invite_answer_yes)->[poker_invite]</li>
 						<li>game_poker(INITIATOR_seated==No,priority=-1,tag=Invite_answer_no)->[poker_invite]</li>
-							<li>poker_invite->I'm going to start a poker game. Would you like to join me, [RECIPIENT_nameDef]?</li>
-							<li>poker_invite->Would you like to join me in a poker game, [RECIPIENT_nameDef]?</li>
+							<li>poker_invite->I'm [gonna] start a poker game. [wanna] join me, [RECIPIENT_nameDef]?</li>
+							<li>poker_invite->[wanna] join me in a poker game, [RECIPIENT_nameDef]?</li>
 							
 						<!-- ===Ready?=== -->
 						<li>game_poker(p=0.5,RECIPIENT_jobDefName==Play_Poker,RECIPIENT_seated==Yes,tag=Poker_ready)->[poker_ready]</li>
-							<li>poker_ready->Ok, new round of betting. I'll deal, [RECIPIENT_nameDef]. Ready?</li>
+							<li>poker_ready->OK, new round of betting. I'll deal, [RECIPIENT_nameDef]. Ready?</li>
 							<li>poker_ready->My turn to deal. Ready for a new game, [RECIPIENT_nameDef]?</li>
 							<li>poker_ready->Are you in for another game, [RECIPIENT_nameDef]?</li>
 							<li>poker_ready->I cut and shuffled the deck. Are you ready, [RECIPIENT_nameDef]?</li>					
@@ -590,7 +591,7 @@
 									<!-- ===dislike=== -->
 										<li>vomiting_gross(INITIATOR_opinion&lt;0)->[vomiting_gross_dislike]</li>
 										<li>vomiting_gross_dislike->That's disgusting, </li>
-										<li>vomiting_gross_dislike->I hope you're going to clean up that mess, </li>
+										<li>vomiting_gross_dislike->I hope you're [gonna] clean up that mess, </li>
 							<!-- ===help offer=== -->
 								<li>job_recipient_vomiting(INITIATOR_opinion>=0,tag=Job_Vomiting_help)->[vomiting_help_offer]</li>
 								<li>job_recipient_vomiting(INITIATOR_trait==kind,tag=Job_Vomiting_help,priority=1)->[vomiting_help_offer]</li>
@@ -598,10 +599,10 @@
 					<!-- ===Build snowman (priority 4)=== -->
 						<li>r_logentry(priority=4,RECIPIENT_jobDefName==BuildSnowman,tag=Job_BuildSnowman)->Well, [RECIPIENT_nameDef] — [job_recipient_buildsnowman]</li>
 							<li>job_recipient_buildsnowman(RECIPIENT_artistic_level>=5)->[comment_nice_snowman]</li>
-								<li>comment_nice_snowman(INITIATOR_opinion>=0)->that's going to be a beautiful snowman!</li>
-								<li>comment_nice_snowman(INITIATOR_opinion&lt;0)->are you actually building that... snowy mess on purpose!?</li>
+								<li>comment_nice_snowman(INITIATOR_opinion>=0)->that's [gonna] be a beautiful snowman!</li>
+								<li>comment_nice_snowman(INITIATOR_opinion&lt;0)->are you actually building that... snowy mess on purpose?!</li>
 							<li>job_recipient_buildsnowman(RECIPIENT_artistic_level&lt;5)->[comment_ugly_snowman]</li>
-								<li>comment_ugly_snowman(INITIATOR_opinion>=0)->if it's not going to be a nice snowman, it'll be a funny one at least!</li>
+								<li>comment_ugly_snowman(INITIATOR_opinion>=0)->if it's not [gonna] be a nice snowman, it'll be a funny one at least!</li>
 								<li>comment_ugly_snowman(INITIATOR_opinion&lt;0)->what [horrible] [monster] are you trying to build there?</li>
 					<!-- ===Play_MusicalInstrument=== -->
 					<li>r_logentry(priority=4,RECIPIENT_jobDefName==Play_MusicalInstrument,RECIPIENT_moving==No)->[job_play_instrument]</li>
@@ -736,10 +737,10 @@
 						<li>can_feel_it->Something tells me that</li>
 						<li>can_feel_it->Somehow I feel like</li>
 						<li>lucky_day->will be my lucky day!</li>
-						<li>lucky_day->is going to be my lucky day!</li>
+						<li>lucky_day->is [gonna] be my lucky day!</li>
 						<li>lucky_day->everything will go my way!</li>
-						<li>lucky_day->we're going to have a lucky day!</li>
-						<li>lucky_day->fortune is going to smile on us!</li>
+						<li>lucky_day->we're [gonna] have a lucky day!</li>
+						<li>lucky_day->fortune is [gonna] smile on us!</li>
 						<li>lucky_day->I'll be lucky!</li>
 						<li>lucky_day(INITIATOR_intellectual_level>5)->we'll experience fortune beyond measure!</li>
 						<li>lucky_day(INITIATOR_intellectual_level>5)->luck will be our constant companion!</li>
@@ -796,8 +797,8 @@
 						<li>animal_large->a horse</li>
 						<li>animal_large->a muffalo</li>
 						<li>animal_large->an elephant</li>
-						<li>animal_large(INITIATOR_intellectual_level&lt;5)->a rhino</li>
-						<li>animal_large(INITIATOR_intellectual_level>5)->a rhinoceros</li>
+						<li>animal_large(INITIATOR_intellectual_level&lt;7)->a rhino</li>
+						<li>animal_large(INITIATOR_intellectual_level>=7)->a rhinoceros</li>
 						<li>animal_large->a whale</li>
 						<li>animal_large->a grizzly bear</li>
 						<li>animal_large->a megasloth</li>
@@ -809,8 +810,8 @@
 						<li>annoying->maddening</li>
 						<li>annoying->bothersome</li>
 						<li>annoying->frustrating</li>
-						<li>annoying(INITIATOR_intellectual_level&lt;5)->so annoying</li>
-						<li>annoying(INITIATOR_intellectual_level&lt;5)->so bad</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->[intensifier]annoying</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->[intensifier]bad</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->exasperating</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->ire-raising</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->vexing</li>
@@ -938,7 +939,6 @@
 						<li>swearword->sodding </li>
 						<li>swearword->wretched </li>
 						<li>swearword->darn </li>
-						<li>swearword->shoot </li>
 						<!-- ===abrasive=== -->
 							<li>swearword(INITIATOR_trait==abrasive)->[swearword_abrasive] </li>
 							<li>swearword_abrasive->frakking</li>
@@ -960,7 +960,7 @@
 						<li>stupid->boneheaded</li>
 						<li>stupid(INITIATOR_intellectual_level&lt;5)->dopey</li>
 						<li>stupid(INITIATOR_intellectual_level>=5)->imbecilic</li>
-						<li>stupid(INITIATOR_intellectual_level>=7)->fatuous</li>
+						<li>stupid(INITIATOR_intellectual_level>=8)->fatuous</li>
 					<!-- ===surely=== -->
 						<li>surely->surely</li>
 						<li>surely->certainly</li>
@@ -1099,10 +1099,16 @@
 						<li>tv_seeit->check it out</li>
 						<li>tv_seeit->take a look</li>
 						
-					<!-- ===Wanna?=== -->
+					<!-- ===Wanna? (directed at someone)=== -->
+						<li>wanna(INITIATOR_intellectual_level>=8,priority=1)->would you like to</li>
 						<li>wanna(INITIATOR_intellectual_level>=5)->would you like to</li>
 						<li>wanna(p=0.5)->want to</li>
 						<li>wanna(INITIATOR_intellectual_level&lt;5)->wanna</li>
+
+					<!-- ===Gonna (contraction of going to)=== -->
+						<li>gonna(INITIATOR_intellectual_level>=5)->going to</li>
+						<li>gonna(INITIATOR_intellectual_level&lt;5,p=2)->gonna</li>
+						<li>gonna(INITIATOR_intellectual_level&lt;5)->going to</li>
 							
 					<!-- ===What about yours?=== -->
 						<li>what_about_yours->What do you think of yours, [RECIPIENT_nameDef]?</li>
