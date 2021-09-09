@@ -1061,9 +1061,9 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
-						<li>bad_opinion->My room is none of your business, [RECIPIENT_nameDef].</li>
+						<li>bad_opinion->My room is none of your business, [RECIPIENT_nameDef][jealous_greedy]</li>
 						<li>bad_opinion->Where I sleep is none of your business, [RECIPIENT_nameDef].</li>
-						<li>bad_opinion->None of your business, [RECIPIENT_nameDef].</li>
+						<li>bad_opinion->None of your business, [RECIPIENT_nameDef][jealous_greedy]</li>
 						<li>bad_opinion->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
@@ -1089,6 +1089,7 @@
 						<li>bedroom(INITIATOR_thoughtLabel==unbelievably impressive bedroom)->Mine feels like a piece of Heaven itself, [RECIPIENT_nameDef]!</li>
 						<li>bedroom(INITIATOR_thoughtLabel==wondrously impressive bedroom)->Mine is worthy of an emperor, [RECIPIENT_nameDef]!</li>
 					<!-- ===Dull or mediocre bedroom=== -->
+						<li>good_opinion(INITIATOR_trait==greedy)->Mine is terrible! I want a better room NOW.</li>
 						<li>good_opinion->Mine? Mine could be... better[construction]</li>
 					<!-- ===Awful bedroom=== -->
 						<li>good_opinion(INITIATOR_thoughtLabel==awful bedroom,priority=1)->[bedroom_awful]</li>
@@ -1097,6 +1098,10 @@
 				<!-- ===WILDCARDS === -->
 					<li>construction(INITIATOR_construction_level>=5,priority=1)->, but I'm planning to improve it myself.</li>
 					<li>construction->.</li>
+					<li>bad_opinion_jealous_greedy->.</li>
+					<li>bad_opinion_jealous_greedy(INITIATOR_trait==jealous,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>bad_opinion_jealous_greedy(INITIATOR_trait==greedy,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>bad_opinion_jealous_greedy_end->, but it's probably better than yours.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1131,6 +1136,8 @@
 					<li>annoying->unacceptable</li>
 					<li>annoying->not nice</li>
 					<li>annoying->unpleasant</li>
+					<li>annoying->(INITIATOR_intellctual_level&lt;3)->really really bad</li>
+					<li>annoying->(INITIATOR_intellctual_level&lt;5)->the worst</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1154,7 +1161,10 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
+								<li>shut_up->leave me alone</li>
 								<li>shut_up(INITIATOR_intellctual_level>=5)->would be quiet for an extended period of time</li>
+								<li>shut_up(INITIATOR_intellctual_level>=5)->pursue silence henceforth</li>
+								<li>shut_up(INITIATOR_intellctual_level>=7)->rest your overused tongue - immediately</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=5)->You need a heat source, [RECIPIENT_nameDef], you build one yourself — I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->

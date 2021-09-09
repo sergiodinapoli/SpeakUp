@@ -7,6 +7,9 @@
 		<rulesStrings>
             <!-- ===Meaning of life=== -->
 				<li>r_logentry(tag=MeaningOfLife)->[RECIPIENT_nameDef], I was thinking — what is the meaning of life?</li>
+				<li>r_logentry(tag=MeaningOfLife)->What do you think is the meaning of our existence, [RECIPIENT_nameDef]?</li>
+				<li>r_logentry(tag=MeaningOfLife)->Hey, [RECIPIENT_nameDef]... What do you think it's all about? What does life mean?</li>
+				<li>r_logentry(tag=MeaningOfLife,INITIATOR_intellectual_level>=8)->Life's meaning eludes me. What do you think it means, [RECIPIENT_nameDef]?</li>
 
 			<!-- ===Childhood discussions=== -->
 				<li>r_logentry(tag=ChildhoodDiscussions)->[childhood_discussion]</li>
@@ -19,7 +22,7 @@
 			<!-- ===Dreams=== -->
 				<!-- ===Nice=== -->
 				<li>r_logentry(INITIATOR_mood>=0.6,tag=WhatDream)->Ah, [RECIPIENT_nameDef]... I had such a nice dream...</li>
-					
+				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [RECIPIENT_nameDef].</li>
         </rulesStrings>
 		</value>
     </Operation>
