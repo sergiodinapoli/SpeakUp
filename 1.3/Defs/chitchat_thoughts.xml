@@ -281,7 +281,7 @@
 				<!-- ===WILDCARDS=== -->	
 					<li>watch_your_step->watch your step</li>
 					<li>watch_your_step->tread carefully</li>
-					<li>watch_your_step->step carefully</li>				
+					<li>watch_your_step->step carefully</li>
 					<li>supposed->supposed</li>
 					<li>supposed->expected</li>
 			</rulesStrings>
@@ -298,12 +298,15 @@
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<!-- ===Feeling hot=== -->
 						<li>good_opinion(INITIATOR_thoughtDefName==EnvironmentHot,priority=1)->[feeling_hot]</li>
-						<li>feeling_hot(INITIATOR_thoughtLabel==sweaty)->You're right, [RECIPIENT_nameDef]. I'm sweating.</li>
+						<li>feeling_hot(INITIATOR_thoughtLabel==sweaty)->You're [intensifier]right, [RECIPIENT_nameDef]. I'm sweating.</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==hot)->Ah, [RECIPIENT_nameDef] — if only I could have a breath of cool air...</li>
+						<li>feeling_hot(INITIATOR_thoughtLabel==hot)->Yes, [RECIPIENT_nameDef]... It's way too hot.</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==sweltering hot)->I'm not sure how long I can handle this extreme heat, [RECIPIENT_nameDef].</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==blistering hot)->This is worse than Hell itself. The air itself is on fire!</li>
 					<!-- ===Not feeling hot=== -->
 						<li>good_opinion->I'm sorry to hear that, [RECIPIENT_nameDef]. [comment]</li>
+						<li>good_opinion->I hope you can cool off soon, [RECIPIENT_nameDef]. [comment]</li>
+						<li>good_opinion->I'm [intensifier]sorry, [RECIPIENT_nameDef]. [comment]</li>
 				<!-- ===WILDCARDS === -->
 					<li>comment-></li>
 					<li>comment(INITIATOR_social_level>=5)->I'll try to trade in something in exchange for some cooler clothing for you.</li>
@@ -324,6 +327,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->No problem, [RECIPIENT_nameDef]. It was the right thing to do.</li>
+					<li>good_opinion->We're glad you're free, [RECIPIENT_nameDef].</li>
 					<li>good_opinion(INITIATOR_trait==kind)->You really don't need to thank us — we just did our duty as good human beings.</li>
 					<li>good_opinion(INITIATOR_trait==psychopath,priority=1)->...</li>
 			</rulesStrings>
@@ -346,13 +350,15 @@
 						<li>rec_room(INITIATOR_thoughtLabel==very impressive rec room)->I have loads of fun in it, [RECIPIENT_nameDef]! [comment2]</li>
 						<li>rec_room(INITIATOR_thoughtLabel==extremely impressive rec room)->I truly have loads of fun in it, [RECIPIENT_nameDef]! [comment2]</li>
 						<li>rec_room(INITIATOR_thoughtLabel==unbelievably impressive rec room)->It's the coolest ever, [RECIPIENT_nameDef]! [comment2]</li>
-						<li>rec_room(INITIATOR_thoughtLabel==wondrously impressive rec room)->It's a complete Paradise, [RECIPIENT_nameDef] — all decked for maxxing out anyone's fun! [comment2]</li>
+						<li>rec_room(INITIATOR_thoughtLabel==wondrously impressive rec room)->It's a complete Paradise, [RECIPIENT_nameDef] — all decked for maxing out anyone's fun! [comment2]</li>
 					<!-- ===recreation satisfied === -->
 						<li>good_opinion(INITIATOR_thoughtLabel==recreation satisfied,priority=1)->I think we have several nice entertainment options around here.</li>
 					<!-- ===recreation fully satisfied === -->
 						<li>good_opinion(INITIATOR_thoughtLabel==recreation fully satisfied,priority=1)->I think we have lots of excellent entertainment options around here!</li>
 					<!-- ===Absent or bad rec room=== -->
 						<li>good_opinion->What rec room, [RECIPIENT_nameDef]? I can't seem to have any fun around here...</li>
+						<li>good_opinion->I need help finding this rec room, [RECIPIENT_nameDef]. I want to have fun, too...</li>
+						<li>good_opinion->That sounds nice, but I haven't had fun in a while, [RECIPIENT_nameDef].</li>
 				<!-- ===WILDCARDS === -->
 					<li>comment2-></li>
 					<li>comment2(INITIATOR_social_level>=5)->And it'll be excellent for hosting our next party!</li>
@@ -370,6 +376,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I agree, [RECIPIENT_nameDef]!</li>
+					<li>good_opinion->I can't disagree with you, [RECIPIENT_nameDef]!</li>
 					<!-- ===Initiator is Kind=== -->
 						<li>good_opinion(INITIATOR_trait==kind,priority=1)->[i_kind]</li>
 						<li>i_kind->Slavery is awful, [RECIPIENT_nameDef]! Nobody deserves that fate!</li>
@@ -383,10 +390,10 @@
 						<li>i_canniblood->Those lucky slavers will get all the fun...</li>
 						<li>i_canniblood(RECIPIENT_trait==bloodlust,priority=1)->[i_canniblood_r_canniblood]</li>
 						<li>i_canniblood(RECIPIENT_trait==cannibal,priority=1)->[i_canniblood_r_canniblood]</li>
-						<li>i_canniblood_r_canniblood->Right! We could've used'em as a punching bag!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em for fun!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em to squeeze out some useful intelligence!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've skinned'em — a just punishment!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've used 'em as a punching bag!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em for fun!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em to squeeze out some useful intelligence!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've skinned 'em — a just punishment!</li>
 						<li>i_canniblood_r_canniblood(INITIATOR_trait==greedy)->Right! We could've took out their lungs and heart to sell for lots of silver!</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -616,6 +623,7 @@
 							<li>thought_needfood_hungry0->I'm starving!</li>
 							<li>thought_needfood_hungry0->I'm ravenous!</li>
 							<li>thought_needfood_hungry0->I'm famished!</li>
+							<li>thought_needfood_hungry0->I'm [intensifier]hungry!</li>
 							<li>thought_needfood_hungry0->I'm dying for something to eat!</li>
 							<li>thought_needfood_hungry0(RECIPIENT_thoughtLabel==hungry,priority=2)->Me too, [RECIPIENT_nameDef]!</li>
 							<li>thought_needfood_hungry0(RECIPIENT_thoughtDefName==NeedFood,priority=1)->I'm also hungry, [RECIPIENT_nameDef]. But you are in much greater need! [offer_solution]</li>
@@ -1094,7 +1102,7 @@
 					<!-- ===Awful bedroom=== -->
 						<li>good_opinion(INITIATOR_thoughtLabel==awful bedroom,priority=1)->[bedroom_awful]</li>
 						<li>bedroom_awful->Mine is so awful — sometimes I think I'd be better off sleeping in the open.</li>
-						<li>bedroom_awful->I confess mine is awful[construction]</li>
+						<li>bedroom_awful->I confess, mine is awful[construction]</li>
 				<!-- ===WILDCARDS === -->
 					<li>construction(INITIATOR_construction_level>=5,priority=1)->, but I'm planning to improve it myself.</li>
 					<li>construction->.</li>

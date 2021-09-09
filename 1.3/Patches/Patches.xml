@@ -679,6 +679,7 @@
 						<li>calm_options(INITIATOR_mood>=0.6,INITIATOR_opinion>=0)->*beams a smile at [RECIPIENT_nameDef]*</li>
 						<li>calm_options(INITIATOR_mood>=0.7)->♪♫♪ hums a tune ♪♫♪</li>
 						<li>calm_options(INITIATOR_mood>=0.8)->♪♫♪ whistles a tune ♪♫♪</li>
+						<li>calm_options(INITIATOR_mood>=0.8)->What a wonderful world!</li>
 						
 					<!-- ===Stressed=== -->
 						<li>mood_stressed(tag=Stressed)->[stressed_options]</li>
@@ -686,8 +687,10 @@
 						<li>stressed_options->*glares*</li>
 						<li>stressed_options->*glowers*</li>
 						<li>stressed_options->*frowns*</li>
+						<li>stressed_options->Hmph...</li>
 						<li>stressed_options(INITIATOR_trait==psychopath,p=2)->*stares unexpressively*</li>
 						<li>stressed_options(INITIATOR_mood&lt;=0.2)->*mutters angrily*</li>
+						<li>stressed_options(INITIATOR_mood&lt;=0.3)->*grumbles*</li>
 
 					<!-- ===Singing=== -->
 						<li>r_logentry(INITIATOR_mood>=0.6,INITIATOR_artistic_passion!=None,tag=Singing)->♪♫♪ *sings* ♪♫♪</li>
@@ -797,6 +800,7 @@
 						<li>animal_large(INITIATOR_intellectual_level>5)->a rhinoceros</li>
 						<li>animal_large->a whale</li>
 						<li>animal_large->a grizzly bear</li>
+						<li>animal_large->a megasloth</li>
 					<!-- ===annoying=== -->
 						<li>annoying->annoying</li>
 						<li>annoying->bad</li>
@@ -805,7 +809,8 @@
 						<li>annoying->maddening</li>
 						<li>annoying->bothersome</li>
 						<li>annoying->frustrating</li>
-						<li>annoying(INITIATOR_intellectual_level&lt;5)->worst</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->so annoying</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->so bad</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->exasperating</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->ire-raising</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->vexing</li>
@@ -863,6 +868,19 @@
 						<li>humiliating(INITIATOR_intellectual_level>=10)->discomfiting</li>
 						<li>humiliating(INITIATOR_intellectual_level>=10)->disgraceful</li>
 						<li>humiliating(INITIATOR_intellectual_level>=15)->ignominous</li>
+					<!-- ===intensifier=== (add space after word. should be more common for less intellectual pawns)-->
+						<li>intensifier(priority=-1,p=3)-></li>
+						<li>intensifier(priority=-1)->so </li>
+						<li>intensifier(priority=-1)->very </li>
+						<li>intensifier(priority=-1,p=0.5)->really </li>
+						<li>intensifier(priority=-1)->truly </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=1)-></li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->so </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->very </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->really </li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=5)-></li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->most </li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->quite </li>
 					<!-- ===mist=== -->
 						<li>mist->mist</li>
 						<li>mist->fog</li>				
@@ -874,6 +892,13 @@
 						<li>monster->creature</li>
 						<li>monster->ghost</li>
 						<li>monster->alien</li>				
+					<!-- === moderately attractive (to describe an object or room) === -->
+						<li>moderately_attractive_obj->pretty</li>
+						<li>moderately_attractive_obj->nice</li>
+						<li>moderately_attractive_obj->attractive</li>
+						<li>moderately_attractive_obj->charming</li>
+						<li>moderately_attractive_obj->lovely</li>
+						<li>moderately_attractive_obj->pleasant</li>
 					<!-- ===nice (weather)=== -->
 						<li>nice->nice</li>
 						<li>nice->good</li>
@@ -912,13 +937,14 @@
 						<li>swearword->frigging </li>			
 						<li>swearword->sodding </li>
 						<li>swearword->wretched </li>
+						<li>swearword->darn </li>
+						<li>swearword->shoot </li>
 						<!-- ===abrasive=== -->
 							<li>swearword(INITIATOR_trait==abrasive)->[swearword_abrasive] </li>
 							<li>swearword_abrasive->frakking</li>
 							<li>swearword_abrasive->fucking</li>
 					<!-- ===swearword (adverb)=== -->
 						<li>swearword_adverb(INITIATOR_mood>=0.4,priority=1)-></li>
-						<li>swearword_adverb-></li>
 						<li>swearword_adverb->bloody </li>
 						<li>swearword_adverb->frigging </li>
 						<!-- ===abrasive=== -->
@@ -931,6 +957,10 @@
 						<li>stupid->dumb</li>
 						<li>stupid->ignorant</li>
 						<li>stupid->witless</li>
+						<li>stupid->boneheaded</li>
+						<li>stupid(INITIATOR_intellectual_level&lt;5)->dopey</li>
+						<li>stupid(INITIATOR_intellectual_level>=5)->imbecilic</li>
+						<li>stupid(INITIATOR_intellectual_level>=7)->fatuous</li>
 					<!-- ===surely=== -->
 						<li>surely->surely</li>
 						<li>surely->certainly</li>
@@ -939,6 +969,9 @@
 						<li>surely->definitely</li>
 						<li>surely(INITIATOR_intellectual_level>=10)->unquestionably</li>
 						<li>surely(INITIATOR_intellectual_level>=5)->undeniably</li>
+						<li>surely(INITIATOR_intellectual_level>=10)->indubitably</li>
+						<li>surely(INITIATOR_intellectual_level>=5)->doubtlessly</li>
+						<li>surely(INITIATOR_intellectual_level>=5)->inarguably</li>
 
 					<!-- ===tv letters=== -->					
 						<li>tv_letters->NTQ</li>
@@ -1076,7 +1109,7 @@
 						<li>what_about_yours->How do you like yours, [RECIPIENT_nameDef]?</li>
 						<li>what_about_yours->What's your opinion of yours, [RECIPIENT_nameDef]?</li>
 						<li>what_about_yours(INITIATOR_intellectual_level>=5,p=0.75)->Do share your your opinion of your own, [RECIPIENT_nameDef].</li>
-						<li>what_about_yours(INITIATOR_opinion&lt;0)->I guess I should ask. What about yours, [RECIPIENT_nameDef]?</li>
+						<li>what_about_yours(INITIATOR_opinion&lt;0)->...I guess I should ask: What about yours, [RECIPIENT_nameDef]?</li>
 			</rulesStrings>
 
 <!--

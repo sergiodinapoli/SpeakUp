@@ -437,6 +437,8 @@
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<li>good_opinion(tag=Dream_nice)->Oh... And what was this dream about, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion(tag=Dream_nice)->What was your dream about, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion(tag=Dream_nice)->Really, [RECIPIENT_nameDef]? What was your dream about?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>

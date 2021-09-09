@@ -17,21 +17,31 @@
 						<!-- ===AteLavishMeal=== -->
 							<li>r_logentry(INITIATOR_thoughtDefName==AteLavishMeal,tag=ReactToThought_AteMeal)->[meal_lavish]</li>
 							<li>meal_lavish->I'm truly enjoying our meals — they are abundant, tasty and varied.</li>
+							<li>meal_lavish->Our meals are delicious! We have variety and flavor.</li>
+							<li>meal_lavish->I feel great after one of our meals. They're so tasty!</li>
+							<li>meal_lavish(INITIATOR_trait==gourmand)->Great meals are the greatest joy in life — and our meals are truly great.</li>
 							<!-- ===AteFineMeal=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteFineMeal,tag=ReactToThought_AteMeal)->[meal_fine]</li>
 								<li>meal_fine->I'm enjoying our meals — they are tasty and varied.</li>
+								<li>meal_fine->I've had some nice meals lately.</li>
+								<li>meal_fine->Our meals are [intensifier]tasty.</li>
+								<li>meal_fine(INITIATOR_trait==gourmand)->My taste is satisfied by our meals.</li>
 							<!-- ===AteAwfulMeal=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteAwfulMeal,tag=ReactToThought_AteMeal)->[meal_awful]</li>
 								<li>meal_awful->Our meals are [disgusting]!</li>
+								<li>meal_awful->I wish we had better food.</li>
+								<li>meal_awful->Why are our meals so [disgusting]?</li>
+								<li>meal_awful(INITIATOR_trait==gourmand)->Our food is [disgusting] - this is an absolute outrage! I can't bear it!</li>
 							<!-- ===AteRawFood=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteRawFood,tag=ReactToThought_AteMeal)->[meal_raw]</li>
 								<li>meal_raw->I had to eat raw food. Can't we have it cooked first?!</li>
+								<li>meal_raw->I had to eat raw food. That's kind of [disgusting]...</li>
 							<!-- ===AteKibble=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteKibble,tag=ReactToThought_AteMeal)->[meal_kibble]</li>
-								<li>meal_kibble->I had to eat animal kibble. It's [humiliating] — I don't get to be human any more.</li>
+								<li>meal_kibble->I had to eat animal kibble. It's [intensifier][humiliating] — I don't get to be human any more.</li>
 							<!-- ===AteCorpse=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteCorpse,tag=ReactToThought_AteMeal)->[meal_corpse]</li>
-								<li>meal_corpse->I had to eat the raw flesh of a dead, unbutchered creature. That was [humiliating] and [disgusting].</li>
+								<li>meal_corpse->I had to eat the raw flesh of a dead, unbutchered creature. That was [intensifier][humiliating] and [disgusting].</li>
 					
 					<!-- ===AteWithoutTable // AteInImpressiveDiningRoom=== -->
 						<li>r_logentry(INITIATOR_faction==PlayerColony)->[thought_diningroom]</li>
@@ -147,33 +157,41 @@
 					<!-- ===hideous=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==hideous environment,tag=ReactToThought_NeedBeauty_hideous)->[thought_needbeauty_hideous]</li>
 						<li>thought_needbeauty_hideous->This place is unbearably [ugly]. I can't look at this any more.</li>
+						<li>thought_needbeauty_hideous->I hate being in a place like this. It's too [ugly] for me to stand it...</li>
+						<li>thought_needbeauty_hideous->I can't believe this place is so deeply [ugly]...</li>
 						<li>thought_needbeauty_hideous(INITIATOR_trait==depressive)->This place is a perfect depiction of our future — bleak and dreary.</li>
 						<li>thought_needbeauty_hideous(INITIATOR_trait==pyromaniac)->This place is so totally dismal we could burn it down to ashes — and even so, it would look better!</li>
 					<!-- ===ugly=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==ugly environment,tag=ReactToThought_NeedBeauty_ugly)->[thought_needbeauty_ugly]</li>
 						<li>thought_needbeauty_ugly->This place is really [ugly]. I wish I didn't have to look at this any more.</li>
+						<li>thought_needbeauty_ugly->This place is [intensifier][ugly].</li>
+						<li>thought_needbeauty_ugly->I don't like being in a [ugly] place like this.</li>
 						<li>thought_needbeauty_ugly(INITIATOR_trait==depressive)->It's very [ugly] around here... but then again — it's OK: it's the best I'll ever get in this life, I'm sure.</li>
 						<li>thought_needbeauty_ugly(INITIATOR_trait==pyromaniac)->This place is hopelessly [ugly]. Let's burn it down and build a better one from scratch!</li>
 					<!-- ===unsightly=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==unsightly environment,tag=ReactToThought_NeedBeauty_unsightly)->[thought_needbeauty_unsightly]</li>
 						<li>thought_needbeauty_unsightly->This place is kind of [unsightly]. I wish I didn't have to look at all this.</li>
+						<li>thought_needbeauty_unsightly->I wish this place were more [moderately_attractive_obj]. It's too [unsightly].</li>
 					<!-- ===pretty=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==pretty environment,tag=ReactToThought_NeedBeauty_pretty)->[thought_needbeauty_pretty]</li>
 						<li>thought_needbeauty_pretty->This place looks nice.</li>
+						<li>thought_needbeauty_pretty->This is a [moderately_attractive_obj] place.</li>
 					<!-- ===beautiful=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==beautiful environment,tag=ReactToThought_NeedBeauty_beautiful)->[thought_needbeauty_beautiful]</li>
-						<li>thought_needbeauty_pretty->I really like this place. It's beautiful.</li>
+						<li>thought_needbeauty_pretty->I really like this place. It's [intensifier]beautiful.</li>
+						<li>thought_needbeauty_pretty->I like being here. It's [intensifier]beautiful.</li>
+						<li>thought_needbeauty_pretty->This place is [intensifier]beautiful.</li>
 					<!-- ===gorgeous=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==gorgeous environment,tag=ReactToThought_NeedBeauty_gorgeous)->[thought_needbeauty_gorgeous]</li>
 						<li>thought_needbeauty_gorgeous->This place is truly beautiful. It lifts me up and makes me love life!</li>
-						<li>thought_needbeauty_gorgeous->This place is a dream come true. I'm so happy to be here!</li>
+						<li>thought_needbeauty_gorgeous->This place is a dream come true. I'm [intensifier]happy to be here!</li>
 						<li>thought_needbeauty_gorgeous(INITIATOR_artistic_level>=5)->This place looks like a true masterwork of fine arts!</li>
 				<!-- ===NeedComfort=== -->
 					<!-- ===uncomfortable=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==uncomfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort1]</li>
 						<li>thought_need_comfort1->My back is aching. Our furniture here is quite lacking.</li>
 						<li>thought_need_comfort1->Ouch! I must have sat down wrong. I think I blame our furniture...</li>
-						<li>thought_need_comfort1->Our furniture isn't very good. I'm uncomfortable.</li>
+						<li>thought_need_comfort1->Our furniture isn't very good. I'm [intensifier]uncomfortable.</li>
 						<li>thought_need_comfort1(INITIATOR_trait==ascetic,priority=1)->Not to complain, but this furniture causes my body to ache.</li>
 					<!-- ===comfortable=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==comfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort2]</li>
@@ -188,7 +206,7 @@
 					<!-- ===extremely comfortable=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==extremely comfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort4]</li>
 						<li>thought_need_comfort4->This place is so cushy — we truly have excellent furniture around here!</li>
-						<li>thought_need_comfort4->Our furniture here is so well-crafted and cozy!</li>
+						<li>thought_need_comfort4->Our furniture here is [intensifier]well-crafted and cozy!</li>
 						<li>thought_need_comfort4->We're surrounded by comfort, and it feels great.</li>
 					<!-- ===luxuriantly comfortable=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==luxuriantly comfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort5]</li>
@@ -260,6 +278,7 @@
 					<!-- ===just hungry=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==hungry,tag=ReactToThought_NeedFood)->[thought_needfood_hungry0]</li>
 						<li>thought_needfood_hungry0->I'm really hungry.</li>
+						<li>thought_needfood_hungry0->I'm [intensifier]hungry.</li>
 						<li>thought_needfood_hungry0->I'm feeling peckish.</li>
 						<li>thought_needfood_hungry0->I could eat [animal_large]!</li>
 						<li>thought_needfood_hungry0->I'm starving!</li>
@@ -290,11 +309,11 @@
 						<li>r_logentry(INITIATOR_thoughtLabel==recreation-starved,tag=ReactToThought_NeedJoy)->[thought_need_joy1]</li>
 						<li>thought_need_joy1->It's been so long since I did anything for fun on my own time.</li>
 						<li>thought_need_joy1->I don't remember what fun feels like.</li>
-						<li>thought_need_joy1->I'm so bored. I wonder if life will always feel this bland?</li>
+						<li>thought_need_joy1->I'm [intensifier]bored. I wonder if life will always feel this bland?</li>
 					<!-- ===recreation-deprived=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==recreation-deprived,tag=ReactToThought_NeedJoy)->[thought_need_joy2]</li>
 						<li>thought_need_joy2->We need more variation in recreation activities, and I need time to enjoy them.</li>
-						<li>thought_need_joy2->I feel unfulfilled... I wish I could enjoy something fun.</li>
+						<li>thought_need_joy2->I feel [intensifier]unfulfilled... I wish I could enjoy something fun.</li>
 					<!-- ===recreation unfulfilled=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==recreation unfulfilled,tag=ReactToThought_NeedJoy)->[thought_need_joy3]</li>
 						<li>thought_need_joy3->We need more variation in the recreation activities, and I need time to enjoy them.</li>
@@ -367,30 +386,37 @@
 						<li>thought_newcolopt(INITIATOR_animals_level>=5,INITIATOR_shooting_level>=5)->I believe we may hunt for food here — and that will [surely] give us a great start!</li>
 				<!-- ===ObservedLayingCorpse=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==ObservedLayingCorpse,tag=ReactToThought_ObservedLayingCorpse)->[thought_corpse]</li>
-					<li>thought_corpse->[saw_a_body] It was [disturbing].</li>
-					<li>thought_corpse->[saw_a_body] It was [disturbing].</li>
+					<li>thought_corpse->[saw_a_body] It was [intensifier][disturbing].</li>
+					<li>thought_corpse(INITIATOR_trait==kind)->[saw_a_body] It was [intensifier][disturbing]. I hope someone puts that poor person to rest.</li>
 					<li>thought_corpse(INITIATOR_trait==psychopath,priority=1)->[saw_a_body]</li>
 					<li>thought_corpse(INITIATOR_trait==bloodlust,priority=1)->[saw_a_body]</li>
 					<li>thought_corpse(INITIATOR_trait==cannibal,priority=1)->[saw_a_body]</li>
 					<li>saw_a_body->I saw a dead body laying on the ground.</li>
 					<li>saw_a_body->I saw an unburied body.</li>
+					<li>saw_a_body->I saw someone's corpse.</li>
+					<li>saw_a_body->There was a dead body laying on the ground.</li>
 				<!-- ===ObservedLayingRottingCorpse=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==ObservedLayingRottingCorpse,tag=ReactToThought_ObservedLayingRottingCorpse)->[thought_rotting_corpse]</li>
-					<li>thought_rotting_corpse->[saw_a_rotting_body] It was [disgusting].</li>
-					<li>thought_rotting_corpse->[saw_a_rotting_body] It was [disgusting].</li>
+					<li>thought_rotting_corpse->[saw_a_rotting_body] It was [intensifier][disgusting].</li>
+					<li>thought_rotting_corpse(INITIATOR_trait==kind)->[saw_a_rotting_body] It was [intensifier][disgusting]. Why hasn't anyone laid them to rest?</li>
 					<li>thought_rotting_corpse(INITIATOR_trait==psychopath,priority=1)->[saw_a_rotting_body]</li>
 					<li>thought_rotting_corpse(INITIATOR_trait==bloodlust,priority=1)->[saw_a_rotting_body]</li>
 					<li>thought_rotting_corpse(INITIATOR_trait==cannibal,priority=1)->[saw_a_rotting_body]</li>
 					<li>saw_a_rotting_body->I saw a rotting body laying on the ground.</li>
-					<li>saw_a_rotting_body->I saw an unburied rotting body.</li>					
+					<li>saw_a_rotting_body->I saw an unburied rotting body.</li>
+					<li>saw_a_rotting_body->Earlier there was a corpse, rotting on the ground.</li>
+					<li>saw_a_rotting_body->I saw a dead body, clearly rotting away.</li>
 				<!-- ===ReleasedHealthyPrisoner (playerfaction only)=== -->
 					<li>r_logentry(INITIATOR_faction==PlayerColony,INITIATOR_thoughtDefName==ReleasedHealthyPrisoner,tag=ReactToThought_ReleasedPrisoner)->[thought_releasedprisoner]</li>
 					<li>r_logentry(INITIATOR_faction==PlayerTribe,INITIATOR_thoughtDefName==ReleasedHealthyPrisoner,tag=ReactToThought_ReleasedPrisoner)->[thought_releasedprisoner]</li>
+					<li>thought_releasedprisoner->We released our [prisoner] recently. [took_care_prisoner]</li>
 					<li>thought_releasedprisoner->We finally released that poor [prisoner]. [took_care_prisoner]</li>
+					<li>thought_releasedprisoner->I keep thinking about how we safely released that [prisoner]. [took_care_prisoner]</li>
 						<!-- ===took care of prisoner=== -->
 							<li>took_care_prisoner->It feels good to know we don't treat them poorly.</li>
 							<li>took_care_prisoner->It feels good to know that we treat even prisoners well.</li>
 							<li>took_care_prisoner->It's great to know that we have compassion even for those who harm us.</li>
+							<li>took_care_prisoner->I hope we can keep living up to that level of compassion.</li>
 					<li>thought_releasedprisoner(INITIATOR_trait==kind,priority=2)->Taking care of and then releasing that poor [prisoner] was such a wholesome thing to do!</li>
 					<li>thought_releasedprisoner(INITIATOR_trait==bloodlust,priority=1)->[prisoner_canniblood]</li>
 					<li>thought_releasedprisoner(INITIATOR_trait==cannibal,priority=1)->[prisoner_canniblood]</li>
@@ -398,14 +424,17 @@
 				<!-- ===Rescued=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==Rescued,tag=ReactToThought_Rescued)->[thought_rescued]</li>
 					<li>thought_rescued->I'm so thankful you guys rescued me. Without your help, I probably wouldn't be here today.</li>
-					<li>thought_rescued->Rescuing me was a true noble and life-saving thing to do. I'll be forever thankful for that.</li>
+					<li>thought_rescued->Rescuing me was a truly noble and life-saving thing to do. I'll be forever thankful for that.</li>
+					<li>thought_rescued->I'll never forget your help. I'm forever grateful to you guys for saving me.</li>
 				<!-- ===Sick=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==Sick,tag=ReactToThought_Sick)->[thought_sick]</li>
 					<li>thought_sick->I'm not... I'm not feeling well...</li>
 					<li>thought_sick->My health could be better...</li>
 					<li>thought_sick->Ugh... will this [swearword]sickness ever go away!?</li>
+					<li>thought_sick->I feel sick...</li>
+					<li>thought_sick->I'm not doing so well... I think I'm sick...</li>
 					<li>thought_sick(INITIATOR_trait==wimp)->Ah, I'm feeling horrible... I... I might pass out soon!</li>
-					<li>thought_sick(INITIATOR_trait==tortured artist)->Sickness: rich fuel for my creativity, yet painful dagger in the flesh still.</li>
+					<li>thought_sick(INITIATOR_trait==tortured artist)->Sickness: rich fuel for my creativity, yet a painful dagger in the flesh still.</li>
 					<li>thought_sick(INITIATOR_trait==sickly)->[damn_it], I'm sick again... same old story...</li>
 					<li>thought_sick(INITIATOR_trait==super-immune)->Ah — this [swearword]sickness. I shouldn't even be sick! I never get sick!</li>
 					<li>thought_sick(INITIATOR_trait==body modder)->Sick — again! The human body is so [swearword]weak and flawed...</li>
@@ -415,7 +444,7 @@
 							<li>thought_sleepdisturbed(INITIATOR_trait==kind,priority=1)->[thought_sleepdisturbed_calm]</li>
 						<!-- ===Stressed=== -->
 							<li>thought_sleepdisturbed(INITIATOR_mood&lt;0.4,tag=ReactToThought_SleepDisturbed)->[thought_sleepdisturbed_stressed]</li>
-							<li>thought_sleepdisturbed_stressed->[accuse_gender_someone] disturbed my [swearword]sleep. [damn_it] — that's [swearword_adverb][annoying]!</li>
+							<li>thought_sleepdisturbed_stressed->[accuse_gender_someone] disturbed my [swearword]sleep. [damn_it] — that's [intensifier][swearword_adverb][annoying]!</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==abrasive)->Why can't I [swearword_adverb]get some undisturbed [swearword]sleep here!?</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==bloodlust)->When I find out [accuse_gender_who] disturbed my [swearword]sleep, I swear I'll shred [accuse_gender_objective] to pieces with my bare hands!</li>
 							<li>thought_sleepdisturbed_stressed(INITIATOR_trait==brawler)->Next time [accuse_gender_someone] disturbs my [swearword]sleep, I'll get up and punch [accuse_gender_objective] right in the face!</li>
@@ -458,18 +487,44 @@
 							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==impressive barrack)->[mood_calm]</li>
 							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==very impressive barrack,tag=ReactToThought_SleptInBarracks)->My shared room is very impressive. I don't even mind sharing it!</li>
 							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==extremely impressive barrack,tag=ReactToThought_SleptInBarracks)->My shared room is so extremely impressive that sharing it doesn't even bother me!</li>
-							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==unbelievably impressive barrack,tag=ReactToThought_SleptInBarracks)->I can't believe how nice is my shared room!</li>
+							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==unbelievably impressive barrack,tag=ReactToThought_SleptInBarracks)->I can't believe how nice my shared room is!</li>
 							<li>thought_sleptinbarracks_calm(INITIATOR_thoughtLabel==wondrously impressive barrack,tag=ReactToThought_SleptInBarracks)->My shared room is just a dream come true!</li>
 				<!-- ===SleptInBedroom=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==SleptInBedroom,tag=ReactToThought_Bedroom)->[thought_bedroom] [what_about_yours]</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==awful bedroom)->My [swearword]room is [swearword_adverb][ugly] — but at least I don't have to share it.</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==decent bedroom)->I sleep in a [proper] bedroom.</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==slightly impressive bedroom)->I like my bedroom — it's a nice one.</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==impressive bedroom)->I sleep in an impressive bedroom. It's great!</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==very impressive bedroom)->I sleep in a very impressive bedroom. I just love it!</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==extremely impressive bedroom)->I get to sleep in an extremely impressive bedroom! </li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==unbelievably impressive bedroom)->My bedroom is truly astounding!</li>
-					<li>thought_bedroom(INITIATOR_thoughtLabel==wondrously impressive bedroom)->Sleeping in my bedroom feels like heaven. Just wondrous!</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==awful bedroom)->[thought_bedroom_awful]</li>
+						<li>thought_bedroom_awful->My [swearword]room is [swearword_adverb][ugly] — but at least I don't have to share it.</li>
+						<li>thought_bedroom_awful->My room is so [swearword_adverb][ugly] — but at least it's mine.</li>
+						<li>thought_bedroom_awful->I'm not proud to say it, but I have an [ugly] bedroom.</li>
+						<li>thought_bedroom_awful(INITIATOR_mood>=0.7)->My room may be [ugly], but it's my very own bedroom, so I don't really mind.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==decent bedroom)->[thought_bedroom_decent]</li>
+						<li>thought_bedroom_decent->I sleep in a [proper] bedroom.</li>
+						<li>thought_bedroom_decent->My bedroom is [proper] and decent.</li>
+						<li>thought_bedroom_decent->I have a [proper] bedroom, so I can't complain.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==slightly impressive bedroom)->[thought_bedroom_slightlyimpressive]</li>
+						<li>thought_bedroom_slightlyimpressive->I like my bedroom — it's a [moderately_attractive_obj] one.</li>
+						<li>thought_bedroom_slightlyimpressive->I have a [moderately_attractive_obj] bedroom, and I like it.</li>
+						<li>thought_bedroom_slightlyimpressive->I sleep in a [moderately_attractive_obj] bedroom of my own.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==impressive bedroom)->[thought_bedroom_impressive]</li>
+						<li>thought_bedroom_impressive->I sleep in an impressive bedroom. It's great!</li>
+						<li>thought_bedroom_impressive->I have an impressive bedroom. Going to bed is great!</li>
+						<li>thought_bedroom_impressive->My bedroom is impressive, it makes me happy.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==very impressive bedroom)->[thought_bedroom_veryimpressive]</li>
+						<li>thought_bedroom_veryimpressive->I sleep in a very impressive bedroom. I just love it!</li>
+						<li>thought_bedroom_veryimpressive->I love my bedroom. It's very impressive!</li>
+						<li>thought_bedroom_veryimpressive->I love sleeping in my bedroom. I'm very impressed every time I go to bed!</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==extremely impressive bedroom)->[thought_bedroom_extremelyimpressive]</li>
+						<li>thought_bedroom_extremelyimpressive->I get to sleep in an extremely impressive bedroom!</li>
+						<li>thought_bedroom_extremelyimpressive->I have an extremely impressive bedroom! I'm so lucky.</li>
+						<li>thought_bedroom_extremelyimpressive->Have you ever seen an extremely impressive bedroom? That's what mine is like.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==unbelievably impressive bedroom)->[thought_bedroom_unbelievablyimpressive]</li>
+						<li>thought_bedroom_unbelievablyimpressive->My bedroom is truly astounding!</li>
+						<li>thought_bedroom_unbelievablyimpressive->I have an unbelievably impressive bedroom. It's almost awe-inspiring!</li>
+						<li>thought_bedroom_unbelievablyimpressive->My bedroom is almost a work of art. It's unbelievably impressive.</li>
+					<li>thought_bedroom(INITIATOR_thoughtLabel==wondrously impressive bedroom)->[thought_bedroom_wondrouslyimpressive]</li>
+						<li>thought_bedroom_wondrouslyimpressive->Sleeping in my bedroom feels like heaven. Just wondrous!</li>
+						<li>thought_bedroom_wondrouslyimpressive->When I enter my bedroom I feel like I can hear heavenly singing: It's that magnificent.</li>
+						<li>thought_bedroom_wondrouslyimpressive->I have a bedroom that's a work of art that belongs in a musem. It's simply wondrous.</li>
+						<li>thought_bedroom_wondrouslyimpressive->I love my wondrous bedroom so much, I think I might cry!</li>
 
 				<!-- ===SleptInCold=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==SleptInCold)->[thought_sleptincold]</li>
