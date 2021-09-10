@@ -875,13 +875,28 @@
 						<li>intensifier(priority=-1)->very </li>
 						<li>intensifier(priority=-1,p=0.5)->really </li>
 						<li>intensifier(priority=-1)->truly </li>
+						<li>intensifier(priority=-1,p=0.5)->so [intensifier]</li>
 						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=1)-></li>
 						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->so </li>
 						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->very </li>
 						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->really </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=1)->so [intensifier]</li>
 						<li>intensifier(INITIATOR_intellectual_level>=7,p=5)-></li>
 						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->most </li>
 						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->quite </li>
+						<li>intensifier(INITIATOR_mood>=0.7)->super </li>
+					<!-- ===damned_intensifier=== -->
+						<li>damned_intensifier(p-2)-></li>
+						<li>damned_intensifier->damned </li>
+						<li>damned_intensifier->bloody </li>
+						<li>damned_intensifier->blasted </li>
+						<li>damned_intensifier->sodding </li>
+						<li>damned_intensifier(p=2,INITIATOR_trait==abrasive)->fucking </li>
+						<li>damned_intensifier(INITIATOR_trait==abrasive,INITIATOR_mood&lt;=0.5)->fucking [damned_intensifier]</li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->fucking </li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->frigging </li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->goddamned </li>
+						<li>damned_intensifier(p=2,INITIATOR_trait==abrasive,INITIATOR_mood&lt;=0.2)->fucking [damned_intensifier]</li>
 					<!-- ===mist=== -->
 						<li>mist->mist</li>
 						<li>mist->fog</li>				

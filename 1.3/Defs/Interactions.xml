@@ -1711,6 +1711,8 @@
 						<li>insult_you(RECIPIENT_gender==Male)->you [bloody] son of a [bitch]!</li>
 					<!-- ===calm=== -->
 						<li>bad_opinion(INITIATOR_mood>=0.4)->Stop it, [RECIPIENT_nameDef] — spare the shame.</li>
+						<li>bad_opinion(INITIATOR_mood>=0.4)->Don't be so [damned_intensifier]rude, [RECIPIENT_nameDef].</li>
+						<li>bad_opinion(INITIATOR_mood>=0.4)->That's enough bad-mouthing out of you, [RECIPIENT_nameDef].</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Who pissed in your cereal, [RECIPIENT_nameDef]?</li>
@@ -1719,18 +1721,24 @@
 					<li>good_opinion->You're crossing the line, [RECIPIENT_nameDef]!</li>
 					<li>good_opinion->Damn you, [RECIPIENT_nameDef]! What was that for?!</li>
 					<li>good_opinion->Aww, [RECIPIENT_nameDef]! What was that about!?</li>
+				<!-- ===High opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion>=50)->[friend_opinion]</li>
+					<li>friend_opinion->What gives, [RECIPIENT_nameDef]? I thought we were friends!</li>
+					<li>friend_opinion->Hey! That's no way to talk to a friend, [RECIPIENT_nameDef]!</li>
+					<li>friend_opinion->[RECIPIENT_nameDef]! What?! I thought you were my friend!</li>
+
 				
 			<!-- ===WILDCARDS=== -->
 				<li>insult(RECIPIENT_gender==Female)->[bitch]</li>
-				<li>insult(RECIPIENT_gender==Male)->[asshole]</li>
+				<li>insult(RECIPIENT_gender==Male)->[dickhead]</li>
 				<li>insult->fart-hopper</li>
 				<li>insult->jerk</li>
 				<li>insult->asshole</li>
 				<li>insult(INITIATOR_intellectual_level>=5)->latrine dweller</li>
-				<li>asshole->arse-wipe</li>
-				<li>asshole->dickhead</li>
-				<li>asshole->prick</li>
-				<li>asshole->bastard</li>
+				<li>dickhead->arse-wipe</li>
+				<li>dickhead->dickhead</li>
+				<li>dickhead->prick</li>
+				<li>dickhead->bastard</li>
 				<li>bitch->bitch</li>
 				<li>bitch->basic bitch</li>
 				<li>bitch->cunt</li>
