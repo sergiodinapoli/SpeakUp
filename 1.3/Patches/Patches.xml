@@ -815,22 +815,50 @@
 						<li>annoying(INITIATOR_intellectual_level>=5)->exasperating</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->ire-raising</li>
 						<li>annoying(INITIATOR_intellectual_level>=5)->vexing</li>
+					<!-- ===beautiful (person)=== -->
+						<li>beautiful_person->adorable</li>
+						<li>beautiful_person->alluring</li>
+						<li>beautiful_person->attractive</li>
+						<li>beautiful_person->beautiful</li>
+						<li>beautiful_person->cute</li>
+						<li>beautiful_person->good-looking</li>
+						<li>beautiful_person->gorgeous</li>
+						<li>beautiful_person->lovely</li>
+						<li>beautiful_person->pretty</li>
+						<li>beautiful_person->statuesque</li>
+						<li>beautiful_person(RECIPIENT_gender==Male,p=1)->handsome</li>
+						<li>beautiful_person(RECIPIENT_gender==Male)->hunky</li>
+						<li>beautiful_person(RECIPIENT_gender==Female)->buxom</li>
+						<li>beautiful_person(RECIPIENT_gender==Female,p=0.5)->handsome</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->bewitching</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->comely</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->pulchritudinous</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->resplendent</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->statuesque</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->winsome</li>
 					<!-- ===cleaning (action)=== -->
 						<li>cleaning->cleaning</li>
 						<li>cleaning->scrubbing</li>
+						<li>cleaning->tidying</li>
 						<li>cleaning->washing</li>
 					<!-- ===disgusting (dead body/meal)=== -->
 						<li>disgusting->disgusting</li>
 						<li>disgusting->nauseating</li>
 						<li>disgusting->sickening</li>
 						<li>disgusting->gross</li>
+						<li>disgusting->nasty</li>
+						<li>disgusting->vile</li>
+						<li>disturbing(INITIATOR_intellectual_level&lt;=5)->gross</li>
 						<li>disgusting(INITIATOR_intellectual_level>=5)->revolting</li>
+						<li>disgusting(INITIATOR_intellectual_level>=5)->repellent</li>
 						<li>disgusting(INITIATOR_intellectual_level>=10)->repugnant</li>
 					<!-- ===disturbing (dead body)=== -->
 						<li>disturbing->disturbing</li>
 						<li>disturbing->unsettling</li>
 						<li>disturbing->gut-wrenching</li>
-						<li>disturbing->gross</li>
+						<li>disturbing->upsetting</li>
+						<li>disturbing->horrible</li>
+						<li>disturbing(INITIATOR_intellectual_level&lt;=5)->gross</li>
 						<li>disturbing(INITIATOR_intellectual_level>=5)->perturbing</li>
 						<li>disturbing(INITIATOR_intellectual_level>=5)->disquieting</li>
 						<li>disturbing(INITIATOR_intellectual_level>=10)->abhorrent</li>
@@ -860,6 +888,9 @@
 						<li>horrible->frightening</li>
 						<li>horrible->ghastly</li>
 						<li>horrible->ghoulish</li>
+						<li>horrible->nightmarish</li>
+						<li>horrible->vile</li>
+						<li>horrible->bizarre</li>
 					<!-- ===humiliating=== -->
 						<li>humiliating->humiliating</li>
 						<li>humiliating->demeaning</li>
@@ -900,6 +931,7 @@
 					<!-- ===mist=== -->
 						<li>mist->mist</li>
 						<li>mist->fog</li>				
+						<li>mist->haze</li>
 					<!-- ===monster=== -->
 						<li>monster->monster</li>
 						<li>monster->beast</li>
@@ -907,7 +939,10 @@
 						<li>monster->abomination</li>
 						<li>monster->creature</li>
 						<li>monster->ghost</li>
-						<li>monster->alien</li>	
+						<li>monster->alien</li>
+						<li>monster->freak</li>
+						<li>monster->terror</li>
+						<li>monster(p=0.2)->[horrible] [monster]</li>
 					<!-- === moderately attractive (to describe an object or room) === -->
 						<li>moderately_attractive_obj->pretty</li>
 						<li>moderately_attractive_obj->nice</li>
@@ -966,6 +1001,7 @@
 							<li>swearword_abrasive->fucking</li>
 					<!-- ===swearword (adverb)=== -->
 						<li>swearword_adverb(INITIATOR_mood>=0.4,priority=1)-></li>
+						<li>swearword_adverb-></li>
 						<li>swearword_adverb->bloody </li>
 						<li>swearword_adverb->frigging </li>
 						<!-- ===abrasive=== -->
@@ -1059,9 +1095,13 @@
 						<li>unsightly->trashy</li>
 						<li>unsightly->trashed</li>
 						<li>unsightly->unkempt</li>
+						<li>unsightly->disheveled</li>
+						<li>unsightly->grubby</li>
 						<li>unsightly(INITIATOR_intellectual_level>=5)->unappealing</li>
 						<li>unsightly(INITIATOR_intellectual_level>=5)->unattractive</li>				
-						<li>unsightly(INITIATOR_intellectual_level>=10)->bedraggled</li>
+						<li>unsightly(INITIATOR_intellectual_level>=7)->bedraggled</li>
+						<li>unsightly(INITIATOR_intellectual_level>=7)->slatternly</li>
+						<li>unsightly(INITIATOR_intellectual_level>=7)->slovenly</li>
 						
 				
 				<!-- ===CHITCHAT WILDCARDS: common sentences=== -->

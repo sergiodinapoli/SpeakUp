@@ -1106,9 +1106,9 @@
 				<!-- ===WILDCARDS === -->
 					<li>construction(INITIATOR_construction_level>=5,priority=1)->, but I'm planning to improve it myself.</li>
 					<li>construction->.</li>
-					<li>bad_opinion_jealous_greedy->.</li>
-					<li>bad_opinion_jealous_greedy(INITIATOR_trait==jealous,priority=1)->[bad_opinion_jealous_greedy_end]</li>
-					<li>bad_opinion_jealous_greedy(INITIATOR_trait==greedy,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>jealous_greedy->.</li>
+					<li>jealous_greedy(INITIATOR_trait==jealous,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>jealous_greedy(INITIATOR_trait==greedy,priority=1)->[bad_opinion_jealous_greedy_end]</li>
 					<li>bad_opinion_jealous_greedy_end->, but it's probably better than yours.</li>
 			</rulesStrings>
 		</logRulesInitiator>
