@@ -907,7 +907,7 @@
 						<li>monster->abomination</li>
 						<li>monster->creature</li>
 						<li>monster->ghost</li>
-						<li>monster->alien</li>				
+						<li>monster->alien</li>	
 					<!-- === moderately attractive (to describe an object or room) === -->
 						<li>moderately_attractive_obj->pretty</li>
 						<li>moderately_attractive_obj->nice</li>
@@ -935,6 +935,7 @@
 						<li>proper->regular</li>
 						<li>proper->decent</li>
 						<li>proper->ordinary</li>
+						<li>proper->standard</li>
 						<li>proper(INITIATOR_intellectual_level>=5)->conventional</li>
 					<!-- ===scared=== -->
 						<li>scared->so scared</li>
@@ -943,6 +944,11 @@
 						<li>scared->shaking like a leaf</li>
 						<li>scared->terrified</li>
 						<li>scared->worried</li>
+						<li>scared->frightened</li>
+						<li>scared(INITIATOR_intellectual_level&lt;=3)->spooked</li>
+						<li>scared(INITIATOR_intellectual_level>=5)->petrified</li>
+						<li>scared(INITIATOR_intellectual_level>=7)->nigh-hysterical</li>
+						<li>scared(INITIATOR_intellectual_level>=7)->terror-stricken</li>
 					<!-- ===swearword=== -->
 						<li>swearword(INITIATOR_mood>=0.4,priority=1)-></li>
 						<li>swearword-></li>

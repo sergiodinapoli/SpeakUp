@@ -31,10 +31,13 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->Nothing — forget it.</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Forget it.</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Hmph. Never mind.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Uhhh, never mind. I forgot.</li>
 					<li>good_opinion->Mmm... it's nothing — sorry to have bothered you.</li>
+					<li>good_opinion->I forgot what I was going to say! Sorry.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -49,10 +52,12 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->I wouldn't like to, but... OK, [RECIPIENT_nameDef] — let's go.</li>
 					<li>bad_opinion->Eh, [RECIPIENT_nameDef] — if you insist... let's go.</li>
+					<li>bad_opinion->Fine, [RECIPIENT_nameDef] — but don't make me regret this. Let's go.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Yes, [RECIPIENT_nameDef] — it'd be a pleasure. Let's go!</li>
 					<li>good_opinion->Of course, [RECIPIENT_nameDef] — excellent idea. Let's go!</li>
+					<li>good_opinion->Sure, [RECIPIENT_nameDef], that sounds good to me. Let's go!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -64,11 +69,13 @@
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->No, [RECIPIENT_nameDef].</li>
+					<li>bad_opinion->No way, [RECIPIENT_nameDef].</li>
 					<li>bad_opinion(INITIATOR_opinion&lt;-25)->Stop pestering me, [RECIPIENT_nameDef]!</li>
 					<li>bad_opinion(INITIATOR_opinion&lt;-25)->No, [RECIPIENT_nameDef]. And don't ask me this again — ever!</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I'm sorry, [RECIPIENT_nameDef] — I'd love to, but right now I can't.</li>
+					<li>good_opinion->Sorry, [RECIPIENT_nameDef] — maybe next time.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -91,6 +98,8 @@
 						<li>good_opinion(INITIATOR_trait==pessimist)->[pessimist]</li>						
 							<li>pessimist->Such beauty, so short-lived... just like happiness in our life... fleeting... failing...</li>
 						<li>good_opinion->Don't get too lost in its beauty!</li>
+						<li>good_opinion->Auroras are one of the most beautiful things you can see [outdoors].</li>
+						<li>good_opinion->It's [intensifier]beautiful, isn't it, [RECIPIENT_nameDef]?</li>
 						<li>good_opinion(INITIATOR_trait==too smart)->Auroras are the result of disturbances in the magnetosphere caused by solar wind.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -105,20 +114,23 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion(priority=-1)->...</li>
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->*stares in awe*</li>
+					<li>bad_opinion(INITIATOR_trait==pyromaniac)->The flames... I...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire,INITIATOR_moving==No)->[beat_static]</li>
 							<li>beat_static->OK! OK!</li>
 							<li>beat_static->Right on it!</li>
+							<li>beat_static->I'm trying!</li>
 							<li>beat_static->I'm going as fast as I can!</li>
 							<li>beat_static->*coughs*</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire,INITIATOR_moving==Yes)->[beat_moving]</li>
 							<li>beat_moving->I'm coming!</li>
+							<li>beat_moving->On my way!</li>
 						<li>good_opinion(INITIATOR_jobDefName!=BeatFire)->[no_beat]</li>
 							<li>no_beat(INITIATOR_opinion>=25)->I... I'm sorry, [RECIPIENT_nameDef]... I can't...</li>
 							<li>no_beat(INITIATOR_trait==pyromaniac)->*stares in awe*</li>
 							<li>no_beat->...</li>
-							<li>no_beat->*stares the fire*</li>
+							<li>no_beat->*stares at the fire*</li>
 							<li>no_beat->I... I can't...</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -132,6 +144,7 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion(priority=-1)->...</li>
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->*smiles*</li>
+					<li>bad_opinion(INITIATOR_trait==pyromaniac)->The flames... Glorious...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire)->[beat_moving]</li>
