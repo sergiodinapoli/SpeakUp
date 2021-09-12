@@ -23,6 +23,11 @@
 				<!-- ===Nice=== -->
 				<li>r_logentry(INITIATOR_mood>=0.6,tag=WhatDream)->Ah, [RECIPIENT_nameDef]... I had such a nice dream...</li>
 				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [RECIPIENT_nameDef].</li>
+				
+			<!-- ===Random DeepTalk conversation=== -->
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef]? What do you think about [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef], have you ever pondered [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [RECIPIENT_nameDef] — Mostly about [TalkTopicHeavy]...</li>
         </rulesStrings>
 		</value>
     </Operation>

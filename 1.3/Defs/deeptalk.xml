@@ -442,4 +442,54 @@
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
+		
+	<!-- ===Random DeepTalk conversation=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>DeepTalkConvo</defName>
+			<label>random deeptalk topic</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0)->Hmph...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,RECIPIENT_intellectual_level&lt;=3)->I don't want to discuss that with a pea-brain like you, [RECIPIENT_nameDef].</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,INITIATOR_trait==kind,priority=1)->Not right now, [RECIPIENT_nameDef].</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,INITIATOR_trait==kind,priority=1)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=DeepTalkConvoResponse)->[good_opinion]</li>
+						<li>good_opinion->Interesting... I think it's very complicated.</li>
+						<li>good_opinion->Hmm... I hadn't thought about that lately!</li>
+						<li>good_opinion->To be honest, that always reminds me of [TalkTopicLight][deepTalkSoftenSentenceEnd]</li>
+						<li>good_opinion->I think you can compare it to [TalkTopicLight][deepTalkSoftenSentenceEnd]</li>
+						<li>good_opinion->I really prefer to focus on [TalkTopicHeavy][deepTalkSoftenSentenceEnd]</li>
+						<!-- ===DeepTalk Soften Sentence End (, you know?)=== -->
+						<li>deepTalkSoftenSentenceEnd(p=2)->.</li>
+						<li>deepTalkSoftenSentenceEnd->, you know?</li>
+						<li>deepTalkSoftenSentenceEnd->. Is that weird?</li>
+						<li>deepTalkSoftenSentenceEnd->. But that's just what I think.</li>
+						<li>deepTalkSoftenSentenceEnd->. Is that just me?</li>
+						<li>deepTalkSoftenSentenceEnd->. Do you know what I mean?</li>
+						<li>deepTalkSoftenSentenceEnd->. I just like thinking about it.</li>
+						<li>deepTalkSoftenSentenceEnd(INITIATOR_TRAIT==abrasive,priority=2)->.</li> <!--Abrasive should never soften their sentence-->
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+			<!-- ===Random DeepTalk conversation reply part 2=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>DeepTalkConvoResponse</defName>
+			<label>random deeptalk topic response</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0)->[deepTalkConclusion]</li>
+						<li>deepTalkConclusion->I [wanna] learn more about that.</li>
+						<li>deepTalkConclusion->This is [intensifer]thought-provoking!</li>
+						<li>deepTalkConclusion->I wonder if we can find a book about that?</li>
+						<li>deepTalkConclusion->At least we can all agree on [TalkTopicLight]!</li>
+						<li>deepTalkConclusion(INITIATOR_intellectual_level>=5)->I wonder if we can write a book about that?</li>
+						<li>deepTalkConclusion(INITIATOR_opinion>=50)->I love talking to you about things, [RECIPIENT_nameDef]!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
 </Defs>
