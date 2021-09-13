@@ -786,12 +786,19 @@
 							<li>vision_adj->momentary</li>
 							<li>vision_adj->colorful</li>
 							<li>vision_adj->clear</li>
-							<li>vision_adj->sudden</li>							<li>vision_adj->vivid</li>
+							<li>vision_adj->sudden</li>
+							<li>vision_adj->vivid</li>
 							<li>vision_adj->curious</li>
 							<li>vision_adj->hazy</li>
 							<li>vision_adj->flash of a</li>
 						
 				<!-- ===CHITCHAT WILDCARDS: dictionary=== -->
+					<!-- ===animal — cute=== -->
+						<li>animal_cute->bunny</li>
+						<li>animal_cute->chinchilla</li>
+						<li>animal_cute->honeybee</li>
+						<li>animal_cute->lamb</li>
+						<li>animal_cute->duckling</li>
 					<!-- ===animal — large=== -->
 						<li>animal_large->a horse</li>
 						<li>animal_large->a muffalo</li>

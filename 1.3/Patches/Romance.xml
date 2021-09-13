@@ -40,7 +40,6 @@
 				<li>try_romance(RECIPIENT_trait==bloodlust)->[bloodbrawl]</li>
 				<li>try_romance(RECIPIENT_trait==brawler)->[bloodbrawl]</li>
 					<li>bloodbrawl->Strong as a bear, fierce as a warg... you're just a dream come true!</li>
-					<li>bloodbrawl->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
 					
 				<li>try_romance(RECIPIENT_trait==kind)->Your soothing kindness is a healing balm for my soul...</li>
 				
@@ -56,6 +55,8 @@
 				<li>try_romance(INITIATOR_TRAIT==jogger)->[fastMoving]</li>
 				<li>try_romance(INITIATOR_TRAIT==fastwalker)->[fastMoving]</li>
 				<li>fastMoving->You make my heart race faster than my feet, [beautiful] [RECIPIENT_nameDef]!</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==bloodlust)->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
 					
 			<li>beautiful->beautiful</li>
 			<li>beautiful->charming</li>
