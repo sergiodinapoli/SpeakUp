@@ -30,7 +30,9 @@
 				
 				<li>try_romance(RECIPIENT_trait==beautiful)->[beautty]</li>
 				<li>try_romance(RECIPIENT_trait==pretty)->[beautty]</li>
-					<li>beautty->Honey, sugar and cinnamon — And none of them as sweet as you, dear [romantic_adj] one!</li>
+					<li>beautty->Honey, sugar and cinnamon — here's what your mother used to make you, I'm sure!</li>
+					<li>beautty->Roses are red, violets are blue, and sugar is sweet — But not nearly as sweet as you!</li>
+					<li>beautty->You walk in beauty like the night, with all that's best of dark and bright...</li>
 					<li>beautty->The most beautiful among the beautiful will still never be as beautiful as you!</li>
 					<li>beautty->Your perfumed skin puts into my heart a thousand late-night thoughts...</li>
 					
@@ -45,6 +47,8 @@
 				<li>try_romance(RECIPIENT_trait==too smart)->Will your vast ocean of knowledge ever hold the love I feel for you?</li>
 				
 				<li>try_romance(RECIPIENT_trait==nimble)->Your smooth and elegant movements hypnotize my eyes and sway my heart...</li>
+				
+				<li>try_romance(RECIPIENT_trait==ugly)->Love looks not with the eyes, but with the mind — And therefore is winged Cupid painted blind... I treasure you, darling [RECIPIENT_nameDef]!</li>
 					
 			<li>beautiful->beautiful</li>
 			<li>beautiful->charming</li>
