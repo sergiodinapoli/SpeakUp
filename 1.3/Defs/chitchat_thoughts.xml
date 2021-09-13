@@ -1045,7 +1045,7 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->[reply_awful_barracsk]</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->[reply_awful_barracks]</li>
 							<li>reply_awful_barracks->That's extremely [annoying], [RECIPIENT_nameDef] — I certainly agree with you.</li>
 							<li>reply_awful_barracks->How absolutely [annoying], [RECIPIENT_nameDef] — We all deserve better.</li>
 						<li>good_opinion(RECIPIENT_thoughtLabel==dull barrack)->[reply_dull_barracks]</li>
@@ -1148,7 +1148,7 @@
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->If you'd like, I can set your bed on fire to warm you up.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-					<li>good_opinion->Let's hope it won't happen again, [RECIPIENT_nameDef] — it's [annoying].</li>
+					<li>good_opinion->Let's hope it won't happen again, [RECIPIENT_nameDef] — it's [intensifier][annoying].</li>
 					<li>good_opinion(INITIATOR_faction==PlayerColony)->Yeah... I wish we settled somewhere warmer.</li>
 					<li>good_opinion(INITIATOR_faction==PlayerTribe)->Yeah... I wish we settled somewhere warmer.</li>
 					<li>good_opinion->Well, it gets [weather_cold_adj] this time of the year...we just have to get used to it.</li>
@@ -1157,7 +1157,8 @@
 						<li>weather_cold_adj(INITIATOR_intellectual_level>=5)->frigid</li>
 					<li>good_opinion(INITIATOR_trait==pyromaniac)->Well, wouldn't it be nice if I started a big fire to warm us all up?</li>
 					<li>good_opinion(INITIATOR_social_passion!=None)->Maybe it'd be better if we all huddled together.</li>
-					<li>good_opinion(INITIATOR_thoughtDefName==SleptInCold)->I agree with you — I woke up covered in goosebumps!</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==SleptInCold)->I agree with you — I woke up [wokeUpCold]!</li>
+
 				<!-- ===WILDCARDS=== -->
 					<li>annoying->bad</li>
 					<li>annoying->irritating</li>
@@ -1169,6 +1170,11 @@
 					<li>annoying->unpleasant</li>
 					<li>annoying->(INITIATOR_intellectual_level&lt;3)->really really bad</li>
 					<li>annoying->(INITIATOR_intellectual_level&lt;5)->the worst</li>
+					<li>wokeUpCold->covered in goosebumps</li>
+					<li>wokeUpCold->and thought my toes froze off</li>
+					<li>wokeUpCold->feeling like a snowman</li>
+					<li>wokeUpCold->absolutely freezing</li>
+					<li>wokeUpCold->feeling [intensifier][damned_intensifier]frozen</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1437,7 +1443,7 @@
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetTorturedArtist,priority=1)->[tortured_artist]</li>
 						<li>tortured_artist(INITIATOR_mood>=0.4)->I almost had it... almost... then suddenly my artistic vision faded... lost...</li>
 						<li>tortured_artist(INITIATOR_mood&lt;0.4)->I'm in pain — a [pain_adj] pain you shall never be able to feel the way I do.</li>
-						<li>tortured_artist(INITIATOR_mood&lt;0.4)->If only I were able to express the  [pain_adj] pain I feel. But I don't think anyone can really understand.</li>
+						<li>tortured_artist(INITIATOR_mood&lt;0.4)->If only I were able to express the [pain_adj] pain I feel. But I don't think anyone can really understand.</li>
 				<!-- ===GotSomeLovin === -->
 					<li>good_opinion(INITIATOR_thoughtDefName==GotSomeLovin,priority=1)->[gotsomelovin]</li>
 					<li>gotsomelovin->Well, [RECIPIENT_nameDef]... Let's say that not being single has its advantages... *wink*</li>

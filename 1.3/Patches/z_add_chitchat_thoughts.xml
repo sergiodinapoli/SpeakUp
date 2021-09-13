@@ -202,7 +202,7 @@
 						<li>r_logentry(INITIATOR_thoughtLabel==quite comfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort3]</li>
 						<li>thought_need_comfort3->I'm so glad we have nice and comfortable furniture around here!</li>
 						<li>thought_need_comfort3->I'm comfortable here, and it feels pretty good.</li>
-						<li>thought_need_comfort3->I like this furniture. It's nice and comfortable!</li>
+						<li>thought_need_comfort3->I like this furniture. It's [intensifier]nice and comfortable!</li>
 					<!-- ===extremely comfortable=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==extremely comfortable,tag=ReactToThought_NeedComfort)->[thought_need_comfort4]</li>
 						<li>thought_need_comfort4->This place is so cushy — we truly have excellent furniture around here!</li>
@@ -281,9 +281,9 @@
 						<li>thought_needfood_hungry0->I'm [intensifier]hungry.</li>
 						<li>thought_needfood_hungry0->I'm feeling peckish.</li>
 						<li>thought_needfood_hungry0->I could eat [animal_large]!</li>
-						<li>thought_needfood_hungry0->I'm starving!</li>
-						<li>thought_needfood_hungry0->I'm ravenous!</li>
-						<li>thought_needfood_hungry0->I'm famished!</li>
+						<li>thought_needfood_hungry0->I'm [intensifier]starving!</li>
+						<li>thought_needfood_hungry0->I'm [intensifier]ravenous!</li>
+						<li>thought_needfood_hungry0->I'm [intensifier]famished!</li>
 						<li>thought_needfood_hungry0->I'm dying for something to eat!</li>
 						<li>thought_needfood_hungry0(INITIATOR_trait==cannibal)->I'm so hungry, I could eat an arm!</li>
 					<!-- ===ravenously hungry=== -->
@@ -519,11 +519,11 @@
 					<li>thought_bedroom(INITIATOR_thoughtLabel==unbelievably impressive bedroom)->[thought_bedroom_unbelievablyimpressive]</li>
 						<li>thought_bedroom_unbelievablyimpressive->My bedroom is truly astounding!</li>
 						<li>thought_bedroom_unbelievablyimpressive->I have an unbelievably impressive bedroom. It's almost awe-inspiring!</li>
-						<li>thought_bedroom_unbelievablyimpressive->My bedroom is almost a work of art. It's unbelievably impressive.</li>
+						<li>thought_bedroom_unbelievablyimpressive->My bedroom is almost a work of art. It's [intensifier]unbelievably impressive.</li>
 					<li>thought_bedroom(INITIATOR_thoughtLabel==wondrously impressive bedroom)->[thought_bedroom_wondrouslyimpressive]</li>
 						<li>thought_bedroom_wondrouslyimpressive->Sleeping in my bedroom feels like heaven. Just wondrous!</li>
 						<li>thought_bedroom_wondrouslyimpressive->When I enter my bedroom I feel like I can hear heavenly singing: It's that magnificent.</li>
-						<li>thought_bedroom_wondrouslyimpressive->I have a bedroom that's a work of art that belongs in a musem. It's simply wondrous.</li>
+						<li>thought_bedroom_wondrouslyimpressive->My bedroom is a work of art that belongs in a museum. It's simply wondrous.</li>
 						<li>thought_bedroom_wondrouslyimpressive->I love my wondrous bedroom so much, I think I might cry!</li>
 
 				<!-- ===SleptInCold=== -->
@@ -626,6 +626,7 @@
 				<li>whatsup->what's going on?</li>
 				<li>whatsup->what's on your mind?</li>
 				<li>whatsup->what's new?</li>
+				<li>whatsup->how's it going?</li>
 				<li>whatsup(INITIATOR_intellectual_level>5)->how do you fare?</li>
 		</value>
 	</Operation>
