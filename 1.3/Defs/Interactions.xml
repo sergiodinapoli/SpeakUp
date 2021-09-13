@@ -235,7 +235,7 @@
 					
 					<li>about->about [INITIATOR_possessive] next shot</li>
 					<li>about->about what to do next</li>
-					<li>about->about how to react to [recipient]'s skillful shot</li>
+					<li>about->about how to react to [RECIPIENT_nameDef]'s skillful shot</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -415,7 +415,7 @@
 					<li>good_opinion->You should always protect the pieces that are almost off the board first...</li>
 					<li>good_opinion->And you think I don't know about your little plan, [recipient]?</li>
 					<li>good_opinion->Heh... Just as I thought...</li>
-					<li>good_opinion->Here's a hint for you, [recipient] — when you believe you saw a good move, look for a better one...</li>
+					<li>good_opinion->Here's a hint for you, [recipient] — when you believe you see a good move, look for a better one...</li>
 					<li>good_opinion->Well, [recipient]... You may learn much more from a game you lose than from a game you win.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -470,6 +470,7 @@
 						<li>you_thought->How could you possibly think</li>
 						<li>grab_pot->now let me grab the pot...</li>
 						<li>grab_pot->now hand over that pot.</li>
+						<li>grab_pot->and now the pot is mine.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Sorry, [recipient]... [winning_ending]</li>
