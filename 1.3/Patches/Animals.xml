@@ -139,4 +139,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "ReleaseToWild"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+     <rulesStrings>
+        <li>r_logentry->*gently pets [RECIPIENT_nameDef] one last time*</li>
+		<li>r_logentry->[bye], [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->Best of luck in the wild, [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->You'll be better off as a free creature, [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->You'll be better off in the wild, [RECIPIENT_nameDef]...</li>
+        <li>r_logentry->*removes [RECIPIENT_nameDef]'s collar*</li>
+        <li>r_logentry->*reminisces about the good time [INITIATOR_pronoun] had with [RECIPIENT_nameDef]*</li>
+		
+		<li>bye->goodbye</li>
+		<li>bye->godspeed</li>
+      </rulesStrings>
+		</value>
+	</Operation>
+
 </Patch>

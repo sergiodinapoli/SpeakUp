@@ -11,7 +11,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_00b)->[good_opinion]</li>
-						<li>good_opinion->What, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->What, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -37,7 +37,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_01b)->[good_opinion]</li>
-						<li>good_opinion->Why, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->Why, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -118,7 +118,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_04b)->[good_opinion]</li>
-						<li>good_opinion->Rich? How, [RECIPIENT_nameDef]? That job can't have paid well...</li>
+						<li>good_opinion->Rich? How, [recipient]? That job can't have paid well...</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -144,7 +144,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_05b)->[good_opinion]</li>
-						<li>good_opinion->What is it, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->What is it, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -170,7 +170,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_06b)->[good_opinion]</li>
-						<li>good_opinion->No, [RECIPIENT_nameDef] — what happened to them?</li>
+						<li>good_opinion->No, [recipient] — what happened to them?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -196,7 +196,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_07b)->[good_opinion]</li>
-						<li>good_opinion->Why, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->Why, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -225,7 +225,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_08b)->[good_opinion]</li>
-						<li>good_opinion->Yes, [RECIPIENT_nameDef]. Go ahead!</li>
+						<li>good_opinion->Yes, [recipient]. Go ahead!</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -254,7 +254,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_09b)->[good_opinion]</li>
-						<li>good_opinion->Why, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->Why, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -280,7 +280,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_10b)->[good_opinion]</li>
-						<li>good_opinion->Why, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->Why, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -306,7 +306,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_11b)->[good_opinion]</li>
-						<li>good_opinion->Why, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion->Why, [recipient]?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -332,7 +332,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_12b)->[good_opinion]</li>
-						<li>good_opinion->Hmmm... I don't know, [RECIPIENT_nameDef]. What do you call it?</li>
+						<li>good_opinion->Hmmm... I don't know, [recipient]. What do you call it?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -358,7 +358,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_13b)->[good_opinion]</li>
-						<li>good_opinion->Hmmm... I don't know, [RECIPIENT_nameDef]. What do they call each other?</li>
+						<li>good_opinion->Hmmm... I don't know, [recipient]. What do they call each other?</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>

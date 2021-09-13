@@ -79,7 +79,7 @@
 						<li>no_aura->I feel no psychic energy at all around you — [fascinating]... </li>
 						<li>no_aura->Your psychic aura is a complete void — [fascinating]... </li>
 						<li>no_aura->I wonder what happened to your psychic aura — I sense nothing... </li>
-						<li>no_aura->When I try to attune towards your psychic aura, I just feel static void... </li>
+						<li>no_aura->When I try to attune towards your psychic aura, I just feel a static void... </li>
 						<li>no_aura->Mmm... your lack of psychic aura is weird and unsettling, but it can actually be a useful defense too...</li>
 							<li>fascinating->fascinating</li>
 							<li>fascinating->how curious</li>
@@ -300,26 +300,27 @@
 		<value>
 			<rulesStrings>
 				<li>r_logentry->[attempt]</li>
-					<li>attempt(RECIPIENT_faction!=INITIATOR_faction)->[not_join]</li>
+					<li>attempt(priority=-1)->[not_join]</li>
 						<li>not_join(tag=PrisonerEndchat)->[endchat]</li>
 							<li>endchat->Well, [RECIPIENT_nameDef] — we'll continue our nice chat later...</li>
-							<li>endchat->I'm done for now, [RECIPIENT_nameDef] — we'll continue our interview another day...</li>
+							<li>endchat->I'm done for now, [RECIPIENT_nameDef] — we'll continue our conversation another day...</li>
 						<li>not_join(tag=PrisonerRefuses)->[refuses]</li>
 							<li>refuses->[ready] us, [RECIPIENT_nameDef]?</li>
-							<li>refuses->[ready] the [INITIATOR_factionName], [RECIPIENT_nameDef]?</li>
+							<li>refuses->[ready] [INITIATOR_factionName], [RECIPIENT_nameDef]?</li>
 								<li>ready->Are you ready to join</li>
 								<li>ready->Will you join</li>
 								<li>ready->How'd you like to join</li>
-					<li>attempt(priority=-1,tag=PrisonerAccepts)->Well, [RECIPIENT_nameDef]... [part1] [part2]</li>
-						<li>part1->I'm glad I finally managed to gain your trust.</li>
-						<li>part1->I can see you're ready to join us.</li>
-						<li>part1->I'm glad you finally understood joining us is the best choice for you.</li>
-						<li>part1->I'm glad you finally changed your mind.</li>
-						<li>part2->Welcome to the [INITIATOR_factionName], [RECIPIENT_nameDef]!</li>
-						<li>part2->I'm sure you'll be an important part of our community, [RECIPIENT_nameDef]!</li>
-						<li>part2->I'm sure you'll play an important role in our community, [RECIPIENT_nameDef]!</li>
-						<li>part2->I'm sure your [RECIPIENT_bestSkill] skills will be very appreciated in our community, [RECIPIENT_nameDef]!</li>
-						
+					<li>attempt(RECIPIENT_faction==PlayerTribe)->[recruited]</li>
+					<li>attempt(RECIPIENT_faction==PlayerColony)->[recruited]</li>
+						<li>recruited(tag=PrisonerAccepts)->[part1] [part2]</li>
+							<li>part1->I'm glad I finally managed to gain your trust.</li>
+							<li>part1->I can see you're ready to join us.</li>
+							<li>part1->I'm glad you finally understood joining us is the best choice for you.</li>
+							<li>part1->I'm glad you finally changed your mind.</li>
+							<li>part2->Welcome to [INITIATOR_factionName], [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure you'll be an important part of our community, [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure you'll play an important role in our community, [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure your [RECIPIENT_bestSkill] skills will be very appreciated in our community, [RECIPIENT_nameDef]!</li>			
 			</rulesStrings>
 		</value>
 	</Operation>

@@ -5,9 +5,9 @@
 		<xpath>/Defs/InteractionDef[defName = "KindWords"]/logRulesInitiator/rulesStrings</xpath>
 		<value>
 			<rulesStrings>
-				<li>r_logentry(tag=KindWords_generic)->You are such a nice person, [RECIPIENT_nameDef]!</li>
-				<li>r_logentry(tag=KindWords_generic)->May your home always be too small to hold all your friends, [RECIPIENT_nameDef]!</li>
-				<li>r_logentry(RECIPIENT_trait==beautiful,tag=KindWords_generic)->The only way somebody could be prettier than you, [RECIPIENT_nameDef], is by using makeup!</li>
+				<li>r_logentry(tag=KindWords_generic)->You are such a nice person, [recipient]!</li>
+				<li>r_logentry(tag=KindWords_generic)->May your home always be too small to hold all your friends, [recipient]!</li>
+				<li>r_logentry(RECIPIENT_trait==beautiful,tag=KindWords_generic)->The only way somebody could be prettier than you, [recipient], is by using makeup!</li>
 			</rulesStrings>
 		</value>
 	</Operation>

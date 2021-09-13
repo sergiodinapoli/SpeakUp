@@ -6,28 +6,65 @@
         <value>
 		<rulesStrings>
             <!-- ===Meaning of life=== -->
-				<li>r_logentry(tag=MeaningOfLife)->[RECIPIENT_nameDef], I was thinking — what is the meaning of life?</li>
-				<li>r_logentry(tag=MeaningOfLife)->What do you think is the meaning of our existence, [RECIPIENT_nameDef]?</li>
-				<li>r_logentry(tag=MeaningOfLife)->Hey, [RECIPIENT_nameDef]... What do you think it's all about? What does life mean?</li>
-				<li>r_logentry(tag=MeaningOfLife,INITIATOR_intellectual_level>=8)->Life's meaning eludes me. What do you think it means, [RECIPIENT_nameDef]?</li>
+				<li>r_logentry(tag=MeaningOfLife)->[recipient], I was thinking — what is the meaning of life?</li>
+				<li>r_logentry(tag=MeaningOfLife)->What do you think is the meaning of our existence, [recipient]?</li>
+				<li>r_logentry(tag=MeaningOfLife)->Hey, [recipient]... What do you think it's all about? What does life mean?</li>
+				<li>r_logentry(tag=MeaningOfLife,INITIATOR_intellectual_level>=8)->Life's meaning eludes me. What do you think it means, [recipient]?</li>
 
 			<!-- ===Childhood discussions=== -->
-				<li>r_logentry(tag=ChildhoodDiscussions)->[childhood_discussion]</li>
-				<li>childhood_discussion(RECIPIENT_trait==psychopath)->What made you such an... interesting person [RECIPIENT_nameDef]?</li>
-				<li>childhood_discussion->How did you grow up [RECIPIENT_nameDef]?</li>
-				<li>childhood_discussion->[RECIPIENT_nameDef], what was your childhood like?</li>
-				<li>childhood_discussion->Hey [RECIPIENT_nameDef], did you do anything interesting as a kid?</li>
-				<li>childhood_discussion->[RECIPIENT_nameDef], could you tell me about your childhood? I'd like to get to know you a bit better.</li>
+				<li>r_logentry(tag=ChildhoodDiscussions,INITIATOR_relationship!=Parent)->[childhood_discussion]</li>
+				<li>childhood_discussion(RECIPIENT_trait==psychopath)->What made you such an — uhm — interesting person, [recipient]?</li>
+				<li>childhood_discussion->How did you grow up, [recipient]?</li>
+				<li>childhood_discussion->[recipient], what was your childhood like?</li>
+				<li>childhood_discussion->Hey [recipient], did you do anything interesting as a kid?</li>
+				<li>childhood_discussion->[recipient], could you tell me about your childhood? I'd like to get to know you a bit better.</li>
 				
 			<!-- ===Dreams=== -->
 				<!-- ===Nice=== -->
-				<li>r_logentry(INITIATOR_mood>=0.6,tag=WhatDream)->Ah, [RECIPIENT_nameDef]... I had such a nice dream...</li>
-				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [RECIPIENT_nameDef].</li>
+				<li>r_logentry(INITIATOR_mood>=0.6,tag=WhatDream)->Ah, [recipient]... I had such a nice dream...</li>
+				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [recipient].</li>
 				
 			<!-- ===Random DeepTalk conversation=== -->
 				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef]? What do you think about [TalkTopicHeavy]?</li>
 				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef], have you ever spent time thinking about [TalkTopicHeavy]?</li>
 				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [RECIPIENT_nameDef] — Mostly about [TalkTopicHeavy]...</li>
+
+			<!-- ===RECIPIENT=== -->		
+			<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
+
+			<li>recipient(p=4,INITIATOR_relationship==Lover)->[recipient_love]</li>
+			<li>recipient(p=3,INITIATOR_relationship==Fiance)->[recipient_love]</li>
+			<li>recipient(p=2,INITIATOR_relationship==Spouse)->[recipient_love]</li>
+				<li>recipient_love->honey</li>
+				<li>recipient_love->love</li>
+				<li>recipient_love->my love</li>
+			
+			<li>recipient(INITIATOR_relationship==Sibling)->[recipient_sibling]</li>
+				<li>recipient_sibling(RECIPIENT_gender==Male)->[recipient_brother]</li>
+					<li>recipient_brother->brother</li>
+				<li>recipient_sibling(RECIPIENT_gender==Female)->[recipient_sister]</li>
+					<li>recipient_sister->sister</li>
+
+			<li>recipient(RECIPIENT_relationship==Parent,priority=1)->[recipient_parent]</li>
+				<li>recipient_parent(RECIPIENT_gender==Male)->[recipient_father]</li>
+					<li>recipient_father->father</li>
+					<li>recipient_father->dad</li>
+				<li>recipient_parent(RECIPIENT_gender==Female)->[recipient_mother]</li>
+					<li>recipient_mother->mother</li>
+					<li>recipient_mother->mum</li>
+
+			<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
+				<li>recipient_child->my child</li>
+				<li>recipient_child(INITIATOR_OPINION>=0)->dear</li>
+				<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
+					<li>recipient_son->son</li>
+					<li>recipient_son->my son</li>
+				<li>recipient_child(RECIPIENT_gender==Female)->[recipient_daughter]</li>
+					<li>recipient_daughter->daughter</li>
+					<li>recipient_daughter->my daughter</li>
+					
+			<li>recipient->[RECIPIENT_nameDef]</li>						
+			<!-- ===END RECIPIENT=== -->					
         </rulesStrings>
 		</value>
     </Operation>
