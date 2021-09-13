@@ -26,7 +26,7 @@
 				
 			<!-- ===Random DeepTalk conversation=== -->
 				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef]? What do you think about [TalkTopicHeavy]?</li>
-				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef], have you ever pondered [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef], have you ever spent time thinking about [TalkTopicHeavy]?</li>
 				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [RECIPIENT_nameDef] — Mostly about [TalkTopicHeavy]...</li>
         </rulesStrings>
 		</value>

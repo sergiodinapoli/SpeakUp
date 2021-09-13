@@ -438,7 +438,7 @@
 						<!-- ===Recipient sitting and watching (priority 3)=== -->							
 						<li>r_logentry(RECIPIENT_jobDefName==WatchTelevision,RECIPIENT_moving==No,priority=3,tag=TV_whatsthis)->[job_tv_whatsthis]</li>
 							<li>job_tv_whatsthis->What's this playing on the television, [RECIPIENT_nameDef]?</li>
-							<li>job_tv_whatsthis->This program looks so [adj_tv]... what is it about, [RECIPIENT_nameDef]?</li>	
+							<li>job_tv_whatsthis->This program looks [intensifier][adj_tv]... what is it about, [RECIPIENT_nameDef]?</li>	
 							<li>job_tv_whatsthis(INITIATOR_intellectual_level&lt;5)->Whatcha watching, [RECIPIENT_nameDef]?</li>
 						
 						<!-- ===Wildcards=== -->						

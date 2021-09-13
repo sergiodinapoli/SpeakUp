@@ -7,7 +7,7 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;=25)->Hope you choke on it, [RECIPIENT_nameDef]!</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;=-25)->Hope you choke on it, [RECIPIENT_nameDef]!</li>
 					<li>bad_opinion->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
@@ -951,7 +951,7 @@
 					<li>comment(INITIATOR_plants_level>=5)->I could prepare some healroot for you, if you want.</li>
 					<li>comment(INITIATOR_cooking_level>=6)->Eating healthy food might help avoiding that. I could cook something for you.</li>
 					<li>comment(INITIATOR_thoughtDefName==sick)->I'm not in great shape either...</li>
-					<li>comment(INITIATOR_thoughtDefName==body modder)->But then again, human body is so vulnerable...</li>
+					<li>comment(INITIATOR_thoughtDefName==body modder)->But then again, the human body is so vulnerable...</li>
 					<li>comment(INITIATOR_thoughtDefName==sickly)->I know how it feels, I get sick all the time...</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -966,6 +966,10 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->You're right, [RECIPIENT_nameDef]. We should be more careful to avoid such things.</li>
+					<li>good_opinion->Oh, no... Sorry, [RECIPIENT_nameDef]. We'll all try to be more careful.</li>
+					<li>good_opinion->We'll do our best to tread softly, [RECIPIENT_nameDef].</li>
+					<li>good_opinion(INITIATOR_trait==abrasive)->Not my fault, [RECIPIENT_nameDef]. Sucks to be you, I guess. Sorry.</li>
+					<li>good_opinion(INITIATOR_trait==kind)->Poor [RECIPIENT_nameDef]! Take it easy today, and be sure to get a good night's sleep tonight.</li>
 					<li>good_opinion(INITIATOR_trait==nimble)->You know it wasn't me, [RECIPIENT_nameDef]. I'm always quiet when I walk.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -980,6 +984,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion(tag=Dream_nice)->Ah, [RECIPIENT_nameDef]. What a pity... what was this dream about?</li>
+					<li>good_opinion(tag=Dream_nice)->Sorry to hear that, [RECIPIENT_nameDef]. What was your dream about?</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1040,15 +1045,33 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->That's extremely [annoying], [RECIPIENT_nameDef] — I certainly agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==dull barrack)->That's very [annoying], [RECIPIENT_nameDef] — I do agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==mediocre barrack)->That's [annoying], [RECIPIENT_nameDef] — I agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==decent barrack)->Well, [RECIPIENT_nameDef] — at least it's a decent room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==slightly impressive barrack)->Well, [RECIPIENT_nameDef] — at least it's a pretty nice room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==impressive barrack)->Well, [RECIPIENT_nameDef] — at least it's an impressive room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==very impressive barrack)->Well, [RECIPIENT_nameDef] — good for you!</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==extremely impressive barrack)->Well, [RECIPIENT_nameDef] — that's great!</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==unbelievably impressive barrack)->Well, [RECIPIENT_nameDef] — that's just awesome!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->[reply_awful_barracsk]</li>
+							<li>reply_awful_barracks->That's extremely [annoying], [RECIPIENT_nameDef] — I certainly agree with you.</li>
+							<li>reply_awful_barracks->How absolutely [annoying], [RECIPIENT_nameDef] — We all deserve better.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==dull barrack)->[reply_dull_barracks]</li>
+							<li>reply_dull_barracks->That's very [annoying], [RECIPIENT_nameDef] — I do agree with you.</li>
+							<li>reply_dull_barracks->That's [intensifier][annoying], [RECIPIENT_nameDef] — I hope you receive better sleeping quarters soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==mediocre barrack)->[reply_mediocre_barracks]</li>
+							<li>reply_mediocre_barracks->That's [annoying], [RECIPIENT_nameDef] — I agree with you.</li>
+							<li>reply_mediocre_barracks->I wouldn't like that either, [RECIPIENT_nameDef] — You're [intensifier]right.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==decent barrack)->[reply_decent_barracks]</li>
+							<li>reply_decent_barracks->Well, [RECIPIENT_nameDef] — at least it's a decent room.</li>
+							<li>reply_decent_barracks->I'm glad it's a decent room, [RECIPIENT_nameDef] — I hope you get one to yourself soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==slightly impressive barrack)->[reply_slightly_impressive_barracks]</li>
+							<li>reply_slightly_impressive_barracks->Well, [RECIPIENT_nameDef] — at least it's a pretty nice room.</li>
+							<li>reply_slightly_impressive_barracks->Sharing a room isn't ideal, but at least it's pretty nice, right, [RECIPIENT_nameDef]?</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==impressive barrack)->[reply_impressive_barracks]</li>
+							<li>reply_impressive_barracks->Well, [RECIPIENT_nameDef] — at least it's an impressive room.</li>
+							<li>reply_impressive_barracks->I'm glad your room is impressive, [RECIPIENT_nameDef] — I hope you get one to yourself soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==very impressive barrack)->[reply_very_impressive_barracks]</li>
+							<li>reply_very_impressive_barracks->Well, [RECIPIENT_nameDef] — good for you!</li>
+							<li>reply_very_impressive_barracks->That's [intensifier]good, [RECIPIENT_nameDef]!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==extremely impressive barrack)->[reply_extremely_impressive_barracks]</li>
+							<li>reply_extremely_impressive_barracks->Well, [RECIPIENT_nameDef] — that's great!</li>
+							<li>reply_extremely_impressive_barracks->Wow, [RECIPIENT_nameDef] — nice!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==unbelievably impressive barrack)->[reply_unbelievably_impressive_barracks]</li>
+							<li>reply_unbelievably_impressive_barracks->Well, [RECIPIENT_nameDef] — that's just awesome!</li>
+							<li>reply_unbelievably_impressive_barracks->That's [intensifier]incredible, [RECIPIENT_nameDef] — I'll have to see it sometime!</li>
 				<!-- ===WILDCARDS=== -->
 					<li>annoying->bad</li>
 					<li>annoying->irritating</li>
@@ -1170,6 +1193,7 @@
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
 								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
 								<li>shut_up(INITIATOR_intellectual_level>=5)->would be quiet for an extended period of time</li>
 								<li>shut_up(INITIATOR_intellectual_level>=5)->pursue silence henceforth</li>
 								<li>shut_up(INITIATOR_intellectual_level>=7)->rest your overused tongue - immediately</li>
@@ -1238,6 +1262,8 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
+								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=5)->You need a cooler, [RECIPIENT_nameDef], you build one yourself — I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->
@@ -1276,6 +1302,8 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
+								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=4)->Hey, [RECIPIENT_nameDef] — you need a bed, you build one yourself. I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->
@@ -1362,10 +1390,12 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->Go back inside then, [RECIPIENT_nameDef] — at least I won't hear your pitiful whining anymore!</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Then why don't you go crawl into a cave and stay there, [RECIPIENT_nameDef]?</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I know, [RECIPIENT_nameDef] — but some vital tasks must be performed outdoors. We can't change that, unfortunately...</li>
 					<li>good_opinion->I know, [RECIPIENT_nameDef] — maybe we could try and plan for you to run indoors tasks only.</li>
+					<li>good_opinion->I'm sorry, [RECIPIENT_nameDef] — I hope you can go work indoors soon.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1382,12 +1412,20 @@
 				<!-- ===DeadMansApparel=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==DeadMansApparel,priority=1)->[deadmans_apparel]</li>
 					<li>deadmans_apparel(INITIATOR_trait==bloodlust,priority=1)->I am wearing apparel that someone died in — and that's perfectly fine by me.</li>
-					<li>deadmans_apparel->I am wearing apparel that someone died in. It creeps me out and feels dirty!</li>
+					<li>deadmans_apparel->[deadmans_apparel1] [deadmans_apparel2]</li>
+					<li>deadmans_apparel1->I am wearing apparel that someone died in.</li>
+					<li>deadmans_apparel1->Someone died in the apparel I'm wearing.</li>
+					<li>deadmans_apparel1->Some of my apparel was worn by someone as they died.</li>
+					<li>deadmans_apparel2->It creeps me out and feels dirty!</li>
+					<li>deadmans_apparel2->I feel [intensifier]unclean...</li>
+					<li>deadmans_apparel2->It makes me feel [intensifier]uncomfortable — I don't like it.</li>
 				<!-- ===Optimist or Sanguine=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetSanguine,priority=1)->[sanguine_optimist]</li>
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetOptimist,priority=1)->[sanguine_optimist]</li>
 						<li>sanguine_optimist(INITIATOR_mood>=0.4)->Everything's just fine — and I'm certain it'll get even better!</li>
 						<li>sanguine_optimist(INITIATOR_mood&lt;0.4)->Despite my recent troubles, I'm sure things will quickly improve!</li>
+						<li>sanguine_optimist(INITIATOR_mood&lt;0.4)->I'm not doing so well right now, but tomorrow's another day!</li>
+						<li>sanguine_optimist(INITIATOR_mood&lt;0.2)->Thanks for checking on me, [RECIPIENT_nameDef]. It's really hard, but I know I'll get through it.</li>
 				<!-- ===Pessimist or Depressive=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetPessimist,priority=1)->[depressive_pessimist]</li>
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetDepressive,priority=1)->[depressive_pessimist]</li>
@@ -1399,6 +1437,7 @@
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetTorturedArtist,priority=1)->[tortured_artist]</li>
 						<li>tortured_artist(INITIATOR_mood>=0.4)->I almost had it... almost... then suddenly my artistic vision faded... lost...</li>
 						<li>tortured_artist(INITIATOR_mood&lt;0.4)->I'm in pain — a [pain_adj] pain you shall never be able to feel the way I do.</li>
+						<li>tortured_artist(INITIATOR_mood&lt;0.4)->If only I were able to express the  [pain_adj] pain I feel. But I don't think anyone can really understand.</li>
 				<!-- ===GotSomeLovin === -->
 					<li>good_opinion(INITIATOR_thoughtDefName==GotSomeLovin,priority=1)->[gotsomelovin]</li>
 					<li>gotsomelovin->Well, [RECIPIENT_nameDef]... Let's say that not being single has its advantages... *wink*</li>
@@ -1409,6 +1448,8 @@
 					<li>released_prisoner(INITIATOR_faction==PlayerTribe)->We released a [prisoner] — [comment]</li>
 					<li>released_prisoner(INITIATOR_faction!=PlayerColony,INITIATOR_faction!=PlayerTribe)->They released a [prisoner] — [comment]</li>
 						<li>comment->I think it was the right thing to do.</li>
+						<li>comment->I'm [intensifier]glad to see it.</li>
+						<li>comment->I hope they're enjoying their freedom.</li>
 						<li>comment(INITIATOR_trait==kind,priority=2)->poor thing! It was the best thing to do.</li>
 						<li>comment(INITIATOR_trait==cannibal,priority=1)->what a waste of resources!</li>
 						<li>comment(INITIATOR_trait==bloodlust,priority=1)->what a waste of resources!</li>
