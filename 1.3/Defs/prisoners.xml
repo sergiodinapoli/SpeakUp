@@ -17,9 +17,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -57,7 +57,6 @@
 			</rulesFiles>			
 		</logRulesInitiator>
 	</InteractionDef>
-
 	
 	<InteractionDef ParentName="SpeakUpReply"><!-- ===Passion=== -->
 		<defName>PrisonerPassion</defName>
@@ -74,9 +73,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -144,9 +143,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -195,6 +194,21 @@
 		<label>prisoner — accepts</label>
 		<logRulesInitiator>
 			<rulesStrings>
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentDark,priority=1)->[dark_cell]</li>
+				<li>dark_cell(INITIATOR_trait==undergrounder)->[good_opinion]</li>
+				<li>dark_cell(INITIATOR_trait==night owl)->[good_opinion]</li>
+				<li>dark_cell(priority=-1)->I'm done with this dark cell — I'll join [RECIPIENT_factionName]!</li>
+			
+			<li>r_logentry(INITIATOR_thoughtLabel==hideous environment,priority=1)->[ugly_cell]</li>
+			<li>r_logentry(INITIATOR_thoughtLabel==ugly environment,priority=1)->[ugly_cell]</li>
+			<li>r_logentry(INITIATOR_thoughtLabel==unsightly environment,priority=1)->[ugly_cell]</li>
+				<li>ugly_cell->I'm done with this awful dungeon — I'll join [RECIPIENT_factionName]!</li>
+			
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentCold,priority=1)->I just want to get out of this cold. I'll do whatever — I'll join [RECIPIENT_factionName]!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentHot,priority=1)->I just want to get out of this heat. I'll do whatever — I'll join [RECIPIENT_factionName]!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==NeedFood,priority=1)->Now that I'm part of [RECIPIENT_factionName], I expect to be fed!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==MyOrganHarvested,priority=1)->Please! If it stops you from harvesting my organs, I'll join [RECIPIENT_factionName]!</li>
+			
 			<!-- ===Bad opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 				<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
@@ -202,6 +216,15 @@
 			<!-- ===Good opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I'm ready to be part of [RECIPIENT_factionName].</li>
+					<li>good_opinion->You finally convinced me, [recipient].</li>
+					<li>good_opinion->Your arguments finally won me over, [recipient].</li>
+					<li>good_opinion->I finally understood [RECIPIENT_factionName] is a better choice for me.</li>
+					<li>good_opinion->I finally understood [RECIPIENT_factionName] can guarantee a better future for me.</li>
+					<li>good_opinion->You know what? Maybe youre not so bad after all — I'm ready to join [RECIPIENT_factionName].</li>
+					<li>good_opinion->Hmm... Okay, whatever. I'm in.</li>
+					<li>good_opinion->If joining [RECIPIENT_factionName] is what it takes to get out of this cell, then I might as well join.</li>
+					<li>good_opinion->I've thought about it, and I think I'm up for joining [RECIPIENT_factionName].</li>
+					<li>good_opinion->The food alone is worth staying — I'll join [RECIPIENT_factionName]!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -245,8 +268,8 @@
 					<li>good_opinion->No — I won't betray [INITIATOR_factionName]'s trust.</li>
 					<li>good_opinion->I'm a loyal member of [INITIATOR_factionName] — I won't join your [faction].</li>
 					<li>good_opinion(INITIATOR_opinion>=25)->Thanks for the offer, but no.</li>
-					<li>good_opinion(INITIATOR_opinion>=25)->Nothing personal, [RECIPIENT_nameDef] — but I won't join your [faction].</li>
-					<li>good_opinion(INITIATOR_opinion>=25)->[nothingpersonal], [RECIPIENT_nameDef] — but I won't join your [faction].</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->Nothing personal, [recipient] — but I won't join your [faction].</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->[nothingpersonal], [recipient] — but I won't join your [faction].</li>
 						<li>nothingpersonal->nothing personal</li>
 						<li>nothingpersonal->I do like you</li>
 						<li>nothingpersonal->I [like] [interaction]</li>
@@ -281,7 +304,7 @@
 			<!-- ===Good opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->...</li>
-					<li>good_opinion(INITIATOR_opinion>=25)->See you later, [RECIPIENT_nameDef].</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->See you later, [recipient].</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -303,10 +326,10 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
-					<li>chemical1->Please [bring] me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
-					<li>chemical0->Please [bring] me some [drug0]; I'll promise to cooperate more.</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please [bring_me] me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please [bring_me] me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
 					<li>drug0->ambrosia</li>
@@ -418,9 +441,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -509,9 +532,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -567,9 +590,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -710,9 +733,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -802,9 +825,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -890,9 +913,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -982,9 +1005,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1086,9 +1109,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1175,9 +1198,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1257,9 +1280,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1344,9 +1367,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1437,9 +1460,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>
@@ -1530,9 +1553,9 @@
 				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
 				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
 				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
-					<li>chemical1->I'll be willing to cooperate more if you [bring] me some [drug1]...</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
 					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
-					<li>chemical0->I'll be willing to cooperate more if you [bring] me some [drug0]...</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
 					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
 					<li>drug0->beer</li>
 					<li>drug0->smokeleaf</li>

@@ -5,7 +5,7 @@
 		<value>
 			<rulesStrings>
 				<!-- ===generic default=== -->
-					<li>r_logentry(p=0.1,tag=ChitChat_generic)->Hey, [RECIPIENT_nameDef]!</li>
+					<li>r_logentry(p=0.1,tag=ChitChat_generic)->Hey, [recipient]!</li>
 				
 				<!-- ===Job Texts (initiator)=== -->
 					<!-- ===Aurora=== -->
@@ -38,17 +38,17 @@
 									<li>put_it_out->smother it</li>
 									<li>put_it_out(INITIATOR_intellectual_level>=5)->extinguish it</li>
 							<li>job_beatfire_static(RECIPIENT_jobDefName==BeatFire,RECIPIENT_moving==Yes)->[job_beatfire_come]</li>
-								<li>job_beatfire_come->Quick, [RECIPIENT_nameDef] — come here and help me [put_it_out]!</li>
+								<li>job_beatfire_come->Quick, [recipient] — come here and help me [put_it_out]!</li>
 							<!-- ===BeatFire initiator only=== -->
 							<li>job_beatfire_static(RECIPIENT_jobDefName!=BeatFire,RECIPIENT_moving==No)->[job_beatfire_ignoring_static]</li>
-								<li>job_beatfire_ignoring_static->Don't just stand there, [RECIPIENT_nameDef]! Come here and help me [put_it_out]!</li>
+								<li>job_beatfire_ignoring_static->Don't just stand there, [recipient]! Come here and help me [put_it_out]!</li>
 							<li>job_beatfire_static(RECIPIENT_jobDefName!=BeatFire,RECIPIENT_moving==Yes)->[job_beatfire_ignoring]</li>
-								<li>job_beatfire_ignoring->Where are you going, [RECIPIENT_nameDef]!? Come here and help me [put_it_out]!</li>
+								<li>job_beatfire_ignoring->Where are you going, [recipient]!? Come here and help me [put_it_out]!</li>
 					<!-- ===Going to BeatFire=== -->	
 						<li>r_logentry(priority=5,INITIATOR_jobDefName==BeatFire,INITIATOR_moving==Yes,RECIPIENT_moving==Yes,tag=BeatFireMoving)->[job_beatfire_letsgo]</li>
-							<li>job_beatfire_letsgo(RECIPIENT_jobDefName!=BeatFire,priority=1)->Where are you going, [RECIPIENT_nameDef]!? The fire's over there — help me [put_it_out]!</li>
-							<li>job_beatfire_letsgo->Come on [RECIPIENT_nameDef] — we got a fire to [fire_put_out]!</li>
-							<li>job_beatfire_letsgo->There's a fire over there, [RECIPIENT_nameDef] — let's go [put_it_out]!</li>
+							<li>job_beatfire_letsgo(RECIPIENT_jobDefName!=BeatFire,priority=1)->Where are you going, [recipient]!? The fire's over there — help me [put_it_out]!</li>
+							<li>job_beatfire_letsgo->Come on [recipient] — we got a fire to [fire_put_out]!</li>
+							<li>job_beatfire_letsgo->There's a fire over there, [recipient] — let's go [put_it_out]!</li>
 									<li>fire_put_out->put out</li>
 									<li>fire_put_out->stamp out</li>
 									<li>fire_put_out->beat out</li>
@@ -83,15 +83,15 @@
 						<!-- ===Invitation=== -->
 						<li>game_billiards(RECIPIENT_jobDefName==Play_Billiards,INITIATOR_moving==Yes,tag=Invite_answer_yes)->[billiards_invite]</li>
 						<li>game_billiards(INITIATOR_moving==Yes,priority=-1,tag=Invite_answer_no)->[billiards_invite]</li>
-							<li>billiards_invite->I'm going to start a new billiards game. Would you like to join me, [RECIPIENT_nameDef]?</li>
-							<li>billiards_invite->Would you like to join me in a new billiards match, [RECIPIENT_nameDef]?</li>
+							<li>billiards_invite->I'm going to start a new billiards game. Would you like to join me, [recipient]?</li>
+							<li>billiards_invite->Would you like to join me in a new billiards match, [recipient]?</li>
 							
 						<!-- ===Ready?=== -->
 							<li>game_billiards(p=0.5,RECIPIENT_jobDefName==Play_Billiards,tag=Billiards_ready)->[billiards_ready]</li>
-								<li>billiards_ready->Time to activate beast mode, [RECIPIENT_nameDef]. Are you ready?</li>
-								<li>billiards_ready->Ready for a new game, [RECIPIENT_nameDef]?</li>
-								<li>billiards_ready->Are you in for another game, [RECIPIENT_nameDef]?</li>
-								<li>billiards_ready->Cue is chalked, rack is set up. Ready, [RECIPIENT_nameDef]?</li>
+								<li>billiards_ready->Time to activate beast mode, [recipient]. Are you ready?</li>
+								<li>billiards_ready->Ready for a new game, [recipient]?</li>
+								<li>billiards_ready->Are you in for another game, [recipient]?</li>
+								<li>billiards_ready->Cue is chalked, rack is set up. Ready, [recipient]?</li>
 							
 							<!-- ===Wildcards=== -->
 							<li>billiards_ball->1</li>
@@ -136,8 +136,8 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Chess,INITIATOR_moving==Yes)->[game_chess_going]</li>
 							<li>game_chess_going(RECIPIENT_jobDefName==Play_Chess,tag=Invite_answer_yes)->[game_chess_invite]</li>
 							<li>game_chess_going(RECIPIENT_jobDefName!=Play_Chess,tag=Invite_answer_no)->[game_chess_invite]</li>
-								<li>game_chess_invite->I'm going to play chess. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_chess_invite->Would you like to join me in a chess game, [RECIPIENT_nameDef]?</li>
+								<li>game_chess_invite->I'm going to play chess. Would you like to join me, [recipient]?</li>
+								<li>game_chess_invite->Would you like to join me in a chess game, [recipient]?</li>
 						
 						<!-- ===Playing=== -->
 						<li>r_logentry(INITIATOR_jobDefName==Play_Chess,INITIATOR_seated==Yes,RECIPIENT_jobDefName==Play_Chess,RECIPIENT_seated==Yes,priority=4)->[game_chess]</li>
@@ -213,7 +213,7 @@
 					
 					<!-- ===Drinking beer=== -->
 						<li>r_logentry(priority=4,INITIATOR_jobText==Drinking beer.,INITIATOR_moving==No,tag=DrinkBeer)->[drinking_beer]</li>
-							<li>drinking_beer->Cheers, [RECIPIENT_nameDef]!</li>
+							<li>drinking_beer->Cheers, [recipient]!</li>
 							<li>drinking_beer->Bottoms up!</li>
 							<li>drinking_beer->Here's to those who wish us well, all the rest can go to hell!</li>
 							<li>drinking_beer->Let's have a toast to the incompetence of our enemies!</li>
@@ -224,13 +224,13 @@
 							<li>drinking_beer(INITIATOR_social_level&lt;5)->*burps*</li>
 							<li>drinking_beer(INITIATOR_social_level&lt;3)->*burps savagely*</li>
 							<li>drinking_beer(INITIATOR_opinion>=0)->[beer_good_opinion]</li>
-								<li>beer_good_opinion->Here's to your liver, [RECIPIENT_nameDef] — may it live as long as you last!</li>
-								<li>beer_good_opinion->Here's to stealing, cheating and lying, [RECIPIENT_nameDef] — may you cheat death, steal hearts and lie with your love!</li>
+								<li>beer_good_opinion->Here's to your liver, [recipient] — may it live as long as you last!</li>
+								<li>beer_good_opinion->Here's to stealing, cheating and lying, [recipient] — may you cheat death, steal hearts and lie with your love!</li>
 								<li>beer_good_opinion->May the face of every good news and the back of every bad news be towards us!</li>
 								<li>beer_good_opinion->May the roof above us never fall in — and may we friends gathered below never fall out!</li>
-								<li>beer_good_opinion->May you be in heaven a half an hour before the devil knows you're dead, [RECIPIENT_nameDef]!</li>
-								<li>beer_good_opinion->May misfortune follow you the rest of your life — and never catch up, [RECIPIENT_nameDef]!</li>
-							<li>drinking_beer(INITIATOR_opinion>=25)->Here's to your health, my dear [RECIPIENT_nameDef]!</li>
+								<li>beer_good_opinion->May you be in heaven a half an hour before the devil knows you're dead, [recipient]!</li>
+								<li>beer_good_opinion->May misfortune follow you the rest of your life — and never catch up, [recipient]!</li>
+							<li>drinking_beer(INITIATOR_opinion>=25)->Here's to your health, [recipient]!</li>
 							<li>drinking_beer->Here's to [beer_hope]!</li>
 								<li>beer_hope->our enemies' defeat!</li>
 								<li>beer_hope->abundant food on our table!</li>
@@ -243,8 +243,8 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==Yes)->[game_ur_going]</li>
 							<li>game_ur_going(RECIPIENT_jobDefName==Play_GameOfUr,tag=Invite_answer_yes)->[game_ur_invite]</li>
 							<li>game_ur_going(RECIPIENT_jobDefName!=Play_GameOfUr,tag=Invite_answer_no)->[game_ur_invite]</li>
-								<li>game_ur_invite->I'm going to play a game of Ur. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_ur_invite->Would you like to join me in a game of Ur, [RECIPIENT_nameDef]?</li>
+								<li>game_ur_invite->I'm going to play a game of Ur. Would you like to join me, [recipient]?</li>
+								<li>game_ur_invite->Would you like to join me in a game of Ur, [recipient]?</li>
 						
 						<!-- ===Playing=== -->
 						<li>r_logentry(INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==No,RECIPIENT_jobDefName==Play_GameOfUr,RECIPIENT_moving==No,priority=4)->[game_ur]</li>
@@ -273,14 +273,14 @@
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Hoopstone,INITIATOR_moving==Yes)->[game_hoopstone_going]</li>
 							<li>game_hoopstone_going(RECIPIENT_jobDefName==Play_Hoopstone,tag=Invite_answer_yes)->[game_hoopstone_invite]</li>
 							<li>game_hoopstone_going(RECIPIENT_jobDefName!=Play_Hoopstone,tag=Invite_answer_no)->[game_hoopstone_invite]</li>
-								<li>game_hoopstone_invite->I'm going to play hoopstone. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_hoopstone_invite->Would you like to join me in a hoopstone game, [RECIPIENT_nameDef]?</li>
+								<li>game_hoopstone_invite->I'm going to play hoopstone. Would you like to join me, [recipient]?</li>
+								<li>game_hoopstone_invite->Would you like to join me in a hoopstone game, [recipient]?</li>
 							
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Horseshoes,INITIATOR_moving==Yes)->[game_horseshoes_going]</li>
 							<li>game_horseshoes_going(RECIPIENT_jobDefName==Play_Horseshoes,tag=Invite_answer_yes)->[game_horseshoes_invite]</li>
 							<li>game_horseshoes_going(RECIPIENT_jobDefName!=Play_Horseshoes,tag=Invite_answer_no)->[game_horseshoes_invite]</li>
-								<li>game_horseshoes_invite->I'm going to play horseshoes. Would you like to join me, [RECIPIENT_nameDef]?</li>
-								<li>game_horseshoes_invite->Would you like to join me in a horseshoes game, [RECIPIENT_nameDef]?</li>
+								<li>game_horseshoes_invite->I'm going to play horseshoes. Would you like to join me, [recipient]?</li>
+								<li>game_horseshoes_invite->Would you like to join me in a horseshoes game, [recipient]?</li>
 							
 						<!-- ===Playing=== -->
 						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Hoopstone,INITIATOR_moving==No)->[game_horseshoes]</li>
@@ -339,9 +339,9 @@
 
 					<!-- ===LayDown=== -->
 						<li>r_logentry(INITIATOR_jobDefName==LayDown,INITIATOR_moving==Yes,priority=4,tag=GoingToBed)->[going_to_bed]</li>
-						<li>going_to_bed->Well, [RECIPIENT_nameDef] — I'm going to bed.</li>
-						<li>going_to_bed->Let's call it a day, [RECIPIENT_nameDef] — I'm going to bed.</li>
-						<li>going_to_bed(INITIATOR_thoughtDefName==Sick,priority=1)->I'm not feeling well, [RECIPIENT_nameDef] — I'm going to bed.</li>
+						<li>going_to_bed->Well, [recipient] — I'm going to bed.</li>
+						<li>going_to_bed->Let's call it a day, [recipient] — I'm going to bed.</li>
+						<li>going_to_bed(INITIATOR_thoughtDefName==Sick,priority=2)->I'm not feeling well, [recipient] — I'm going to bed.</li>
 						<li>going_to_bed(INITIATOR_thoughtDefName==NeedRest,priority=1)->I'm so tired... I'm going to bed...</li>
 				
 					
@@ -393,25 +393,25 @@
 						<!-- ===Invitation=== -->
 						<li>game_poker(INITIATOR_seated==No,RECIPIENT_jobDefName==Play_Poker,tag=Invite_answer_yes)->[poker_invite]</li>
 						<li>game_poker(INITIATOR_seated==No,priority=-1,tag=Invite_answer_no)->[poker_invite]</li>
-							<li>poker_invite->I'm going to start a poker game. Would you like to join me, [RECIPIENT_nameDef]?</li>
-							<li>poker_invite->Would you like to join me in a poker game, [RECIPIENT_nameDef]?</li>
+							<li>poker_invite->I'm going to start a poker game. Would you like to join me, [recipient]?</li>
+							<li>poker_invite->Would you like to join me in a poker game, [recipient]?</li>
 							
 						<!-- ===Ready?=== -->
 						<li>game_poker(p=0.5,RECIPIENT_jobDefName==Play_Poker,RECIPIENT_seated==Yes,tag=Poker_ready)->[poker_ready]</li>
-							<li>poker_ready->Ok, new round of betting. I'll deal, [RECIPIENT_nameDef]. Ready?</li>
-							<li>poker_ready->My turn to deal. Ready for a new game, [RECIPIENT_nameDef]?</li>
-							<li>poker_ready->Are you in for another game, [RECIPIENT_nameDef]?</li>
-							<li>poker_ready->I cut and shuffled the deck. Are you ready, [RECIPIENT_nameDef]?</li>					
+							<li>poker_ready->Ok, new round of betting. I'll deal, [recipient]. Ready?</li>
+							<li>poker_ready->My turn to deal. Ready for a new game, [recipient]?</li>
+							<li>poker_ready->Are you in for another game, [recipient]?</li>
+							<li>poker_ready->I cut and shuffled the deck. Are you ready, [recipient]?</li>					
 					
 					<!-- ===Television=== -->
 						<!-- ===Both sitting and watching (priority 4)=== -->
 						<li>r_logentry(INITIATOR_jobDefName==WatchTelevision,INITIATOR_moving==No,RECIPIENT_jobDefName==WatchTelevision,RECIPIENT_moving==No,priority=4)->[job_tv]</li>
 							<li>job_tv(tag=TV_newchannel)->[job_tv1]</li>
 								<li>job_tv1->Hmmm... should I change the channel to a [tv_show]?</li>
-								<li>job_tv1->Do you want me to switch the television to [tv_letters], [RECIPIENT_nameDef]?</li>
-								<li>job_tv1->Seems like there's a new program airing... [tv_letters] [tv_news]. [RECIPIENT_nameDef], [wanna] [tv_seeit] together?</li>
-								<li>job_tv1->Oooh! There's a new program: [tv_letters] [tv_news]. [wanna] [tv_seeit], [RECIPIENT_nameDef]?</li>
-								<li>job_tv1->Hey, [RECIPIENT_nameDef] — there's this program called [tv_letters] [tv_news] airing right now. [wanna] [tv_seeit]?</li>
+								<li>job_tv1->Do you want me to switch the television to [tv_letters], [recipient]?</li>
+								<li>job_tv1->Seems like there's a new program airing... [tv_letters] [tv_news]. [recipient], [wanna] [tv_seeit] together?</li>
+								<li>job_tv1->Oooh! There's a new program: [tv_letters] [tv_news]. [wanna] [tv_seeit], [recipient]?</li>
+								<li>job_tv1->Hey, [recipient] — there's this program called [tv_letters] [tv_news] airing right now. [wanna] [tv_seeit]?</li>
 						
 							<li>job_tv(tag=TV_whatsthis)->[job_tv2]</li>
 								<li>job_tv2->Sorry... [tv_distraction] — what is it we're we watching now?</li>
@@ -422,18 +422,18 @@
 									<li>tv_distraction->I got distracted</li>
 							
 							<li>job_tv(tag=TV_problem)->[job_tv3]</li>
-								<li>job_tv3->It's so quiet... [RECIPIENT_nameDef], do you know how to turn up the volume on this thing?</li>
+								<li>job_tv3->It's so quiet... [recipient], do you know how to turn up the volume on this thing?</li>
 								<li>job_tv3->I can't hear what the characters are saying. How do you turn on the subtitles?</li>
 								<li>job_tv3->Jeez — the television is really [tv_volume]. How do you turn down the volume?</li>
-								<li>job_tv3->The tv audio seems to be cutting off. Do you know how to [fix] it, [RECIPIENT_nameDef]?</li>
+								<li>job_tv3->The tv audio seems to be cutting off. Do you know how to [fix] it, [recipient]?</li>
 									<li>tv_volume->loud</li>
 									<li>tv_volume->noisy</li>
 									
 						<!-- ===Recipient sitting and watching (priority 3)=== -->							
 						<li>r_logentry(RECIPIENT_jobDefName==WatchTelevision,RECIPIENT_moving==No,priority=3,tag=TV_whatsthis)->[job_tv_whatsthis]</li>
-							<li>job_tv_whatsthis->What's this playing on the television, [RECIPIENT_nameDef]?</li>
-							<li>job_tv_whatsthis->This program looks so [adj_tv]... what is it about, [RECIPIENT_nameDef]?</li>	
-							<li>job_tv_whatsthis(INITIATOR_intellectual_level&lt;5)->Whatcha watching, [RECIPIENT_nameDef]?</li>
+							<li>job_tv_whatsthis->What's this playing on the television, [recipient]?</li>
+							<li>job_tv_whatsthis->This program looks so [adj_tv]... what is it about, [recipient]?</li>	
+							<li>job_tv_whatsthis(INITIATOR_intellectual_level&lt;5)->Whatcha watching, [recipient]?</li>
 						
 						<!-- ===Wildcards=== -->						
 							<li>adj_tv->[adj_tv_good]</li>
@@ -512,10 +512,10 @@
 								<li>job_viewart_1->Such [a_adj_artwork] [NEAREST_art]! </li>
 								<li>job_viewart_1->We're lucky to have such [a_adj_artwork] [artwork]!</li>
 								<li>job_viewart_1->How [adj_artwork]!</li>
-								<li>job_viewart_1->Look, [RECIPIENT_nameDef]! Isn't it just so [adj_artwork]?</li>
-								<li>job_viewart_1->Look at this [NEAREST_art], [RECIPIENT_nameDef]! Isn't it just so [adj_artwork]?</li>
+								<li>job_viewart_1->Look, [recipient]! Isn't it just so [adj_artwork]?</li>
+								<li>job_viewart_1->Look at this [NEAREST_art], [recipient]! Isn't it just so [adj_artwork]?</li>
 								<li>job_viewart_1(INITIATOR_artistic_passion!=None)->[artistic_passion]</li>
-									<li>artistic_passion->This [NEAREST_art] fosters my natural connection to Art, [RECIPIENT_nameDef]. Isn't it just so [adj_artwork]?</li>
+									<li>artistic_passion->This [NEAREST_art] fosters my natural connection to Art, [recipient]. Isn't it just so [adj_artwork]?</li>
 									<li>artistic_passion->This [NEAREST_art] and its [adj_artwork] sprezzaturas visit my very soul...</li>
 									<li>artistic_passion->This [adj_artwork] [artwork] is a generous cornucopia for my eyes!</li>
 								<!-- ===No artistic passion (priority 1)=== -->
@@ -559,13 +559,13 @@
 					<!-- ===VisitSickPawn=== -->
 						<li>r_logentry(INITIATOR_jobDefName==VisitSickPawn,INITIATOR_moving==No,priority=4)->[job_visitpawn]</li>
 						<li>job_visitpawn->[tell_joke]</li>
-						<li>job_visitpawn(tag=GetWell)->Don't worry, [RECIPIENT_nameDef] — you'll get well very soon!</li>
-						<li>job_visitpawn(tag=GetWell)->I'm sure you'll be fine in no time, [RECIPIENT_nameDef]!</li>
+						<li>job_visitpawn(tag=GetWell)->Don't worry, [recipient] — you'll get well very soon!</li>
+						<li>job_visitpawn(tag=GetWell)->I'm sure you'll be fine in no time, [recipient]!</li>
 						<li>job_visitpawn(p=0.5,tag=HowAreYou)->So, how is our patient doing?</li>
 						<li>job_visitpawn(tag=Thanks)->[visitpawn_thanks]</li>
-							<li>visitpawn_thanks->If you need anything, let me know — OK, [RECIPIENT_nameDef]?</li>
-							<li>visitpawn_thanks->If I can do anything to help, let me know — OK, [RECIPIENT_nameDef]?</li>
-							<li>visitpawn_thanks->Don't worry, [RECIPIENT_nameDef] — [visitpawn_takecare]</li>
+							<li>visitpawn_thanks->If you need anything, let me know — OK, [recipient]?</li>
+							<li>visitpawn_thanks->If I can do anything to help, let me know — OK, [recipient]?</li>
+							<li>visitpawn_thanks->Don't worry, [recipient] — [visitpawn_takecare]</li>
 								<li>visitpawn_takecare->I'll take care of you</li>
 								<li>visitpawn_takecare(INITIATOR_medical_level&lt;5)->I'll do my best to take care of you.</li>
 								<li>visitpawn_takecare(INITIATOR_medical_level>=5)->you're in good hands.</li>
@@ -574,12 +574,12 @@
 				<!-- ===Job Texts (recipient)=== -->
 					<!-- ===Butchering=== -->
 						<li>r_logentry(RECIPIENT_jobText==Butchering.,tag=Job_ButcheringSkill)->[job_recipient_butchering]</li>
-						<li>job_recipient_butchering(RECIPIENT_cooking_level>=6)->Well, [RECIPIENT_nameDef] — luckily for us, looks like you know how to properly butcher!</li>
-						<li>job_recipient_butchering(RECIPIENT_cooking_level&lt;6)->Mmm, [RECIPIENT_nameDef]... looks like you're wasting good meat there...</li>
+						<li>job_recipient_butchering(RECIPIENT_cooking_level>=6)->Well, [recipient] — luckily for us, looks like you know how to properly butcher!</li>
+						<li>job_recipient_butchering(RECIPIENT_cooking_level&lt;6)->Mmm, [recipient]... looks like you're wasting good meat there...</li>
 					<!-- ===Vomiting (priority 4)=== -->
 						<li>r_logentry(priority=4,RECIPIENT_jobText==vomiting.)->[job_recipient_vomiting]</li>
 							<!-- ===gross=== -->
-								<li>job_recipient_vomiting(tag=Job_Vomiting)->[vomiting_gross][RECIPIENT_nameDef]!</li>
+								<li>job_recipient_vomiting(tag=Job_Vomiting)->[vomiting_gross][recipient]!</li>
 								<li>vomiting_gross->Gross, </li>
 								<li>vomiting_gross->Eww, </li>
 									<!-- ===dislike=== -->
@@ -589,9 +589,9 @@
 							<!-- ===help offer=== -->
 								<li>job_recipient_vomiting(INITIATOR_opinion>=0,tag=Job_Vomiting_help)->[vomiting_help_offer]</li>
 								<li>job_recipient_vomiting(INITIATOR_trait==kind,tag=Job_Vomiting_help,priority=1)->[vomiting_help_offer]</li>
-								<li>vomiting_help_offer->Oh my, [RECIPIENT_nameDef] — do you need help?</li>
+								<li>vomiting_help_offer->Oh my, [recipient] — do you need help?</li>
 					<!-- ===Build snowman (priority 4)=== -->
-						<li>r_logentry(priority=4,RECIPIENT_jobDefName==BuildSnowman,tag=Job_BuildSnowman)->Well, [RECIPIENT_nameDef] — [job_recipient_buildsnowman]</li>
+						<li>r_logentry(priority=4,RECIPIENT_jobDefName==BuildSnowman,tag=Job_BuildSnowman)->Well, [recipient] — [job_recipient_buildsnowman]</li>
 							<li>job_recipient_buildsnowman(RECIPIENT_artistic_level>=5)->[comment_nice_snowman]</li>
 								<li>comment_nice_snowman(INITIATOR_opinion>=0)->that's going to be a beautiful snowman!</li>
 								<li>comment_nice_snowman(INITIATOR_opinion&lt;0)->are you actually building that... snowy mess on purpose!?</li>
@@ -612,18 +612,18 @@
 								<!-- ===Compliment=== -->
 								<li>play_instrument_good(tag=Job_PlayMusic_compliment)->[play_instrument_compliment]</li>
 								<li>play_instrument_compliment->*claps*</li>
-								<li>play_instrument_compliment->Wow, [RECIPIENT_nameDef] — what a great performance!</li>
-								<li>play_instrument_compliment->Please, [RECIPIENT_nameDef] — play some more! It was so good!</li>
-								<li>play_instrument_compliment->That was some real inspired performance, [RECIPIENT_nameDef]!</li>
-								<li>play_instrument_compliment->Ah, I love this part... and I love how you play it, [RECIPIENT_nameDef]...</li>
-								<li>play_instrument_compliment(INITIATOR_opinion&lt;0,priority=1)->Mmm... at least you have some musical skills, [RECIPIENT_nameDef]...</li>
-								<li>play_instrument_compliment(INITIATOR_intellectual_level>=5)->Bravo, [RECIPIENT_nameDef]! Bravo!</li>
-								<li>play_instrument_compliment(INITIATOR_intellectual_level>=10)->Encore, [RECIPIENT_nameDef]! Encore!</li>
-								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Minor)->I can feel all your passion in those sweet notes, [RECIPIENT_nameDef]!</li>
-								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Major)->Such a nice performance! It makes me feel all the joy and strenght of your artistic soul, [RECIPIENT_nameDef]!</li>
-								<li>play_instrument_compliment(INITIATOR_artistic_level>=5)->I know a good performer when I see one — and you're certainly that, [RECIPIENT_nameDef]!</li>
-								<li>play_instrument_compliment(INITIATOR_artistic_level>RECIPIENT_artistic_level)->Mmm... I have some hints for you about performing this music, but still — good job, [RECIPIENT_nameDef]!</li>
-								<li>play_instrument_compliment(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->You're so talented, [RECIPIENT_nameDef]! I hope someday you can teach me a thing or two about performing this music!</li>
+								<li>play_instrument_compliment->Wow, [recipient] — what a great performance!</li>
+								<li>play_instrument_compliment->Please, [recipient] — play some more! It was so good!</li>
+								<li>play_instrument_compliment->That was some real inspired performance, [recipient]!</li>
+								<li>play_instrument_compliment->Ah, I love this part... and I love how you play it, [recipient]...</li>
+								<li>play_instrument_compliment(INITIATOR_opinion&lt;0,priority=1)->Mmm... at least you have some musical skills, [recipient]...</li>
+								<li>play_instrument_compliment(INITIATOR_intellectual_level>=5)->Bravo, [recipient]! Bravo!</li>
+								<li>play_instrument_compliment(INITIATOR_intellectual_level>=10)->Encore, [recipient]! Encore!</li>
+								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Minor)->I can feel all your passion in those sweet notes, [recipient]!</li>
+								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Major)->Such a nice performance! It makes me feel all the joy and strenght of your artistic soul, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level>=5)->I know a good performer when I see one — and you're certainly that, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level>RECIPIENT_artistic_level)->Mmm... I have some hints for you about performing this music, but still — good job, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->You're so talented, [recipient]! I hope someday you can teach me a thing or two about performing this music!</li>
 								<!-- ===Join in=== -->
 								<li>play_instrument_good(tag=Job_PlayMusic_join)->[play_instrument_join]</li>
 								<li>play_instrument_join->♪♫♪ hums along ♪♫♪</li>
@@ -631,26 +631,26 @@
 							<!-- ===Bad performance=== -->
 							<li>play_instrument_bad(tag=Job_PlayMusic_critic)->[play_instrument_critic]</li>
 							<li>play_instrument_critic->*sighs*</li>
-							<li>play_instrument_critic->Have you considered playing another instrument, [RECIPIENT_nameDef]? This one doesn't seem to agree with you...</li>
-							<li>play_instrument_critic->Have you considered playing another music, [RECIPIENT_nameDef]? This one seems to be too difficult for you...</li>
-							<li>play_instrument_critic->Well, [RECIPIENT_nameDef] — no offense, but I don't believe this is your best performance...</li>
+							<li>play_instrument_critic->Have you considered playing another instrument, [recipient]? This one doesn't seem to agree with you...</li>
+							<li>play_instrument_critic->Have you considered playing another music, [recipient]? This one seems to be too difficult for you...</li>
+							<li>play_instrument_critic->Well, [recipient] — no offense, but I don't believe this is your best performance...</li>
 							<li>play_instrument_critic->Mmm...</li>
-							<li>play_instrument_critic(RECIPIENT_artistic_level>=5)->Mmm, [RECIPIENT_nameDef] — I know you can perform better than that...</li>
-							<li>play_instrument_critic(RECIPIENT_artistic_passion!=None)->I felt some passion in your performance, but... mmm... maybe you need more practicing to get it right, [RECIPIENT_nameDef].</li>
-							<li>play_instrument_critic(INITIATOR_artistic_level>=5,RECIPIENT_artistic_passion!=None)->The talent is there, [RECIPIENT_nameDef] — I can see it clearly. But you need much training still...</li>
-							<li>play_instrument_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->May I give you some hints about performing this music? No offense, [RECIPIENT_nameDef] — but I didn't enjoy your performance.</li>
-							<li>play_instrument_critic(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->Was that your personal way of playing it, [RECIPIENT_nameDef]? I couldn't understand what you were trying to do there...</li>
+							<li>play_instrument_critic(RECIPIENT_artistic_level>=5)->Mmm, [recipient] — I know you can perform better than that...</li>
+							<li>play_instrument_critic(RECIPIENT_artistic_passion!=None)->I felt some passion in your performance, but... mmm... maybe you need more practicing to get it right, [recipient].</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level>=5,RECIPIENT_artistic_passion!=None)->The talent is there, [recipient] — I can see it clearly. But you need much training still...</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->May I give you some hints about performing this music? No offense, [recipient] — but I didn't enjoy your performance.</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->Was that your personal way of playing it, [recipient]? I couldn't understand what you were trying to do there...</li>
 								<!-- ===Hostile critic=== -->
 								<li>play_instrument_critic(INITIATOR_opinion&lt;0,priority=1)->[play_instrument_hostile_critic]</li>
 								<li>play_instrument_hostile_critic->What a lousy performance...</li>
 								<li>play_instrument_hostile_critic(INITIATOR_artistic_level&lt;5)->I'm no artist myself, but I can easily understand this is quite a bad performance!</li>
-								<li>play_instrument_hostile_critic(RECIPIENT_artistic_passion!=None)->Your raw skills sound horrible, [RECIPIENT_nameDef] — and no amount of training can change that!</li>
-								<li>play_instrument_hostile_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->And you call that a performance? Don't be around when I perform — I don't want to humiliate you, [RECIPIENT_nameDef]!</li>
+								<li>play_instrument_hostile_critic(RECIPIENT_artistic_passion!=None)->Your raw skills sound horrible, [recipient] — and no amount of training can change that!</li>
+								<li>play_instrument_hostile_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->And you call that a performance? Don't be around when I perform — I don't want to humiliate you, [recipient]!</li>
 								<!-- ===Kind=== -->
 								<li>play_instrument_critic(INITIATOR_trait==kind,priority=1)->[play_instrument_kindcomment]</li>
-								<li>play_instrument_kindcomment->Thanks for your — err — nice performance, [RECIPIENT_nameDef].</li>
-								<li>play_instrument_kindcomment->Don't worry about that mistake [RECIPIENT_nameDef] — it's just a very minor one.</li>
-								<li>play_instrument_kindcomment(INITIATOR_artistic_level>=5)->A minor mistake, [RECIPIENT_nameDef] — easily corrected. Don't worry, play on!</li>
+								<li>play_instrument_kindcomment->Thanks for your — err — nice performance, [recipient].</li>
+								<li>play_instrument_kindcomment->Don't worry about that mistake [recipient] — it's just a very minor one.</li>
+								<li>play_instrument_kindcomment(INITIATOR_artistic_level>=5)->A minor mistake, [recipient] — easily corrected. Don't worry, play on!</li>
 					
 					
 					<!-- ===Cooking and gathering ingredients=== -->
@@ -688,7 +688,7 @@
 						<li>r_logentry(INITIATOR_mood>=0.6,INITIATOR_artistic_passion!=None,tag=Singing)->♪♫♪ sings ♪♫♪</li>
 					
 				<!-- ===Mood (Recipient)=== -->
-					<li>r_logentry(INITIATOR_opinion>=0,tag=HowAreYou)->Hey, [RECIPIENT_nameDef]. [howareyou]</li>
+					<li>r_logentry(INITIATOR_opinion>=0,tag=HowAreYou)->Hey, [recipient]. [howareyou]</li>
 					<li>howareyou->How are you?</li>
 					<li>howareyou->How are things?</li>
 					<li>howareyou->How have you been?</li>
@@ -760,6 +760,7 @@
 							<li>vision_adj->colorful</li>
 							<li>vision_adj->clear</li>
 							<li>vision_adj->sudden</li>
+
 						
 				<!-- ===CHITCHAT WILDCARDS: dictionary=== -->
 					<!-- ===animal — large=== -->
@@ -1034,7 +1035,56 @@
 						<li>wanna(INITIATOR_intellectual_level&lt;5)->wanna</li>
 							
 					<!-- ===What about yours?=== -->
-						<li>what_about_yours->What do you think of yours, [RECIPIENT_nameDef]?</li>
+						<li>what_about_yours->What do you think of yours, [recipient]?</li>
+						
+					<!-- ===RECIPIENT=== -->		
+					<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
+
+					<li>recipient(p=4,INITIATOR_relationship==Lover)->[recipient_love]</li>
+					<li>recipient(p=3,INITIATOR_relationship==Fiance)->[recipient_love]</li>
+					<li>recipient(p=2,INITIATOR_relationship==Spouse)->[recipient_love]</li>
+						<li>recipient_love->honey</li>
+						<li>recipient_love->honey pot</li>
+						<li>recipient_love->love</li>
+						<li>recipient_love->lovebug</li>
+						<li>recipient_love->sweetie</li>
+						<li>recipient_love->sweetheart</li>
+						<li>recipient_love->babe</li>
+						<li>recipient_love->cutiepie</li>
+						<li>recipient_love->starshine</li>
+						<li>recipient_love->angelwing</li>
+						<li>recipient_love->gummybear</li>
+						<li>recipient_love->darling</li>
+						<li>recipient_love->dreamship</li>
+						<li>recipient_love(INITIATOR_intellectual_level>=5)->amore</li>
+						<li>recipient_love(INITIATOR_intellectual_level>=5)->amore mio</li>
+					
+					<li>recipient(INITIATOR_relationship==Sibling)->[recipient_sibling]</li>
+						<li>recipient_sibling(RECIPIENT_gender==Male)->[recipient_brother]</li>
+							<li>recipient_brother->brother</li>
+						<li>recipient_sibling(RECIPIENT_gender==Female)->[recipient_sister]</li>
+							<li>recipient_sister->sister</li>
+
+					<li>recipient(RECIPIENT_relationship==Parent,priority=1)->[recipient_parent]</li>
+						<li>recipient_parent(RECIPIENT_gender==Male)->[recipient_father]</li>
+							<li>recipient_father->father</li>
+							<li>recipient_father->dad</li>
+						<li>recipient_parent(RECIPIENT_gender==Female)->[recipient_mother]</li>
+							<li>recipient_mother->mother</li>
+							<li>recipient_mother->mum</li>
+
+					<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
+						<li>recipient_child->my child</li>
+						<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
+							<li>recipient_son->son</li>
+							<li>recipient_son->my son</li>
+						<li>recipient_child(RECIPIENT_gender==Female)->[recipient_daughter]</li>
+							<li>recipient_daughter->daughter</li>
+							<li>recipient_daughter->my daughter</li>
+							
+					<li>recipient->[RECIPIENT_nameDef]</li>						
+					<!-- ===END RECIPIENT=== -->
+					
 			</rulesStrings>
 
 <!--
@@ -1078,6 +1128,56 @@
 <!-- ===Sentence_SocialFightStarted=== -->	
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/RulePackDef[defName = "Sentence_SocialFightStarted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_RomanceAttemptAccepted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RomanceAttemptAccepted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+
+<!-- ===Sentence_RomanceAttemptRejected=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RomanceAttemptRejected"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_MarriageProposalAccepted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalAccepted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+
+<!-- ===Sentence_MarriageProposalRejected=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalRejected"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>	
+	
+<!-- ===Sentence_MarriageProposalRejectedBrokeUp=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalRejectedBrokeUp"]/rulePack/rulesStrings</xpath>
 		<value>
 		  <rulesStrings>
 			<li>sent-></li>

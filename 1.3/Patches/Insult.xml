@@ -31,6 +31,10 @@
 					<li>generic_short(RECIPIENT_gender==Male)->you [bloody] son of a [bitch]!</li>
 
 		<!-- ===Recipient's trait/parameter=== -->
+			<!-- ===Ex-Lover/Spouse=== -->
+				<li>r_logentry(RECIPIENT_relationship==ExLover,tag=Insult_generic)->[ex]</li>
+				<li>r_logentry(RECIPIENT_relationship==ExSpouse,tag=Insult_generic)->[ex]</li>
+					<li>ex->If you are going to be two-faced, at least make one of them pretty!</li>
 			<!-- ===Sickly===  -->
 				<li>r_logentry(RECIPIENT_trait==sickly,tag=Insult_generic)->[trait_sickly]</li>		
 				<li>trait_sickly->Stay away from me, [RECIPIENT_nameDef] — you [plague_animal]!</li>

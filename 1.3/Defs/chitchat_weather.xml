@@ -9,9 +9,9 @@
 				<rulesStrings>
 					<!-- ===undergrounder (priority 2)=== -->
 					<li>r_logentry(INITIATOR_opinion>=0,INITIATOR_trait==undergrounder,priority=2)->[i_undergrounder]</li>
-						<li>i_undergrounder(RECIPIENT_trait==undergrounder,priority=1)->I totally agree with you, [RECIPIENT_nameDef]!</li>
-						<li>i_undergrounder->I don't really care about what's the weather like out there, [RECIPIENT_nameDef]...</li>
-					<li>r_logentry(INITIATOR_opinion>=0,INITIATOR_thoughtDefName==NeedOutdoors,priority=1)->Me too, [RECIPIENT_nameDef].</li>
+						<li>i_undergrounder(RECIPIENT_trait==undergrounder,priority=1)->I totally agree with you, [recipient]!</li>
+						<li>i_undergrounder->I don't really care about what's the weather like out there, [recipient]...</li>
+					<li>r_logentry(INITIATOR_opinion>=0,INITIATOR_thoughtDefName==NeedOutdoors,priority=1)->Me too, [recipient].</li>
 					<li>r_logentry(INITIATOR_opinion>=0)->I can tell you — we're having a [weather].</li>
 					
 					<li>weather(WEATHER==clear,priority=1)->[dayperiod_adj] [DAYPERIOD]</li>
@@ -44,11 +44,11 @@
 						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<!-- ===undergrounder indoors (priority 2)=== -->
 							<li>good_opinion(INITIATOR_trait==undergrounder,OUTDOORS==No,priority=2)->[i_undergrounder]</li>
-								<li>i_undergrounder->I don't really care about what's the weather like out there, [RECIPIENT_nameDef]...</li>
+								<li>i_undergrounder->I don't really care about what's the weather like out there, [recipient]...</li>
 						<!-- ===Entombed (priority 1)=== -->
 							<li>good_opinion(INITIATOR_thoughtDefName==NeedOutdoors,priority=1)->I wish I had a chance to go outside and see it for myself!</li>
 						<!-- ===Not entombed (default)=== -->
-							<li>good_opinion->[yes], [RECIPIENT_nameDef]. [outside_inside]</li>
+							<li>good_opinion->[yes], [recipient]. [outside_inside]</li>
 
 					<!-- === Comment if outside=== -->
 						<li>outside_inside(OUTDOORS==Yes)->[temperature]</li>
@@ -130,13 +130,13 @@
 			<label>fog — trait — wimp</label>
 			<logRulesInitiator>
 				<rulesStrings>
-					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion&lt;10)->Come on, [RECIPIENT_nameDef] — stop being such a sissy! It's just fog!</li>
-					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion>=15)->Don't worry, [RECIPIENT_nameDef] — if that happens, I'll just smash it out of existence!</li>
-					<li>r_logentry(INITIATOR_trait==wimp,priority=1)->You're right, [RECIPIENT_nameDef] — this fog scares the hell out of me too!</li>
-					<li>r_logentry(INITIATOR_trait==wimp,INITIATOR_opinion>=15,priority=1)->In that case, my dear [RECIPIENT_nameDef], we'll just make a run for it!</li>
-					<li>r_logentry(INITIATOR_opinion&lt;10)->[RECIPIENT_nameDef], don't be such a crybaby! It's fog — just fog!</li>
-					<li>r_logentry(INITIATOR_opinion>=15)->No need to be afraid, [RECIPIENT_nameDef]. It's just normal fog.</li>
-					<li>r_logentry->This fog could actually hide some danger, [RECIPIENT_nameDef] — especially at night...</li>
+					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion&lt;10)->Come on, [recipient] — stop being such a sissy! It's just fog!</li>
+					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion>=15)->Don't worry, [recipient] — if that happens, I'll just smash it out of existence!</li>
+					<li>r_logentry(INITIATOR_trait==wimp,priority=1)->You're right, [recipient] — this fog scares the hell out of me too!</li>
+					<li>r_logentry(INITIATOR_trait==wimp,INITIATOR_opinion>=15,priority=1)->In that case, my dear [recipient], we'll just make a run for it!</li>
+					<li>r_logentry(INITIATOR_opinion&lt;10)->[recipient], don't be such a crybaby! It's fog — just fog!</li>
+					<li>r_logentry(INITIATOR_opinion>=15)->No need to be afraid, [recipient]. It's just normal fog.</li>
+					<li>r_logentry->This fog could actually hide some danger, [recipient] — especially at night...</li>
 					<li>r_logentry->Once I heard a story where [story]</li>
 					<li>story->long dead bodies shambled through the fog to feast on the living.</li>
 					<li>story->people got forever trapped in the fog and slowly starved to death.</li>
@@ -154,9 +154,9 @@
 			<label>hunting with fog</label>
 			<logRulesInitiator>
 				<rulesStrings>
-					<li>r_logentry->Who knows, [RECIPIENT_nameDef]... If I feel like it, I might give it a try anyway.</li>
-					<li>r_logentry(INITIATOR_shooting_level&lt;5,INITIATOR_animals_level&lt;5)->You're right [RECIPIENT_nameDef], no hunting for me today. Too bad.</li>
-					<li>r_logentry(INITIATOR_shooting_level>=5,INITIATOR_animals_level>=5)->[RECIPIENT_nameDef], a skilled hunter like me doesn't need to wait for the perfect weather to hunt.</li>
+					<li>r_logentry->Who knows, [recipient]... If I feel like it, I might give it a try anyway.</li>
+					<li>r_logentry(INITIATOR_shooting_level&lt;5,INITIATOR_animals_level&lt;5)->You're right, [recipient] — no hunting for me today. Too bad.</li>
+					<li>r_logentry(INITIATOR_shooting_level>=5,INITIATOR_animals_level>=5)->[recipient], a skilled hunter like me doesn't need to wait for the perfect weather to hunt.</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -202,7 +202,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-						<li>good_opinion->Go on, [RECIPIENT_nameDef]. [comment]</li>
+						<li>good_opinion->Go on, [recipient]. [comment]</li>
 						<li>comment(INITIATOR_jobDefName==GotoWander)->[wandering]</li>
 						<li>comment(INITIATOR_jobDefName==Wait_Wander)->[wandering]</li>
 						<li>comment(INITIATOR_jobDefName==BuildRoof)->[building]</li>
@@ -250,8 +250,8 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry->[good_opinion]</li>
-						<li>good_opinion->I heard it too, [RECIPIENT_nameDef]! But I don't hear any rain — we might be in for a wildfire!</li>
-						<li>good_opinion->Yes, [RECIPIENT_nameDef] - quite a loud one! Let's hope no wildfires are started!</li>
+						<li>good_opinion->I heard it too, [recipient]! But I don't hear any rain — we might be in for a wildfire!</li>
+						<li>good_opinion->Yes, [recipient] - quite a loud one! Let's hope no wildfires are started!</li>
 						<li>good_opinion(INITIATOR_trait==pyromaniac)->Thunders — the majestic roar of Nature!</li>
 						<li>good_opinion(INITIATOR_trait==tortured artist)->Nature's perfectly expressing my internal turmoil right now.</li>
 						<li>good_opinion(INITIATOR_trait==wimp)->I'm scared of thunders!</li>
@@ -273,7 +273,7 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry->[good_opinion]</li>
-						<li>good_opinion->Yes, [RECIPIENT_nameDef] — let's hope it rains soon, or we'll have wildfires!</li>
+						<li>good_opinion->Yes, [recipient] — let's hope it rains soon, or we'll have wildfires!</li>
 						<li>good_opinion->Mmm... maybe I'd better get inside — I don't want to get struck by lightning!</li>
 						<li>good_opinion(INITIATOR_trait==pyromaniac)->Yes! I love lightnings!</li>
 						<li>good_opinion(INITIATOR_trait==wimp)->Aww! I'm going inside — it's too dangerous out here!</li>
@@ -351,11 +351,11 @@
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry->[good_opinion]</li>
-						<li>good_opinion->Calm down, [RECIPIENT_nameDef] — it's just a normal thunderstorm!</li>
-						<li>good_opinion(INITIATOR_trait==brawler)->Grow up, [RECIPIENT_nameDef]! It's just a normal thunderstorm!</li>
-						<li>good_opinion(INITIATOR_trait==kind,priority=1)->There, there — I'm here for you, [RECIPIENT_nameDef]!</li>
+						<li>good_opinion->Calm down, [recipient] — it's just a normal thunderstorm!</li>
+						<li>good_opinion(INITIATOR_trait==brawler)->Grow up, [recipient]! It's just a normal thunderstorm!</li>
+						<li>good_opinion(INITIATOR_trait==kind,priority=1)->There, there — I'm here for you, [recipient]!</li>
 						<li>good_opinion(INITIATOR_trait==pyromaniac)->Why so scared? Lightnings and thunders are so fascinating!</li>
-						<li>good_opinion(INITIATOR_trait==wimp)->Aww, [RECIPIENT_nameDef]! I'm scared too!</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->Aww, [recipient]! I'm scared too!</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -428,7 +428,7 @@
 					<!-- mood (default) === -->				
 						<li>good_opinion(INITIATOR_mood>=0.7)->I can't wait to build a snowman!</li>
 						<li>good_opinion(INITIATOR_mood>=0.4)->A snow blanketed landscape is so nice!</li>
-						<li>good_opinion(INITIATOR_mood&lt;0.4)->Snow...? Whatever, [RECIPIENT_nameDef]... whatever...</li>
+						<li>good_opinion(INITIATOR_mood&lt;0.4)->Snow...? Whatever, [recipient]... whatever...</li>
 					<!-- outdoors === -->
 						<li>good_opinion(OUTDOORS==Yes)->[outdoors]</li>
 						<li>outdoors(INITIATOR_mood>=0.4)->Snowflakes are so beautiful!</li>

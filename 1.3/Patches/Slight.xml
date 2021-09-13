@@ -21,6 +21,7 @@
 				<!-- ===too smart=== -->
 					<li>r_logentry(tag=Slight_generic,INITIATOR_trait==too smart)->[initiator_toosmart]</li>
 					<li>initiator_toosmart->I'd love to have a fair battle of wits with you, [RECIPIENT_nameDef] — but you seem to be totally unarmed.</li>
+
 			<!-- ===recipient's traits=== -->
 				<!-- ===annoying voice=== -->
 					<li>r_logentry(RECIPIENT_trait==annoying voice,tag=Slight_generic)->[recipient_annoyingvoice]</li>
@@ -49,14 +50,25 @@
 					<li>recipient_sickly->[RECIPIENT_nameDef], you sickly parasite — you're wasting all our medicine!</li>
 					<li>recipient_sickly->If only I could fake being sick as well as you do, [RECIPIENT_nameDef]...</li>
 				<!-- ===ugly and staggeringly ugly=== -->
-					<li>r_logentry(tag=Slight_generic,RECIPIENT_trait==ugly)->[recipient_ugly]</li>
-					<li>r_logentry(tag=Slight_generic,RECIPIENT_trait==staggering ugly)->[recipient_ugly]</li>
+					<li>r_logentry(RECIPIENT_trait==ugly,tag=Slight_generic)->[recipient_ugly]</li>
+					<li>r_logentry(RECIPIENT_trait==staggering ugly,tag=Slight_generic)->[recipient_ugly]</li>
 					<li>recipient_ugly->There's only one problem with your face, [RECIPIENT_nameDef] — I can see it.</li>				
+
+			<!-- ===initiator's traits=== -->
+				<!-- ===intellectual=== -->
+				<li>r_logentry(INITIATOR_intellectual_level>=5,tag=Slight_generic)->Did you know, [RECIPIENT_nameDef]? Pearls are formed by constant irritation — I'm surprised you haven't turned us into a fine necklace by now!</li>
+
 			<!-- ===low skill=== -->
 				<li>r_logentry(tag=Slight_generic)->[low_skill]</li>
-				<li>low_skill(RECIPIENT_intellectual_level&lt;=5)->Your head has a sole purpose, [RECIPIENT_nameDef] — keeping your ears apart!</li>
+				<li>low_skill(RECIPIENT_intellectual_level&lt;=5)->[low_int]</li>
+					<li>low_int->Were you dropped on your head as a baby, [RECIPIENT_nameDef], or thrown against a wall?</li>
+					<li>low_int->You're not a complete idiot, [RECIPIENT_nameDef] — some parts are clearly missing!</li>
+					<li>low_int->Your head has a sole purpose, [RECIPIENT_nameDef] — keeping your ears apart!</li>
+					<li>low_int->If ignorance is bliss, [RECIPIENT_nameDef], then why aren't you happier?</li>
+					<li>low_int->I heard the nearby village is in dire need of a fool — why don't you go there? You'd be perfect for the job, [RECIPIENT_nameDef]!</li>
 				<li>low_skill(RECIPIENT_intellectual_level&lt;=5,RECIPIENT_animals_level>=5)->Go climb a [TreeType], [RECIPIENT_nameDef] — you'll feel more at home there.</li>
 				<li>low_skill(RECIPIENT_social_level&lt;=5)->I'm quite sure a drunken skunk has better social skills than you, [RECIPIENT_nameDef].</li>
+				<li>low_skill(RECIPIENT_social_level&lt;=5)->It's incredible how much joy you can bring to a room by simply leaving it, [RECIPIENT_nameDef].</li>
 			<!-- ===low skill with minor passion=== -->
 				<li>r_logentry(tag=Slight_generic)->[low_skill_minor_passion]</li>
 					<!-- ===low shooting with minor passion=== -->

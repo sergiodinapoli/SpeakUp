@@ -54,7 +54,7 @@
 											<!-- ===Recipient is not skilled in construction=== -->
 												<li>thought_atewotable_construction_unskilled(RECIPIENT_construction_level&lt;4)-></li>
 											<!-- ===Recipient is skilled in construction=== -->
-												<li>thought_atewotable_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [RECIPIENT_nameDef].</li>								
+												<li>thought_atewotable_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [recipient].</li>								
 									<!-- ===Initiator is skilled in construction=== -->
 										<li>hope_wont_happen_again_table(INITIATOR_construction_level>=4)->[thought_atewotable_construction_skilled]</li>
 											<!-- ===Recipient is not skilled in construction=== -->
@@ -121,7 +121,7 @@
 				<!-- ===KnowPrisonerSold (PlayerColony or PlayerTribe only)=== -->
 					<li>r_logentry(INITIATOR_faction==PlayerColony,INITIATOR_thoughtDefName==KnowPrisonerSold,tag=ReactToThought_PrisonerSold)->[thought_prisonersold]</li>
 					<li>r_logentry(INITIATOR_faction==PlayerTribe,INITIATOR_thoughtDefName==KnowPrisonerSold,tag=ReactToThought_PrisonerSold)->[thought_prisonersold]</li>
-					<li>thought_prisonersold->[RECIPIENT_nameDef], did you hear? We sold that poor [prisoner] into slavery. [prisonersold_comment]</li>
+					<li>thought_prisonersold->We sold that poor [prisoner] into slavery. [prisonersold_comment]</li>
 						<!-- ===comment=== -->
 						<li>prisonersold_comment->That's a worrying thought...</li>
 						<li>prisonersold_comment->I hope we won't have to take such mean measures again...</li>
@@ -215,9 +215,9 @@
 						<li>r_logentry(RECIPIENT_jobText==Cooking 4 survival meals.)->[recipient_is_cooking]</li>							
 							<!-- ===recipient is actually cooking=== --> 
 							<li>recipient_is_cooking(RECIPIENT_moving==No,tag=IsCooking)->[recipient_is_cooking_actual]</li>
-								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level>=6)->Mmm... smells nice, [RECIPIENT_nameDef] — we're so lucky to have a pro cook here!</li>
-								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level>2,RECIPIENT_cooking_level&lt;6)->It doesn't smell that good, [RECIPIENT_nameDef] — but it's better than nothing.</li>
-								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level&lt;2)->I hope you know what you're doing, [RECIPIENT_nameDef] — hope there won't be any food poisoning incidents...</li>
+								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level>=6)->Mmm... smells nice, [recipient] — we're so lucky to have a pro cook here!</li>
+								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level>2,RECIPIENT_cooking_level&lt;6)->It doesn't smell that good, [recipient] — but it's better than nothing.</li>
+								<li>recipient_is_cooking_actual(RECIPIENT_cooking_level&lt;2)->I hope you know what you're doing, [recipient] — hope there won't be any food poisoning incidents...</li>
 							<!-- ===recipient is going to cook=== --> 
 							<li>recipient_is_cooking(RECIPIENT_moving==Yes)->[recipient_is_going_to_cook]</li>
 								<li>recipient_is_going_to_cook->[mood]</li>
@@ -227,11 +227,11 @@
 					<!-- ===hungry or worse , recipient is a professional cook (priority 4)=== -->
 						<li>r_logentry(RECIPIENT_faction==PlayerColony,INITIATOR_jobDefName!=StandAndBeSociallyActive,INITIATOR_jobDefName!=Ingest,INITIATOR_thoughtDefName==NeedFood,RECIPIENT_cooking_level>=6,tag=ReactToThought_NeedFood_CookRecipient,priority=4)->[thought_needfood_cookrecipient]</li>
 						<li>r_logentry(RECIPIENT_faction==PlayerTribe,INITIATOR_jobDefName!=StandAndBeSociallyActive,INITIATOR_jobDefName!=Ingest,INITIATOR_thoughtDefName==NeedFood,RECIPIENT_cooking_level>=6,tag=ReactToThought_NeedFood_CookRecipient,priority=4)->[thought_needfood_cookrecipient]</li>
-						<li>thought_needfood_cookrecipient(INITIATOR_trait==brawler,INITIATOR_mood&lt;0.4,priority=1)->[damn_it], [RECIPIENT_nameDef] — get me some cooked food already or I swear I'll eat that [ugly] face of yours!</li>
+						<li>thought_needfood_cookrecipient(INITIATOR_trait==brawler,INITIATOR_mood&lt;0.4,priority=1)->[damn_it], [recipient] — get me some cooked food already or I swear I'll eat that [ugly] face of yours!</li>
 						<li>thought_needfood_cookrecipient(INITIATOR_mood&lt;0.4)->What's someone got to do to get some food around here?</li>
-						<li>thought_needfood_cookrecipient(INITIATOR_mood&lt;0.4)->Hey, [RECIPIENT_nameDef] — can you get me some food already?!</li>
+						<li>thought_needfood_cookrecipient(INITIATOR_mood&lt;0.4)->Hey, [recipient] — can you get me some food already?!</li>
 						<li>thought_needfood_cookrecipient(INITIATOR_jobText==resting.)->[thought_needfood_hungry0] Can you get me some food, please?</li>
-						<li>thought_needfood_cookrecipient(priority=-1)->Hey, [RECIPIENT_nameDef] — is there anything I could eat around here?</li>
+						<li>thought_needfood_cookrecipient(priority=-1)->Hey, [recipient] — is there anything I could eat around here?</li>
 					<!-- ===just hungry=== -->
 						<li>r_logentry(INITIATOR_thoughtLabel==hungry,tag=ReactToThought_NeedFood)->[thought_needfood_hungry0]</li>
 						<li>thought_needfood_hungry0->I'm really hungry.</li>
@@ -299,7 +299,7 @@
 					<!-- ===spacious interior [not implemented]=== -->
 					<!-- ===LOCAL WILDCARDS=== -->
 						<li>ask_for_larger_rooms(RECIPIENT_construction_level&lt;5)-></li>
-						<li>ask_for_larger_rooms(RECIPIENT_construction_level>=5)->Hey, [RECIPIENT_nameDef]! Could you take care of it?</li>
+						<li>ask_for_larger_rooms(RECIPIENT_construction_level>=5)->Hey, [recipient]! Could you take care of it?</li>
 				<!-- ===NewColonyHope=== -->
 					<li>r_logentry(INITIATOR_thoughtDefName==NewColonyHope,tag=ReactToThought_NewColony)->[thought_newcolhope]</li>
 					<li>thought_newcolhope->I'm getting used to this new life, but it's still exciting. I hope this works out...</li>
@@ -446,7 +446,7 @@
 								<!-- ===Recipient is not skilled in construction=== -->
 									<li>sleptincold_construction_unskilled(RECIPIENT_construction_level&lt;5,tag=ReactToThought_SleptInCold)->I wish my room had a heat source...</li>
 								<!-- ===Recipient is skilled in construction=== -->
-									<li>sleptincold_construction_unskilled(RECIPIENT_construction_level>=5,tag=ReactToThought_SleptInCold_construction)->I hope you won't let this happen again, [RECIPIENT_nameDef].</li>								
+									<li>sleptincold_construction_unskilled(RECIPIENT_construction_level>=5,tag=ReactToThought_SleptInCold_construction)->I hope you won't let this happen again, [recipient].</li>								
 							<!-- ===Initiator is skilled in construction=== -->
 								<li>hope_wont_happen_again_heatsource(INITIATOR_construction_level>=5,tag=ReactToThought_SleptInCold_construction)->[sleptincold_construction_skilled]</li>
 								<!-- ===Recipient is not skilled in construction=== -->
@@ -478,7 +478,7 @@
 								<!-- ===Recipient is not skilled in construction=== -->
 									<li>sleptinheat_construction_unskilled(RECIPIENT_construction_level&lt;5,tag=ReactToThought_SleptInHeat)->I wish my room had a cooler...</li>
 								<!-- ===Recipient is skilled in construction=== -->
-									<li>sleptinheat_construction_unskilled(RECIPIENT_construction_level>=5,tag=ReactToThought_SleptInHeat_construction)->I hope you won't let this happen again, [RECIPIENT_nameDef].</li>								
+									<li>sleptinheat_construction_unskilled(RECIPIENT_construction_level>=5,tag=ReactToThought_SleptInHeat_construction)->I hope you won't let this happen again, [recipient].</li>								
 							<!-- ===Initiator is skilled in construction=== -->
 								<li>hope_wont_happen_again_cooler(INITIATOR_construction_level>=5,tag=ReactToThought_SleptInHeat_construction)->[sleptinheat_construction_skilled]</li>
 								<!-- ===Recipient is not skilled in construction=== -->
@@ -500,7 +500,7 @@
 						<!-- ===Recipient is not skilled in construction=== -->
 							<li>thought_sleptonground_construction_unskilled(RECIPIENT_construction_level&lt;4)->[damn_it]...</li>
 						<!-- ===Recipient is skilled in construction=== -->
-							<li>thought_sleptonground_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [RECIPIENT_nameDef].</li>								
+							<li>thought_sleptonground_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [recipient].</li>								
 					<!-- ===Initiator is skilled in construction=== -->
 						<li>hope_wont_happen_again_bed(INITIATOR_construction_level>=4)->[thought_sleptonground_construction_skilled]</li>
 						<!-- ===Recipient is not skilled in construction=== -->
@@ -517,7 +517,7 @@
 						<!-- ===Recipient is not skilled in construction=== -->
 							<li>thought_sleptoutside_construction_unskilled(RECIPIENT_construction_level&lt;4)->[damn_it]...</li>
 						<!-- ===Recipient is skilled in construction=== -->
-							<li>thought_sleptoutside_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [RECIPIENT_nameDef].</li>								
+							<li>thought_sleptoutside_construction_unskilled(RECIPIENT_construction_level>=4)->I hope you won't let this happen again, [recipient].</li>								
 					<!-- ===Initiator is skilled in construction=== -->
 						<li>hope_wont_happen_again_outside(INITIATOR_construction_level>=4)->[thought_sleptoutside_construction_skilled]</li>
 						<!-- ===Recipient is not skilled in construction=== -->
@@ -528,7 +528,7 @@
 					<li>r_logentry(INITIATOR_thoughtDefName==UndergrounderOutdoors,tag=ReactToThought_UndergrounderOutdoors)->[thought_undergrounderoutdoors]</li>
 					<li>thought_undergrounderoutdoors->I don't like being outside. I'd rather be indoors.</li>
 			<!-- ===Thought (Recipient)=== -->
-				<li>r_logentry(INITIATOR_opinion>=0,tag=WhatsUp)->So, [RECIPIENT_nameDef] — [whatsup]</li>
+				<li>r_logentry(INITIATOR_opinion>=0,tag=WhatsUp)->So, [recipient] — [whatsup]</li>
 				<li>whatsup(INITIATOR_intellectual_level&lt;5)->wassup?</li>
 				<li>whatsup(INITIATOR_intellectual_level&lt;3)->sup?</li>
 				<li>whatsup(INITIATOR_intellectual_level&lt;5)->what's popping?</li>
