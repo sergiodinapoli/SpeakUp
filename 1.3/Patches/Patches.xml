@@ -831,7 +831,6 @@
 						<li>beautiful_person->gorgeous</li>
 						<li>beautiful_person->lovely</li>
 						<li>beautiful_person->pretty</li>
-						<li>beautiful_person->statuesque</li>
 						<li>beautiful_person(RECIPIENT_gender==Male,p=1)->handsome</li>
 						<li>beautiful_person(RECIPIENT_gender==Male)->hunky</li>
 						<li>beautiful_person(RECIPIENT_gender==Female)->buxom</li>
