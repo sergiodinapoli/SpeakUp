@@ -969,7 +969,7 @@
 					<li>good_opinion->Oh, no... Sorry, [recipient]. We'll all try to be more careful.</li>
 					<li>good_opinion->We'll do our best to tread softly, [recipient].</li>
 					<li>good_opinion(INITIATOR_trait==abrasive)->Not my fault, [RECIPIENT_nameDef]. Sucks to be you, I guess. Sorry.</li>
-					<li>good_opinion(INITIATOR_trait==kind)->Poor [RECIPIENT_nameDef]! Take it easy today, and be sure to get a good night's sleep tonight.</li>
+					<li>good_opinion(INITIATOR_trait==kind)->Poor [RECIPIENT_nameDef]! Take it easy today, and be sure to get a good rest next time you go to sleep.</li>
 					<li>good_opinion(INITIATOR_trait==nimble)->You know it wasn't me, [recipient]. I'm always quiet when I walk.</li>
 			</rulesStrings>
 		</logRulesInitiator>

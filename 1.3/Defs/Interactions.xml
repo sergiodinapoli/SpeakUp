@@ -912,7 +912,6 @@
 					<li>bad_opinion->...</li>
 					<li>bad_opinion->[thank].</li>
 					<li>bad_opinion(INITIATOR_opinion&lt;-20)->You're not going to make me feel any better, [RECIPIENT_nameDef].</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;-20,INITIATOR_TRAIT=abrasive)->Get right [swearword]out of here, [RECIPIENT_nameDef], before I climb out of this sickbed and make you leave my own [swearword]self!</li>
 					<li>bad_opinion(INITIATOR_opinion&lt;-20)->Hey, [RECIPIENT_nameDef] — do me a favor, just leave me alone...</li>
 				<!-- ===Good opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
@@ -1412,7 +1411,6 @@
 						<li>stressed(INITIATOR_mood&lt;=0.2)->*mutters angrily*</li>
 						
 						<li>calm(p=2)->*smiles*</li>
-						<li>calm->Here we are!</li>
 						<li>calm(INITIATOR_mood>=0.6)->*beams a smile at [RECIPIENT_nameDef]*</li>
 				</rulesStrings>
 			</logRulesInitiator>

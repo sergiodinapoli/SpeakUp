@@ -25,9 +25,9 @@
 				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [recipient].</li>
 				
 			<!-- ===Random DeepTalk conversation=== -->
-				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef]? What do you think about [TalkTopicHeavy]?</li>
-				<li>r_logentry(tag=DeepTalkConvo)->Hey, [RECIPIENT_nameDef], have you ever spent time thinking about [TalkTopicHeavy]?</li>
-				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [RECIPIENT_nameDef] — Mostly about [TalkTopicHeavy]...</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [recipient]? What do you think about [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [recipient], have you ever spent time thinking about [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [recipient] — Mostly about [TalkTopicHeavy]...</li>
 
 			<!-- ===RECIPIENT=== -->		
 			<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
