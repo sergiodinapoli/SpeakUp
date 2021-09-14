@@ -17,7 +17,7 @@
 				<li>try_romance->Although it won't last, this blissful moment I spent with you will be forever in my dreams...</li>
 				
 				<li>try_romance(RECIPIENT_trait==annoying voice)->Of all terrible sounds in the world, your voice is my favorite.</li>
-				<li>try_romance(RECIPIENT_trait==bodypurist)->No wonder you abhore body modifications — yours is perfect already!</li>
+				<li>try_romance(RECIPIENT_trait==bodypurist)->No wonder you abhor body modifications — because yours is perfect already!</li>
 				<li>try_romance(RECIPIENT_trait==bodymodder)->Wanna help me pick a heart upgrade? 'Cause mine just skipped a beat for you!</li>
 				<li>try_romance(RECIPIENT_trait==gourmand)->If I could, I'd turn into a plate of delicacies, just to please your senses...</li>
 		
@@ -31,12 +31,15 @@
 				<li>try_romance(RECIPIENT_trait==beautiful)->[beautty]</li>
 				<li>try_romance(RECIPIENT_trait==pretty)->[beautty]</li>
 					<li>beautty->Honey, sugar and cinnamon — here's what your mother used to make you, I'm sure!</li>
-					<li>beautty->The most beautiful among the beautiful, will never be as beautiful as you are!</li>
-					<li>beautty->Your perfumed skin puts into my heart a thousand naughty thoughts...</li>
+					<li>beautty->Roses are red, violets are blue, and sugar is sweet — But not nearly as sweet as you!</li>
+					<li>beautty->You walk in beauty like the night, with all that's best of dark and bright...</li>
+					<li>beautty->The most beautiful among the beautiful will still never be as beautiful as you!</li>
+					<li>beautty->Your perfumed skin puts into my heart a thousand [romantic_adj] late-night thoughts...</li>
+					<li>beautty(INITIATOR_trait==abrasive)->Your perfumed skin puts into my heart a thousand naughty thoughts...</li>
 					
 				<li>try_romance(RECIPIENT_trait==bloodlust)->[bloodbrawl]</li>
 				<li>try_romance(RECIPIENT_trait==brawler)->[bloodbrawl]</li>
-					<li>bloodbrawl->Strong as a bear, fierce a warg... you're just a dream come true!</li>
+					<li>bloodbrawl->Strong as a bear, fierce as a warg... you're just a dream come true!</li>
 					
 				<li>try_romance(RECIPIENT_trait==kind)->Your soothing kindness is a healing balm for my soul...</li>
 				
@@ -45,6 +48,15 @@
 				<li>try_romance(RECIPIENT_trait==too smart)->Will your vast ocean of knowledge ever hold the love I feel for you?</li>
 				
 				<li>try_romance(RECIPIENT_trait==nimble)->Your smooth and elegant movements hypnotize my eyes and sway my heart...</li>
+				
+				<li>try_romance(RECIPIENT_trait==ugly)->Love looks not with the eyes, but with the mind — And therefore is winged Cupid painted blind... I treasure you, darling [RECIPIENT_nameDef]!</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==nimble)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_TRAIT==jogger)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_TRAIT==fastwalker)->[fastMoving]</li>
+				<li>fastMoving->You make my heart race faster than my feet, [beautiful] [RECIPIENT_nameDef]!</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==bloodlust)->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
 					
 			<li>beautiful->beautiful</li>
 			<li>beautiful->charming</li>
@@ -97,8 +109,9 @@
 		<xpath>/Defs/InteractionDef[defName = "Breakup"]/logRulesInitiator/rulesStrings</xpath>
 		<value>
 			 <rulesStrings>
-				<li>r_logentry->[RECIPIENT_nameDef], I'm sorry... I need some space... we'd better break up...</li>
-				<li>r_logentry->[RECIPIENT_nameDef], looks like our relationship isn't working out... let's see other people...</li>
+				<li>r_logentry->[RECIPIENT_nameDef], I'm sorry... I need some space... I think we should break up...</li>
+				<li>r_logentry->[RECIPIENT_nameDef], it looks like our relationship isn't working out... We should see other people...</li>
+				<li>r_logentry->[RECIPIENT_nameDef], I don't think it's working between us... It's not you, it's me.</li>
 			  </rulesStrings>
 		</value>
 	</Operation>

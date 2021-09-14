@@ -42,6 +42,7 @@
 
 				<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
 					<li>recipient_child->my child</li>
+					<li>recipient_child(INITIATOR_OPINION>=0)->dear</li>
 					<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
 						<li>recipient_son->son</li>
 						<li>recipient_son->my son</li>
@@ -83,10 +84,13 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->Nothing — forget it.</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Forget it.</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Hmph. Never mind.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Uhhh, never mind. I forgot.</li>
 					<li>good_opinion->Mmm... it's nothing — sorry to have bothered you.</li>
+					<li>good_opinion->I forgot what I was going to say! Sorry.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -101,10 +105,12 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->I wouldn't like to, but... OK, [recipient] — let's go.</li>
 					<li>bad_opinion->Eh, [recipient] — if you insist... let's go.</li>
+					<li>bad_opinion->Fine, [RECIPIENT_nameDef] — but don't make me regret this. Let's go.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Yes, [recipient] — it'd be a pleasure. Let's go!</li>
 					<li>good_opinion->Of course, [recipient] — excellent idea. Let's go!</li>
+					<li>good_opinion->Sure, [recipient], that sounds good to me. Let's go!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -116,11 +122,12 @@
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->No, [recipient].</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;-25)->Stop pestering me, [recipient]!</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;-25)->No, [recipient]. And don't ask me this again — ever!</li>
-				<!-- ===Good opinion of recipient=== -->
+					<li>bad_opinion->No way, [recipient].</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;-25)->Stop pestering me, [RECIPIENT_nameDef]!</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;-25)->No, [RECIPIENT_nameDef]. And don't ask me this again — ever!</li>				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I'm sorry, [recipient] — I'd love to, but right now I can't.</li>
+					<li>good_opinion->Sorry, [recipient] — maybe next time.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -143,6 +150,8 @@
 						<li>good_opinion(INITIATOR_trait==pessimist)->[pessimist]</li>						
 							<li>pessimist->Such beauty, so short-lived... just like happiness in our life... fleeting... failing...</li>
 						<li>good_opinion->Don't get too lost in its beauty!</li>
+						<li>good_opinion->Auroras are one of the most beautiful things you can see [outdoors].</li>
+						<li>good_opinion->It's [intensifier]beautiful, isn't it, [recipient]?</li>
 						<li>good_opinion(INITIATOR_trait==too smart)->Auroras are the result of disturbances in the magnetosphere caused by solar wind.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -157,20 +166,23 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion(priority=-1)->...</li>
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->*stares in awe*</li>
+					<li>bad_opinion(INITIATOR_trait==pyromaniac)->The flames... I...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire,INITIATOR_moving==No)->[beat_static]</li>
-							<li>beat_static->Ok! Ok!</li>
+							<li>beat_static->OK! OK!</li>
 							<li>beat_static->Right on it!</li>
+							<li>beat_static->I'm trying!</li>
 							<li>beat_static->I'm going as fast as I can!</li>
 							<li>beat_static->*coughs*</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire,INITIATOR_moving==Yes)->[beat_moving]</li>
 							<li>beat_moving->I'm coming!</li>
+							<li>beat_moving->On my way!</li>
 						<li>good_opinion(INITIATOR_jobDefName!=BeatFire)->[no_beat]</li>
 							<li>no_beat(INITIATOR_opinion>=25)->I... I'm sorry, [recipient]... I can't...</li>
 							<li>no_beat(INITIATOR_trait==pyromaniac)->*stares in awe*</li>
 							<li>no_beat->...</li>
-							<li>no_beat->*stares the fire*</li>
+							<li>no_beat->*stares at the fire*</li>
 							<li>no_beat->I... I can't...</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -184,6 +196,7 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion(priority=-1)->...</li>
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->*smiles*</li>
+					<li>bad_opinion(INITIATOR_trait==pyromaniac)->The flames... Glorious...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 						<li>good_opinion(INITIATOR_jobDefName==BeatFire)->[beat_moving]</li>
@@ -222,7 +235,7 @@
 					
 					<li>about->about [INITIATOR_possessive] next shot</li>
 					<li>about->about what to do next</li>
-					<li>about->about how to react to [recipient]'s skillful shot</li>
+					<li>about->about how to react to [RECIPIENT_nameDef]'s skillful shot</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -402,7 +415,7 @@
 					<li>good_opinion->You should always protect the pieces that are almost off the board first...</li>
 					<li>good_opinion->And you think I don't know about your little plan, [recipient]?</li>
 					<li>good_opinion->Heh... Just as I thought...</li>
-					<li>good_opinion->Here's a hint for you, [recipient] — when you believe you saw a good move, look for a better one...</li>
+					<li>good_opinion->Here's a hint for you, [recipient] — when you believe you see a good move, look for a better one...</li>
 					<li>good_opinion->Well, [recipient]... You may learn much more from a game you lose than from a game you win.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -450,13 +463,14 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->[you_thought] your lousy hand was enough? Think again — pot's mine! *laughs*</li>
 					<li>bad_opinion->[you_thought] I couldn't see through your lousy bluff? Here's my hand — I beat you!</li>
-					<li>bad_opinion->As you can see, my dear [recipient], I got a higher score here! Losers like you gonna lose — [grab_pot]</li>
-					<li>bad_opinion->Here's my hand — I win. That was a silly strategy, [recipient] — [grab_pot]</li>
+					<li>bad_opinion->As you can see, my dear [RECIPIENT_nameDef], I got a higher score here! Losers like you are always [gonna] lose — [grab_pot]</li>
+					<li>bad_opinion->Here's my hand — I win. That was a silly strategy, [RECIPIENT_nameDef] — [grab_pot]</li>
 						<li>you_thought->And you thought</li>
 						<li>you_thought->What made you think</li>
 						<li>you_thought->How could you possibly think</li>
 						<li>grab_pot->now let me grab the pot...</li>
 						<li>grab_pot->now hand over that pot.</li>
+						<li>grab_pot->and now the pot is mine.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Sorry, [recipient]... [winning_ending]</li>
@@ -524,6 +538,8 @@
 					<li>comment(priority=-1)-></li>
 					
 					<li>r_sick(RECIPIENT_thoughtDefName==Sick)->Oh, I'm sorry to hear that. </li>	
+					<li>r_sick(RECIPIENT_thoughtDefName==Sick)->Get well soon. </li>
+					<li>r_sick(RECIPIENT_thoughtDefName==Sick)->Sleep is good medicine. </li>
 					<li>r_sick(priority=-1)-></li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -785,6 +801,7 @@
 				<!-- ===WILDCARDS=== -->
 					<li>reminds->myself</li>
 					<li>reminds->our future</li>
+					<li>reminds->my future</li>
 					<li>specks_adj->tiny</li>
 					<li>specks_adj->mere</li>
 					<li>specks_adj->insignificant</li>
@@ -794,6 +811,7 @@
 					<li>view_adj->nice</li>
 					<li>view_adj->pleasant</li>
 					<li>view_adj->amazing</li>
+					<li>view_adj->stellar</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>	
@@ -817,6 +835,7 @@
 					<li>good_opinion(INITIATOR_trait==pessimist)->[downbeat]</li>
 						<li>downbeat->When I look at it, I see only an abyss of pain and despair...</li>
 						<li>downbeat->Art should comfort the disturbed and disturb the comfortable...</li>
+						<li>downbeat->To me, real art shows the pain of being in the world...</li>
 						
 				<!-- ===No interest in arts (priority 1)=== -->
 				<li>r_logentry(INITIATOR_artistic_passion==None,priority=1)->[no_art_passion]</li>
@@ -843,11 +862,15 @@
 					<li>adj_art_junk->misshapen </li>
 					<li>adj_art_junk->twisted </li>
 					<li>adj_art_junk->useless </li>
+					<li>adj_art_junk->pointless </li>
+					<li>adj_art_junk->deformed </li>
+					<li>adj_art_junk->[ugly] </li>
 					
 					<li>art_junk->debris</li>
 					<li>art_junk->junk</li>
 					<li>art_junk->rubble</li>
 					<li>art_junk->wreckage</li>
+					<li>art_junk(INITIATOR_intellectual_level>=7)->detritus</li>
 					
 					<li>art_due_respect(INITIATOR_opinion>=0, priority=1)->[art_due_respect_options]</li>
 						<li>art_due_respect_options(INITIATOR_trait==abrasive)->You won't like it, but here's my take — </li>
@@ -855,11 +878,14 @@
 						<li>art_due_respect_options->With due respect, </li>
 						<li>art_due_respect_options->Maybe I have no artistic sense, but </li>
 						<li>art_due_respect_options->Maybe it's just me, but </li>
+						<li>art_due_respect_options->I'm no artist, but </li>
 					<li>art_due_respect-></li>
 					
 					<li>comment->it fits this room perfectly</li>
 					<li>comment->it makes this room look so much better</li>
 					<li>comment->whenever I can, I stop to admire it</li>
+					<li>comment->it gives the room such a [moderately_attractive_obj] air</li>
+					<li>comment->it's [intensifier][moderately_attractive_obj] in its attitude</li>
 					<li>comment(INITIATOR_artistic_passion!=None)->it harmonizes perfectly with the [space] around it</li>
 						<li>space->space</li>
 						<li>space->implicit art grid</li>
@@ -870,6 +896,7 @@
 					<li>yes->yes</li>
 					<li>yes->yeah</li>
 					<li>yes->I agree</li>
+					<li>yes->right</li>
 					
 			</rulesStrings>
 		</logRulesInitiator>
@@ -883,12 +910,16 @@
 				<!-- ===Bad opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->...</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;-20)->Hey, [recipient] — do me a favor, just leave me alone...</li>
+					<li>bad_opinion->[thank].</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;-20)->You're not going to make me feel any better, [RECIPIENT_nameDef].</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;-20)->Hey, [RECIPIENT_nameDef] — do me a favor, just leave me alone...</li>
 				<!-- ===Good opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->[thank], [recipient]. [comment]</li>
 						<li>comment->That's what I hope, too.</li>
 						<li>comment->Let's hope you're right...</li>
+						<li>comment->I'll try.</li>
+						<li>comment(INITIATOR_opinion>=50)->That means a lot coming from you.</li>
 					<li>good_opinion(INITIATOR_trait==kind)->[thank], [recipient] — you're such a sweetie.</li>
 					<li>good_opinion(RECIPIENT_trait==kind)->[thank], [recipient] — you always have a kind word for everybody.</li>
 					<li>good_opinion(INITIATOR_trait==pessimist)->I'm going to die, you don't have to hide it... I know...</li>
@@ -931,15 +962,16 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 					<li>bad_opinion->...</li>
 					<li>bad_opinion(INITIATOR_thoughtLabel==hideous environment,priority=1)->Yes, [recipient] — this place definitely looks [ugly], just like you!</li>
+					<li>bad_opinion(INITIATOR_thoughtLabel==hideous environment,priority=1)->This place looks [ugly], all right — I call it [RECIPIENT_nameDef]-esque!</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-						<li>good_opinion(INITIATOR_thoughtLabel==hideous environment,priority=1)->Thanks, [recipient] — this place looks [ugly], [cleaning] it would make it look so, so much better!</li>
+						<li>good_opinion(INITIATOR_thoughtLabel==hideous environment,priority=1)->Thanks, [recipient] — this place looks [intensifier][ugly], [cleaning] it would make it look so, so much better!</li>
 						<li>good_opinion(INITIATOR_thoughtLabel==ugly environment,priority=1)->Thanks, [recipient] — this place looks [unsightly], [cleaning] it would really help!</li>
 						<li>good_opinion->Thanks, [recipient] — this place certainly needs some [cleaning].</li>
-						<li>good_opinion(INITIATOR_thoughtLabel==pretty environment,priority=1)->Thanks, [recipient]. This place is so nice — [keep_clean]</li>
-						<li>good_opinion(INITIATOR_thoughtLabel==beautiful environment,priority=1)->Thanks, [recipient]. This place is so beautiful — [keep_clean]</li>
-						<li>good_opinion(INITIATOR_thoughtLabel==beautiful environment,priority=1)->Thanks! This wonderful place is so pretty — [keep_clean]</li>
-						<li>good_opinion(INITIATOR_thoughtLabel==gorgeous environment,priority=1)->Thanks, [recipient]. This place is so [gorgeous] — [keep_clean]</li>
+						<li>good_opinion(INITIATOR_thoughtLabel==pretty environment,priority=1)->Thanks, [recipient]. This place is  [intensifier]nice — [keep_clean]</li>
+						<li>good_opinion(INITIATOR_thoughtLabel==beautiful environment,priority=1)->Thanks, [recipient]. This place is  [intensifier]beautiful — [keep_clean]</li>
+						<li>good_opinion(INITIATOR_thoughtLabel==beautiful environment,priority=1)->Thanks! This wonderful place is  [intensifier][moderately_attractive_obj] — [keep_clean]</li>
+						<li>good_opinion(INITIATOR_thoughtLabel==gorgeous environment,priority=1)->Thanks, [recipient]. This place is incredibly [gorgeous] — [keep_clean]</li>
 				<!-- ===WILDCARDS=== -->
 				<!-- ===clean=== -->
 					<li>clean->[clean_adj]clean</li>
@@ -961,6 +993,8 @@
 					<li>gorgeous->amazing</li>
 				<!-- ===keep it clean=== -->	
 					<li>keep_clean->let's keep it [clean]!</li>
+					<li>keep_clean->we'll have to keep it [clean]!</li>
+					<li>keep_clean->I hope it stays [clean]!</li>
 				<!-- ===ugly=== -->
 					<li>ugly->ugly</li>
 					<li>ugly->hideous</li>
@@ -1023,7 +1057,8 @@
 						<li>busy(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
 						<li>busy(INITIATOR_opinion>=0)->Sorry, [recipient] — I'm busy right now.</li>
-						<li>busy(INITIATOR_opinion>=0)->Uh? Ah... well.. sorry I missed it, [recipient].</li>				
+						<li>busy(INITIATOR_opinion>=0)->Uh? Ah... well.. sorry I missed it, [recipient].</li>
+						<li>busy(INITIATOR_opinion>=0)->What was that? Sorry, [recipient], I'm a little busy.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1280,7 +1315,7 @@
 					<!-- ===Bad opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 					<!-- ===Good opinion of recipient=== -->
-						<li>r_logentry(INITIATOR_opinion>=0)->It's ok, [recipient] — thanks...</li>
+						<li>r_logentry(INITIATOR_opinion>=0)->It's OK, [recipient] — thanks...</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -1375,7 +1410,7 @@
 						<li>stressed->*glowers*</li>
 						<li>stressed(INITIATOR_mood&lt;=0.2)->*mutters angrily*</li>
 						
-						<li>calm->*smiles*</li>
+						<li>calm(p=2)->*smiles*</li>
 						<li>calm(INITIATOR_mood>=0.6)->*beams a smile at [RECIPIENT_nameDef]*</li>
 				</rulesStrings>
 			</logRulesInitiator>
@@ -1619,6 +1654,7 @@
 				<rulesStrings>
 					<li>r_logentry->Mmm... I wonder what this is actually about.</li>
 					<li>r_logentry->Mmm... I wonder if this means anything.</li>
+					<li>r_logentry->Hmm... Interesting.</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -1627,7 +1663,7 @@
 			<label>Psychic vision</label>
 			<logRulesInitiator>
 				<rulesStrings>
-					<li>r_logentry->Wow — that's inspiring!</li>
+					<li>r_logentry->Wow — that's [intensifier]inspiring!</li>
 					<li>r_logentry->I believe that's a good omen!</li>
 					<li>r_logentry->I believe we're in for some good event, then!</li>
 				</rulesStrings>
@@ -1640,6 +1676,7 @@
 				<rulesStrings>
 					<li>r_logentry->That's worrisome...</li>
 					<li>r_logentry->Mmm — quite unsettling...</li>
+					<li>r_logentry->Oh... That's [intensifier][eerie]...</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
@@ -1664,6 +1701,7 @@
 					<li>good_opinion->Are you serious, [recipient]! [what_for]</li>
 					<li>good_opinion->Ouch, [recipient]! [what_for]</li>
 					<li>good_opinion->Aww, [recipient]! [what_for]</li>
+					<li>good_opinion->That was [intensifier]hurtful, [recipient]! [what_for]</li>
 				<!-- ===WILDCARDS=== -->
 					<li>fool->[adj]fool</li>
 					<li>fool->[adj]idiot</li>
@@ -1681,8 +1719,9 @@
 					<li>adj(INITIATOR_intellectual_level>=5)->imbecile </li>
 					<li>adj(INITIATOR_intellectual_level>=5)->lamebrain </li>
 					<li>what_for->That was so uncalled for!</li>
-					<li>what_for->What was that for!?</li>
-					<li>what_for->What was that about!?</li>
+					<li>what_for->What was that for?!</li>
+					<li>what_for->What was that about?!</li>
+					<li>what_for->Why would you say such a thing?!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1696,6 +1735,7 @@
 				<li>r_logentry->At least I have human ancestors, you filthy spawn of worms!</li>
 				<li>r_logentry->My ancestors' souls are well beyond your wicked words!</li>
 				<li>r_logentry->May your ancestors' souls be damned thrice instead!</li>
+				<li>r_logentry->I trust my ancestors will strike you down for your words!</li>
 				<!-- ===kind=== -->
 				<li>r_logentry(INITIATOR_trait==kind,priority=1)->[kind]</li>
 					<li>kind(RECIPIENT_mood&lt;0.4)->I'm sorry you're so upset, [recipient].</li>
@@ -1730,10 +1770,13 @@
 						<li>reaction->How dare you,</li>
 						<li>reaction->Put a sock in it,</li>
 						<li>reaction->Keep me out of that thin mouth of yours,</li>
+						<li>reaction->Don't [swearword_adverb]try me,</li>
 						<li>insult_you->you [bloody] [insult]!</li>
 						<li>insult_you(RECIPIENT_gender==Male)->you [bloody] son of a [bitch]!</li>
 					<!-- ===calm=== -->
 						<li>bad_opinion(INITIATOR_mood>=0.4)->Stop it, [recipient] — spare the shame.</li>
+						<li>bad_opinion(INITIATOR_mood>=0.4)->Don't be so [damned_intensifier]rude, [RECIPIENT_nameDef].</li>
+						<li>bad_opinion(INITIATOR_mood>=0.4)->That's enough bad-mouthing out of you, [recipient].</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Who pissed in your cereal, [recipient]?</li>
@@ -1742,6 +1785,12 @@
 					<li>good_opinion->You're crossing the line, [recipient]!</li>
 					<li>good_opinion->Damn you, [recipient]! What was that for!?</li>
 					<li>good_opinion->Aww, [recipient]! What was that about!?</li>
+				<!-- ===High opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion>=50)->[friend_opinion]</li>
+					<li>friend_opinion->What gives, [recipient]? I thought we were close!</li>
+					<li>friend_opinion->Hey! That's no way to talk to a friend, [recipient]!</li>
+					<li>friend_opinion->[recipient]! What?! I thought we were closer than that!!</li>
+
 				
 				<!-- ===Age difference=== -->
 					<li>r_logentry(INITIATOR_age>=60,RECIPIENT_age&lt;=25)->[elderly]</li>
@@ -1751,15 +1800,15 @@
 						
 			<!-- ===WILDCARDS=== -->
 				<li>insult(RECIPIENT_gender==Female)->[bitch]</li>
-				<li>insult(RECIPIENT_gender==Male)->[asshole]</li>
+				<li>insult(RECIPIENT_gender==Male)->[dickhead]</li>
 				<li>insult->fart-hopper</li>
 				<li>insult->jerk</li>
 				<li>insult->asshole</li>
 				<li>insult(INITIATOR_intellectual_level>=5)->latrine dweller</li>
-				<li>asshole->arse-wipe</li>
-				<li>asshole->dickhead</li>
-				<li>asshole->prick</li>
-				<li>asshole->bastard</li>
+				<li>dickhead->arse-wipe</li>
+				<li>dickhead->dickhead</li>
+				<li>dickhead->prick</li>
+				<li>dickhead->bastard</li>
 				<li>bitch->bitch</li>
 				<li>bitch->basic bitch</li>
 				<li>bitch->cunt</li>
@@ -1801,6 +1850,7 @@
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->Oh, [recipient]! That's so nice of you — thanks!</li>
 					<li>good_opinion->Thanks, [recipient]! Your words made my day!</li>
+					<li>good_opinion->Thank you, [recipient]! You put a smile on my face!</li>
 				<!-- ===WILDCARDS=== -->
 				<li>ironic->ironic</li>
 				<li>ironic->sarcastic</li>
@@ -1820,13 +1870,15 @@
 				<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
-					<li>bad_opinion->...</li>
+					<li>bad_opinion(p=2)->...</li>
+					<li>bad_opinion->...It's fine, I guess...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion(INITIATOR_artistic_passion!=None)->I agree, [recipient]! Quite the piece of art! I like it too!</li>
 					<li>good_opinion(INITIATOR_artistic_passion==None)->[no_passion]</li>
 						<li>no_passion(INITIATOR_intellectual_level&lt;5)->Mmm... Can't understand its artistic beauty — but yes, it looks nice!</li>
 						<li>no_passion(INITIATOR_intellectual_level>=5)->I'm not into arts, but — yes, I may say it is a nice item.</li>
+						<li>no_passion->Yes, I think it's [intensifier][moderately_attractive_obj].</li>
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>

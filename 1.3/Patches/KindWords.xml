@@ -8,7 +8,7 @@
 				<li>r_logentry(tag=KindWords_generic)->You are such a nice person, [recipient]!</li>
 				<li>r_logentry(tag=KindWords_generic)->May your home always be too small to hold all your friends, [recipient]!</li>
 				<li>r_logentry(RECIPIENT_trait==beautiful,tag=KindWords_generic)->The only way somebody could be prettier than you, [recipient], is by using makeup!</li>
-				
+
 				<!-- ===RECIPIENT=== -->		
 				<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
 

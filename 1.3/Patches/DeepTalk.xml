@@ -7,6 +7,9 @@
 		<rulesStrings>
             <!-- ===Meaning of life=== -->
 				<li>r_logentry(tag=MeaningOfLife)->[recipient], I was thinking — what is the meaning of life?</li>
+				<li>r_logentry(tag=MeaningOfLife)->What do you think is the meaning of our existence, [recipient]?</li>
+				<li>r_logentry(tag=MeaningOfLife)->Hey, [recipient]... What do you think it's all about? What does life mean?</li>
+				<li>r_logentry(tag=MeaningOfLife,INITIATOR_intellectual_level>=8)->Life's meaning eludes me. What do you think it means, [recipient]?</li>
 
 			<!-- ===Childhood discussions=== -->
 				<li>r_logentry(tag=ChildhoodDiscussions,INITIATOR_relationship!=Parent)->[childhood_discussion]</li>
@@ -19,7 +22,12 @@
 			<!-- ===Dreams=== -->
 				<!-- ===Nice=== -->
 				<li>r_logentry(INITIATOR_mood>=0.6,tag=WhatDream)->Ah, [recipient]... I had such a nice dream...</li>
-
+				<li>r_logentry(INITIATOR_mood&lt;=0.6,tag=WhatDream)->I had a vivid dream last night, [recipient].</li>
+				
+			<!-- ===Random DeepTalk conversation=== -->
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [recipient]? What do you think about [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Hey, [recipient], have you ever spent time thinking about [TalkTopicHeavy]?</li>
+				<li>r_logentry(tag=DeepTalkConvo)->Lately I've had a lot on my mind, [recipient] — Mostly about [TalkTopicHeavy]...</li>
 
 			<!-- ===RECIPIENT=== -->		
 			<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
@@ -47,6 +55,7 @@
 
 			<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
 				<li>recipient_child->my child</li>
+				<li>recipient_child(INITIATOR_OPINION>=0)->dear</li>
 				<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
 					<li>recipient_son->son</li>
 					<li>recipient_son->my son</li>
