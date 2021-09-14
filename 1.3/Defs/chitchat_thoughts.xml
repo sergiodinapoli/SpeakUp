@@ -7,7 +7,7 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
-					<li>bad_opinion(INITIATOR_opinion&lt;=25)->Hope you choke on it, [recipient]!</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;=-25)->Hope you choke on it, [RECIPIENT_nameDef]!</li>
 					<li>bad_opinion->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
@@ -281,7 +281,7 @@
 				<!-- ===WILDCARDS=== -->	
 					<li>watch_your_step->watch your step</li>
 					<li>watch_your_step->tread carefully</li>
-					<li>watch_your_step->step carefully</li>				
+					<li>watch_your_step->step carefully</li>
 					<li>supposed->supposed</li>
 					<li>supposed->expected</li>
 			</rulesStrings>
@@ -298,12 +298,15 @@
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<!-- ===Feeling hot=== -->
 						<li>good_opinion(INITIATOR_thoughtDefName==EnvironmentHot,priority=1)->[feeling_hot]</li>
-						<li>feeling_hot(INITIATOR_thoughtLabel==sweaty)->You're right, [recipient]. I'm sweating.</li>
+						<li>feeling_hot(INITIATOR_thoughtLabel==sweaty)->You're [intensifier]right, [recipient]. I'm sweating.</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==hot)->Ah, [recipient] — if only I could have a breath of cool air...</li>
+						<li>feeling_hot(INITIATOR_thoughtLabel==hot)->Yes, [recipient]... It's way too hot.</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==sweltering hot)->I'm not sure how long I can handle this extreme heat, [recipient].</li>
 						<li>feeling_hot(INITIATOR_thoughtLabel==blistering hot)->This is worse than Hell itself. The air itself is on fire!</li>
 					<!-- ===Not feeling hot=== -->
 						<li>good_opinion->I'm sorry to hear that, [recipient]. [comment]</li>
+						<li>good_opinion->I hope you can cool off soon, [recipient]. [comment]</li>
+						<li>good_opinion->I'm [intensifier]sorry, [recipient]. [comment]</li>
 				<!-- ===WILDCARDS === -->
 					<li>comment-></li>
 					<li>comment(INITIATOR_social_level>=5)->I'll try to trade in something in exchange for some cooler clothing for you.</li>
@@ -324,6 +327,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->No problem, [recipient]. It was the right thing to do.</li>
+					<li>good_opinion->We're glad you're free, [recipient].</li>
 					<li>good_opinion(INITIATOR_trait==kind)->You really don't need to thank us — we just did our duty as good human beings.</li>
 					<li>good_opinion(INITIATOR_trait==psychopath,priority=1)->...</li>
 			</rulesStrings>
@@ -346,13 +350,15 @@
 						<li>rec_room(INITIATOR_thoughtLabel==very impressive rec room)->I have loads of fun in it, [recipient]! [comment2]</li>
 						<li>rec_room(INITIATOR_thoughtLabel==extremely impressive rec room)->I truly have loads of fun in it, [recipient]! [comment2]</li>
 						<li>rec_room(INITIATOR_thoughtLabel==unbelievably impressive rec room)->It's the coolest ever, [recipient]! [comment2]</li>
-						<li>rec_room(INITIATOR_thoughtLabel==wondrously impressive rec room)->It's a complete Paradise, [recipient] — all decked for maxxing out anyone's fun! [comment2]</li>
+						<li>rec_room(INITIATOR_thoughtLabel==wondrously impressive rec room)->It's a complete Paradise, [recipient] — all decked for maxing out anyone's fun! [comment2]</li>
 					<!-- ===recreation satisfied === -->
 						<li>good_opinion(INITIATOR_thoughtLabel==recreation satisfied,priority=1)->I think we have several nice entertainment options around here.</li>
 					<!-- ===recreation fully satisfied === -->
 						<li>good_opinion(INITIATOR_thoughtLabel==recreation fully satisfied,priority=1)->I think we have lots of excellent entertainment options around here!</li>
 					<!-- ===Absent or bad rec room=== -->
 						<li>good_opinion->What rec room, [recipient]? I can't seem to have any fun around here...</li>
+						<li>good_opinion->I need help finding this rec room, [recipient]. I want to have fun, too...</li>
+						<li>good_opinion->That sounds nice, but I haven't had fun in a while, [recipient].</li>
 				<!-- ===WILDCARDS === -->
 					<li>comment2-></li>
 					<li>comment2(INITIATOR_social_level>=5)->And it'll be excellent for hosting our next party!</li>
@@ -370,6 +376,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I agree, [recipient]!</li>
+					<li>good_opinion->I can't disagree with you, [recipient]!</li>
 					<!-- ===Initiator is Kind=== -->
 						<li>good_opinion(INITIATOR_trait==kind,priority=1)->[i_kind]</li>
 						<li>i_kind->Slavery is awful, [recipient]! Nobody deserves that fate!</li>
@@ -383,10 +390,10 @@
 						<li>i_canniblood->Those lucky slavers will get all the fun...</li>
 						<li>i_canniblood(RECIPIENT_trait==bloodlust,priority=1)->[i_canniblood_r_canniblood]</li>
 						<li>i_canniblood(RECIPIENT_trait==cannibal,priority=1)->[i_canniblood_r_canniblood]</li>
-						<li>i_canniblood_r_canniblood->Right! We could've used'em as a punching bag!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em for fun!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em to squeeze out some useful intelligence!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've skinned'em — a just punishment!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've used 'em as a punching bag!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em for fun!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em to squeeze out some useful intelligence!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've skinned 'em — a just punishment!</li>
 						<li>i_canniblood_r_canniblood(INITIATOR_trait==greedy)->Right! We could've took out their lungs and heart to sell for lots of silver!</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -616,6 +623,7 @@
 							<li>thought_needfood_hungry0->I'm starving!</li>
 							<li>thought_needfood_hungry0->I'm ravenous!</li>
 							<li>thought_needfood_hungry0->I'm famished!</li>
+							<li>thought_needfood_hungry0->I'm [intensifier]hungry!</li>
 							<li>thought_needfood_hungry0->I'm dying for something to eat!</li>
 							<li>thought_needfood_hungry0(RECIPIENT_thoughtLabel==hungry,priority=2)->Me too, [recipient]!</li>
 							<li>thought_needfood_hungry0(RECIPIENT_thoughtDefName==NeedFood,priority=1)->I'm also hungry, [recipient]. But you are in much greater need! [offer_solution]</li>
@@ -904,10 +912,10 @@
 						<li>i_canniblood->Just wait for when that jerk comes back here for more stealing, burning and killing!</li>
 						<li>i_canniblood(RECIPIENT_trait==bloodlust,priority=1)->[i_canniblood_r_canniblood]</li>
 						<li>i_canniblood(RECIPIENT_trait==cannibal,priority=1)->[i_canniblood_r_canniblood]</li>
-						<li>i_canniblood_r_canniblood->Right! We could've used'em as a punching bag!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em for fun!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've tortured'em to squeeze out some useful intelligence!</li>
-						<li>i_canniblood_r_canniblood->Right! We could've skinned'em — a just punishment!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've used 'em as a punching bag!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em for fun!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've tortured 'em to squeeze out some useful intelligence!</li>
+						<li>i_canniblood_r_canniblood->Right! We could've skinned 'em — a just punishment!</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -943,7 +951,7 @@
 					<li>comment(INITIATOR_plants_level>=5)->I could prepare some healroot for you, if you want.</li>
 					<li>comment(INITIATOR_cooking_level>=6)->Eating healthy food might help avoiding that. I could cook something for you.</li>
 					<li>comment(INITIATOR_thoughtDefName==sick)->I'm not in great shape either...</li>
-					<li>comment(INITIATOR_thoughtDefName==body modder)->But then again, human body is so vulnerable...</li>
+					<li>comment(INITIATOR_thoughtDefName==body modder)->But then again, the human body is so vulnerable...</li>
 					<li>comment(INITIATOR_thoughtDefName==sickly)->I know how it feels, I get sick all the time...</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -958,6 +966,10 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->You're right, [recipient]. We should be more careful to avoid such things.</li>
+					<li>good_opinion->Oh, no... Sorry, [recipient]. We'll all try to be more careful.</li>
+					<li>good_opinion->We'll do our best to tread softly, [recipient].</li>
+					<li>good_opinion(INITIATOR_trait==abrasive)->Not my fault, [RECIPIENT_nameDef]. Sucks to be you, I guess. Sorry.</li>
+					<li>good_opinion(INITIATOR_trait==kind)->Poor [RECIPIENT_nameDef]! Take it easy today, and be sure to get a good rest next time you go to sleep.</li>
 					<li>good_opinion(INITIATOR_trait==nimble)->You know it wasn't me, [recipient]. I'm always quiet when I walk.</li>
 			</rulesStrings>
 		</logRulesInitiator>
@@ -972,6 +984,7 @@
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion(tag=Dream_nice)->Ah, [recipient]. What a pity... what was this dream about?</li>
+					<li>good_opinion(tag=Dream_nice)->Sorry to hear that, [recipient]. What was your dream about?</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1032,15 +1045,33 @@
 					<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->That's extremely [annoying], [recipient] — I certainly agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==dull barrack)->That's very [annoying], [recipient] — I do agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==mediocre barrack)->That's [annoying], [recipient] — I agree with you.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==decent barrack)->Well, [recipient] — at least it's a decent room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==slightly impressive barrack)->Well, [recipient] — at least it's a pretty nice room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==impressive barrack)->Well, [recipient] — at least it's an impressive room.</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==very impressive barrack)->Well, [recipient] — good for you!</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==extremely impressive barrack)->Well, [recipient] — that's great!</li>
-						<li>good_opinion(RECIPIENT_thoughtLabel==unbelievably impressive barrack)->Well, [recipient] — that's just awesome!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==awful barrack)->[reply_awful_barracks]</li>
+							<li>reply_awful_barracks->That's extremely [annoying], [recipient] — I certainly agree with you.</li>
+							<li>reply_awful_barracks->How absolutely [annoying], [recipient] — We all deserve better.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==dull barrack)->[reply_dull_barracks]</li>
+							<li>reply_dull_barracks->That's very [annoying], [recipient] — I do agree with you.</li>
+							<li>reply_dull_barracks->That's [intensifier][annoying], [recipient] — I hope you receive better sleeping quarters soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==mediocre barrack)->[reply_mediocre_barracks]</li>
+							<li>reply_mediocre_barracks->That's [annoying], [recipient] — I agree with you.</li>
+							<li>reply_mediocre_barracks->I wouldn't like that either, [recipient] — You're [intensifier]right.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==decent barrack)->[reply_decent_barracks]</li>
+							<li>reply_decent_barracks->Well, [recipient] — at least it's a decent room.</li>
+							<li>reply_decent_barracks->I'm glad it's a decent room, [recipient] — I hope you get one to yourself soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==slightly impressive barrack)->[reply_slightly_impressive_barracks]</li>
+							<li>reply_slightly_impressive_barracks->Well, [recipient] — at least it's a pretty nice room.</li>
+							<li>reply_slightly_impressive_barracks->Sharing a room isn't ideal, but at least it's pretty nice, right, [recipient]?</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==impressive barrack)->[reply_impressive_barracks]</li>
+							<li>reply_impressive_barracks->Well, [recipient] — at least it's an impressive room.</li>
+							<li>reply_impressive_barracks->I'm glad your room is impressive, [recipient] — I hope you get one to yourself soon.</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==very impressive barrack)->[reply_very_impressive_barracks]</li>
+							<li>reply_very_impressive_barracks->Well, [recipient] — good for you!</li>
+							<li>reply_very_impressive_barracks->That's [intensifier]good, [recipient]!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==extremely impressive barrack)->[reply_extremely_impressive_barracks]</li>
+							<li>reply_extremely_impressive_barracks->Well, [recipient] — that's great!</li>
+							<li>reply_extremely_impressive_barracks->Wow, [recipient] — nice!</li>
+						<li>good_opinion(RECIPIENT_thoughtLabel==unbelievably impressive barrack)->[reply_unbelievably_impressive_barracks]</li>
+							<li>reply_unbelievably_impressive_barracks->Well, [recipient] — that's just awesome!</li>
+							<li>reply_unbelievably_impressive_barracks->That's [intensifier]incredible, [recipient] — I'll have to see it sometime!</li>
 				<!-- ===WILDCARDS=== -->
 					<li>annoying->bad</li>
 					<li>annoying->irritating</li>
@@ -1061,9 +1092,9 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
-						<li>bad_opinion->My room is none of your business, [recipient].</li>
-						<li>bad_opinion->Where I sleep is none of your business, [recipient].</li>
-						<li>bad_opinion->None of your business, [recipient].</li>
+						<li>bad_opinion->My room is none of your business, [RECIPIENT_nameDef][jealous_greedy]</li>
+						<li>bad_opinion->Where I sleep is none of your business, [RECIPIENT_nameDef].</li>
+						<li>bad_opinion->None of your business, [RECIPIENT_nameDef][jealous_greedy]</li>
 						<li>bad_opinion->...</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
@@ -1094,10 +1125,14 @@
 					<!-- ===Awful bedroom=== -->
 						<li>good_opinion(INITIATOR_thoughtLabel==awful bedroom,priority=1)->[bedroom_awful]</li>
 						<li>bedroom_awful->Mine is so awful — sometimes I think I'd be better off sleeping in the open.</li>
-						<li>bedroom_awful->I confess mine is awful[construction]</li>
+						<li>bedroom_awful->I confess, mine is awful[construction]</li>
 				<!-- ===WILDCARDS === -->
 					<li>construction(INITIATOR_construction_level>=5,priority=1)->, but I'm planning to improve it myself.</li>
 					<li>construction->.</li>
+					<li>jealous_greedy->.</li>
+					<li>jealous_greedy(INITIATOR_trait==jealous,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>jealous_greedy(INITIATOR_trait==greedy,priority=1)->[bad_opinion_jealous_greedy_end]</li>
+					<li>bad_opinion_jealous_greedy_end->, but it's probably better than yours.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1113,7 +1148,7 @@
 					<li>bad_opinion(INITIATOR_trait==pyromaniac)->If you'd like, I can set your bed on fire to warm you up.</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
-					<li>good_opinion->Let's hope it won't happen again, [recipient] — it's [annoying].</li>
+					<li>good_opinion->Let's hope it won't happen again, [recipient] — it's [intensifier][annoying].</li>
 					<li>good_opinion(INITIATOR_faction==PlayerColony)->Yeah... I wish we settled somewhere warmer.</li>
 					<li>good_opinion(INITIATOR_faction==PlayerTribe)->Yeah... I wish we settled somewhere warmer.</li>
 					<li>good_opinion->Well, it gets [weather_cold_adj] this time of the year...we just have to get used to it.</li>
@@ -1122,7 +1157,8 @@
 						<li>weather_cold_adj(INITIATOR_intellectual_level>=5)->frigid</li>
 					<li>good_opinion(INITIATOR_trait==pyromaniac)->Well, wouldn't it be nice if I started a big fire to warm us all up?</li>
 					<li>good_opinion(INITIATOR_social_passion!=None)->Maybe it'd be better if we all huddled together.</li>
-					<li>good_opinion(INITIATOR_thoughtDefName==SleptInCold)->I agree with you — I woke up covered in goosebumps!</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==SleptInCold)->I agree with you — I woke up [wokeUpCold]!</li>
+
 				<!-- ===WILDCARDS=== -->
 					<li>annoying->bad</li>
 					<li>annoying->irritating</li>
@@ -1132,6 +1168,13 @@
 					<li>annoying->unacceptable</li>
 					<li>annoying->not nice</li>
 					<li>annoying->unpleasant</li>
+					<li>annoying->(INITIATOR_intellectual_level&lt;3)->really really bad</li>
+					<li>annoying->(INITIATOR_intellectual_level&lt;5)->the worst</li>
+					<li>wokeUpCold->covered in goosebumps</li>
+					<li>wokeUpCold->and thought my toes froze off</li>
+					<li>wokeUpCold->feeling like a snowman</li>
+					<li>wokeUpCold->absolutely freezing</li>
+					<li>wokeUpCold->feeling [intensifier][damned_intensifier]frozen</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1155,7 +1198,11 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
-								<li>shut_up(INITIATOR_intellctual_level>=5)->would be quiet for an extended period of time</li>
+								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
+								<li>shut_up(INITIATOR_intellectual_level>=5)->would be quiet for an extended period of time</li>
+								<li>shut_up(INITIATOR_intellectual_level>=5)->pursue silence henceforth</li>
+								<li>shut_up(INITIATOR_intellectual_level>=7)->rest your overused tongue - immediately</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=5)->You need a heat source, [recipient], you build one yourself — I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->
@@ -1221,6 +1268,8 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
+								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=5)->You need a cooler, [recipient], you build one yourself — I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->
@@ -1259,6 +1308,8 @@
 								<li>shut_up->stop nagging me</li>
 								<li>shut_up->stop bothering me</li>
 								<li>shut_up->just shut up</li>
+								<li>shut_up->leave me alone</li>
+								<li>shut_up->buzz off</li>
 						<!-- ===Recipient is skilled in construction=== -->
 							<li>bad_opinion_skilled(RECIPIENT_construction_level>=4)->Hey, [recipient] — you need a bed, you build one yourself. I've got more important things to do.</li>
 				<!-- ===Good opinion of recipient=== -->
@@ -1345,10 +1396,12 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->Go back inside then, [recipient] — at least I won't hear your pitiful whining anymore!</li>
+					<li>r_logentry(INITIATOR_opinion&lt;0)->Then why don't you go crawl into a cave and stay there, [RECIPIENT_nameDef]?</li>
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
 					<li>good_opinion->I know, [recipient] — but some vital tasks must be performed outdoors. We can't change that, unfortunately...</li>
 					<li>good_opinion->I know, [recipient] — maybe we could try and plan for you to run indoors tasks only.</li>
+					<li>good_opinion->I'm sorry, [recipient] — I hope you can go work indoors soon.</li>
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1365,12 +1418,20 @@
 				<!-- ===DeadMansApparel=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==DeadMansApparel,priority=1)->[deadmans_apparel]</li>
 					<li>deadmans_apparel(INITIATOR_trait==bloodlust,priority=1)->I am wearing apparel that someone died in — and that's perfectly fine by me.</li>
-					<li>deadmans_apparel->I am wearing apparel that someone died in. It creeps me out and feels dirty!</li>
+					<li>deadmans_apparel->[deadmans_apparel1] [deadmans_apparel2]</li>
+					<li>deadmans_apparel1->I am wearing apparel that someone died in.</li>
+					<li>deadmans_apparel1->Someone died in the apparel I'm wearing.</li>
+					<li>deadmans_apparel1->Some of my apparel was worn by someone as they died.</li>
+					<li>deadmans_apparel2->It creeps me out and feels dirty!</li>
+					<li>deadmans_apparel2->I feel [intensifier]unclean...</li>
+					<li>deadmans_apparel2->It makes me feel [intensifier]uncomfortable — I don't like it.</li>
 				<!-- ===Optimist or Sanguine=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetSanguine,priority=1)->[sanguine_optimist]</li>
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetOptimist,priority=1)->[sanguine_optimist]</li>
 						<li>sanguine_optimist(INITIATOR_mood>=0.4)->Everything's just fine — and I'm certain it'll get even better!</li>
 						<li>sanguine_optimist(INITIATOR_mood&lt;0.4)->Despite my recent troubles, I'm sure things will quickly improve!</li>
+						<li>sanguine_optimist(INITIATOR_mood&lt;0.4)->I'm not doing so well right now, but tomorrow's another day!</li>
+						<li>sanguine_optimist(INITIATOR_mood&lt;0.2)->Thanks for checking on me, [recipient]. It's really hard, but I know I'll get through it.</li>
 				<!-- ===Pessimist or Depressive=== -->
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetPessimist,priority=1)->[depressive_pessimist]</li>
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetDepressive,priority=1)->[depressive_pessimist]</li>
@@ -1382,6 +1443,7 @@
 					<li>good_opinion(INITIATOR_thoughtDefName==MoodOffsetTorturedArtist,priority=1)->[tortured_artist]</li>
 						<li>tortured_artist(INITIATOR_mood>=0.4)->I almost had it... almost... then suddenly my artistic vision faded... lost...</li>
 						<li>tortured_artist(INITIATOR_mood&lt;0.4)->I'm in pain — a [pain_adj] pain you shall never be able to feel the way I do.</li>
+						<li>tortured_artist(INITIATOR_mood&lt;0.4)->If only I were able to express the [pain_adj] pain I feel. But I don't think anyone can really understand.</li>
 				<!-- ===GotSomeLovin === -->
 					<li>good_opinion(INITIATOR_thoughtDefName==GotSomeLovin,priority=1)->[gotsomelovin]</li>
 					<li>gotsomelovin->Well, [recipient]... Let's say that not being single has its advantages... *wink*</li>
@@ -1392,6 +1454,8 @@
 					<li>released_prisoner(INITIATOR_faction==PlayerTribe)->We released a [prisoner] — [comment]</li>
 					<li>released_prisoner(INITIATOR_faction!=PlayerColony,INITIATOR_faction!=PlayerTribe)->They released a [prisoner] — [comment]</li>
 						<li>comment->I think it was the right thing to do.</li>
+						<li>comment->I'm [intensifier]glad to see it.</li>
+						<li>comment->I hope they're enjoying their freedom.</li>
 						<li>comment(INITIATOR_trait==kind,priority=2)->poor thing! It was the best thing to do.</li>
 						<li>comment(INITIATOR_trait==cannibal,priority=1)->what a waste of resources!</li>
 						<li>comment(INITIATOR_trait==bloodlust,priority=1)->what a waste of resources!</li>
