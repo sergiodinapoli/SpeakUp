@@ -38,6 +38,9 @@ namespace SpeakUp
         private static float lookRadius = 5f;
         private static ThingRequestGroup[] subjects = { ThingRequestGroup.Art, ThingRequestGroup.Plant };
         private static List<Rule_String> tempRules = new List<Rule_String>();
+        private static List<string> reversibleRelations = new List<string>()
+                { "Bond", "Sibling", "Spouse", "Lover", "Fiance", "HalfSibling", "ExSpouse", "ExLover", "Cousin", "CousinOnceRemoved", "SecondCousin", "Kin"
+                };
         public enum dayPeriod { morning, afternoon, evening, night }
 
         public static IEnumerable<Rule> ExtraRules()
@@ -88,8 +91,39 @@ namespace SpeakUp
             }
             MakeRule(symbol + "thoughtText", texts.RandomElement());
 
-            //opinion
-            if (other != null) MakeRule(symbol + "opinion", pawn.relations.OpinionOf(other).ToString());
+            //THE PAWN'S RELATIONS
+            if (other != null)
+            {
+                //opinion
+                MakeRule(symbol + "opinion", pawn.relations.OpinionOf(other).ToString());
+
+                //relationships
+                bool flag1 = true;
+
+                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(pawn, other))
+                {
+                    if (reversibleRelations.Contains(relation.defName))
+                    {
+                        MakeRule(symbol + "relationship", relation.defName);
+                        flag1 = false;
+                    }
+                }
+
+                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(other, pawn))
+                {
+                    if (!reversibleRelations.Contains(relation.defName))
+                    {
+                        MakeRule(symbol + "relationship", relation.defName);
+                        flag1 = false;
+                    }
+                }
+
+
+                if (flag1)
+                {
+                    MakeRule(symbol + "relationship", "None");
+                }
+            }
 
             //THE PAWN'S BIO:
 
