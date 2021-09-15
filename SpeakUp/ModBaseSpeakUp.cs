@@ -14,7 +14,8 @@ namespace SpeakUp
             IntervalBetweenLines;
 
         public static SettingHandle<bool>
-            SameRegionRestriction;
+            SameRegionRestriction,
+            ShowGrammarDebug;
 
         public ModBaseSpeakUp()
         {
@@ -63,6 +64,7 @@ namespace SpeakUp
             LinesPerConversation = Settings.GetHandle<int>("LinesPerConversation", "LinesPerConversation", null, 3);
             IntervalBetweenLines = Settings.GetHandle<int>("TickBetweenLines", "TicksBetweenLines (60 = 1 sec)", null, 60);
             SameRegionRestriction = Settings.GetHandle<bool>("SameRegionRestriction", "SameRegionRestriction", null, true);
+            ShowGrammarDebug = Settings.GetHandle<bool>("ShowGrammarDebug", "ShowGrammardebug", null, false);
         }
     }
 }
