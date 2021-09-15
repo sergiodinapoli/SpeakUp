@@ -49,17 +49,37 @@
 				
 				<li>try_romance(RECIPIENT_trait==nimble)->Your smooth and elegant movements hypnotize my eyes and sway my heart...</li>
 				
-				<li>try_romance(RECIPIENT_trait==ugly)->Love looks not with the eyes, but with the mind — And therefore is winged Cupid painted blind... I treasure you, darling [RECIPIENT_nameDef]!</li>
+				<li>try_romance(RECIPIENT_trait==staggeringly ugly)->[uglyLove]</li>
+				<li>try_romance(RECIPIENT_trait==ugly)->[uglyLove]</li>
+				<li>uglyLove->Love looks not with the eyes, but with the mind — And therefore is winged Cupid painted blind... I treasure you, darling [RECIPIENT_nameDef]!</li>
 				
 				<li>try_romance(INITIATOR_TRAIT==nimble)->[fastMoving]</li>
 				<li>try_romance(INITIATOR_TRAIT==jogger)->[fastMoving]</li>
-				<li>try_romance(INITIATOR_TRAIT==fastwalker)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_TRAIT==fast walker)->[fastMoving]</li>
 				<li>fastMoving->You make my heart race faster than my feet, [beautiful] [RECIPIENT_nameDef]!</li>
 				
+				<li>try_romance(INITIATOR_TRAIT==chemical fascination)->[chemical]</li>
+				<li>try_romance(INITIATOR_TRAIT==chemical interest)->[chemical]</li>
+				<li>chemical(INITIATOR_intellectual_level>=5)->I find your presence simply intoxicating, [RECIPIENT_nameDef].</li>
+				<li>chemical->When I'm around you, [RECIPIENT_nameDef], I feel a strong buzz — I think I'm tripping on love...</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==industrious)->[industriousWorking]</li>
+				<li>try_romance(INITIATOR_TRAIT==hard worker)->[industriousWorking]</li>
+				<li>industriousWorking->For your love, [RECIPIENT_nameDef], I'll do anything — just say the word.</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==lazy)->[lazySlothful]</li>
+				<li>try_romance(INITIATOR_TRAIT==slothful)->[lazySlothful]</li>
+				<li>lazySlothful->I've never focused on anything the way I focus on you, [RECIPIENT_nameDef].</li>
+				<li>lazySlothful->I know I'm not known for trying hard, [RECIPIENT_nameDef], but to make you smile, I would put in the effort.</li>
+				
+				<li>try_romance(INITIATOR_TRAIT==abrasive)->Hey, [RECIPIENT_nameDef], baby — you want some of this? *wink*</li>
 				<li>try_romance(INITIATOR_TRAIT==bloodlust)->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
+				<li>try_romance(INITIATOR_TRAIT==psychopath)->... [RECIPIENT_nameDef]. You're [beautiful]. Be mine.</li>
+				<li>try_romance(INITIATOR_TRAIT==gourmand)->You're more delicious than anything I've seen on a plate, [RECIPIENT_nameDef].</li>
 					
 			<li>beautiful->beautiful</li>
 			<li>beautiful->charming</li>
+			<li>beautiful->gorgeous</li>
 			<li>beautiful->lovely</li>
 
 			<li>romantic_adj->shining</li>
