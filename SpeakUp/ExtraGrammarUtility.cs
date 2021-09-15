@@ -38,6 +38,14 @@ namespace SpeakUp
         private static float lookRadius = 5f;
         private static ThingRequestGroup[] subjects = { ThingRequestGroup.Art, ThingRequestGroup.Plant };
         private static List<Rule_String> tempRules = new List<Rule_String>();
+        private static IDictionary<int, string> bodyParts = new Dictionary<int, string>()
+        {
+            {0, "Torso"}, {1, "Rib"}, {2, "Sternum"}, {3, "Pelvis"}, {4, "Spine"}, {5, "Stomach"}, {6, "Heart"}, {7, "Left Lung"}, {8, "Right Lung"}, {9, "Left Kidney"}, {10, "Right Kidney"}, {11, "Liver"}, {12, "Neck"}, {13, "Head"}, {14, "Skull"}, {15, "Brain"},
+            {16, "Left Eye"}, {17, "Right Eye"}, {18, "Left Ear"}, {19, "Right Ear"}, {20, "Nose"}, {21, "Jaw"}, {22, "Left Shoulder"}, {23, "Left Clavicle"}, {24, "Left Arm"}, {25, "Left Humerus"}, {26, "Left Radius"}, {27, "Left Hand"}, {28, "Left Pinky"},
+            {29, "Left Ring Finger"}, {30, "Left Middle Finger"}, {31, "Left Index Finger"}, {32, "Left Thumb"}, {33, "Right Shoulder"}, {34, "Right Clavicle"}, {35, "Right Arm"}, {36, "Right Humerus"}, {37, "Right Radius"}, {38, "Right Hand"}, {39, "Right Pinky"},
+            {40, "Right Ring Finger"}, {41, "Right Middle Finger"}, {42, "Right Index Finger"}, {43, "Right Thumb"}, {44, "Waist"}, {45, "Left Leg"}, {46, "Left Femur"}, {47, "Left Tibia"}, {48, "Left Foot"}, {49, "Left Little Toe"}, {50, "Left Fourth Toe"},
+            {51, "Left Middle Toe"}, {52, "Left Second Toe"}, {53, "Left Big Toe"}, {54, "Right Leg"}, {55, "Right Femur"}, {56, "Right Tibia"}, {57, "Right Foot"}, {58, "Right Little Toe"}, {59, "Right Fourth Toe"}, {60, "Right Middle Toe"}, {61, "Right Second Toe"}, {62, "Right Big Toe"}
+        };
         private static List<string> reversibleRelations = new List<string>()
                 { "Bond", "Sibling", "Spouse", "Lover", "Fiance", "HalfSibling", "ExSpouse", "ExLover", "Cousin", "CousinOnceRemoved", "SecondCousin", "Kin"
                 };
@@ -169,6 +177,71 @@ namespace SpeakUp
 
             //seated?
             if (pawn.Map != null) MakeRule(symbol + "seated", Seated(pawn).ToStringYesNo());
+
+            //THE PAWNS PHYSICAL DETAILS ------------- add bodyparts
+
+            //invenotry does not include worn items
+            foreach (Thing item in pawn.inventory.innerContainer)
+            {
+                MakeRule(symbol + "inventory_item", item.def.defName);
+            }
+
+            //worn items
+            foreach (Apparel apparel in pawn.apparel.WornApparel)
+            {
+                //substring to elimante (quality) from label so XML is easier
+                if (apparel.Label.LastIndexOf('(') != -1)
+                {
+                    MakeRule(symbol + "wearing", apparel.Label.Substring(0, apparel.Label.LastIndexOf("(") - 1));
+                    continue;
+                }
+                else
+                {
+                    MakeRule(symbol + "wearing", apparel.Label);
+                }
+            }
+
+            //needs tending
+            MakeRule(symbol + "needs_tending", pawn.health.HasHediffsNeedingTend().ToStringYesNo());
+
+            //injuries
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                Type hediffType = hediff.GetType();
+
+                //injuries and missing body parts
+                if (hediffType == typeof(Hediff_Injury))
+                {
+                    MakeRule(symbol + "injury", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
+                    continue;
+                }
+                else if (hediffType == typeof(Hediff_MissingPart))
+                {
+                    MakeRule(symbol + "missing_part", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
+                    continue;
+                }
+
+                //any other health effect and what part it effects
+                if (hediff.Part != null)
+                {
+                    MakeRule(symbol + "ailment", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
+                    continue;
+                }
+                else
+                {
+                    MakeRule(symbol + "ailment", hediff.Label);
+                }
+            }
+
+            //is the pawn a prisoner
+            if (pawn.GuestStatus != null)
+            {
+                MakeRule(symbol + "colonist_status", "Free");
+            }
+            else
+            {
+                MakeRule(symbol + "colonist_status", pawn.GuestStatus.ToString());
+            }
         }
 
         private static string DayPeriod(Pawn p)
