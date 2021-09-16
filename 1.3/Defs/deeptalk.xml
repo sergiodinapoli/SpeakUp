@@ -484,7 +484,7 @@
 				<rulesStrings>
 					<!-- ===Good opinion of recipient=== -->
 						<li>r_logentry(INITIATOR_opinion>=0)->[deepTalkConclusion]</li>
-						<li>deepTalkConclusion->I [wanna] learn more about that.</li>
+						<li>deepTalkConclusion->I want to learn more about that.</li>
 						<li>deepTalkConclusion->This is [intensifer]thought-provoking!</li>
 						<li>deepTalkConclusion->I wonder if we can find a book about that?</li>
 						<li>deepTalkConclusion->At least we can all agree on [TalkTopicLight]!</li>

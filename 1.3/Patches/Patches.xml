@@ -922,7 +922,7 @@
 						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->quite </li>
 						<li>intensifier(INITIATOR_mood>=0.7)->super </li>
 					<!-- ===damned_intensifier=== -->
-						<li>damned_intensifier(p-2)-></li>
+						<li>damned_intensifier(p=2)-></li>
 						<li>damned_intensifier->damned </li>
 						<li>damned_intensifier->bloody </li>
 						<li>damned_intensifier->blasted </li>
