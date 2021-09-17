@@ -6,7 +6,6 @@
 			<rulesStrings>
 				<!-- ===generic default=== -->
 					<li>r_logentry(p=0.1,tag=ChitChat_generic)->Hey, [recipient]!</li>
-					<li>r_logentry(p=0.1,tag=ChitChat_generic)->Hi, [recipient]!</li>
 				
 				<!-- ===Job Texts (initiator)=== -->
 					<!-- ===Aurora=== -->
@@ -922,7 +921,7 @@
 						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->quite </li>
 						<li>intensifier(INITIATOR_mood>=0.7)->super </li>
 					<!-- ===damned_intensifier=== -->
-						<li>damned_intensifier(p-2)-></li>
+						<li>damned_intensifier(p=2)-></li>
 						<li>damned_intensifier->damned </li>
 						<li>damned_intensifier->bloody </li>
 						<li>damned_intensifier->blasted </li>

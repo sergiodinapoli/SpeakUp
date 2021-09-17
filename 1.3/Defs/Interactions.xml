@@ -52,6 +52,11 @@
 						
 				<li>recipient->[RECIPIENT_nameDef]</li>
 				
+				<!-- ===Wanna? (directed at someone)=== -->
+					<li>wanna(INITIATOR_intellectual_level>=8,priority=1)->would you like to</li>
+					<li>wanna(INITIATOR_intellectual_level>=5)->would you like to</li>
+					<li>wanna(p=0.5)->want to</li>
+					<li>wanna(INITIATOR_intellectual_level&lt;5)->wanna</li>
 
 			</rulesStrings>
 		</logRulesInitiator>
@@ -1899,17 +1904,17 @@
 						
 						<li>comment(NEAREST_plant==birch tree)->[birch]</li>
 						<li>birch->Birches have such slender and elegant trunks!</li>
-						<li>birch->Moreover, birches are a blessing for the land — they improve its fertility.</li>
+						<li>birch->Birches are a blessing for the land — they improve its fertility.</li>
 						
 						<li>comment(NEAREST_plant==oak tree)->[oak]</li>
-						<li>oak->Majestic and sturdy — a truly masterwork of Nature!</li>
+						<li>oak->Majestic and sturdy — oaks are a truly masterwork of Nature!</li>
 						<li>oak->Oaks can live more than a thousand years — an inspiring symbol of endurance!</li>
 						
 						<li>comment(NEAREST_plant==pine tree)->[pine]</li>
-						<li>pine->So charming — and its bark has such a nice perfume!</li>
+						<li>pine->Pines are so charming — and their bark has such a nice perfume!</li>
 						
 						<li>comment(NEAREST_plant==poplar tree)->[poplar]</li>
-						<li>poplar->So beautiful! Moreover, poplars grow so quick — a perfect wood source!</li>
+						<li>poplar->Poplars are so beautiful! Moreover, they grow so quick — a perfect wood source!</li>
 						
 						<li>comment(NEAREST_plant==grass)->[grasses]</li>
 						<li>comment(NEAREST_plant==tall grass)->[grasses]</li>
