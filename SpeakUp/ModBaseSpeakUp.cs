@@ -15,6 +15,7 @@ namespace SpeakUp
 
         public static SettingHandle<bool>
             SameRegionRestriction,
+            ForceNoTranslate,
             ShowGrammarDebug;
 
         public ModBaseSpeakUp()
@@ -65,6 +66,7 @@ namespace SpeakUp
             IntervalBetweenLines = Settings.GetHandle<int>("TickBetweenLines", "TicksBetweenLines (60 = 1 sec)", null, 60);
             SameRegionRestriction = Settings.GetHandle<bool>("SameRegionRestriction", "SameRegionRestriction", null, true);
             ShowGrammarDebug = Settings.GetHandle<bool>("ShowGrammarDebug", "ShowGrammardebug", null, false);
+            ForceNoTranslate = Settings.GetHandle<bool>("ForceNoTranslate", "ForceNoTranslate", "Force rimworld to not translate dialogues between pawns", false);
         }
     }
 }

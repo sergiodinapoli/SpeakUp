@@ -293,7 +293,7 @@ namespace SpeakUp
         {
             if (output.NullOrEmpty())
             {
-                if (Prefs.DevMode) Log.Message($"[SpeakUp] Couldn't process {keyword}. Moving on.");
+                if (Prefs.DevMode && ModBaseSpeakUp.ShowGrammarDebug) Log.Message($"[SpeakUp] Couldn't process {keyword}. Moving on.");
                 return;
             }
             tempRules.Add(new Rule_String(keyword, output));
