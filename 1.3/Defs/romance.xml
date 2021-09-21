@@ -22,9 +22,23 @@
 		<label>romance — fail</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry->Err... thank you, [RECIPIENT_nameDef]...</li>
-				<li>r_logentry->Uh... [RECIPIENT_nameDef]... thanks...</li>
-				<li>r_logentry->...</li>
+				<!-- ===Bad opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+						<li>bad_opinion->...</li>
+						<li>bad_opinion->*glares*</li>
+						<li>bad_opinion->[stop], [RECIPIENT_nameDef] — [no_chance]!</li>
+							<li>stop->stop that</li>
+							<li>stop->cut it out</li>
+							<li>no_chance->you have no chance with me</li>
+							<li>no_chance->you're wasting your time</li>
+				<!-- ===Good opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+						<li>good_opinion->Er, thank you, [RECIPIENT_nameDef]...</li>
+						<li>good_opinion->Uh, [RECIPIENT_nameDef]... thanks...</li>
+						<li>good_opinion->Oh, [RECIPIENT_nameDef]... I don't know what to say...</li>
+						<li>good_opinion->*blushes lightly*</li>
+						<li>good_opinion->*awkward cough*</li>
+
 			</rulesStrings>
 			
 			<rulesFiles>

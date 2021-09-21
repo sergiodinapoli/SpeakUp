@@ -490,6 +490,8 @@
 						<li>deepTalkConclusion->At least we can all agree on [TalkTopicLight]!</li>
 						<li>deepTalkConclusion(INITIATOR_intellectual_level>=5)->I wonder if we can write a book about that?</li>
 						<li>deepTalkConclusion(INITIATOR_opinion>=50)->I love talking to you about things, [recipient]!</li>
+						
+
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>

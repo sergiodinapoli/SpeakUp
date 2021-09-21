@@ -15,6 +15,7 @@
 				<li>try_romance->I wish I were your mirror, so that I could admire you all day long...</li>
 				<li>try_romance->You're the best thing I could hope to happen in my life...</li>
 				<li>try_romance->Although it won't last, this blissful moment I spent with you will be forever in my dreams...</li>
+				<li>try_romance->I hope you visit my dreams soon, and let me catch a glimpse of the happiness I could feel by your side...</li>
 				
 				<li>try_romance(RECIPIENT_trait==annoying voice)->Of all terrible sounds in the world, your voice is my favorite.</li>
 				<li>try_romance(RECIPIENT_trait==bodypurist)->No wonder you abhor body modifications — because yours is perfect already!</li>
@@ -95,8 +96,8 @@
 		<value>
 		  <rulesStrings>
 			<li>r_logentry->[attempt]</li>
-				<li>attempt(priority=1,INITIATOR_relationship==Spouse,tag=ProposalSuccess)->[propose]</li>
-				<li>attempt(INITIATOR_relationship!=Fiance,tag=ProposalBreakup)->[propose]</li>
+				<li>attempt(INITIATOR_relationship==Fiance,tag=ProposalSuccess)->[propose]</li>
+				<li>attempt(INITIATOR_relationship==ExLover,tag=ProposalBreakup)->[propose]</li>
 				<li>attempt(priority=-1,tag=ProposalFail)->[propose]</li>
 
 				<li>propose->[RECIPIENT_nameFull], will you marry me?</li>
