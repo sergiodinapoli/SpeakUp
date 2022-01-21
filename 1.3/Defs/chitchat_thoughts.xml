@@ -1168,8 +1168,8 @@
 					<li>annoying->unacceptable</li>
 					<li>annoying->not nice</li>
 					<li>annoying->unpleasant</li>
-					<li>annoying->(INITIATOR_intellectual_level&lt;3)->really really bad</li>
-					<li>annoying->(INITIATOR_intellectual_level&lt;5)->the worst</li>
+					<li>annoying(INITIATOR_intellectual_level&lt;3)->really really bad</li>
+					<li>annoying(INITIATOR_intellectual_level&lt;5)->the worst</li>
 					<li>wokeUpCold->covered in goosebumps</li>
 					<li>wokeUpCold->and thought my toes froze off</li>
 					<li>wokeUpCold->feeling like a snowman</li>

@@ -1228,8 +1228,8 @@
 					
 						<li>what_about_yours->How do you like yours, [recipient]?</li>
 						<li>what_about_yours->What's your opinion of yours, [recipient]?</li>
-						<li>what_about_yours(INITIATOR_intellectual_level>=5,p=0.75)->Do share your your opinion of your own, [recipient].</li>
-						<li>what_about_yours(INITIATOR_opinion&lt;0)->...I guess I should ask: What about yours, [recipient]?</li>
+						<li>what_about_yours(INITIATOR_intellectual_level>=5,p=0.75)->Do share your opinion of your own, [recipient].</li>
+						<li>what_about_yours(INITIATOR_opinion&lt;0)->I guess I should ask: What about yours, [recipient]?</li>
 			</rulesStrings>
 
 <!--

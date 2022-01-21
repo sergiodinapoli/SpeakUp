@@ -7,8 +7,8 @@
 		<label>prisoner — rapport</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -63,8 +63,8 @@
 		<label>prisoner — passion</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -133,8 +133,8 @@
 		<label>prisoner — best skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -299,6 +299,7 @@
 			<!-- ===Bad opinion of recipient=== -->
 				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
 				<li>r_logentry(INITIATOR_mood&lt;0.4)->[bad_opinion]</li>
+				<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
 					<li>bad_opinion->...</li>
 					<li>bad_opinion(INITIATOR_opinion&lt;=-25)->Get lost...</li>
 			<!-- ===Good opinion of recipient=== -->
@@ -316,8 +317,8 @@
 		<label>prisoner — need anything</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -522,8 +523,8 @@
 		<label>prisoner — clothes</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -580,8 +581,8 @@
 		<label>prisoner — fighting skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -723,8 +724,8 @@
 		<label>prisoner — construction skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -815,8 +816,8 @@
 		<label>prisoner — mining skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -903,8 +904,8 @@
 		<label>prisoner — cooking skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -995,8 +996,8 @@
 		<label>prisoner — plants skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1099,8 +1100,8 @@
 		<label>prisoner — animals skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1188,8 +1189,8 @@
 		<label>prisoner — crafting skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1270,8 +1271,8 @@
 		<label>prisoner — artistic skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1357,8 +1358,8 @@
 		<label>prisoner — medical skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1450,8 +1451,8 @@
 		<label>prisoner — social skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
@@ -1543,8 +1544,8 @@
 		<label>prisoner — intellectual skill</label>
 		<logRulesInitiator>
 			<rulesStrings>
-				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment].</li>
-				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment].</li>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
 					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
 					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
 				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>

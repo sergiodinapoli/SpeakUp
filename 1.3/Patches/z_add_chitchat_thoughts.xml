@@ -17,20 +17,20 @@
 						<!-- ===AteLavishMeal=== -->
 							<li>r_logentry(INITIATOR_thoughtDefName==AteLavishMeal,tag=ReactToThought_AteMeal)->[meal_lavish]</li>
 							<li>meal_lavish->I'm truly enjoying our meals — they are abundant, tasty and varied.</li>
-							<li>meal_lavish->Our meals are delicious! We have variety and flavor.</li>
+							<li>meal_lavish->I find or meals are delicious! We have variety and flavor.</li>
 							<li>meal_lavish->I feel great after one of our meals. They're so tasty!</li>
-							<li>meal_lavish(INITIATOR_trait==gourmand)->Great meals are the greatest joy in life — and our meals are truly great.</li>
+							<li>meal_lavish(INITIATOR_trait==gourmand)->Great meals are the greatest joy in life — and our meals are truly great. That's what I think!</li>
 							<!-- ===AteFineMeal=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteFineMeal,tag=ReactToThought_AteMeal)->[meal_fine]</li>
 								<li>meal_fine->I'm enjoying our meals — they are tasty and varied.</li>
 								<li>meal_fine->I've had some nice meals lately.</li>
-								<li>meal_fine->Our meals are [intensifier]tasty.</li>
+								<li>meal_fine->I think our meals are [intensifier]tasty.</li>
 								<li>meal_fine(INITIATOR_trait==gourmand)->My taste is satisfied by our meals.</li>
 							<!-- ===AteAwfulMeal=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteAwfulMeal,tag=ReactToThought_AteMeal)->[meal_awful]</li>
-								<li>meal_awful->Our meals are [disgusting]!</li>
+								<li>meal_awful->I think our meals are [disgusting]!</li>
 								<li>meal_awful->I wish we had better food.</li>
-								<li>meal_awful->Why are our meals so [disgusting]?</li>
+								<li>meal_awful->Why are our meals so [disgusting]? I can't bear it!</li>
 								<li>meal_awful(INITIATOR_trait==gourmand)->Our food is [disgusting] - this is an absolute outrage! I can't bear it!</li>
 							<!-- ===AteRawFood=== -->
 								<li>r_logentry(INITIATOR_thoughtDefName==AteRawFood,tag=ReactToThought_AteMeal)->[meal_raw]</li>
@@ -494,11 +494,11 @@
 					<li>thought_bedroom(INITIATOR_thoughtLabel==awful bedroom)->[thought_bedroom_awful]</li>
 						<li>thought_bedroom_awful->My [swearword]room is [swearword_adverb][ugly] — but at least I don't have to share it.</li>
 						<li>thought_bedroom_awful->My room is so [swearword_adverb][ugly] — but at least it's mine.</li>
-						<li>thought_bedroom_awful->I'm not proud to say it, but I have an [ugly] bedroom.</li>
+						<li>thought_bedroom_awful->I'm not proud to say it, but my bedroom is [ugly].</li>
 						<li>thought_bedroom_awful(INITIATOR_mood>=0.7)->My room may be [ugly], but it's my very own bedroom, so I don't really mind.</li>
 					<li>thought_bedroom(INITIATOR_thoughtLabel==decent bedroom)->[thought_bedroom_decent]</li>
 						<li>thought_bedroom_decent->I sleep in a [proper] bedroom.</li>
-						<li>thought_bedroom_decent->My bedroom is [proper] and decent.</li>
+						<li>thought_bedroom_decent->My bedroom is [proper].</li>
 						<li>thought_bedroom_decent->I have a [proper] bedroom, so I can't complain.</li>
 					<li>thought_bedroom(INITIATOR_thoughtLabel==slightly impressive bedroom)->[thought_bedroom_slightlyimpressive]</li>
 						<li>thought_bedroom_slightlyimpressive->I like my bedroom — it's a [moderately_attractive_obj] one.</li>

@@ -98,15 +98,45 @@
 			<rulesStrings>
 				<!-- ===Bad opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1,tag=ChitChat_generic2)->[good_opinion]</li>
 					<li>bad_opinion->...</li>
-					<li>bad_opinion->Ugh...</li>
-					<li>bad_opinion->What, [recipient]? *scowls*</li>
+					<li>bad_opinion->[interjection_dismissive]...</li>
+ 					<li>bad_opinion->What, [recipient]? *scowls*</li>
+					
+					<!-- ===DISMISSIVE INTERJECTIONS=== -->
+                        <li>interjection_dismissive->Bah</li>
+                        <li>interjection_dismissive->Tsk</li>
+                        <li>interjection_dismissive->Ugh</li>
+                        <li>interjection_dismissive->Meh</li>
+                        <li>interjection_dismissive->Hmph</li>
+                        <li>interjection_dismissive->Humph</li>
+						
 				<!-- ===Good opinion of recipient=== -->
 					<li>r_logentry(INITIATOR_opinion>=0,tag=ChitChat_generic2)->[good_opinion]</li>
 					<li>good_opinion->Yes, [recipient]?</li>
-					<li>good_opinion->Yeah, [recipient]?</li>
+					<li>good_opinion(INITIATOR_intellectual_level&lt;=5)->Yeah, [recipient]?</li>
 					<li>good_opinion->Mhm?</li>
 					<li>good_opinion->What is it, [recipient]?</li>
+					<li>good_opinion->[interjection_neutral]...?</li>
+                    <li>good_opinion->[interjection_neutral]? What, [recipient]?</li>
+                    <li>good_opinion->[interjection_neutral]... What is it, [recipient]?</li>
+
+					<!-- ===NEUTRAL INTERJECTIONS=== -->
+                        <li>interjection_neutral->Huh</li>
+                        <li>interjection_neutral->Mhm</li>
+                        <li>interjection_neutral->Mmm</li>
+                        <li>interjection_neutral->Er</li>
+                        <li>interjection_neutral->Eh[add_h][add_h]</li>
+                        <li>interjection_neutral->Uh[add_h][add_h]</li>
+                        <li>interjection_neutral->Um[add_m][add_m]</li>
+                        <li>interjection_neutral->Uhm[add_m][add_m]</li>
+                        <li>interjection_neutral->Ah[add_h][add_h]</li>
+                        <li>interjection_neutral->Oh[add_h][add_h]</li>
+                        <li>interjection_neutral->Hm[add_m][add_m]</li>
+							<li>add_h-></li>
+							<li>add_h->h</li>
+							<li>add_m-></li>
+							<li>add_m->m</li>					
 			</rulesStrings>
 		</logRulesInitiator>
 	</InteractionDef>
@@ -1513,11 +1543,17 @@
 						<li>bad_opinion->None of your business, [recipient]!</li>
 						<li>bad_opinion->...</li>
 					<!-- ===decent or good opinion, but sick=== -->
-						<li>r_logentry(INITIATOR_opinion>=-5,INITIATOR_thoughtDefName==sick,priority=1)->[good_opinion_sick]</li>
+						<li>r_logentry(INITIATOR_opinion>=-5,INITIATOR_thoughtDefName==Sick,priority=1)->[good_opinion_sick]</li>
 						<li>good_opinion_sick(INITIATOR_mood>=0.7)->I'm not feeling well, but I'm sure I'll recover soon! [whataboutyou]</li>
 						<li>good_opinion_sick(INITIATOR_mood>=0.5,INITIATOR_mood&lt;0.7)->I'm not feeling well, but I believe I'll recover soon. [whataboutyou]</li>
 						<li>good_opinion_sick(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm not feeling well.</li>
-						<li>good_opinion_sick(INITIATOR_mood&lt;0.3)->[furious] And on top of that, I'm sick!</li>				
+						<li>good_opinion_sick(INITIATOR_mood&lt;0.3)->[furious] And on top of that, I'm sick!</li>
+					<!-- ===decent or good opinion, but in pain=== -->
+						<li>r_logentry(INITIATOR_opinion>=-5,INITIATOR_thoughtDefName==Pain,priority=1)->[good_opinion_pain]</li>
+						<li>good_opinion_pain(INITIATOR_mood>=0.7)->I'm in pain, but I'm sure it'll end soon! [whataboutyou]</li>
+						<li>good_opinion_pain(INITIATOR_mood>=0.5,INITIATOR_mood&lt;0.7)->I'm in pain, but I believe I'll recover soon. [whataboutyou]</li>
+						<li>good_opinion_pain(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm in pain...</li>
+						<li>good_opinion_pain(INITIATOR_mood&lt;0.3)->[furious] And on top of that, I'm in pain!</li>			
 					<!-- ===decent or good opinion=== -->
 						<li>r_logentry(INITIATOR_opinion>=-5)->[good_opinion]</li>
 						<li>good_opinion(INITIATOR_mood>=0.7)->I'm feeling [great], thank you! [whataboutyou]</li>
@@ -1573,17 +1609,29 @@
 				<rulesStrings>
 				<!-- ===Since the starting chitchat requires its Initiator to have positive opinion of Recipient, here we certainly have INITIATOR_opinion>=0=== -->
 				<!-- ===It's almost a identical copy of HowAreYou, but with no "bad opinion", [whataboutyou] and "followup" sections.=== -->
-					<li>r_logentry(INITIATOR_thoughtDefName==sick,RECIPIENT_thoughtDefName==sick,priority=3)->[both_sick]</li>
+					<li>r_logentry(INITIATOR_thoughtDefName==Sick,RECIPIENT_thoughtDefName==Sick,priority=3)->[both_sick]</li>
 						<li>both_sick(INITIATOR_mood>=0.7)->I'm not feeling well either, but no big deal.</li>
 						<li>both_sick(priority=-1)->I'm not feeling well either...</li>
 						<li>both_sick(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm sick too — and it's quite annoying.</li>
 						<li>both_sick(INITIATOR_mood&lt;0.3)->I'm sick too — and I can't stand it anymore!</li>
 
-					<li>r_logentry(INITIATOR_thoughtDefName==sick,priority=2)->[i_sick]</li>
+					<li>r_logentry(INITIATOR_thoughtDefName==Sick,priority=2)->[i_sick]</li>
 						<li>i_sick(INITIATOR_mood>=0.7)->I'm not feeling well, but no big deal.</li>
 						<li>i_sick(priority=-1)->I'm not feeling well...</li>
 						<li>i_sick(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm sick — and it's quite annoying.</li>
 						<li>i_sick(INITIATOR_mood&lt;0.3)->I'm sick — and I can't stand it anymore!</li>
+
+						<li>r_logentry(INITIATOR_thoughtDefName==Pain,RECIPIENT_thoughtDefName==Pain,priority=3)->[both_pain]</li>
+						<li>both_pain(INITIATOR_mood>=0.7)->I'm in pain too, but I can take it.</li>
+						<li>both_pain(priority=-1)->I'm in pain too...</li>
+						<li>both_pain(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm in pain too — and it's quite annoying.</li>
+						<li>both_pain(INITIATOR_mood&lt;0.3)->I'm in pain too — and I can't stand it anymore!</li>
+
+					<li>r_logentry(INITIATOR_thoughtDefName==Pain,priority=2)->[i_pain]</li>
+						<li>i_pain(INITIATOR_mood>=0.7)->I'm in pain, but I can take it.</li>
+						<li>i_pain(priority=-1)->I'm in pain...</li>
+						<li>i_pain(INITIATOR_mood>=0.3,INITIATOR_mood&lt;0.5)->I'm in pain — and it's quite annoying.</li>
+						<li>i_pain(INITIATOR_mood&lt;0.3)->I'm in pain — and I can't stand it anymore!</li>
 						
 					<li>r_logentry(INITIATOR_mood>=0.7,RECIPIENT_mood>=0.7,priority=1)->Me too, thank you!</li>
 					<li>r_logentry(INITIATOR_mood>=0.7)->I'm feeling [great], thank you!</li>
