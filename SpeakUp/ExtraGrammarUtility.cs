@@ -234,6 +234,7 @@ namespace SpeakUp
             }
 
             //is the pawn a prisoner
+            //ToDo: Add catch for when they have no guest status at all!
             if (pawn.GuestStatus != null)
             {
                 MakeRule(symbol + "colonist_status", "Free");

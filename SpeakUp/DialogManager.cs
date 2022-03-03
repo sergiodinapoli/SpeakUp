@@ -15,7 +15,7 @@ namespace SpeakUp
 
         public static void Ensue(List<string> tags)
         {
-            if (!talkBack) return;
+            if (!talkBack && ModBaseSpeakUp.ToggleTalkBack) return;
             List<string> usedTags = new List<string>();
             Talk ongoing = CurrentTalks.Where(x => x.nextInitiator == Initiator || x.nextRecipient == Initiator).FirstOrDefault();
             var tag = tags.First();

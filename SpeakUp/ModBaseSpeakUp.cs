@@ -16,7 +16,8 @@ namespace SpeakUp
         public static SettingHandle<bool>
             SameRegionRestriction,
             ForceNoTranslate,
-            ShowGrammarDebug;
+            ShowGrammarDebug,
+            ToggleTalkBack;
 
         public ModBaseSpeakUp()
         {
@@ -67,6 +68,7 @@ namespace SpeakUp
             SameRegionRestriction = Settings.GetHandle<bool>("SameRegionRestriction", "SameRegionRestriction", null, true);
             ShowGrammarDebug = Settings.GetHandle<bool>("ShowGrammarDebug", "ShowGrammardebug", null, false);
             ForceNoTranslate = Settings.GetHandle<bool>("ForceNoTranslate", "ForceNoTranslate", "Force rimworld to not translate dialogues between pawns", false);
+            ToggleTalkBack = Settings.GetHandle<bool>("ToggleTalkBack", "ToggleTalkBack", "Only turn this on if opening social tab causes lag, can break some mod compatibility.", false);
         }
     }
 }
