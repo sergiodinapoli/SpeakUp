@@ -17,7 +17,7 @@
 						<!-- ===AteLavishMeal=== -->
 							<li>r_logentry(INITIATOR_thoughtDefName==AteLavishMeal,tag=ReactToThought_AteMeal)->[meal_lavish]</li>
 							<li>meal_lavish->I'm truly enjoying our meals — they are abundant, tasty and varied.</li>
-							<li>meal_lavish->I find or meals are delicious! We have variety and flavor.</li>
+							<li>meal_lavish->I find our meals are delicious! We have variety and flavor.</li>
 							<li>meal_lavish->I feel great after one of our meals. They're so tasty!</li>
 							<li>meal_lavish(INITIATOR_trait==gourmand)->Great meals are the greatest joy in life — and our meals are truly great. That's what I think!</li>
 							<!-- ===AteFineMeal=== -->
