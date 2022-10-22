@@ -22,7 +22,7 @@ namespace SpeakUp
 			var constants = constraints; //see note above
 			var actualConstraints = __instance.rule.constantConstraints;
 			__result = ValidateRulesConstraints(actualConstraints, currentRules, ref ___constantConstraintsChecked, ref ___constantConstraintsValid);
-            if (validationFeedback)
+			if (validationFeedback)
             {
                 string result = __result ? "success" : "failed";
                 StringBuilder feedback = new StringBuilder();

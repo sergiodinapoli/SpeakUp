@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "AnimalChat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry->[tames]</li><!-- tag=Animal_Reaction not possible yet-->
+
+					<li>tames->Shh... shh.. [RECIPIENT_kind]... shh...</li>
+					<li>tames->*makes calming noises towards [RECIPIENT_nameDef]*</li>
+					<li>tames->*makes happy clicking noises at [RECIPIENT_nameDef]*</li>
+					<li>tames->*gestures gently at [RECIPIENT_nameDef]*</li>
+					<li>tames->*offers slow, friendly gestures to [RECIPIENT_nameDef]*</li>
+					<li>tames->*gently touches [RECIPIENT_nameDef]*</li>
+					<li>tames->*calms and encourages [RECIPIENT_nameDef]*</li>
+					<li>tames->*matches breathing with [RECIPIENT_nameDef]*</li>
+					<li>tames->*takes a low stance towards [RECIPIENT_nameDef]*</li>
+					<li>tames->*shows no fear or anger to [RECIPIENT_nameDef]*</li>
+					<li>tames->*feigns inattention towards [RECIPIENT_nameDef]*</li>
+					<li>tames->*firmly yet softly touches [RECIPIENT_nameDef]*</li>
+					<li>tames->*shows a relaxed attitude towards [RECIPIENT_nameDef]*</li>
+					<li>tames->*crouches patiently near [RECIPIENT_nameDef]*</li>
+					<li>tames(INITIATOR_artistic_passion!=None)->♪♫♪gently hums a song at [RECIPIENT_nameDef]♪♫♪</li>
+					<li>tames(INITIATOR_artistic_passion!=None)->♪♫♪sings an old lullaby at [RECIPIENT_nameDef]♪♫♪</li>
+					<li>tames->Who's a good [RECIPIENT_kind]?</li>
+				
+			</rulesStrings>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "TameAttempt"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry->[tames]</li><!-- tag=Animal_Reaction not possible yet-->
+
+				<li>tames->Sit, [RECIPIENT_kind] — sit still!</li>
+				<li>tames->Come with me, [RECIPIENT_kind]!</li>
+				<li>tames->Come on, [RECIPIENT_kind] — come with me!</li>				
+				<li>tames->*attempts to collar [RECIPIENT_nameDef]*</li>
+				<li>tames->*uses body language to demand obedience from [RECIPIENT_nameDef]*</li>
+				<li>tames->*tries to make [RECIPIENT_nameDef] sit still*</li>
+				<li>tames->*seizes [RECIPIENT_nameDef] sharply and barks a command*</li>
+				<li>tames->*attempts to hold [RECIPIENT_nameDef] still*</li>
+				<li>tames->*shouts a command at [RECIPIENT_nameDef]*</li>
+				<li>tames(INITIATOR_trait==brawler)->*slaps [RECIPIENT_nameDef] in a show of dominance*</li>
+				<li>tames->*directs [RECIPIENT_nameDef] back towards the community*</li>
+				<li>tames->*calls [RECIPIENT_nameDef] to come back to the community*</li>
+				<li>tames->*touches a vulnerable body part of [RECIPIENT_nameDef], demanding obedience*</li>
+				<li>tames->*points at the ground, demanding that [RECIPIENT_nameDef] come*</li>
+
+			</rulesStrings>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "TrainAttempt"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry->[trains]</li><!-- tag=Animal_Reaction not possible yet-->
+
+				<li>trains(p=2)->[part1] [recipient] [part2] [part3].</li>
+				<li>trains->[part1] [recipient] got it right this time — we'll see...</li>
+				
+				<!-- ===WILDCARDS=== -->
+				<li>part1->Let's hope</li>
+				<li>part1->I wonder if</li>
+				<li>part1->I believe</li>
+				<li>part1->I suppose</li>
+				<li>part1->Mmm... it seems</li>
+				<li>part1->Mmm... let's see if</li>
+				<li>part1->I think</li>
+				<li>part1(INITIATOR_animal_level>=5)->I'm almost sure</li>
+				<li>part1(INITIATOR_animal_level>=10)->I'm certain</li>
+				
+				<li>part2->learnt</li>
+				<li>part2->understood</li>
+				<li>part2->improved</li>
+				<li>part2->grasped</li>
+				<li>part2->mastered</li>
+				<li>part2->took in</li>
+				<li>part2(INITIATOR_intellectual_level>=5)->comprehended</li>
+				<li>part2(INITIATOR_intellectual_level>=5)->assimilated</li>
+				<li>part2(INITIATOR_intellectual_level>=5)->familiarized [RECIPIENT_objective]self with</li>
+				<li>part2(INITIATOR_intellectual_level>=5)->absorbed</li>
+				
+				<li>part3->this trick</li>
+				<li>part3->this skill</li>
+				<li>part3->this feat</li>
+				<li>part3->this technique</li>
+				<li>part3->this stunt</li>
+				
+				<li>recipient->[RECIPIENT_pronoun]</li>
+				<li>recipient->[RECIPIENT_nameDef]</li>
+				<li>recipient(INITIATOR_mood&lt;0.4)->this [negative_adj] [RECIPIENT_kind]</li>
+				<li>recipient(INITIATOR_trait==abrasive)->this [negative_adj] [RECIPIENT_kind]</li>
+					<li>negative_adj->silly</li>
+					<li>negative_adj->stupid</li>
+					<li>negative_adj->rebellious</li>
+					<li>negative_adj->defiant</li>
+					<li>negative_adj->disobedient</li>
+			</rulesStrings>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "Nuzzle"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry->[nuzzle]</li><!-- tag=Animal_Reaction not possible yet-->
+
+				<li>nuzzle(p=2)->*[nuzzleadverb][nuzzles] [RECIPIENT_nameDef]*</li>
+				<li>nuzzle->*[nuzzleadverb]rubs [INITIATOR_possessive] nose against [RECIPIENT_nameDef]'s [rubbedpart]*</li>
+
+				<!-- ===WILDCARDS=== -->
+				<li>nuzzles(p=2)->nuzzles</li>
+				<li>nuzzles->snuggles up to</li>
+
+				<li>nuzzleadverb(p=4)-></li>
+				<li>nuzzleadverb->gently </li>
+				<li>nuzzleadverb->encouragingly </li>
+				<li>nuzzleadverb->happily </li>
+				<li>nuzzleadverb->softly </li>
+				<li>nuzzleadverb->supportively </li>
+				<li>nuzzleadverb->lightly </li>
+				<li>nuzzleadverb->warmly </li>
+				<li>nuzzleadverb->plaintively </li>
+				<li>nuzzleadverb->lovingly </li>
+				<li>nuzzleadverb->affectionately </li>
+
+				<li>rubbedpart->leg</li>
+				<li>rubbedpart->knee</li>
+				<li>rubbedpart->foot</li>
+				<li>rubbedpart->hand</li>
+				<li>rubbedpart->side</li>
+				<li>rubbedpart->arm</li>
+			</rulesStrings>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "ReleaseToWild"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+     <rulesStrings>
+        <li>r_logentry->*gently pets [RECIPIENT_nameDef] one last time*</li>
+		<li>r_logentry->[bye], [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->Best of luck in the wild, [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->You'll be better off as a free creature, [RECIPIENT_nameDef]...</li>
+		<li>r_logentry->You'll be better off in the wild, [RECIPIENT_nameDef]...</li>
+        <li>r_logentry->*removes [RECIPIENT_nameDef]'s collar*</li>
+        <li>r_logentry->*reminisces about the good time [INITIATOR_pronoun] had with [RECIPIENT_nameDef]*</li>
+		
+		<li>bye->goodbye</li>
+		<li>bye->godspeed</li>
+      </rulesStrings>
+		</value>
+	</Operation>
+
+</Patch>

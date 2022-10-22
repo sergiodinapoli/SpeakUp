@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ===joke — 00=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_00</defName>
+			<label>joke — 00</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_00b)->[good_opinion]</li>
+						<li>good_opinion->What, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 00b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_00b</defName>
+			<label>joke — 00b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->This tastes a little funny!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>	
+	
+	<!-- ===joke — 01=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_01</defName>
+			<label>joke — 01</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_01b)->[good_opinion]</li>
+						<li>good_opinion->Why, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 01b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_01b</defName>
+			<label>joke — 01b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->They always take things literally!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+	<!-- ===joke — 02=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_02</defName>
+			<label>joke — 02</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_02b)->[good_opinion]</li>
+						<li>good_opinion->No, what about [him_her]?</li>
+					<!-- ==Wildcards== -->
+					<li>him_her->him</li>
+					<li>him_her->her</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 02b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_02b</defName>
+			<label>joke — 02b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->He'll stop at nothing to avoid them!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>		
+
+	<!-- ===joke — 03=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_03</defName>
+			<label>joke — 03</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_03b)->[good_opinion]</li>
+						<li>good_opinion->Why wouldn't they?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 03b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_03b</defName>
+			<label>joke — 03b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Because they make up everything!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>		
+
+	<!-- ===joke — 04=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_04</defName>
+			<label>joke — 04</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_04b)->[good_opinion]</li>
+						<li>good_opinion->Rich? How, [recipient]? That job can't have paid well...</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 04b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_04b</defName>
+			<label>joke — 04b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->No, but the tips were enormous!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 05=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_05</defName>
+			<label>joke — 05</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_05b)->[good_opinion]</li>
+						<li>good_opinion->What is it, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 05b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_05b</defName>
+			<label>joke — 05b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->A nervous wreck!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+	<!-- ===joke — 06=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_06</defName>
+			<label>joke — 06</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_06b)->[good_opinion]</li>
+						<li>good_opinion->No, [recipient] — what happened to them?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 06b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_06b</defName>
+			<label>joke — 06b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->They each got six months!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 07=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_07</defName>
+			<label>joke — 07</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_07b)->[good_opinion]</li>
+						<li>good_opinion->Why, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 07b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_07b</defName>
+			<label>joke — 07b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->In case [he_she] needed to draw blood.</li>
+						<!-- ==Wildcards== -->
+							<li>he_she->he</li>
+							<li>he_she->she</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 08=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_08</defName>
+			<label>joke — 08</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_08b)->[good_opinion]</li>
+						<li>good_opinion->Yes, [recipient]. Go ahead!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 08b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_08b</defName>
+			<label>joke — 08b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Oh never mind — I'm still working on that one!</li>
+						<!-- ==Wildcards== -->
+							<li>he_she->he</li>
+							<li>he_she->she</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+	
+	<!-- ===joke — 09=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_09</defName>
+			<label>joke — 09</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_09b)->[good_opinion]</li>
+						<li>good_opinion->Why, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 09b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_09b</defName>
+			<label>joke — 09b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Because nothing gets under their skin!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 10=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_10</defName>
+			<label>joke — 10</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_10b)->[good_opinion]</li>
+						<li>good_opinion->Why, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 10b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_10b</defName>
+			<label>joke — 10b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Because it was always spotted!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 11=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_11</defName>
+			<label>joke — 11</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_11b)->[good_opinion]</li>
+						<li>good_opinion->Why, [recipient]?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 11b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_11b</defName>
+			<label>joke — 11b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->It's pointless!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>		
+
+	<!-- ===joke — 12=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_12</defName>
+			<label>joke — 12</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_12b)->[good_opinion]</li>
+						<li>good_opinion->Hmmm... I don't know, [recipient]. What do you call it?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 12b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_12b</defName>
+			<label>joke — 12b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Ground beef!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 13=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_13</defName>
+			<label>joke — 13</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_13b)->[good_opinion]</li>
+						<li>good_opinion->Hmmm... I don't know, [recipient]. What do they call each other?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 13b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_13b</defName>
+			<label>joke — 13b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Thrumb-bros!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 14=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_14</defName>
+			<label>joke — 14</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_14b)->[good_opinion]</li>
+						<li>good_opinion->And what did the doctor say?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 14b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_14b</defName>
+			<label>joke — 14b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->Don't go to those places, then!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 15=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_15</defName>
+			<label>joke — 15</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=Joke_15b)->[good_opinion]</li>
+						<li>good_opinion->No, how was it?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===joke — 15b=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>Joke_15b</defName>
+			<label>joke — 15b</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(tag=JokeReaction)->The entire audience was stunned!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+	<!-- ===joke — reaction=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>JokeReaction</defName>
+			<label>joke — reaction</label>
+			<logRulesInitiator>
+				<rulesStrings>
+						<li>r_logentry(RECIPIENT_social_level>=0)->[good]</li>
+						<li>r_logentry(RECIPIENT_social_level>=5)->[good]</li>
+						<li>r_logentry(RECIPIENT_social_level>=10)->[good]</li>
+						<li>r_logentry(RECIPIENT_social_level>=15)->[good]</li>
+						<li>r_logentry(RECIPIENT_social_level&lt;5)->[bad]</li>
+						<li>r_logentry(RECIPIENT_social_level&lt;10)->[bad]</li>
+						<li>r_logentry(RECIPIENT_social_level&lt;15)->[bad]</li>
+						<li>r_logentry(RECIPIENT_social_level&lt;=20)->[bad]</li>						
+						
+						
+						<li>good(INITIATOR_mood>=0.7)->*laughs hard*</li>
+						<li>good(INITIATOR_mood>=0.4,INITIATOR_mood&lt;0.7)->*laughs*</li>
+						<li>good(INITIATOR_mood>=0.2,INITIATOR_mood&lt;0.4)->*smiles*</li>
+						<li>good(INITIATOR_mood&lt;0.2)->*sighs*</li>
+						
+						<li>bad(INITIATOR_trait==kind,priority=1)->*polite laugh*</li>
+						<li>bad(INITIATOR_mood>=0.7)->*giggles*</li>
+						<li>bad(INITIATOR_mood>=0.4,INITIATOR_mood&lt;0.7)->[mid_mood]</li>
+							<li>mid_mood->I already knew this joke...</li>
+							<li>mid_mood->Mmm... not very funny...</li>
+						<li>bad(INITIATOR_mood>=0.2,INITIATOR_mood&lt;0.4)->*cringes*</li>
+						<li>bad(INITIATOR_mood&lt;0.2)->*scowls*</li>
+						
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+</Defs>

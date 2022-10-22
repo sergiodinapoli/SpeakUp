@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "KindWords"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry(tag=KindWords_generic)->You are such a nice person, [recipient]!</li>
+				<li>r_logentry(tag=KindWords_generic)->May your home always be too small to hold all your friends, [recipient]!</li>
+				<li>r_logentry(RECIPIENT_trait==beautiful,tag=KindWords_generic)->The only way somebody could be prettier than you, [recipient], is by using makeup!</li>
+
+				<!-- ===RECIPIENT=== -->		
+				<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
+
+				<li>recipient(p=4,INITIATOR_relationship==Lover)->[recipient_love]</li>
+				<li>recipient(p=3,INITIATOR_relationship==Fiance)->[recipient_love]</li>
+				<li>recipient(p=2,INITIATOR_relationship==Spouse)->[recipient_love]</li>
+					<li>recipient_love->honey</li>
+					<li>recipient_love->honey pot</li>
+					<li>recipient_love->love</li>
+					<li>recipient_love->lovebug</li>
+					<li>recipient_love->sweetie</li>
+					<li>recipient_love->sweetheart</li>
+					<li>recipient_love->babe</li>
+					<li>recipient_love->cutiepie</li>
+					<li>recipient_love->starshine</li>
+					<li>recipient_love->angelwing</li>
+					<li>recipient_love->gummybear</li>
+					<li>recipient_love->darling</li>
+					<li>recipient_love->dreamship</li>
+					<li>recipient_love(INITIATOR_intellectual_level>=5)->amore</li>
+					<li>recipient_love(INITIATOR_intellectual_level>=5)->amore mio</li>
+				
+				<li>recipient(INITIATOR_relationship==Sibling)->[recipient_sibling]</li>
+					<li>recipient_sibling(RECIPIENT_gender==Male)->[recipient_brother]</li>
+						<li>recipient_brother->brother</li>
+					<li>recipient_sibling(RECIPIENT_gender==Female)->[recipient_sister]</li>
+						<li>recipient_sister->sister</li>
+
+				<li>recipient(RECIPIENT_relationship==Parent,priority=1)->[recipient_parent]</li>
+					<li>recipient_parent(RECIPIENT_gender==Male)->[recipient_father]</li>
+						<li>recipient_father->father</li>
+						<li>recipient_father->dad</li>
+					<li>recipient_parent(RECIPIENT_gender==Female)->[recipient_mother]</li>
+						<li>recipient_mother->mother</li>
+						<li>recipient_mother->mum</li>
+
+				<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
+					<li>recipient_child->my child</li>
+					<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
+						<li>recipient_son->son</li>
+						<li>recipient_son->my son</li>
+					<li>recipient_child(RECIPIENT_gender==Female)->[recipient_daughter]</li>
+						<li>recipient_daughter->daughter</li>
+						<li>recipient_daughter->my daughter</li>
+						
+				<li>recipient->[RECIPIENT_nameDef]</li>						
+				<!-- ===END RECIPIENT=== -->
+					
+			</rulesStrings>
+		</value>
+	</Operation>
+	
+</Patch>

@@ -158,10 +158,10 @@ namespace SpeakUp
             }
 
             //childhood
-            MakeRule(symbol + "childhood", pawn.story.childhood?.identifier);
+            MakeRule(symbol + "childhood", pawn.story.Childhood?.title);
 
             //adulthood
-            MakeRule(symbol + "adulthood", pawn.story.adulthood?.identifier);
+            MakeRule(symbol + "adulthood", pawn.story.Adulthood?.title);
 
             //OTHER PAWN SITUATIONS
 
@@ -232,17 +232,6 @@ namespace SpeakUp
                     MakeRule(symbol + "ailment", hediff.Label);
                 }
             }
-
-            //is the pawn a prisoner
-            //ToDo: Add catch for when they have no guest status at all!
-            if (pawn.GuestStatus != null)
-            {
-                MakeRule(symbol + "colonist_status", "Free");
-            }
-            else
-            {
-                MakeRule(symbol + "colonist_status", pawn.GuestStatus.ToString());
-            }
         }
 
         private static string DayPeriod(Pawn p)
@@ -294,7 +283,7 @@ namespace SpeakUp
         {
             if (output.NullOrEmpty())
             {
-                if (Prefs.DevMode && ModBaseSpeakUp.ShowGrammarDebug) Log.Message($"[SpeakUp] Couldn't process {keyword}. Moving on.");
+                if (Prefs.DevMode && SpeakUpSettings.showGrammarDebug) Log.Message($"[SpeakUp] Couldn't process {keyword}. Moving on.");
                 return;
             }
             tempRules.Add(new Rule_String(keyword, output));

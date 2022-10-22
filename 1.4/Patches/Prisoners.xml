@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "BuildRapport"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry(p=12,tag=PrisonerRapport)->[conversation]</li>
+					<li>conversation->You should [join_us], [RECIPIENT_nameDef].</li>
+					<li>conversation->Stay with us — [join_us]!</li>
+					<li>conversation->Should you [join_us] and leave [RECIPIENT_factionName], you won't regret it — we're much better off here.</li>
+					<li>conversation->Are you sure [RECIPIENT_factionName] is your best option? [you_should_join_us]</li>
+					<li>conversation->Are you sure your best possible future is with [RECIPIENT_factionName]? [you_should_join_us]</li>
+					<li>conversation->I'm sure [RECIPIENT_factionName] just uses you as cannon fodder... [you_should_join_us]</li>
+					<li>conversation->Don't you think your precious skills are wasted in [RECIPIENT_factionName]? [you_should_join_us]</li>
+					<li>conversation->It's either here alone in this isolated cell, or with us in a thriving community.</li>
+					<li>conversation->You don't want to spend the rest of your life doing nothing here, do you? [you_should_join_us]</li>
+					<li>conversation->Nobody's coming for you, [RECIPIENT_nameDef]. You're stuck here, but I'm offering you a chance to [join_us]...</li>
+					<li>conversation->I can promise that you'll have a better life if you [join_us].</li>
+					<li>conversation->There's more to the world than this room. Don't you want to go out and see it? [join_us]!</li>
+					<li>conversation->Protection, food, water — it's all yours if you want to [join_us]...</li>
+					<li>conversation->Geez — don't you get bored with doing nothing in here all day? [you_should_join_us]</li>
+						<li>you_should_join_us->You should [join_us]...</li>
+						<li>you_should_join_us->Wouldn't you rather [join_us]?</li>
+						<li>you_should_join_us->You'll be better off if you [join_us].</li>
+						<li>you_should_join_us->[join_us] — you'll be much happier and safer.</li>
+							<li>join_us->join us</li>
+							<li>join_us->tag along with us</li>
+							<li>join_us->stick with us</li>
+							<li>join_us->join up with us</li>
+							<li>join_us->team up with us</li>
+							<li>join_us->join forces with us</li>
+							<li>join_us->join forces with [INITIATOR_factionName]</li>
+							<li>join_us->join [INITIATOR_factionName]</li>
+							<li>join_us->become a member of [INITIATOR_factionName]</li>
+				
+				<li>r_logentry(p=3,tag=PrisonerPassion)->[passion]</li>
+					<li>passion->What's your preferred activity?</li>
+					<li>passion->Is there any task you prefer carrying out?</li>
+					<li>passion(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+					
+				<li>r_logentry(p=3,tag=PrisonerBestSkill)->[bestskill]</li>
+					<li>bestskill->What's your best skill?</li>
+					<li>bestskill->Is there any area you excel in?</li>
+					<li>bestskill(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+				
+		<!-- ===TRAITS=== -->
+				<!-- ===GENERAL=== -->
+				<li>r_logentry(p=5,tag=PrisonerCV)->[cv]</li>
+					<li>cv->What can you tell me about yourself?</li>
+					<li>cv->Is there anything you'd like to tell me about yourself?</li>
+				<!-- ===NEED ANYTHING=== -->
+				<li>r_logentry(p=2,tag=PrisonerNeed)->[needanything]</li>
+					<li>needanything->Do you need anything?</li>
+					<li>needanything->Is there anything you need?</li>
+				<!-- ===CLOTHES=== -->
+				<li>r_logentry(p=2,tag=PrisonerClothes)->[clothes]</li>
+					<li>clothes->If you need better clothing, let me know — I might be able to provide it...</li>
+					<li>clothes->Do you need better clothing?</li>
+				
+				<!-- ===PSYCHIC SENSITIVIY=== -->
+				<li>r_logentry(p=10,INITIATOR_trait==psychically sensitive,tag=PrisonerPsychic)->[psychic_probe]</li>
+				<li>r_logentry(p=10,INITIATOR_trait==psychically hypersensitive,tag=PrisonerPsychic)->[psychic_probe]</li>
+				
+				<!-- ===Higher chance if the prisoner is hostile=== -->
+				<li>r_logentry(p=10,RECIPIENT_opinion&lt;0,INITIATOR_trait==psychically sensitive,tag=PrisonerPsychic)->[psychic_probe]</li>
+				<li>r_logentry(p=10,RECIPIENT_opinion&lt;0,INITIATOR_trait==psychically hypersensitive,tag=PrisonerPsychic)->[psychic_probe]</li>
+
+					<!-- ===Chances of succesful aura scan (higher for higher sensitivity)=== -->
+					<li>psychic_probe(p=3,INITIATOR_trait==psychically hypersensitive)->[psychic_aurascan]</li>
+					<li>psychic_probe(INITIATOR_trait==psychically sensitive)->[psychic_aurascan]</li>
+					<li>psychic_probe->[psychic_aurascan]</li>
+					<!-- ===Chances of basic aura scan=== -->					
+					<li>psychic_probe->[psychic_fail]</li>
+					<li>psychic_probe(p=3,RECIPIENT_trait==psychically dull)->[psychic_fail]</li>
+
+					<!-- ===Psychically deaf is immune=== -->
+					<li>psychic_probe(RECIPIENT_trait==psychically deaf,priority=1)->[no_aura]</li>
+						<li>no_aura->I feel no psychic energy at all around you — [fascinating]... </li>
+						<li>no_aura->Your psychic aura is a complete void — [fascinating]... </li>
+						<li>no_aura->I wonder what happened to your psychic aura — I sense nothing... </li>
+						<li>no_aura->When I try to attune towards your psychic aura, I just feel a static void... </li>
+						<li>no_aura->Mmm... your lack of psychic aura is weird and unsettling, but it can actually be a useful defense too...</li>
+							<li>fascinating->fascinating</li>
+							<li>fascinating->how curious</li>
+							<li>fascinating->how peculiar</li>
+							<li>fascinating->how strange</li>
+							<li>fascinating->that's uncanny</li>
+							<li>fascinating->that's puzzling</li>
+							<li>fascinating->that's aberrant</li>
+					
+					<!-- ===Aura scan (success)=== -->
+					<li>psychic_aurascan->[psychic] [aura_image]...</li>
+					
+					<!-- ===Aura scan (fail)=== -->
+					<li>psychic_fail->[psychic] [aura_fail]</li>
+						<li>aura_fail->I can't read much out of it...</li>
+						<li>aura_fail->it radiates a [confused] vision I can't understand.</li>
+							<li>confused->confused</li>
+							<li>confused->chaotic</li>
+							<li>confused->muddled</li>
+							<li>confused->jumbled</li>
+							<li>confused->blurred</li>
+							<li>confused->faint</li>
+							<li>confused->foggy</li>
+							<li>confused->vague</li>
+							<li>confused(INITIATOR_intellectual_level>=5)->nebulous</li>
+							
+						<li>psychic(RECIPIENT_trait==psychically hypersensitive)->I sense that your psychic aura is extremely strong —</li>
+						<li>psychic(RECIPIENT_trait==psychically sensitive)->I sense that your psychic aura is strong —</li>
+						<li>psychic(priority=-1)->I sense that there's nothing special about your psychic aura —</li>
+						<li>psychic(RECIPIENT_trait==psychically dull)->I can barely sense a feeble psychic aura around you —</li>
+
+						<li>aura_image(RECIPIENT_trait==psychically hypersensitive)->it radiates a sharp vision of [aura]</li>
+						<li>aura_image(RECIPIENT_trait==psychically sensitive)->it radiates a clear vision of [aura]</li>
+						<li>aura_image(priority=-1)->it radiates a vision of [aura]</li>
+						<li>aura_image(RECIPIENT_trait==psychically dull)->it radiates a [confused] vision of [aura]</li>
+						
+							<!-- ===Aura visions=== -->
+							<li>aura(RECIPIENT_shooting_passion!=None)->[a_bowman_adj] [bowman]</li>
+								<li>bowman->bowman</li>
+								<li>bowman->marksman</li>
+								
+								<li>a_bowman_adj(RECIPIENT_trait==trigger-happy)->an eager</li>
+								<li>a_bowman_adj(RECIPIENT_trait==careful shooter)->a calm</li>
+								
+								<li>a_bowman_adj(RECIPIENT_trait==nimble)->[nimble]</li>
+									<li>nimble->a swift</li>
+									<li>nimble->an agile</li>
+									<li>nimble->a quick</li>
+								
+								<li>a_bowman_adj->a [Color]-dressed</li>
+							
+							<li>aura(RECIPIENT_melee_passion!=None,RECIPIENT_trait==brawler,priority=1)->a wolf locked in a deadly fight with a cougar</li>
+							<li>aura(RECIPIENT_melee_passion!=None,RECIPIENT_trait==nimble,priority=1)->[nimble] wolf locked in a deadly fight with a cougar</li>
+							<li>aura(RECIPIENT_melee_passion!=None)->a wolf biting its prey</li>
+							<li>aura(RECIPIENT_construction_passion!=None)->an expanding fancy building</li>
+							<li>aura(RECIPIENT_mining_passion!=None)->a tunnel with glittering walls</li>
+							<li>aura(RECIPIENT_cooking_passion!=None)->a table heavy with enticing food</li>
+							<li>aura(RECIPIENT_plants_passion!=None)->a [AdjectiveLarge] [TreeType] forest</li>
+							<li>aura(RECIPIENT_animals_passion!=None)->a happy [Animal]</li>
+							<li>aura(RECIPIENT_crafting_passion!=None)->a chest full of rich jewelry, fancy clothes and fine weapons</li>
+							<li>aura(RECIPIENT_artistic_passion!=None)->a finely chiseled statue, singing a sweet melody</li>
+							<li>aura(RECIPIENT_medical_passion!=None)->a [Animal] nurturing its offspring back to health</li>
+							<li>aura(RECIPIENT_social_passion!=None)->two handshaking [PersonJob]s</li>
+							<li>aura(RECIPIENT_intellectual_passion!=None)->a large scroll of vast knowledge</li>
+							<li>aura(RECIPIENT_trait==abrasive)->a monkey throwing sticks and stones</li>
+							<li>aura(RECIPIENT_trait==cannibal)->a happy [Animal] eating its own offspring</li>
+							<li>aura(RECIPIENT_trait==bloodlust)->a bloody skull on a pike</li>					
+							<li>aura(RECIPIENT_trait==kind)->a white dove flying over a [TerrainFeature]</li>
+							<li>aura(RECIPIENT_trait==body modder)->a [PersonJob] with strange gleaming eyes and strong iron arms</li>
+							<li>aura(RECIPIENT_trait==body purist)->an angry [PersonJob] punching and kicking a robot</li>
+							<li>aura(RECIPIENT_trait==night owl)->a bright full moon in a starry and clear night</li>
+							<li>aura(RECIPIENT_trait==greedy)->a chest filled with gold and silver coins</li>
+							<li>aura(RECIPIENT_trait==jealous)->a crow cawing loudly against a white swan</li>
+							<li>aura(RECIPIENT_trait==ascetic)->a rustic basket holding lots of juicy berries, peacefully floating on a clear water creek</li>
+							<li>aura(RECIPIENT_trait==nudist)->a smiling naked child swimming in a pleasent creek</li>
+							<li>aura(RECIPIENT_trait==asexual)->a peaceful [PersonJob] ignoring a gleaming sword and its golden sheath</li>
+							<li>aura(RECIPIENT_trait==bisexual,RECIPIENT_gender==Female)->two swords and a sheath lively dancing around a tall fire</li>
+							<li>aura(RECIPIENT_trait==bisexual,RECIPIENT_gender==Male)->two sheaths and a sword lively dancing around a tall fire</li>
+							<li>aura(RECIPIENT_trait==gay,RECIPIENT_gender==Female)->two sheaths lively dancing around a tall fire</li>
+							<li>aura(RECIPIENT_trait==gay,RECIPIENT_gender==Male)->two swords lively dancing around a tall fire</li>			
+							<li>aura(RECIPIENT_trait==misandrist)->a proud female [Animal] looking down on a male [Animal]</li>
+							<li>aura(RECIPIENT_trait==misogynist)->a proud male [Animal] looking down on a female [Animal]</li>
+							<li>aura(RECIPIENT_trait==great memory)->a long list of perfectly organized numbers and words</li>
+							<li>aura(RECIPIENT_trait==gourmand)->a richly decorated table heavy with fancy delicacies</li>
+							<li>aura(RECIPIENT_trait==undergrounder)->a safe complex of underground caves</li>
+							<li>aura(RECIPIENT_trait==tortured artist)->a swirling chaos of colorful mixing threads</li>
+							<li>aura(RECIPIENT_trait==teetotaler)->a large glass of water on a solid stone table</li>
+							<li>aura(RECIPIENT_trait==industrious)->a large hive of energic bees</li>
+							<li>aura(RECIPIENT_trait==hard worker)->a hive of lively bees</li>
+							<li>aura(RECIPIENT_trait==lazy)->an empty, silent hive</li>
+							<li>aura(RECIPIENT_trait==slothful)->an empty, silent hive crashing on the ground</li>
+							<li>aura(RECIPIENT_trait==sanguine)->a golden light over a high stone wall</li>
+							<li>aura(RECIPIENT_trait==optimist)->a silver thread running through a huge beautiful tapestry</li>
+							<li>aura(RECIPIENT_trait==pessimist)->a huge, tattered tapestry</li>
+							<li>aura(RECIPIENT_trait==depressive)->a dimly lit wall made of bones</li>
+							<li>aura(RECIPIENT_trait==iron-willed)->an iron shield that endures volley after volley of deadly arrows</li>
+							<li>aura(RECIPIENT_trait==steadfast)->a bronze shield that endures a volley of arrows</li>
+							<li>aura(RECIPIENT_trait==nervous)->a wooden shield pierced by a volley of arrows</li>
+							<li>aura(RECIPIENT_trait==volatile)->a broken wooden shield</li>
+							<li>aura(RECIPIENT_trait==neurotic)->a perfect hexagon surrounded by several irregular [Shape]s</li>
+							<li>aura(RECIPIENT_trait==very neurotic)->a perfect hexagon surrounding several irregular [Shape]s</li>
+							<li>aura(RECIPIENT_trait==psychopath)->a weird and scary house filled with unnerving [Animal]-like [Shape]s</li>
+							<li>aura(priority=-1)->... oh — the vision suddenly vanished... that's strange...</li>
+
+		<!-- ===SKILLS=== -->
+				<!-- ===SHOOTING AND MELEE=== -->				
+				<li>r_logentry(tag=PrisonerFightingSkills)->[fighting]</li>
+				<li>r_logentry(RECIPIENT_trait==bloodlust,tag=PrisonerFightingSkills)->[fighting]</li>
+					<li>fighting->[about] fighting skills?</li>
+					<li>fighting->[skilled] using weapons?</li>
+					<li>fighting(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+				
+				<!-- ===CONSTRUCTION=== -->	
+				<li>r_logentry(tag=PrisonerConstructionSkills)->[construction]</li>
+					<li>construction->[about] construction skills?</li>
+					<li>construction->[skilled] carpentry?</li>
+					<li>construction->[skilled] building large structures?</li>
+					<li>construction(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+
+				<!-- ===MINING=== -->	
+				<li>r_logentry(tag=PrisonerMiningSkills)->[mining]</li>
+					<li>mining->[about] mining skills?</li>
+					<li>mining->[skilled] mining?</li>
+					<li>mining->[skilled] extracting minerals?</li>
+					<li>mining(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+					
+				<!-- ===COOKING=== -->	
+				<li>r_logentry(tag=PrisonerCookingSkills)->[cooking]</li>
+					<li>cooking->[about] cooking skills?</li>
+					<li>cooking->[skilled] cooking?</li>
+					<li>cooking(RECIPIENT_opinion&lt;0)->[cooperate]</li>					
+
+				<!-- ===PLANTS=== -->	
+				<li>r_logentry(tag=PrisonerPlantsSkills)->[plants]</li>
+					<li>plants->[about] [farming] skills?</li>
+					<li>plants->[skilled] [farming]?</li>
+					<li>plants(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+						<li>farming->farming</li>
+						<li>farming(INITIATOR_intellectual_level>=5)->agricultural</li>
+						<li>farming(INITIATOR_intellectual_level>=10)->agrarian</li>
+
+				<!-- ===ANIMALS=== -->	
+				<li>r_logentry(tag=PrisonerAnimalsSkills)->[animals]</li>
+					<li>animals->[about] herding skills?</li>
+					<li>animals->[about] taming skills?</li>
+					<li>animals->[skilled] [managing] animals?</li>
+					<li>animals(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+						<li>managing->managing</li>
+						<li>managing->looking after</li>
+						<li>managing->taking care of</li>
+						<li>managing->caring for</li>
+						<li>managing->handling</li>
+
+				<!-- ===CRAFTING=== -->	
+				<li>r_logentry(tag=PrisonerCraftingSkills)->[crafting]</li>
+					<li>crafting->[about] crafting skills?</li>
+					<li>crafting->[skilled] crafting?</li>
+					<li>crafting->Do you have any craftsmanship?</li>
+					<li>crafting(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+
+				<!-- ===ARTISTIC=== -->	
+				<li>r_logentry(tag=PrisonerArtisticSkills)->[artistic]</li>
+					<li>artistic->[about] artistic skills?</li>
+					<li>artistic->[skilled] arts?</li>
+					<li>artistic->Do you have any artistic talent?</li>
+					<li>artistic(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+
+				<!-- ===MEDICAL=== -->	
+				<li>r_logentry(tag=PrisonerMedicalSkills)->[medical]</li>
+					<li>medical->[about] medical skills?</li>
+					<li>medical->[skilled] curing sickness and dressing wounds?</li>
+					<li>medical->Have you ever studied or performed medical procedures?</li>
+					<li>medical(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+
+				<!-- ===SOCIAL=== -->	
+				<li>r_logentry(tag=PrisonerSocialSkills)->[social]</li>
+					<li>social->[about] diplomatic skills?</li>
+					<li>social->[about] social skills?</li>
+					<li>social->[skilled] social interactions?</li>
+					<li>social->[skilled] negotiating?</li>
+					<li>social(RECIPIENT_opinion&lt;0)->[cooperate]</li>
+					
+				<!-- ===INTELLECTUAL=== -->	
+				<li>r_logentry(tag=PrisonerIntellectualSkills)->[intellectual]</li>
+					<li>intellectual->[about] intellectual skills?</li>
+					<li>intellectual->[about] logic and reasoning skills?</li>
+					<li>intellectual->[skilled] logic and reasoning?</li>
+					<li>intellectual->[skilled] scientific research?</li>
+					<li>intellectual(RECIPIENT_opinion&lt;0)->[cooperate]</li>					
+					
+				<!-- ===WILDCARDS=== -->
+				<li>about->what about your</li>
+				<li>about->do you have any</li>
+				<li>about->what can you tell me about your</li>
+				<li>skilled->are you any good at</li>
+				<li>skilled->are you skilled in</li>
+				
+				<li>cooperate(INITIATOR_trait==kind,priority=2)->Please, answer my questions...</li>
+				<li>cooperate(RECIPIENT_trait==kind,priority=1)->[cv]</li>
+				<li>cooperate(p=3,INITIATOR_trait==psychically hypersensitive)->[cooperate_psy]</li>
+				<li>cooperate(p=3,INITIATOR_trait==psychically sensitive)->[cooperate_psy]</li>
+					<li>cooperate_psy(RECIPIENT_trait==psychically deaf,priority=1)->Luckily for you, my psychic probing techniques don't work on you — I'll have to resort to more traditional ways...</li>
+					<li>cooperate_psy->Don't make me use my psychic powers to probe your mind...</li>
+					<li>cooperate_psy->If you won't answer my questions, I'll have to use my psychic powers to probe your mind...</li>
+					<li>cooperate_psy->If I have to, I'll resort to using my psychic powers to probe your mind...</li>
+				<li>cooperate->Come on... answer my questions...</li>
+				<li>cooperate->Your silence won't stop me from asking you the same questions over and over again.</li>
+				<li>cooperate->Look — we're both losing our time here. Answer my questions and let's get done with it.</li>
+				<li>cooperate->I'll keep asking you the same questions over and over again, if I must.</li>
+				<li>cooperate(p=3,INITIATOR_mood&lt;0.4)->Answer my questions, damn it!</li>
+				<li>cooperate(p=3,INITIATOR_mood&lt;0.2)->Answer my questions, or else!</li>
+			</rulesStrings>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "RecruitAttempt"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<li>r_logentry->[attempt]</li>
+					<li>attempt(priority=-1)->[not_join]</li>
+						<li>not_join(tag=PrisonerEndchat)->[endchat]</li>
+							<li>endchat->Well, [RECIPIENT_nameDef] — we'll continue our nice chat later...</li>
+							<li>endchat->I'm done for now, [RECIPIENT_nameDef] — we'll continue our conversation another day...</li>
+						<li>not_join(tag=PrisonerRefuses)->[refuses]</li>
+							<li>refuses->[ready] us, [RECIPIENT_nameDef]?</li>
+							<li>refuses->[ready] [INITIATOR_factionName], [RECIPIENT_nameDef]?</li>
+								<li>ready->Are you ready to join</li>
+								<li>ready->Will you join</li>
+								<li>ready->How'd you like to join</li>
+					<li>attempt(RECIPIENT_faction==PlayerTribe)->[recruited]</li>
+					<li>attempt(RECIPIENT_faction==PlayerColony)->[recruited]</li>
+						<li>recruited(tag=PrisonerAccepts)->[part1] [part2]</li>
+							<li>part1->I'm glad I finally managed to gain your trust.</li>
+							<li>part1->I can see you're ready to join us.</li>
+							<li>part1->I'm glad you finally understood joining us is the best choice for you.</li>
+							<li>part1->I'm glad you finally changed your mind.</li>
+							<li>part2->Welcome to [INITIATOR_factionName], [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure you'll be an important part of our community, [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure you'll play an important role in our community, [RECIPIENT_nameDef]!</li>
+							<li>part2->I'm sure your [RECIPIENT_bestSkill] skills will be very appreciated in our community, [RECIPIENT_nameDef]!</li>			
+			</rulesStrings>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ===stuck indoors=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>StuckIndoors</defName>
+			<label>weather — stuck indoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===undergrounder (priority 2)=== -->
+					<li>r_logentry(INITIATOR_opinion>=0,INITIATOR_trait==undergrounder,priority=2)->[i_undergrounder]</li>
+						<li>i_undergrounder(RECIPIENT_trait==undergrounder,priority=1)->I totally agree with you, [recipient]!</li>
+						<li>i_undergrounder->I don't really care about what's the weather like out there, [recipient]...</li>
+					<li>r_logentry(INITIATOR_opinion>=0,INITIATOR_thoughtDefName==NeedOutdoors,priority=1)->Me too, [recipient].</li>
+					<li>r_logentry(INITIATOR_opinion>=0)->I can tell you — we're having a [weather].</li>
+					
+					<li>weather(WEATHER==clear,priority=1)->[dayperiod_adj] [DAYPERIOD]</li>
+					<li>dayperiod_adj(DAYPERIOD==morning)->sunny</li>
+					<li>dayperiod_adj(DAYPERIOD==afternoon)->sunny</li>
+					<li>dayperiod_adj(DAYPERIOD==evening)->starry</li>
+					<li>dayperiod_adj(DAYPERIOD==night)->starry</li>
+					
+					<li>weather(WEATHER==fog,priority=1)->foggy [DAYPERIOD]</li>
+					<li>weather(WEATHER==rain,priority=1)->rainy [DAYPERIOD]</li>
+					<li>weather(WEATHER==foggy rain,priority=1)->foggy and rainy [DAYPERIOD]</li>
+					<li>weather(WEATHER==hard snow,priority=1)->snowstorm</li>
+					<li>weather(WEATHER==gentle snow,priority=1)->snowy [DAYPERIOD]</li>
+					
+					<li>weather->[WEATHER]</li>
+					
+					<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>	
+	<!-- ===clear weather — good temp — not entombed=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherClearGoodtempNotEntombed</defName>
+			<label>clear weather — good temp — not entombed</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion=== -->
+						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+						<!-- ===undergrounder indoors (priority 2)=== -->
+							<li>good_opinion(INITIATOR_trait==undergrounder,OUTDOORS==No,priority=2)->[i_undergrounder]</li>
+								<li>i_undergrounder->I don't really care about what's the weather like out there, [recipient]...</li>
+						<!-- ===Entombed (priority 1)=== -->
+							<li>good_opinion(INITIATOR_thoughtDefName==NeedOutdoors,priority=1)->I wish I had a chance to go outside and see it for myself!</li>
+						<!-- ===Not entombed (default)=== -->
+							<li>good_opinion->[yes], [recipient]. [outside_inside]</li>
+
+					<!-- === Comment if outside=== -->
+						<li>outside_inside(OUTDOORS==Yes)->[temperature]</li>
+						<li>temperature(TEMPERATURE>30,TEMPERATURE&lt;=44)->It's a very hot [DAYPERIOD], but it's still enjoyable.</li>
+						<li>temperature(TEMPERATURE>26,TEMPERATURE&lt;=30)->A warm, clear [DAYPERIOD] is a blessing!</li>
+						<li>temperature(TEMPERATURE>=16,TEMPERATURE&lt;=26)->Not too hot, not too cold — a perfect [DAYPERIOD]!</li>
+						<li>temperature(TEMPERATURE>5,TEMPERATURE&lt;16)->A bit chilly, but a [nice] [DAYPERIOD] still.</li>
+						<li>temperature(TEMPERATURE>=0,TEMPERATURE&lt;=5)->But this cold is almost numbing[plants1]</li>
+						<li>temperature(TEMPERATURE>=-10,TEMPERATURE&lt;0)->But it's freezing[plants2]</li>
+						<li>plants1(INITIATOR_plants_level&lt;5)->!</li>
+						<li>plants2(INITIATOR_plants_level&lt;5)->!</li>
+						<li>plants1(INITIATOR_plants_level>=5)-> — and plants in the open will grow much slower.</li>
+						<li>plants2(INITIATOR_plants_level>=5)-> — and plants in the open might even freeze and die!</li>
+					<!-- ===Comment if inside=== -->
+						<li>outside_inside(OUTDOORS==No)->[outside]</li>
+						<li>outside->It certainly helps to have such a [nice] weather!</li>
+						<li>outside->This [nice] weather is good for us!</li>				
+					<!-- ===WILDCARDS=== -->
+						<li>nice->nice</li>
+						<li>nice->good</li>
+						<li>nice->pleasant</li>
+						<li>nice->wonderful</li>
+						<li>nice->fair</li>
+						<li>nice->fine</li>				
+						<li>yes->yes</li>
+						<li>yes->you're right</li>
+						<li>yes->I agree with you</li>				
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Fog — good temperature — not entombed=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherFogGoodtempNotEntombed</defName>
+			<label>fog — good temp — not entombed</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion(DAYPERIOD==morning)->At least the sunlight helps a little.</li>
+						<li>good_opinion(DAYPERIOD==morning)->With some luck, daylight should soon get rid of this fog.</li>
+						<li>good_opinion(DAYPERIOD==afternoon)->Let's hope this fog ends before evening — it really makes it difficult to see things.</li>
+						<li>good_opinion(DAYPERIOD==evening)->Foggy evenings are perfect for trouble — [inside_outside].</li>
+						<li>good_opinion(DAYPERIOD==night)->Foggy nights are perfect for trouble — [inside_outside].</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->I heard that bonfires help to dissipate fog.</li>
+						
+						<li>inside_outside(OUTDOORS==Yes)->maybe we should get inside</li>
+						<li>inside_outside(OUTDOORS==No)->maybe we should stay inside</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Fog — too smart=== -->	
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherFogToosmart</defName>
+			<label>fog — too smart</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<li>r_logentry(INITIATOR_trait==too smart)->Correct, yet I do believe you wouldn't be able to determine its type. Well, I can: it's a [fog_type] fog.</li>
+					<li>fog_type(DAYPERIOD==evening)->radiation</li>
+					<li>fog_type(DAYPERIOD==night)->ground</li>
+					<li>fog_type->freezing</li>
+					<li>fog_type->frontal</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=10)->That is indeed a correct definition for fog.</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=5,INITIATOR_intellectual_level&lt;10)->Mmm... yes, you are correct.</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Err... what was that again?</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Wait — fog is... what!?</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Minor)->That's quite interesting!</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Major)->Fascinating!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Fog — wimp=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherFogWimp</defName>
+			<label>fog — trait — wimp</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion&lt;10)->Come on, [recipient] — stop being such a sissy! It's just fog!</li>
+					<li>r_logentry(INITIATOR_trait==brawler,INITIATOR_opinion>=15)->Don't worry, [recipient] — if that happens, I'll just smash it out of existence!</li>
+					<li>r_logentry(INITIATOR_trait==wimp,priority=1)->You're right, [recipient] — this fog scares the hell out of me too!</li>
+					<li>r_logentry(INITIATOR_trait==wimp,INITIATOR_opinion>=15,priority=1)->In that case, my dear [recipient], we'll just make a run for it!</li>
+					<li>r_logentry(INITIATOR_opinion&lt;10)->[recipient], don't be such a crybaby! It's fog — just fog!</li>
+					<li>r_logentry(INITIATOR_opinion>=15)->No need to be afraid, [recipient]. It's just normal fog.</li>
+					<li>r_logentry->This fog could actually hide some danger, [recipient] — especially at night...</li>
+					<li>r_logentry->Once I heard a story where [story]</li>
+					<li>story->long dead bodies shambled through the fog to feast on the living.</li>
+					<li>story->people got forever trapped in the fog and slowly starved to death.</li>
+					<li>story->an intelligent and evil fog tricked people into entering it — and then sucked their souls.</li>
+					<li>story->a mysterious fog suddenly transported you to an alien strange world...</li>
+					<li>story->this peaceful village was surrounded by a spooky fog and then everyone started killing each other...</li>
+					<li>story->this strange fog set in and started slowly dissolving people, buildings — until nothing was left!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Fog/hostile weather — hunting=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>HuntWithFog</defName>
+			<label>hunting with fog</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<li>r_logentry->Who knows, [recipient]... If I feel like it, I might give it a try anyway.</li>
+					<li>r_logentry(INITIATOR_shooting_level&lt;5,INITIATOR_animals_level&lt;5)->You're right, [recipient] — no hunting for me today. Too bad.</li>
+					<li>r_logentry(INITIATOR_shooting_level>=5,INITIATOR_animals_level>=5)->[recipient], a skilled hunter like me doesn't need to wait for the perfect weather to hunt.</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Rain — good temperature — indoors=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherRainGoodtempIndoors</defName>
+			<label>rain — good temperature — indoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->I hope I won't need to do any task outside.</li>
+						<li>good_opinion(INITIATOR_trait==depressive)->Rain pouring into my soul, drowning any chance of happiness.</li>
+						<li>good_opinion(INITIATOR_trait==gourmand)->I hope this humidity won't set back the cooking and ruin our next meals.</li>
+						<li>good_opinion(INITIATOR_trait==night owl)->The sound of rain is so calming, especially at night.</li>
+						<li>good_opinion(INITIATOR_trait==nudist)->I wish we could get out there and feel the gentle drops on our naked skin.</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->I just don't like rain.</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Hope it stops soon — I prefer dry weather.</li>
+						<li>good_opinion(INITIATOR_trait==undergrounder)->It's so good being inside!</li>
+						<li>good_opinion(INITIATOR_trait==sickly,TEMPERATURE&lt;16)->If I go outside, I'm bound to catch a cold or worse.</li>
+						<li>good_opinion(INITIATOR_trait==wimp,TEMPERATURE&lt;16)->If I go outside, I'll catch a cold for sure.</li>
+						<li>good_opinion(INITIATOR_thoughtDefName==sick,TEMPERATURE&lt;16)->This cold, wet weather will slow down my healing for sure...</li>
+						<li>good_opinion(TEMPERATURE>=16,TEMPERATURE&lt;=26)->Luckily we're inside, all set and cozy.</li>
+						<li>good_opinion(TEMPERATURE>26)->It's so hot in here I'd rather stay out there in the rain to cool down!</li>
+						<li>good_opinion(INITIATOR_plants_level>=5)->A gentle rain like this is great for the plants out there.</li>
+						<li>good_opinion(INITIATOR_plants_level>=5,INITIATOR_trait==lazy)->A gentle rain like this means I won't have to water the fields — good!</li>
+						<li>good_opinion(INITIATOR_plants_passion==Minor)->Rain is Nature's blessing for all the thirsty plants.</li>
+						<li>good_opinion(INITIATOR_plants_passion==Major)->Such a gentle rain is just perfect for the fields!</li>					
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Rain — good temperature — outdoors (recipient wants to get inside)=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherRainGoodtempOutdoors</defName>
+			<label>rain — good temperature — outdoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+						<li>good_opinion->Go on, [recipient]. [comment]</li>
+						<li>comment(INITIATOR_jobDefName==GotoWander)->[wandering]</li>
+						<li>comment(INITIATOR_jobDefName==Wait_Wander)->[wandering]</li>
+						<li>comment(INITIATOR_jobDefName==BuildRoof)->[building]</li>
+						<li>comment(INITIATOR_jobDefName==FinishFrame)->[building]</li>
+						<li>comment(INITIATOR_jobDefName==Clean)->I'll just finish cleaning here [get_inside]</li>
+						<li>comment(INITIATOR_jobDefName==CutPlant)->I'll just finish cutting this plant here [get_inside]</li>
+						<li>comment(INITIATOR_jobDefName==Sow)->I'll just finish sowing the fields here [get_inside]</li>
+						<li>comment(INITIATOR_jobDefName==HaulToContainer)->[hauling]</li>
+						<li>comment(INITIATOR_jobDefName==HaulToCell)->[hauling]</li>
+						<li>comment(INITIATOR_jobDefName==Hunt)->I'll hunt something for us to eat first — [rain_hunt]</li>
+						<li>comment(INITIATOR_jobDefName==Ingest)->I'll just finish eating this [get_inside]</li>
+						<li>comment(INITIATOR_jobDefName==Skygaze)->[relaxing]</li>
+						<li>comment(INITIATOR_jobDefName==SocialRelax)->[relaxing]</li>
+						<li>comment(INITIATOR_trait==depressive)->Indoors... outdoors... what does it matter... it's all the same bleak life...</li>				
+						<li>comment(INITIATOR_trait==sickly,TEMPERATURE&lt;16)->[do_the_same] — I don't want to catch a cold or worse.</li>
+						<li>comment(INITIATOR_trait==wimp,TEMPERATURE&lt;16)->[do_the_same] — I wouldn't like to catch a cold or something.</li>
+						<li>comment(INITIATOR_thoughtDefName==sick,TEMPERATURE&lt;16)->[do_the_same] — I'm sick already and I don't want to get worse.</li>
+						<li>comment(TEMPERATURE>=30)->Although I must say this rain is quite refreshing in this hellish heat!</li>
+						<li>comment(TEMPERATURE&lt;=5)->[do_the_same] — it's freezing out here!</li>
+						<li>comment(INITIATOR_trait==pyromaniac)->[do_the_same] — I just don't like rain.</li>
+						<li>comment(INITIATOR_trait==pyromaniac)->Hope it stops soon — I prefer dry weather.</li>
+						<li>comment(INITIATOR_trait==undergrounder)->[do_the_same] — it's so good being inside!</li>
+						<li>comment-></li>				
+					<!-- ===WILDCARDS=== -->
+						<li>building->I'll just finish building this [get_inside]</li>
+						<li>hauling->I'll just take this where it needs to be [get_inside]</li>
+						<li>rain_hunt(INITIATOR_animals_level>=5,INITIATOR_shooting_level>=5,priority=1)->this rain shouldn't be a problem for me.</li>
+						<li>rain_hunt->although this rain could make things harder for me.</li>
+						<li>relaxing->I'll be chilling out here a bit [get_inside]</li>
+						<li>wandering->I'll take a relaxing stroll in the rain [get_inside]</li>
+						<li>do_the_same->I'll do the same soon enough</li>
+						<li>get_inside->and I'll get inside.</li>
+						<li>get_inside->and I'll go back inside.</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Drystorm — good temp — indoors=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherDrystormGoodtempIndoors</defName>
+			<label>drystorm — good temp — indoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->I heard it too, [recipient]! But I don't hear any rain — we might be in for a wildfire!</li>
+						<li>good_opinion->Yes, [recipient] - quite a loud one! Let's hope no wildfires are started!</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Thunders — the majestic roar of Nature!</li>
+						<li>good_opinion(INITIATOR_trait==tortured artist)->Nature's perfectly expressing my internal turmoil right now.</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->I'm scared of thunders!</li>
+						<li>good_opinion->The way the thunder rumbles in your chest — I [thunder_love_hate] it!</li>
+						<li>thunder_love_hate(INITIATOR_trait==pyromaniac)->love</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->hate</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->fear</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Drystorm — good temp — outdoors=== -->	
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherDrystormGoodtempOutdoors</defName>
+			<label>drystorm — good temp — outdoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->Yes, [recipient] — let's hope it rains soon, or we'll have wildfires!</li>
+						<li>good_opinion->Mmm... maybe I'd better get inside — I don't want to get struck by lightning!</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Yes! I love lightnings!</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->Aww! I'm going inside — it's too dangerous out here!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Storm — good temp — indoors=== -->	
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherStormGoodtempIndoors</defName>
+			<label>storm — good temp — indoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->Whoa — that thunder was loud!</li>
+						<li>good_opinion->This rain's so loud on the roof!</li>
+						<li>good_opinion->It seems the heavens have opened out there!</li>
+						<li>good_opinion->I hope I won't need to do any task outside — I'd immediately get all drenched in this storm!</li>
+						<li>good_opinion(INITIATOR_trait==gourmand)->I hope this humidity won't set back the cooking and ruin our next meals.</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Thunders — the majestic roar of Nature!</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->I just don't like rain.</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Hope it stops soon — I prefer dry weather.</li>				
+						<li>good_opinion(INITIATOR_trait==tortured artist)->Nature's perfectly expressing my internal turmoil right now.</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->I'm scared of thunders!</li>
+						<li>good_opinion(INITIATOR_trait==wimp,TEMPERATURE&lt;16)->If I go outside, I'll catch a cold for sure.</li>
+						<li>good_opinion(INITIATOR_trait==sickly,TEMPERATURE&lt;16)->If I go outside, I'm bound to catch a cold or worse.</li>
+						<li>good_opinion(INITIATOR_trait==undergrounder)->It's so good being inside!</li>
+						<li>good_opinion(INITIATOR_thoughtDefName==sick,TEMPERATURE&lt;16)->This cold, wet weather will slow down my healing for sure...</li>
+						<li>good_opinion(TEMPERATURE>=16,TEMPERATURE&lt;=26)->Luckily we're inside, all set and cozy.</li>
+						<li>good_opinion(INITIATOR_plants_level>=5)->Let's hope no lightning hits our fields!</li>
+						<li>good_opinion(INITIATOR_plants_level>=5,INITIATOR_trait==lazy)->At least, I won't have to water the fields — good!</li>
+					
+						<li>good_opinion->The way the thunder rumbles in your chest — I [thunder_love_hate] it!</li>
+						<li>thunder_love_hate(INITIATOR_trait==brawler)->love</li>
+						<li>thunder_love_hate(INITIATOR_trait==bloodlust)->love</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->hate</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->fear</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Storm — good temp — outdoors=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherStormGoodtempOutdoors</defName>
+			<label>storm — good temp — outdoors</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->I'd better get inside — I don't want to get struck by lightning!</li>
+						<li>good_opinion->Damn, I'm getting all drenched here...</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Thunders — the majestic roar of Nature!</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->I just hate rain!</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->I'm scared of storms!</li>
+						<li>good_opinion->The way the thunder rumbles in your chest — I [thunder_love_hate] it!</li>
+						<li>thunder_love_hate(INITIATOR_trait==pyromaniac)->love</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->hate</li>
+						<li>thunder_love_hate(INITIATOR_trait==wimp)->fear</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Wimp — thunder=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WimpThunder</defName>
+			<label>wimp — thunder</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->Calm down, [recipient] — it's just a normal thunderstorm!</li>
+						<li>good_opinion(INITIATOR_trait==brawler)->Grow up, [recipient]! It's just a normal thunderstorm!</li>
+						<li>good_opinion(INITIATOR_trait==kind,priority=1)->There, there — I'm here for you, [recipient]!</li>
+						<li>good_opinion(INITIATOR_trait==pyromaniac)->Why so scared? Lightnings and thunders are so fascinating!</li>
+						<li>good_opinion(INITIATOR_trait==wimp)->Aww, [recipient]! I'm scared too!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Hard snow — good temperature — not entombed=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherHardsnowGoodtempNotEntombed</defName>
+			<label>hard snow — good temp — not entombed</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion->We're in for some heavy snow shoveling, it seems...</li>
+						<li>good_opinion(OUTDOORS==No)->Let's keep the doors closed — so that we can keep warm indoors!</li>
+						<!-- === outdoors === -->
+							<li>good_opinion(OUTDOORS==Yes)->[outdoors]</li>
+							<li>outdoors->And this wind — I feel it cutting my face!</li>
+							<li>outdoors->I can't keep my eyes open... too much snow in my face...</li>
+							<li>outdoors->Walking is getting difficult out here... I'm getting stuck...</li>
+							<li>outdoors(INITIATOR_trait==sickly,TEMPERATURE&lt;10)->I must get back inside at once — I don't want to catch a cold or worse.</li>
+							<li>outdoors(INITIATOR_trait==wimp,TEMPERATURE&lt;10)->I should get back inside — I wouldn't like to catch a cold or something.</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===Hard snow — too smart=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherSnowstormToosmart</defName>
+			<label>hard snow — too smart</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<li>r_logentry(INITIATOR_trait==too smart)->Correct, yet I bet you wouldn't know that a ground blizzard is a weather condition where snow is not falling but loose snow on the ground is lifted and blown by strong winds.</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=10)->That is indeed a correct definition for a winter storm.</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=5,INITIATOR_intellectual_level&lt;10)->Mmm... yes, you are correct.</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Err... what was that again?</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Wait — winter... storm is... what!?</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Minor)->That's quite interesting!</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Major)->Fascinating!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===gentle snow — good temperature — not entombed=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherSoftsnowGoodtempNotEntombed</defName>
+			<label>gentle snow — good temp — not entombed</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry->[good_opinion]</li>
+						<li>good_opinion(INITIATOR_trait==lazy)->It shouldn't be enough to need shoveling — nice!</li>
+						<li>good_opinion(INITIATOR_trait==slothful)->I'm glad it's not enough to need shoveling — nice!</li>
+						<li>good_opinion(INITIATOR_intellectual_passion!=None)->With every falling flake, a unique spark of interest falls from the skies.</li>
+						<li>good_opinion(INITIATOR_plants_passion!=None)->Nature is full of genius and divinity — not a snowflake escapes its fashioning hand.</li>
+						<li>good_opinion(INITIATOR_trait==kind)->Kindness is like snow. It beautifies everything it covers.</li>
+						<li>good_opinion(INITIATOR_trait==ascetic)->To appreciate the beauty of a snowflake it is necessary to stand out in the cold.</li>
+						<li>good_opinion->When it snows, one may either shovel or make snow angels [optimist_pessimist]</li>
+							<li>optimist_pessimist(INITIATOR_trait==optimist)-> — I prefer making snow angels!</li>
+							<li>optimist_pessimist(INITIATOR_trait==sanguine)-> — I obviously prefer making snow angels!</li>
+							<li>optimist_pessimist(INITIATOR_trait==pessimist)-> — in fact, we always end up shoveling...</li>
+							<li>optimist_pessimist(INITIATOR_trait==depressive)-> — in fact, we're all doomed to the shovel...</li>
+							<li>optimist_pessimist(INITIATOR_mood&lt;0.4)-> — today I feel more like shoveling...</li>
+							<li>optimist_pessimist(INITIATOR_mood>=0.4)-> — today I feel more like making snow angels!</li>
+						<li>good_opinion(INITIATOR_trait==night owl)->Snow falling soundlessly in the middle of the night will always fill my heart with sweet clarity.</li>
+						<li>good_opinion(INITIATOR_social_passion!=None)->Snowflakes are one of nature's most fragile things, but just look what they can do when they stick together!</li>
+					<!-- mood (default) === -->				
+						<li>good_opinion(INITIATOR_mood>=0.7)->I can't wait to build a snowman!</li>
+						<li>good_opinion(INITIATOR_mood>=0.4)->A snow blanketed landscape is so nice!</li>
+						<li>good_opinion(INITIATOR_mood&lt;0.4)->Snow...? Whatever, [recipient]... whatever...</li>
+					<!-- outdoors === -->
+						<li>good_opinion(OUTDOORS==Yes)->[outdoors]</li>
+						<li>outdoors(INITIATOR_mood>=0.4)->Snowflakes are so beautiful!</li>
+						<li>outdoors(INITIATOR_mood&lt;0.4)->Damn snowflakes in the eyes...</li>
+						<li>outdoors(INITIATOR_trait==sickly,TEMPERATURE&lt;10)->I must get back inside at once — I don't want to catch a cold or worse.</li>
+						<li>outdoors(INITIATOR_trait==wimp,TEMPERATURE&lt;10)->I should get back inside — I wouldn't like to catch a cold or something.</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+	<!-- ===gentle snow — too smart=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WeatherSnowToosmart</defName>
+			<label>gentle snow — too smart</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<li>r_logentry(INITIATOR_trait==too smart)->Correct — yet I bet you wouldn't know that its main constituent shapes, from which combinations may occur, are needle, column, plate, and rime.</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=10)->That is indeed a correct definition for a snowflake.</li>
+					<li>r_logentry(INITIATOR_intellectual_level>=5,INITIATOR_intellectual_level&lt;10)->Mmm... yes, you are correct.</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Err... what was that again?</li>
+					<li>r_logentry(INITIATOR_intellectual_level&lt;5)->Wait — snow... flakes are... what!?</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Minor)->That's quite interesting!</li>
+					<li>r_logentry(INITIATOR_intellectual_passion==Major)->Fascinating!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+
+</Defs>

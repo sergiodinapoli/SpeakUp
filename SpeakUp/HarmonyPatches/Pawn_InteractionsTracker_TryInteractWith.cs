@@ -12,7 +12,7 @@ namespace SpeakUp
     {
         public static void Prefix(Pawn recipient, ref InteractionDef intDef)
         {
-            if (ModBaseSpeakUp.ToggleTalkBack) talkBack = true;
+            if (SpeakUpSettings.toggleTalkBack) talkBack = true;
             if (Prefs.LogVerbose) Log.Message($"[SpeakUp] {recipient} is interacting with {intDef.defName}");
         }
     }

@@ -5,16 +5,15 @@ using Verse;
 namespace SpeakUp
 {
     using static DialogManager;
-    using static ModBaseSpeakUp;
     public class Talk
     {
-        public static int count => LinesPerConversation;
-        public static int interval => IntervalBetweenLines;
+        public static int count => SpeakUpSettings.linesPerConversation;
+        public static int interval => SpeakUpSettings.ticksBetweenLines;
 
         public int
             latestReplyCount = 0,
             expireTick = 0;
-        public int remainingReplies => LinesPerConversation - latestReplyCount;
+        public int remainingReplies => SpeakUpSettings.linesPerConversation - latestReplyCount;
 
         public Pawn nextInitiator, nextRecipient;
 
@@ -45,7 +44,7 @@ namespace SpeakUp
 
         public void Reply(string tag)
         {
-            if (SameRegionRestriction && Initiator.GetRegion() != Recipient.GetRegion()) return;
+            if (SpeakUpSettings.sameRegionRestriction && Initiator.GetRegion() != Recipient.GetRegion()) return;
             if (remainingReplies > 0)
             {
                 bool continuing = tag == tagToContinue;

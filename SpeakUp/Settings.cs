@@ -1,93 +1,78 @@
-﻿using UnityEngine;
+﻿using HarmonyLib;
+using System;
+using UnityEngine;
 using Verse;
 
 namespace SpeakUp
 {
     //In case we need more elaborate settings
-    public class ModNameMod : Mod
+    public class SpeakUpMod : Mod
     {
-        private ModNameSettings settings;
+        SpeakUpSettings settings;
 
-        public ModNameMod(ModContentPack content) : base(content)
+        public SpeakUpMod(ModContentPack content) : base(content)
         {
-            settings = GetSettings<ModNameSettings>();
+            var harmony = new Harmony("jpt.speakup");
+            harmony.PatchAll();
+            settings = GetSettings<SpeakUpSettings>();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            ModNameSettings.DoWindowContents(inRect);
+            Listing_Standard listing = new Listing_Standard();
+
+            listing.Begin(inRect);
+            listing.Label("Lines Per Conversation: " + SpeakUpSettings.linesPerConversation.ToString(), -1, "How many lines the pawns will use when talking.");
+            SpeakUpSettings.linesPerConversation = (int)Math.Truncate(listing.Slider(SpeakUpSettings.linesPerConversation, 0f, 5f));
+            listing.Label("Ticks Between Lines: " + SpeakUpSettings.ticksBetweenLines.ToString(), -1, "How many ticks between two lines");
+            SpeakUpSettings.ticksBetweenLines = (int)Math.Truncate(listing.Slider(SpeakUpSettings.ticksBetweenLines, 0f, 120f));
+
+            listing.CheckboxLabeled("Same Region Restriction", ref SpeakUpSettings.sameRegionRestriction, "Restrict pawns from talking when in different rooms.");
+            listing.CheckboxLabeled("Force No Translate", ref SpeakUpSettings.forceNoTranslate, "Remove translations from interactions. This allows non english games to see the dialogues, but may cause bugs.");
+            listing.CheckboxLabeled("Show Grammar Debug", ref SpeakUpSettings.showGrammarDebug, "Shows grammar traces.");
+            listing.CheckboxLabeled("Talk Back", ref SpeakUpSettings.toggleTalkBack, "Toggle pawns talking back to the inital conversation starter. Currently not working.");
+
+            if (listing.ButtonText("Reset"))
+            {
+                SpeakUpSettings.linesPerConversation = 3;
+                SpeakUpSettings.ticksBetweenLines = 60;
+                SpeakUpSettings.sameRegionRestriction = true;
+                SpeakUpSettings.forceNoTranslate = false;
+                SpeakUpSettings.showGrammarDebug = false;
+                SpeakUpSettings.toggleTalkBack = false;
+            }
+
+            listing.End();
+
+            base.DoSettingsWindowContents(inRect);
         }
 
         public override string SettingsCategory()
         {
-            return "SpeakUp".Translate();
-        }
-
-        public override void WriteSettings()
-        {
-            base.WriteSettings();
+            return "SpeakUp";
         }
     }
 
-    public class ModNameSettings : ModSettings
+    public class SpeakUpSettings : ModSettings
     {
-        public const float beautySensitivityReductionDefault = 0.25f;
-        public static float BeautySensitivityReduction = beautySensitivityReductionDefault;
-        public static float IndoorsNoNaturalLightPenalty = indoorsNoNaturalLightPenaltyDefault;
+        public static int
+            linesPerConversation = 3,
+            ticksBetweenLines = 60;
 
-        // zero for vanilla
-        public static bool IsBeautyOn = false;
-
-        public static bool LinkVents = true;
-        public static bool LinkWindows = true;
-        private const float indoorsNoNaturalLightPenaltyDefault = 3f; //indoors accelerated degradation when not under windows
-
-        public static void DoWindowContents(Rect inRect)
-        {
-            Listing_Standard listing = new Listing_Standard();
-            listing.Begin(inRect);
-            string label = "IndoorsNoNaturalLightPenalty".Translate() + ": " + IndoorsNoNaturalLightPenalty.ToStringDecimalIfSmall() + "x";
-            string desc = ("IndoorsNoNaturalLightPenaltyDesc").Translate();
-            listing.Label(label, -1f, desc);
-            IndoorsNoNaturalLightPenalty = listing.Slider(IndoorsNoNaturalLightPenalty, 1f, 10f);
-            if (IsBeautyOn)
-            {
-                listing.Gap(12f);
-                string label2 = "BeautySensitivityReduction".Translate() + ": " + BeautySensitivityReduction.ToStringPercent();
-                string desc2 = ("BeautySensitivityReductionDesc").Translate();
-                listing.Label(label2, -1f, desc2);
-                BeautySensitivityReduction = listing.Slider(BeautySensitivityReduction, 0f, 1f);
-            }
-            listing.Gap(12f);
-            listing.Label(("LinkOptionsLabel").Translate() + " (" + ("RequiresRestart").Translate() + "):");
-            listing.GapLine();
-            listing.CheckboxLabeled(("LinkWindowsAndWalls").Translate(), ref LinkWindows);
-            if (LoadedModManager.RunningModsListForReading.Any(x => x.Name.Contains("RimFridge")))
-
-            {
-                listing.CheckboxLabeled(("LinkFridgesAndWalls").Translate(), ref LinkVents);
-            }
-            else
-            {
-                listing.CheckboxLabeled(("LinkVentsAndWalls").Translate(), ref LinkVents);
-            }
-            listing.Gap(12f);
-            if (listing.ButtonText("Reset", null))
-            {
-                BeautySensitivityReduction = 0.25f;
-                IndoorsNoNaturalLightPenalty = 3f;
-                LinkWindows = true;
-                LinkVents = true;
-            }
-            listing.End();
-        }
+        public static bool
+            sameRegionRestriction = true,
+            forceNoTranslate = false,
+            showGrammarDebug = false,
+            toggleTalkBack = false;
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref IndoorsNoNaturalLightPenalty, "IndoorsNoNaturalLightPenalty", indoorsNoNaturalLightPenaltyDefault);
-            Scribe_Values.Look(ref BeautySensitivityReduction, "ModifiedBeautyImpactFactor", beautySensitivityReductionDefault);
-            Scribe_Values.Look(ref LinkWindows, "LinkWindows", true);
-            Scribe_Values.Look(ref LinkVents, "LinkVents", true);
+            Scribe_Values.Look(ref linesPerConversation, "linesPerConversation", 3);
+            Scribe_Values.Look(ref ticksBetweenLines, "ticksBetweenLines", 60);
+            Scribe_Values.Look(ref sameRegionRestriction, "sameRegionRestriction", true);
+            Scribe_Values.Look(ref forceNoTranslate, "forceNoTranslate", false);
+            Scribe_Values.Look(ref showGrammarDebug, "showGrammarDebug", false);
+            Scribe_Values.Look(ref toggleTalkBack, "toggleTalkBack", false);
             base.ExposeData();
         }
     }

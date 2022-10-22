@@ -22,7 +22,7 @@ namespace SpeakUp
             rules.AddRange(newRules);
 
             //Always use untranslated dialogues so patches folder is not overwritten by rimworld language files
-            if (LanguageDatabase.activeLanguage != LanguageDatabase.defaultLanguage && ModBaseSpeakUp.ForceNoTranslate)
+            if (LanguageDatabase.activeLanguage != LanguageDatabase.defaultLanguage && SpeakUpSettings.forceNoTranslate)
             {
                 __result = GrammarResolver.ResolveUnsafe(untranslatedRootKeyword ?? rootKeyword, request, debugLabel, forceLog, true, extraTags, outTags, capitalizeFirstSentence);
                 return false;

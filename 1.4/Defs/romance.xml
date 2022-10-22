@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===RomanceSuccess=== -->
+		<defName>RomanceSuccess</defName>
+		<label>romance — success</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->Oh! I'm so in love with you, [RECIPIENT_nameDef] — let's be together!</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===RomanceFail=== -->
+		<defName>RomanceFail</defName>
+		<label>romance — fail</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<!-- ===Bad opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+						<li>bad_opinion->...</li>
+						<li>bad_opinion->*glares*</li>
+						<li>bad_opinion->[stop], [RECIPIENT_nameDef] — [no_chance]!</li>
+							<li>stop->stop that</li>
+							<li>stop->cut it out</li>
+							<li>no_chance->you have no chance with me</li>
+							<li>no_chance->you're wasting your time</li>
+				<!-- ===Good opinion of recipient=== -->
+					<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+						<li>good_opinion->Er, thank you, [RECIPIENT_nameDef]...</li>
+						<li>good_opinion->Uh, [RECIPIENT_nameDef]... thanks...</li>
+						<li>good_opinion->Oh, [RECIPIENT_nameDef]... I don't know what to say...</li>
+						<li>good_opinion->*blushes lightly*</li>
+						<li>good_opinion->*awkward cough*</li>
+
+			</rulesStrings>
+			
+			<rulesFiles>
+
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===ProposalSuccess=== -->
+		<defName>ProposalSuccess</defName>
+		<label>propose — success</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->Oh! I thought you'd never ask, [RECIPIENT_nameDef] — yes, I will!</li>
+				<li>r_logentry->Yes, [RECIPIENT_nameDef] — I will!</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===ProposalFail=== -->
+		<defName>ProposalFail</defName>
+		<label>propose — fail</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->Oh, [RECIPIENT_nameDef]... I'm sorry... I'm not ready for this... I need more time to think about it...</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===ProposalFail=== -->
+		<defName>ProposalBreakup</defName>
+		<label>propose — fail break</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->Wow, [RECIPIENT_nameDef]... I wasn't expecting this — too much pressure... [extra]...</li>
+					<li>extra->I need some breathing space for myself</li>
+					<li>extra->This isn't working out anymore</li>
+					<li>extra->I think it'd be best to see other people</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+</Defs>

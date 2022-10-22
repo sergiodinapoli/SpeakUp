@@ -23,7 +23,7 @@ namespace SpeakUp
         {
             Initiator = (Recipient = null);
             RuleEntry_ValidateConstantConstraints.validationFeedback = false;
-            if (ModBaseSpeakUp.ToggleTalkBack) talkBack = false;
+            if (SpeakUpSettings.toggleTalkBack) talkBack = false;
         }
     }
 }

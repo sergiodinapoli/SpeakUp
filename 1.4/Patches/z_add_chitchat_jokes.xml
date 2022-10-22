@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+				
+				<li>r_logentry(INITIATOR_social_passion!=None,INITIATOR_mood>=0.6,INITIATOR_opinion>=0)->[tell_joke]</li>
+				
+				<li>r_logentry(INITIATOR_jobDefName==SocialRelax,INITIATOR_mood>=0.4)->[tell_joke]</li>
+				<li>r_logentry(INITIATOR_jobDefName==SocialRelax,INITIATOR_social_passion!=None,INITIATOR_mood>=0.4)->[tell_joke]</li>
+				
+				<li>r_logentry(INITIATOR_jobDefName==StandAndBeSociallyActive,INITIATOR_mood>=0.4)->[tell_joke]</li>
+				<li>r_logentry(INITIATOR_jobDefName==StandAndBeSociallyActive,INITIATOR_social_passion!=None,INITIATOR_mood>=0.4)->[tell_joke]</li>
+
+				<!-- ===2 line jokes=== -->
+				<li>tell_joke(tag=JokeReaction)->[2line_joke]</li>
+				<li>2line_joke->[joke_fridge]</li>
+					<li>joke_fridge->I got my best friend a fridge for her birthday — can't wait to see her face light up when she opens it!</li>
+					<li>joke_fridge->I got my best friend a fridge for his birthday — can't wait to see his face light up when he opens it!</li>
+				<li>2line_joke->I told a friend of mine she was drawing her eyebrows too high — she looked at me surprised!</li>
+				<li>2line_joke(INITIATOR_intellectual_level>=5,RECIPIENT_intellectual_level>=5)->I poured root beer in a square glass... Now I just have beer!</li>
+				<li>2line_joke->Do you know how much it costs to take care of a warg? Well, it costs an arm and a leg!</li>
+				<li>2line_joke->I asked the librarian if they had any books about paranoia. [he_she] looked up and whispered "Shh! They're right behind you!"</li>
+				
+				<!-- ===4 line jokes=== -->
+				<li>tell_joke(INITIATOR_moving==No,RECIPIENT_moving==No)->[4line_joke]</li>
+				<li>4line_joke(tag=Joke_00)->What did the shark say when he ate the clownfish?</li>
+				<li>4line_joke(tag=Joke_01)->Why can't you explain puns to kleptomaniacs?</li>				
+				<li>4line_joke(INITIATOR_intellectual_level>=5,RECIPIENT_intellectual_level>=10,tag=Joke_02)->Did you hear about the mathematician who's afraid of negative numbers?</li>
+				<li>4line_joke(INITIATOR_intellectual_level>=5,RECIPIENT_intellectual_level>=5,tag=Joke_03)->Why don't scientists trust atoms?</li>
+				<li>4line_joke(tag=Joke_04)->Did you know I had a job circumcising elephants? It made me rich!</li>
+				<li>4line_joke(tag=Joke_05)->What sits at the bottom of the sea and twitches?</li>
+				<li>4line_joke(tag=Joke_06)->Did you hear about the two people who stole a calendar?</li>
+				<li>4line_joke(tag=Joke_07)->Why did the nurse need a red pen at work?</li>
+				<li>4line_joke(tag=Joke_08)->Want to hear a construction joke?</li>
+				<li>4line_joke(tag=Joke_09)->Why are skeletons so calm?</li>
+				<li>4line_joke(tag=Joke_10)->Why couldn't the leopard play hide and seek?</li>
+				<li>4line_joke(tag=Joke_11)->Why should you never use a dull pencil?</li>
+				<li>4line_joke(tag=Joke_12)->What do you call a cow with no legs?</li>
+				<li>4line_joke(tag=Joke_13)->What do thrumbo siblings call each other?</li>
+				<li>4line_joke(tag=Joke_14)->A patient went to [his_her] doctor and said: Doc, help me — I broke my arm in three places!</li>
+				<li>4line_joke(tag=Joke_15)->Did you hear about the psycaster's music performance?</li>
+				
+				<!-- ==Wildcards== -->
+					<li>he_she->he</li>
+					<li>he_she->she</li>
+					<li>his_her->his</li>
+					<li>his_her->her</li>
+		</value>
+	</Operation>
+	
+</Patch>
