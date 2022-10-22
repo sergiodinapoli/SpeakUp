@@ -16,11 +16,6 @@
       <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
     </li>
     <li>
-      <packageId>UnlimitedHugs.HugsLib</packageId>
-      <displayName>HugsLib</displayName>
-      <steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
-    </li>
-    <li>
       <packageId>Jaxe.Bubbles</packageId>
       <displayName>Interaction Bubbles</displayName>
       <steamWorkshopUrl>steam://url/CommunityFilePage/1516158345</steamWorkshopUrl>
