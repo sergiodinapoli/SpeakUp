@@ -27,8 +27,11 @@ namespace SpeakUp
                 string result = __result ? "success" : "failed";
                 StringBuilder feedback = new StringBuilder();
                 feedback.Append($"{result.ToUpper()} validating constraints for {__instance.rule.keyword}:");
-                feedback.AppendInNewLine($"{actualConstraints.Select(x => $"\"{x.key} {x.type.ToString().ToLower()} {x.value}\"").ToStringSafeEnumerable()}");
-                feedback.AppendInNewLine($"The rule text is \"{__instance.rule}\".");
+				if (actualConstraints != null)
+				{
+					feedback.AppendInNewLine($"{actualConstraints.Select(x => $"\"{x.key} {x.type.ToString().ToLower()} {x.value}\"").ToStringSafeEnumerable()}");
+				}
+				feedback.AppendInNewLine($"The rule text is \"{__instance.rule}\".");
                 feedback.AppendInNewLine($"\nChecked against {currentRules.Count()} rules:\n" +
                     $"{(currentRules.EnumerableNullOrEmpty() ? "none" : currentRules.Select(x => $"{x.Key}: {x.Value.ResolveTags()}").ToLineList())}");
                 Log.Message(feedback.ToString());
