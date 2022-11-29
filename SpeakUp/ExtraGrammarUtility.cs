@@ -337,11 +337,9 @@ namespace SpeakUp
         public static void GossipRulesForPawn(string symbol, Pawn pawn, Pawn other = null, Pawn third = null)
         {
             ExtraRulesForSinglePawn(symbol, third);
-            MakeRule(symbol + "initiatorOpinion", pawn.relations.OpinionOf(third).ToString());
-            MakeRule(symbol + "recipientOpinion", other.relations.OpinionOf(third).ToString());
 
-            ExtraRulesForMultiplePawns(symbol + "initiator_relation", pawn, third);
-            ExtraRulesForMultiplePawns(symbol + "recipient_relation", other, third);
+            ExtraRulesForMultiplePawns(symbol + "initiator_", pawn, third);
+            ExtraRulesForMultiplePawns(symbol + "recipient_", other, third);
         }
     }
 }
