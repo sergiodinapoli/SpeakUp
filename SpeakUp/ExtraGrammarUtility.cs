@@ -67,7 +67,7 @@ namespace SpeakUp
                 ExtraRulesForMultiplePawns(initPrefix, initiator, recipient);
                 if (recipient != null && recipient.IsValid())
                 {
-                    ExtraRulesForSinglePawn(initPrefix, recipient);
+                    ExtraRulesForSinglePawn(reciPrefix, recipient);
                     ExtraRulesForMultiplePawns(reciPrefix, recipient, initiator);
                     if (gossipee != null && gossipee.IsValid()) GossipRulesForPawn(otherPrefix, initiator, recipient, gossipee);
                 }
