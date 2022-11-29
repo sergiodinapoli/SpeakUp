@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Verse;
 
@@ -17,11 +19,15 @@ namespace SpeakUp
             lastInteractionDef = (InteractionDef)intDefInfo.GetValue(__instance);
             Initiator = ___initiator;
             Recipient = ___recipient;
+
+            //Maybe change to non spawned for talk of dead pawns
+            IEnumerable<Pawn> pawnsForGossip = ___initiator.MapHeld.mapPawns.FreeColonistsAndPrisonersSpawned.Where(x => x.thingIDNumber != ___initiator.thingIDNumber && x.thingIDNumber != ___recipient.thingIDNumber);
+            if (!pawnsForGossip.EnumerableNullOrEmpty()) Gossipee = pawnsForGossip.RandomElement();
         }
 
         private static void Postfix()
         {
-            Initiator = (Recipient = null);
+            Initiator = (Recipient = (Gossipee = null));
             RuleEntry_ValidateConstantConstraints.validationFeedback = false;
             if (SpeakUpSettings.toggleTalkBack) talkBack = false;
         }

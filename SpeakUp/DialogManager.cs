@@ -9,7 +9,7 @@ namespace SpeakUp
     {
         public static List<Statement> Scheduled = new List<Statement>();
         public static List<Talk> CurrentTalks = new List<Talk>();
-        public static Pawn Initiator, Recipient;
+        public static Pawn Initiator, Recipient, Gossipee;
         public static InteractionDef lastInteractionDef;
         public static bool talkBack = false;
 

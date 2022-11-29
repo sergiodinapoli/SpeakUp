@@ -12,7 +12,8 @@ namespace SpeakUp
 	{
         const string
             initPrefix = "INITIATOR_",
-            reciPrefix = "RECIPIENT_";
+            reciPrefix = "RECIPIENT_",
+            otherPrefix = "GOSSIPEE_";
 
         private static Func<SkillRecord, SkillRecord, SkillRecord> AccessHighestPassion = (A, B) =>
         {
@@ -46,9 +47,11 @@ namespace SpeakUp
             {40, "Right Ring Finger"}, {41, "Right Middle Finger"}, {42, "Right Index Finger"}, {43, "Right Thumb"}, {44, "Waist"}, {45, "Left Leg"}, {46, "Left Femur"}, {47, "Left Tibia"}, {48, "Left Foot"}, {49, "Left Little Toe"}, {50, "Left Fourth Toe"},
             {51, "Left Middle Toe"}, {52, "Left Second Toe"}, {53, "Left Big Toe"}, {54, "Right Leg"}, {55, "Right Femur"}, {56, "Right Tibia"}, {57, "Right Foot"}, {58, "Right Little Toe"}, {59, "Right Fourth Toe"}, {60, "Right Middle Toe"}, {61, "Right Second Toe"}, {62, "Right Big Toe"}
         };
+
         private static List<string> reversibleRelations = new List<string>()
                 { "Bond", "Sibling", "Spouse", "Lover", "Fiance", "HalfSibling", "ExSpouse", "ExLover", "Cousin", "CousinOnceRemoved", "SecondCousin", "Kin"
                 };
+
         public enum dayPeriod { morning, afternoon, evening, night }
 
         public static IEnumerable<Rule> ExtraRules()
@@ -57,12 +60,20 @@ namespace SpeakUp
             Pawn initiator = DialogManager.Initiator;
             if (initiator == null || !initiator.IsValid()) return null;
             Pawn recipient = DialogManager.Recipient;
+            Pawn gossipee = DialogManager.Gossipee;
             try
             {
-                ExtraRulesForPawn(initPrefix, initiator, recipient);
-                if (recipient.IsValid()) ExtraRulesForPawn(reciPrefix, recipient, initiator);
+                ExtraRulesForSinglePawn(initPrefix, initiator);
+                ExtraRulesForMultiplePawns(initPrefix, initiator, recipient);
+                if (recipient != null && recipient.IsValid())
+                {
+                    ExtraRulesForSinglePawn(initPrefix, recipient);
+                    ExtraRulesForMultiplePawns(reciPrefix, recipient, initiator);
+                    if (gossipee != null && gossipee.IsValid()) GossipRulesForPawn(otherPrefix, initiator, recipient, gossipee);
+                }
                 ExtraRulesForTime(initiator);
                 ExtraRulesForMap(initiator);
+                ColonyInventory(initiator);
             }
             catch (Exception e)
             {
@@ -77,7 +88,7 @@ namespace SpeakUp
             return tempRules;
         }
 
-        public static void ExtraRulesForPawn(string symbol, Pawn pawn, Pawn other = null)
+        public static void ExtraRulesForSinglePawn(string symbol, Pawn pawn)
         {
             //THE PAWN'S MINDSTATE:
 
@@ -98,40 +109,6 @@ namespace SpeakUp
                 }
             }
             MakeRule(symbol + "thoughtText", texts.RandomElement());
-
-            //THE PAWN'S RELATIONS
-            if (other != null)
-            {
-                //opinion
-                MakeRule(symbol + "opinion", pawn.relations.OpinionOf(other).ToString());
-
-                //relationships
-                bool flag1 = true;
-
-                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(pawn, other))
-                {
-                    if (reversibleRelations.Contains(relation.defName))
-                    {
-                        MakeRule(symbol + "relationship", relation.defName);
-                        flag1 = false;
-                    }
-                }
-
-                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(other, pawn))
-                {
-                    if (!reversibleRelations.Contains(relation.defName))
-                    {
-                        MakeRule(symbol + "relationship", relation.defName);
-                        flag1 = false;
-                    }
-                }
-
-
-                if (flag1)
-                {
-                    MakeRule(symbol + "relationship", "None");
-                }
-            }
 
             //THE PAWN'S BIO:
 
@@ -178,16 +155,73 @@ namespace SpeakUp
             //seated?
             if (pawn.Map != null) MakeRule(symbol + "seated", Seated(pawn).ToStringYesNo());
 
-            //THE PAWNS PHYSICAL DETAILS ------------- add bodyparts
+            //needs tending
+            MakeRule(symbol + "needs_tending", pawn.health.HasHediffsNeedingTend().ToStringYesNo());
 
-            //invenotry does not include worn items
-            foreach (Thing item in pawn.inventory.innerContainer)
+            //needs
+            foreach (var need in pawn.needs.AllNeeds)
             {
-                MakeRule(symbol + "inventory_item", item.def.defName);
+                MakeRule(symbol + "need" + need.def.defName, need.CurLevelPercentage.ToString());
             }
 
+            //hediffs
+            foreach (var hediff in pawn.health.hediffSet.hediffs)
+            {
+                if (hediff.Visible)
+                {
+                    MakeRule(symbol + "hediff_" + hediff.def.defName, hediff.Severity.ToString());
+                }
+            }
+        }
+
+        public static void ExtraRulesForMultiplePawns(string symbol, Pawn pawn, Pawn other = null)
+        {
+            //THE PAWN'S RELATIONS
+            if (other != null)
+            {
+                //opinion
+                MakeRule(symbol + "opinion", pawn.relations.OpinionOf(other).ToString());
+
+                //relationships
+                bool flag1 = true;
+
+                //This is for relationships that have the same name both ways do not get printed twice, IE exlover.
+                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(pawn, other))
+                {
+                    if (reversibleRelations.Contains(relation.defName))
+                    {
+                        MakeRule(symbol + "relationship", relation.defName);
+                        flag1 = false;
+                    }
+                }
+
+                //This is for relationships that differ depending on POV. This is inverted because because you would check if the recipient is the child of the initiator and you would check if the initiator is the parent of the recipient.
+                foreach (PawnRelationDef relation in PawnRelationUtility.GetRelations(other, pawn))
+                {
+                    if (!reversibleRelations.Contains(relation.defName))
+                    {
+                        MakeRule(symbol + "relationship", relation.defName);
+                        flag1 = false;
+                    }
+                }
+
+
+                if (flag1)
+                {
+                    MakeRule(symbol + "relationship", "None");
+                }
+            }
+
+            //THE PAWNS PHYSICAL DETAILS ------------- add bodyparts - to be reworked
+
+            //invenotry does not include worn items
+            /*foreach (Thing item in pawn.inventory.innerContainer)
+            {
+                MakeRule(symbol + "inventory_item", item.def.defName);
+            }*/
+
             //worn items
-            foreach (Apparel apparel in pawn.apparel.WornApparel)
+            /*foreach (Apparel apparel in pawn.apparel.WornApparel)
             {
                 //substring to elimante (quality) from label so XML is easier
                 if (apparel.Label.LastIndexOf('(') != -1)
@@ -199,13 +233,10 @@ namespace SpeakUp
                 {
                     MakeRule(symbol + "wearing", apparel.Label);
                 }
-            }
-
-            //needs tending
-            MakeRule(symbol + "needs_tending", pawn.health.HasHediffsNeedingTend().ToStringYesNo());
+            }*/
 
             //injuries
-            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            /*foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
             {
                 Type hediffType = hediff.GetType();
 
@@ -231,6 +262,14 @@ namespace SpeakUp
                 {
                     MakeRule(symbol + "ailment", hediff.Label);
                 }
+            }*/
+        }
+
+        private static void ColonyInventory(Pawn pawn)
+        {
+            foreach (KeyValuePair<ThingDef, int> stock in Find.CurrentMap.resourceCounter.AllCountedAmounts)
+            {
+                MakeRule("COLONY_INVENTORY_" + stock.Key.label, stock.Value.ToString());
             }
         }
 
@@ -293,6 +332,16 @@ namespace SpeakUp
         {
             Building edifice = p.Position.GetEdifice(p.Map);
             return edifice != null && edifice.def.category == ThingCategory.Building && edifice.def.building.isSittable;
+        }
+
+        public static void GossipRulesForPawn(string symbol, Pawn pawn, Pawn other = null, Pawn third = null)
+        {
+            ExtraRulesForSinglePawn(symbol, third);
+            MakeRule(symbol + "initiatorOpinion", pawn.relations.OpinionOf(third).ToString());
+            MakeRule(symbol + "recipientOpinion", other.relations.OpinionOf(third).ToString());
+
+            ExtraRulesForMultiplePawns(symbol + "initiator_relation", pawn, third);
+            ExtraRulesForMultiplePawns(symbol + "recipient_relation", other, third);
         }
     }
 }

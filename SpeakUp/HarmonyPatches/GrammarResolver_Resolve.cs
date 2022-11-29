@@ -17,6 +17,7 @@ namespace SpeakUp
             if (rootKeyword != "r_logentry") return true;
             List<Rule> rules = (List<Rule>)rulesInfo.GetValue(request);
             if (rules.NullOrEmpty()) return true;
+            if (DialogManager.Gossipee != null) request.Rules.AddRange(GrammarUtility.RulesForPawn("GOSSIPEE", DialogManager.Gossipee, request.Constants, true, true));
             var newRules = ExtraGrammarUtility.ExtraRules();
             if (newRules.EnumerableNullOrEmpty()) return true;
             rules.AddRange(newRules);
