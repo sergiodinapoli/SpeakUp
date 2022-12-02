@@ -161,7 +161,7 @@ namespace SpeakUp
             //needs
             foreach (var need in pawn.needs.AllNeeds)
             {
-                MakeRule(symbol + "need" + need.def.defName, need.CurLevelPercentage.ToString());
+                MakeRule(symbol + "need_" + need.def.defName, need.CurLevelPercentage.ToString());
             }
 
             //hediffs
