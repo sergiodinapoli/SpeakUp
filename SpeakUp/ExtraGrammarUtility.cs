@@ -135,10 +135,10 @@ namespace SpeakUp
             }
 
             //childhood
-            MakeRule(symbol + "childhood", pawn.story.Childhood?.title);
+            MakeRule(symbol + "childhood", pawn.story.Childhood?.defName);
 
             //adulthood
-            MakeRule(symbol + "adulthood", pawn.story.Adulthood?.title);
+            MakeRule(symbol + "adulthood", pawn.story.Adulthood?.defName);
 
             //OTHER PAWN SITUATIONS
 
