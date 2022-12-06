@@ -15,12 +15,13 @@ namespace SpeakUp
             expireTick = 0;
         public int remainingReplies => SpeakUpSettings.linesPerConversation - latestReplyCount;
 
-        public Pawn nextInitiator, nextRecipient;
+        public Pawn nextInitiator, nextRecipient, nextGossipee;
 
         private string tagToContinue = "continue";
 
         public Talk(string tag)
         {
+            nextGossipee = Gossipee;
             nextInitiator = Initiator;
             nextRecipient = Recipient;
             Reply(tag);
@@ -39,7 +40,7 @@ namespace SpeakUp
                     $"{nextInitiator} is participating in {talks} current talks");
                 return;
             }
-            Scheduled.Add(new Statement(nextInitiator, nextRecipient, time, intDef, this, latestReplyCount));
+            Scheduled.Add(new Statement(nextInitiator, nextRecipient, nextGossipee, time, intDef, this, latestReplyCount));
         }
 
         public void Reply(string tag)

@@ -28,6 +28,12 @@ namespace SpeakUp
             }
         }
 
+        public static void FindGossipee()
+        {
+            IEnumerable<Pawn> pawnsForGossip = Initiator.MapHeld.mapPawns.FreeColonistsAndPrisonersSpawned.Where(x => x.thingIDNumber != Initiator.thingIDNumber && x.thingIDNumber != Recipient.thingIDNumber);
+            Gossipee = pawnsForGossip.RandomElement();
+        }
+
         public static void CleanUp()
         {
             CurrentTalks.RemoveAll(x => x.expireTick < GenTicks.TicksGame);
@@ -37,6 +43,7 @@ namespace SpeakUp
         {
             var intDef = statement.IntDef;
             intDef.ignoreTimeSinceLastInteraction = true; //temporary, bc RW limit is 120 ticks
+            Gossipee = statement.Gossipee;
             statement.Emitter.interactions.TryInteractWith(statement.Reciever, statement.IntDef);
             if (Prefs.LogVerbose) Log.Message($"[SpeakUp] {statement.Emitter} continues the conversation with {statement.Reciever}, reply #{statement.Iteration} ({statement.IntDef.label}).");
             Scheduled.Remove(statement);

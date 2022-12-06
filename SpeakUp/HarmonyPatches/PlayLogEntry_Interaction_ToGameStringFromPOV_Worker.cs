@@ -21,13 +21,12 @@ namespace SpeakUp
             Recipient = ___recipient;
 
             //Maybe change to non spawned for talk of dead pawns
-            IEnumerable<Pawn> pawnsForGossip = ___initiator.MapHeld.mapPawns.FreeColonistsAndPrisonersSpawned.Where(x => x.thingIDNumber != ___initiator.thingIDNumber && x.thingIDNumber != ___recipient.thingIDNumber);
-            if (!pawnsForGossip.EnumerableNullOrEmpty()) Gossipee = pawnsForGossip.RandomElement();
+            if (Gossipee == null) FindGossipee();
         }
 
         private static void Postfix()
         {
-            Initiator = (Recipient = (Gossipee = null));
+            Initiator = (Recipient = ( Gossipee = null));
             RuleEntry_ValidateConstantConstraints.validationFeedback = false;
             if (SpeakUpSettings.toggleTalkBack) talkBack = false;
         }

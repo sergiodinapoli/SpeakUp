@@ -7,7 +7,8 @@ namespace SpeakUp
     {
         public Pawn
             Emitter,
-            Reciever;
+            Reciever,
+            Gossipee;
 
         public InteractionDef IntDef;
         public Talk Talk;
@@ -15,10 +16,11 @@ namespace SpeakUp
             Timing,
             Iteration;
 
-        public Statement(Pawn emitter, Pawn recipient, int timing, InteractionDef intDef, Talk talk, int iteration)
+        public Statement(Pawn emitter, Pawn recipient, Pawn gossipee, int timing, InteractionDef intDef, Talk talk, int iteration)
         {
             Emitter = emitter;
             Reciever = recipient;
+            Gossipee = gossipee;
             Timing = timing;
             IntDef = intDef;
             Talk = talk;
