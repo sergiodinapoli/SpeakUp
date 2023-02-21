@@ -10,12 +10,10 @@ namespace SpeakUp
     [HarmonyPatch(typeof(GrammarResolver), nameof(GrammarResolver.Resolve))]
     class GrammarResolver_Resolve
     {
-        private static FieldInfo rulesInfo = AccessTools.Field(typeof(GrammarRequest), "rules");
-
         public static bool Prefix(ref string __result, object __instance, string rootKeyword, GrammarRequest request, string debugLabel = null, bool forceLog = false, string untranslatedRootKeyword = null, List<string> extraTags = null, List<string> outTags = null, bool capitalizeFirstSentence = true)
         {
             if (rootKeyword != "r_logentry") return true;
-            List<Rule> rules = (List<Rule>)rulesInfo.GetValue(request);
+            List<Rule> rules = request.rules;
             if (rules.NullOrEmpty()) return true;
             var newRules = ExtraGrammarUtility.ExtraRules();
             if (newRules.EnumerableNullOrEmpty()) return true;
