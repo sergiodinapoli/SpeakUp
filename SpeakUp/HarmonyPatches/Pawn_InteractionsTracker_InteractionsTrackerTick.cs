@@ -13,7 +13,7 @@ namespace SpeakUp
             if (___pawn.def.race.intelligence == Intelligence.Humanlike && ___pawn.interactions != null)
             {
                 Statement statement = null;
-                var length = DialogManager.Scheduled.Count;
+                var length = DialogManager.ScheduledCount;
                 for (int i = 0; i < length; i++)
                 {
                     var def = DialogManager.Scheduled[i];
