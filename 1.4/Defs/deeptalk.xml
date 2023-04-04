@@ -471,7 +471,7 @@
 						<li>deepTalkSoftenSentenceEnd->. Do you know what I mean?</li>
 						<li>deepTalkSoftenSentenceEnd->. I just like thinking about it.</li>
 						<li>deepTalkSoftenSentenceEnd->. Don't you think so?</li>
-						<li>deepTalkSoftenSentenceEnd(INITIATOR_TRAIT==abrasive,priority=2)->.</li> <!--Abrasive should never soften their sentence-->
+						<li>deepTalkSoftenSentenceEnd(INITIATOR_trait==abrasive,priority=2)->.</li> <!--Abrasive should never soften their sentence-->
 				</rulesStrings>
 			</logRulesInitiator>
 		</InteractionDef>
