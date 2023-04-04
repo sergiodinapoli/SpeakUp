@@ -52,12 +52,12 @@
 				
 				<li>try_romance(RECIPIENT_trait==ugly)->Love looks not with the eyes, but with the mind — And therefore is winged Cupid painted blind... I treasure you, darling [RECIPIENT_nameDef]!</li>
 				
-				<li>try_romance(INITIATOR_TRAIT==nimble)->[fastMoving]</li>
-				<li>try_romance(INITIATOR_TRAIT==jogger)->[fastMoving]</li>
-				<li>try_romance(INITIATOR_TRAIT==fastwalker)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_trait==nimble)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_trait==jogger)->[fastMoving]</li>
+				<li>try_romance(INITIATOR_trait==fastwalker)->[fastMoving]</li>
 				<li>fastMoving->You make my heart race faster than my feet, [beautiful] [RECIPIENT_nameDef]!</li>
 				
-				<li>try_romance(INITIATOR_TRAIT==bloodlust)->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
+				<li>try_romance(INITIATOR_trait==bloodlust)->I would fight a thousand and one battles to win your loving smile, [RECIPIENT_nameDef].</li>
 					
 			<li>beautiful->beautiful</li>
 			<li>beautiful->charming</li>
