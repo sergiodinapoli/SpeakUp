@@ -40,6 +40,7 @@ namespace SpeakUp
                 return;
             }
             Scheduled.Add(new Statement(nextInitiator, nextRecipient, time, intDef, this, latestReplyCount));
+            ScheduledCount = Scheduled.Count;
         }
 
         public void Reply(string tag)

@@ -53,7 +53,7 @@ namespace SpeakUp
 
         public static IEnumerable<Rule> ExtraRules()
         {
-            tempRules.Clear();
+            tempRules = new List<Rule_String>();
             Pawn initiator = DialogManager.Initiator;
             if (initiator == null || !initiator.IsValid()) return null;
             Pawn recipient = DialogManager.Recipient;
@@ -88,8 +88,11 @@ namespace SpeakUp
             List<Thought> thoughts = new List<Thought>();
             pawn.needs.mood.thoughts.GetAllMoodThoughts(thoughts);
             List<string> texts = new List<string>();
-            foreach (var thought in thoughts)
+            
+            var length = thoughts.Count;
+            for (int i = 0; i < length; i++)
             {
+                var thought = thoughts[i];
                 MakeRule(symbol + "thoughtDefName", thought.def.defName);
                 if (thought.CurStage != null)
                 {

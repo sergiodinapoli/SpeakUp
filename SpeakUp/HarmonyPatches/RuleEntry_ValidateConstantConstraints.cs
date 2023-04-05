@@ -47,12 +47,18 @@ namespace SpeakUp
 				ConstraintsValid = true;
 				if (constraints != null)
 				{
-					for (int i = 0; i < constraints.Count; i++)
+					var length = constraints.Count;
+					for (int i = 0; i < length; i++)
 					{
 						Rule.ConstantConstraint constraint = constraints[i];
 						bool match = false;
-						foreach (var entry in rules.Where(x => x.Key == constraint.key))
+
+						var length2 = rules.Count;
+						for (int j = 0; j < length2; j++)
 						{
+							var entry = rules[j];
+							if (entry.Key != constraint.key) continue;
+
 							string text = entry.Value ?? "";
 							float value = 0f;
 							float expected = 0f;
@@ -78,7 +84,7 @@ namespace SpeakUp
 									match = (ruleIsvalid && value >= expected);
 									break;
 								default:
-									Log.Error("Unknown ConstantConstraint type: " + constraint.type, false);
+									Log.Error("Unknown ConstantConstraint type: " + constraint.type);
 									match = false;
 									break;
 							}

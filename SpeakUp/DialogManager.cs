@@ -8,6 +8,7 @@ namespace SpeakUp
     public static class DialogManager
     {
         public static List<Statement> Scheduled = new List<Statement>();
+        public static int ScheduledCount; //The overhead on the .Count method is significant. Consider refactoring the add/remove methods into a wrapper to handle this count cache
         public static List<Talk> CurrentTalks = new List<Talk>();
         public static Pawn Initiator, Recipient;
         public static InteractionDef lastInteractionDef;
@@ -40,6 +41,7 @@ namespace SpeakUp
             statement.Emitter.interactions.TryInteractWith(statement.Reciever, statement.IntDef);
             if (Prefs.LogVerbose) Log.Message($"[SpeakUp] {statement.Emitter} continues the conversation with {statement.Reciever}, reply #{statement.Iteration} ({statement.IntDef.label}).");
             Scheduled.Remove(statement);
+            ScheduledCount = Scheduled.Count;
         }
     }
 }
