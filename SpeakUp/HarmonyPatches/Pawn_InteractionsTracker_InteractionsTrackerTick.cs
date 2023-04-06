@@ -10,14 +10,15 @@ namespace SpeakUp
     {
         static void Postfix(Pawn ___pawn)
         {
-            if (___pawn.def.race.intelligence == Intelligence.Humanlike && ___pawn.interactions != null)
+            if (___pawn.RaceProps.Humanlike && ___pawn.interactions != null)
             {
                 Statement statement = null;
-                var length = DialogManager.ScheduledCount;
-                for (int i = 0; i < length; i++)
+                var scheduled = DialogManager.Scheduled; //Bring onto the stack
+                var tick = Current.gameInt.tickManager.ticksGameInt;
+                for (int i = DialogManager.ScheduledCount; i-- > 0;)
                 {
-                    var def = DialogManager.Scheduled[i];
-                    if (def.Timing <= Current.gameInt.tickManager.ticksGameInt && def.Emitter == ___pawn)
+                    var def = scheduled[i];
+                    if (def.Timing <= tick && def.Emitter == ___pawn)
                     {
                         statement = def;
                         break;

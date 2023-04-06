@@ -31,7 +31,7 @@ namespace SpeakUp
 
         public static void CleanUp()
         {
-            CurrentTalks.RemoveAll(x => x.expireTick < GenTicks.TicksGame);
+            CurrentTalks.RemoveAll(x => x.expireTick < Current.gameInt.tickManager.ticksGameInt);
         }
 
         public static void FireStatement(Statement statement)

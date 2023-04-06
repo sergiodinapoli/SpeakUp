@@ -53,10 +53,10 @@ namespace SpeakUp
 
         public static IEnumerable<Rule> ExtraRules()
         {
-            tempRules = new List<Rule_String>();
             Pawn initiator = DialogManager.Initiator;
-            if (initiator == null || !initiator.IsValid()) return null;
+            if (initiator == null || !initiator.RaceProps.Humanlike) return null;
             Pawn recipient = DialogManager.Recipient;
+            tempRules = new List<Rule_String>();
             try
             {
                 ExtraRulesForPawn(initPrefix, initiator, recipient);
@@ -70,7 +70,7 @@ namespace SpeakUp
                 msg.Append($"[SpeakUp] Error processing extra rules: {e.Message}");
                 msg.AppendInNewLine($"Initator: {initiator}, ");
                 msg.Append(recipient.IsValid() ? $"recipient: {recipient}." : "invalid recipient.");
-                msg.AppendInNewLine(tempRules.Count() > 0 ? $"Last successful rule: {tempRules.Last()}" : "Zero rules processed.");
+                msg.AppendInNewLine(tempRules.Count > 0 ? $"Last successful rule: {tempRules.Last()}" : "Zero rules processed.");
                 Log.Warning(msg.ToString());
                 return null;
             }
@@ -89,8 +89,7 @@ namespace SpeakUp
             pawn.needs.mood.thoughts.GetAllMoodThoughts(thoughts);
             List<string> texts = new List<string>();
             
-            var length = thoughts.Count;
-            for (int i = 0; i < length; i++)
+            for (int i = thoughts.Count; i-- > 0;)
             {
                 var thought = thoughts[i];
                 MakeRule(symbol + "thoughtDefName", thought.def.defName);
@@ -139,23 +138,26 @@ namespace SpeakUp
             //THE PAWN'S BIO:
 
             //traits
-            foreach (var trait in pawn.story.traits.allTraits)
+            var allTraits = pawn.story.traits.allTraits;
+            for (int i = allTraits.Count; i-- > 0;)
             {
-                MakeRule(symbol + "trait", trait.Label);
+                MakeRule(symbol + "trait", allTraits[i].Label);
             }
 
             //best skill
-            MakeRule(symbol + "bestSkill", pawn.skills.skills.Aggregate(AccessHighestSkill).def.skillLabel);
+            var skills = pawn.skills.skills;
+            MakeRule(symbol + "bestSkill", skills.Aggregate(AccessHighestSkill).def.skillLabel);
 
             //worst skill
-            MakeRule(symbol + "worstSkill", pawn.skills.skills.Aggregate(AccessWorstSkill).def.skillLabel);
+            MakeRule(symbol + "worstSkill", skills.Aggregate(AccessWorstSkill).def.skillLabel);
 
             //higher passion
-            MakeRule(symbol + "higherPassion", pawn.skills.skills.Aggregate(AccessHighestPassion).def.skillLabel);
+            MakeRule(symbol + "higherPassion", skills.Aggregate(AccessHighestPassion).def.skillLabel);
 
             //all skills
-            foreach (var skill in pawn.skills.skills)
+            for (int i = skills.Count; i-- > 0;)
             {
+                var skill = skills[i];
                 MakeRule(symbol + skill.def.label + "_level", skill.levelInt.ToString());
                 MakeRule(symbol + skill.def.label + "_passion", skill.passion.ToString());
             }
@@ -172,10 +174,11 @@ namespace SpeakUp
             MakeRule(symbol + "moving", pawn.pather.Moving.ToStringYesNo());
 
             //current activity
-            if (pawn.CurJob != null)
+            var curJob = pawn.CurJob;
+            if (curJob != null)
             {
-                MakeRule(symbol + "jobDefName", pawn.CurJob.def.defName);
-                MakeRule(symbol + "jobText", pawn.CurJob.GetReport(pawn));
+                MakeRule(symbol + "jobDefName", curJob.def.defName);
+                MakeRule(symbol + "jobText", curJob.GetReport(pawn));
             }
 
             //seated?
@@ -184,14 +187,17 @@ namespace SpeakUp
             //THE PAWNS PHYSICAL DETAILS ------------- add bodyparts
 
             //invenotry does not include worn items
-            foreach (Thing item in pawn.inventory.innerContainer)
+            var innerContainer = pawn.inventory.innerContainer;
+            for (int i = innerContainer.Count; i-- > 0;)
             {
-                MakeRule(symbol + "inventory_item", item.def.defName);
+                MakeRule(symbol + "inventory_item", innerContainer[i].def.defName);
             }
 
             //worn items
-            foreach (Apparel apparel in pawn.apparel.WornApparel)
+            var wornApparel = pawn.apparel.WornApparel;
+            for (int i = wornApparel.Count; i-- > 0;)
             {
+                Apparel apparel = wornApparel[i];
                 //substring to elimante (quality) from label so XML is easier
                 if (apparel.Label.LastIndexOf('(') != -1)
                 {
@@ -208,17 +214,18 @@ namespace SpeakUp
             MakeRule(symbol + "needs_tending", pawn.health.HasHediffsNeedingTend().ToStringYesNo());
 
             //injuries
-            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            var hediffs = pawn.health.hediffSet.hediffs;
+            for (int i = hediffs.Count; i-- > 0;)
             {
-                Type hediffType = hediff.GetType();
+                Hediff hediff = hediffs[i];
 
                 //injuries and missing body parts
-                if (hediffType == typeof(Hediff_Injury))
+                if (hediff is Hediff_Injury)
                 {
                     MakeRule(symbol + "injury", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
                     continue;
                 }
-                else if (hediffType == typeof(Hediff_MissingPart))
+                else if (hediff is Hediff_MissingPart)
                 {
                     MakeRule(symbol + "missing_part", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
                     continue;
@@ -262,9 +269,11 @@ namespace SpeakUp
             MakeRule("OUTDOORS", pos.UsesOutdoorTemperature(map).ToStringYesNo());
 
             //nearest things
-            foreach (var group in subjects)
+            var listerThings = map.listerThings;
+            for (int i = subjects.Length; i-- > 0;)
             {
-                var thing = GenClosest.ClosestThing_Global(pos, map.listerThings.ThingsInGroup(group), lookRadius);
+                var group = subjects[i];
+                var thing = GenClosest.ClosestThing_Global(pos, listerThings.ThingsInGroup(group), lookRadius);
                 if (thing != null) MakeRule($"NEAREST_{group.ToString().ToLower()}", $"{thing.def.label}");
             }
         }
