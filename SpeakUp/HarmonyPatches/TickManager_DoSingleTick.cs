@@ -9,20 +9,11 @@ namespace SpeakUp
     [HarmonyPatch(typeof(TickManager), "DoSingleTick")]
     internal static class TickManager_DoSingleTick
     {
-        private static int 
-            lastCleaned = 0,
-            cleanInterval = 60; //60 = 1 second.
-
         private static void Postfix()
         {
-            if (!CurrentTalks.NullOrEmpty())
+            if (CurrentTalks.Count > 0 && Current.gameInt.tickManager.ticksGameInt % 60 == 0)
             {
-                var num = lastCleaned + cleanInterval;
-                if (num < GenTicks.TicksGame)
-                {
-                    CleanUp();
-                    lastCleaned = GenTicks.TicksGame;
-                }
+                CleanUp(); 
             }
         }
     }
