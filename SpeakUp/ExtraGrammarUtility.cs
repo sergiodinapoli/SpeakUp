@@ -46,6 +46,21 @@ namespace SpeakUp
             {40, "Right Ring Finger"}, {41, "Right Middle Finger"}, {42, "Right Index Finger"}, {43, "Right Thumb"}, {44, "Waist"}, {45, "Left Leg"}, {46, "Left Femur"}, {47, "Left Tibia"}, {48, "Left Foot"}, {49, "Left Little Toe"}, {50, "Left Fourth Toe"},
             {51, "Left Middle Toe"}, {52, "Left Second Toe"}, {53, "Left Big Toe"}, {54, "Right Leg"}, {55, "Right Femur"}, {56, "Right Tibia"}, {57, "Right Foot"}, {58, "Right Little Toe"}, {59, "Right Fourth Toe"}, {60, "Right Middle Toe"}, {61, "Right Second Toe"}, {62, "Right Big Toe"}
         };
+	private static IDictionary<string, string> translateSkill = new Dictionary<string, string>()
+        {
+            {SkillDefOf.Shooting.skillLabel, "shooting"},
+            {SkillDefOf.Melee.skillLabel, "melee"},
+            {SkillDefOf.Construction.skillLabel, "construction"},
+            {SkillDefOf.Mining.skillLabel, "mining"},
+            {SkillDefOf.Cooking.skillLabel, "cooking"},
+            {SkillDefOf.Plants.skillLabel, "plants"},
+            {SkillDefOf.Animals.skillLabel, "animals"},
+            {SkillDefOf.Crafting.skillLabel, "crafting"},
+            {SkillDefOf.Artistic.skillLabel, "artistic"},
+            {SkillDefOf.Medicine.skillLabel, "medicine"},
+            {SkillDefOf.Social.skillLabel, "social"},
+            {SkillDefOf.Intellectual.skillLabel, "intellectual"}
+        };
         private static List<string> reversibleRelations = new List<string>()
                 { "Bond", "Sibling", "Spouse", "Lover", "Fiance", "HalfSibling", "ExSpouse", "ExLover", "Cousin", "CousinOnceRemoved", "SecondCousin", "Kin"
                 };
@@ -156,8 +171,9 @@ namespace SpeakUp
             //all skills
             foreach (var skill in pawn.skills.skills)
             {
-                MakeRule(symbol + skill.def.label + "_level", skill.levelInt.ToString());
-                MakeRule(symbol + skill.def.label + "_passion", skill.passion.ToString());
+                string skillDefLabel = translateSkill.TryGetValue(skill.def.label);
+                MakeRule(symbol + skillDefLabel + "_level", skill.levelInt.ToString());
+                MakeRule(symbol + skillDefLabel + "_passion", skill.passion.ToString());
             }
 
             //childhood
