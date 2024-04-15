@@ -28,7 +28,7 @@ namespace SpeakUp
 
         public void MakeReply(InteractionDef intDef, bool swap = true)
         {
-            var time = GenTicks.TicksGame + interval;
+            var time = Current.gameInt.tickManager.ticksGameInt + interval;
             if (swap) SwapRoles();
             expireTick = time + 1;
             latestReplyCount += 1;
@@ -45,7 +45,14 @@ namespace SpeakUp
 
         public void Reply(string tag)
         {
-            if (SpeakUpSettings.sameRegionRestriction && Initiator.GetRegion() != Recipient.GetRegion()) return;
+            
+            if (SpeakUpSettings.sameRegionRestriction)
+            {
+                Map map = Initiator.Map;
+                if (RegionAndRoomQuery.DistirctAtFast(Initiator.Position, map, RegionType.Normal) != RegionAndRoomQuery.DistirctAtFast(Recipient.Position, map, RegionType.Normal) && 
+                    Initiator.Position.DistanceTo(Recipient.Position) >= 14f) return;
+            }
+             
             if (remainingReplies > 0)
             {
                 bool continuing = tag == tagToContinue;

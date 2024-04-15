@@ -32,7 +32,7 @@ namespace SpeakUp
 					feedback.AppendInNewLine($"{actualConstraints.Select(x => $"\"{x.key} {x.type.ToString().ToLower()} {x.value}\"").ToStringSafeEnumerable()}");
 				}
 				feedback.AppendInNewLine($"The rule text is \"{__instance.rule}\".");
-                feedback.AppendInNewLine($"\nChecked against {currentRules.Count()} rules:\n" +
+                feedback.AppendInNewLine($"\nChecked against {currentRules.Count} rules:\n" +
                     $"{(currentRules.EnumerableNullOrEmpty() ? "none" : currentRules.Select(x => $"{x.Key}: {x.Value.ResolveTags()}").ToLineList())}");
                 Log.Message(feedback.ToString());
                 validationFeedback = false;
