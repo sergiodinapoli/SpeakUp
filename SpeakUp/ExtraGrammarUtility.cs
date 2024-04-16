@@ -214,34 +214,40 @@ namespace SpeakUp
             MakeRule(symbol + "needs_tending", pawn.health.HasHediffsNeedingTend().ToStringYesNo());
 
             //injuries
-            var hediffs = pawn.health.hediffSet.hediffs;
+            /*var hediffs = pawn.health.hediffSet.hediffs;
             for (int i = hediffs.Count; i-- > 0;)
             {
                 Hediff hediff = hediffs[i];
+                string bodyPart;
+                Log.Warning(hediff.part.Index.);
 
-                //injuries and missing body parts
-                if (hediff is Hediff_Injury)
+                if (bodyParts.TryGetValue(hediff.Part.Index, out bodyPart))
                 {
-                    MakeRule(symbol + "injury", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
-                    continue;
-                }
-                else if (hediff is Hediff_MissingPart)
-                {
-                    MakeRule(symbol + "missing_part", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
-                    continue;
-                }
+                    Log.Warning(hediff.def.defName);
+                    //injuries and missing body parts
+                    if (hediff is Hediff_Injury)
+                    {
+                        MakeRule(symbol + "injury", bodyPart + " " + hediff.Label);
+                        continue;
+                    }
+                    else if (hediff is Hediff_MissingPart)
+                    {
+                        MakeRule(symbol + "missing_part", bodyPart + " " + hediff.Label);
+                        continue;
+                    }
 
-                //any other health effect and what part it effects
-                if (hediff.Part != null)
-                {
-                    MakeRule(symbol + "ailment", bodyParts.TryGetValue(hediff.Part.Index) + " " + hediff.Label);
-                    continue;
+                    //any other health effect and what part it effects
+                    if (hediff.Part != null)
+                    {
+                        MakeRule(symbol + "ailment", bodyPart + " " + hediff.Label);
+                        continue;
+                    }
+                    else
+                    {
+                        MakeRule(symbol + "ailment", hediff.Label);
+                    }
                 }
-                else
-                {
-                    MakeRule(symbol + "ailment", hediff.Label);
-                }
-            }
+            }*/
         }
 
         private static string DayPeriod(Pawn p)
