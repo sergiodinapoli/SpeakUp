@@ -38,6 +38,7 @@ namespace SpeakUp
         {
             var intDef = statement.IntDef;
             intDef.ignoreTimeSinceLastInteraction = true; //temporary, bc RW limit is 120 ticks
+            statement.Emitter.interactions.lastInteractionTime -= 120; //Lower the last interaction time to counter a check
             statement.Emitter.interactions.TryInteractWith(statement.Reciever, statement.IntDef);
             if (Prefs.LogVerbose) Log.Message($"[SpeakUp] {statement.Emitter} continues the conversation with {statement.Reciever}, reply #{statement.Iteration} ({statement.IntDef.label}).");
             Scheduled.Remove(statement);
