@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+		
+			<!-- ==CLEAR== -->
+				<li>r_logentry(WEATHER==clear)->[weather_clear]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_clear(TEMPERATURE>=-10,TEMPERATURE&lt;=35)->[weather_clear_goodtemp]</li>
+					<!-- ===Undergrounder indoors (priority 2)=== -->
+						<li>weather_clear_goodtemp(OUTDOORS==No,INITIATOR_trait==undergrounder,priority=2)->[mood]</li>
+					<!-- ===Entombed indoors (priority 1)=== -->
+						<li>weather_clear_goodtemp(OUTDOORS==No,INITIATOR_thoughtDefName==NeedOutdoors,tag=StuckIndoors,priority=1)->I'm curious about what's the weather like out there.</li>
+					<!-- ===Outdoors or indoors but not entombed (default)=== -->
+						<li>weather_clear_goodtemp(tag=WeatherClearGoodtempNotEntombed)->[weather_clear_goodtemp_not_entombed]</li>
+						<!-- ===Mood=== -->
+							<li>weather_clear_goodtemp_not_entombed(INITIATOR_mood>=0.7,priority=1)->What [nice] weather we're having!</li>
+							<li>weather_clear_goodtemp_not_entombed(INITIATOR_mood>=0.7,priority=1)->Such a [nice] [DAYPERIOD]!</li>
+							<li>weather_clear_goodtemp_not_entombed->We're having a [nice] [DAYPERIOD].</li>
+							<li>weather_clear_goodtemp_not_entombed(INITIATOR_mood&lt;0.4,priority=1)->The weather is [nice], at least...</li>	
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_clear(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_clear(TEMPERATURE>35)->[weather_toohot]</li>
+				
+			<!-- ===FOG=== -->
+				<li>r_logentry(WEATHER==fog)->[weather_fog]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_fog(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_fog_goodtemp]</li>
+					<!-- ===Undergrounder indoors (priority 2)=== -->
+						<li>weather_fog_goodtemp(OUTDOORS==No,INITIATOR_trait==undergrounder,priority=2)->[mood]</li>
+					<!-- ===Entombed indoors (priority 1)=== -->
+						<li>weather_fog_goodtemp(OUTDOORS==No,INITIATOR_thoughtDefName==NeedOutdoors,tag=StuckIndoors,priority=1)->I'm curious about what's the weather like out there.</li>
+					<!-- ===Outdoors or indoors but not entombed (default)=== -->
+						<li>weather_fog_goodtemp(tag=WeatherFogGoodtempNotEntombed)->[weather_fog_goodtemp_not_entombed]</li>
+						<!-- ===Initiator mood=== -->
+							<li>weather_fog_goodtemp_not_entombed(INITIATOR_mood>=0.4)->It's pretty foggy [out_here_out_there].</li>
+							<li>weather_fog_goodtemp_not_entombed(INITIATOR_mood>=0.2,INITIATOR_mood&lt;0.4)->The [swearword]fog [out_here_out_there] won't let me see a [swearword]thing.</li>
+							<li>weather_fog_goodtemp_not_entombed(INITIATOR_mood&lt;0.2)->[swearword]fog! Can't see a [swearword]thing [out_here_out_there]! [damn_it]!</li>
+					<!-- ===Hunting skill (recipient)=== -->
+						<li>weather_fog_goodtemp(RECIPIENT_shooting_level>=5,RECIPIENT_animals_level>=5,tag=HuntWithFog)->I guess this fog means no hunting for you today?</li>
+					<!-- ===Trait==Too smart=== -->
+						<li>weather_fog_goodtemp(INITIATOR_trait==too smart,tag=WeatherFogToosmart)->[fog_fact]</li>
+						<li>fog_fact(INITIATOR_intellectual_level>=10)->Fog is a visible aerosol consisting of tiny water droplets or ice crystals suspended in the air at or near the planet's surface.</li>
+						<li>fog_fact(INITIATOR_intellectual_level>=7)->Fog is sometimes considered a type of low-lying cloud usually resembling stratus.</li>
+						<li>fog_fact(INITIATOR_intellectual_level>=5)->Fog is heavily influenced by nearby bodies of water, topography and wind conditions.</li>
+						<li>fog_fact->Fog is known to show up when water vapor, or water in its gaseous form, condenses.</li>
+					<!-- ===Trait==Wimp=== -->
+						<li>weather_fog_goodtemp(INITIATOR_trait==wimp,tag=WeatherFogWimp)->I'm [scared]... what if some [horrible] [monster] suddenly comes out of this [eerie] [mist]?</li>
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_fog(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_fog(TEMPERATURE>35)->[weather_toohot]</li>
+				
+			<!-- ===RAIN=== -->
+				<li>r_logentry(WEATHER==rain)->[weather_rain]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_rain(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_rain_goodtemp]</li>
+					<!-- ===Indoors=== -->
+						<li>weather_rain_goodtemp(OUTDOORS==No,tag=WeatherRainGoodtempIndoors)->[weather_rain_goodtemp_indoors]</li>
+						<li>weather_rain_goodtemp_indoors->Mmm... It's raining.</li>
+						<li>weather_rain_goodtemp_indoors->I think it's raining out there.</li>
+						<li>weather_rain_goodtemp_indoors->Can you hear it? It's raining.</li>
+						<li>weather_rain_goodtemp_indoors(INITIATOR_thoughtDefName==SoakingWet)->I got all drenched in the [swearword]rain! [rain_drenched]</li>
+						<li>rain_drenched(INITIATOR_thoughtDefName==EnvironmentCold,priority=1)->[thought_environmentcold]</li>
+						<li>rain_drenched(INITIATOR_thoughtDefName==Sick,priority=1)->I'm feeling [swearword]sick already, and now this...</li>
+						<li>rain_drenched(INITIATOR_trait==sickly,priority=1)->Now I'll [surely] catch some nasty [swearword]cold...</li>
+						<li>rain_drenched-></li>
+					<!-- ===Outdoors=== -->
+						<li>weather_rain_goodtemp(OUTDOORS==Yes,tag=WeatherRainGoodtempOutdoors)->[weather_rain_goodtemp_outdoors]</li>
+						<li>weather_rain_goodtemp_outdoors->This rain is drenching my clothes — maybe I'd better get inside.</li>
+						<li>weather_rain_goodtemp_outdoors->I'm soaking wet — maybe I'd better get inside.</li>
+						<li>weather_rain_goodtemp_outdoors(TEMPERATURE&lt;=5,INITIATOR_trait==sickly)->I'll get inside — or I'll [surely] catch a cold or worse.</li>
+						<li>weather_rain_goodtemp_outdoors(TEMPERATURE&lt;=5,INITIATOR_trait==wimp)->I'll get inside — I'd rather not catch a cold.</li>
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_rain(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_rain(TEMPERATURE>35)->[weather_toohot]</li>
+				
+			<!-- ===DRY THUNDERSTORM=== (p=2) -->
+				<li>r_logentry(p=2,WEATHER==dry thunderstorm)->[weather_dry_storm]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_dry_storm(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_dry_storm_goodtemp]</li>
+					<!-- ===Indoors=== -->
+						<li>weather_dry_storm_goodtemp(OUTDOORS==No,tag=WeatherDrystormGoodtempIndoors)->[weather_drystorm_goodtemp_indoors]</li>
+						<li>weather_drystorm_goodtemp_indoors->Did you hear that thunder?</li>
+						<li>weather_drystorm_goodtemp_indoors->Whoa — that thunder was loud!</li>
+					<!-- ===Outdoors=== -->
+						<li>weather_dry_storm_goodtemp(OUTDOORS==Yes,tag=WeatherDrystormGoodtempOutdoors)->[weather_drystorm_goodtemp_outdoors]</li>
+						<li>weather_drystorm_goodtemp_outdoors->Whoa — did you see that lightning? Amazing!</li>
+						<li>weather_drystorm_goodtemp_outdoors(INITIATOR_trait==pyromaniac)->That lightning was just amazing!</li>
+						<li>weather_drystorm_goodtemp_outdoors->The wind is [wind_pickingup] — a storm's approaching.</li>
+						<li>wind_pickingup->picking up</li>
+						<li>wind_pickingup->getting stronger</li>
+						<li>wind_pickingup->howling</li>
+					<!-- ===Wimp — Indoors=== -->
+						<li>weather_dry_storm_goodtemp(INITIATOR_trait==wimp,OUTDOORS==No,tag=WimpThunder)->[wimp_thunder_indoors]</li>
+						<li>wimp_thunder_indoors->Aww! Will these [swearword]thunders ever stop? I'm [scared]!</li>
+						<li>wimp_thunder_indoors->Aww! I'm [swearword_adverb]scared of thunders!</li>
+					<!-- ===Wimp — Outdoors=== -->
+						<li>weather_dry_storm_goodtemp(INITIATOR_trait==wimp,OUTDOORS==Yes,tag=WimpThunder)->Let's get inside immediately! [wimp_thunder_outdoors]</li>
+						<li>wimp_thunder_indoors->These [swearword]lightnings scare me!</li>
+						<li>wimp_thunder_indoors->These [swearword]thunders are deafening — I'm [scared]!</li>					
+
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_dry_storm(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_dry_storm(TEMPERATURE>35)->[weather_toohot]</li>
+
+			<!-- ===RAINY THUNDERSTORM=== (p=2) -->
+				<li>r_logentry(p=2,WEATHER==rainy thunderstorm)->[weather_storm]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_storm(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_storm_goodtemp]</li>
+					<!-- ===Indoors=== -->
+						<li>weather_storm_goodtemp(OUTDOORS==No,tag=WeatherStormGoodtempIndoors)->[weather_storm_goodtemp_indoors]</li>
+						<li>weather_storm_goodtemp_indoors->Did you hear that thunder? Wow...</li>
+						<li>weather_storm_goodtemp_indoors->Wow — that's some heavy pounding on our roof!</li>
+						<li>weather_storm_goodtemp_indoors->Sounds like bullets hitting the roofing...</li>
+						<li>weather_storm_goodtemp_indoors->Some heavy storm out there, uh?</li>
+						<li>weather_storm_goodtemp_indoors(INITIATOR_artistic_level>=5)->♪♫♪It's raining, it's pouring, the old man is snoring...♪♫♪</li>
+						<li>weather_storm_goodtemp_indoors->Oh my — it's raining cats and dogs out there!</li>
+						<li>weather_storm_goodtemp_indoors(INITIATOR_thoughtDefName==SoakingWet)->I got all drenched in the [swearword]storm! [rain_drenched]</li>
+					<!-- ===Outdoors=== -->
+						<li>weather_storm_goodtemp(OUTDOORS==Yes,tag=WeatherStormGoodtempOutdoors)->[weather_storm_goodtemp_outdoors]</li>
+						<li>weather_storm_goodtemp_outdoors->Whoa — did you see that lightning? Amazing!</li>
+						<li>weather_storm_goodtemp_outdoors->This rain is drenching my clothes — maybe I'd better get inside.</li>
+						<li>weather_storm_goodtemp_outdoors->I'm soaking wet — maybe I'd better get inside.</li>
+						<li>weather_storm_goodtemp_outdoors(INITIATOR_trait==pyromaniac)->That lightning was just amazing!</li>
+						<li>weather_storm_goodtemp_outdoors(TEMPERATURE&lt;=5,INITIATOR_trait==sickly)->I'll get inside — or I'll [surely] catch a bad cold or worse.</li>
+						<li>weather_storm_goodtemp_outdoors(TEMPERATURE&lt;=5,INITIATOR_trait==wimp)->I'll get inside — I'd rather not catch a bad cold.</li>
+					<!-- ===Wimp — Indoors (see Dry Thunderstorm)=== -->
+						<li>weather_storm_goodtemp(INITIATOR_trait==wimp,OUTDOORS==No,tag=WimpThunder)->[wimp_thunder_indoors]</li>
+					<!-- ===Wimp — Outdoors (see Dry Thunderstorm)=== -->
+						<li>weather_storm_goodtemp(INITIATOR_trait==wimp,OUTDOORS==Yes,tag=WimpThunder)->Let's get inside immediately! [wimp_thunder_outdoors]</li>
+
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_storm(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_storm(TEMPERATURE>35)->[weather_toohot]</li>
+
+			<!-- ===FOGGY RAIN=== -->
+				<li>r_logentry(WEATHER==foggy rain)->[weather_foggyrain]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_foggyrain(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_foggyrain_goodtemp]</li>
+					<!-- ===Indoors (as per normal rain)=== -->
+						<li>weather_foggyrain_goodtemp(OUTDOORS==No,tag=WeatherRainGoodtempIndoors)->[weather_rain_goodtemp_indoors]</li>
+					<!-- ===Outdoors (as per normal rain)=== -->
+						<li>weather_foggyrain_goodtemp(OUTDOORS==Yes,tag=WeatherRainGoodtempOutdoors)->[weather_rain_goodtemp_outdoors]</li>
+					<!-- ===Outdoors (as per normal fog)=== -->					
+						<li>weather_foggyrain_goodtemp(OUTDOORS==Yes,tag=WeatherFogGoodtempNotEntombed)->[weather_fog_goodtemp_not_entombed]</li>
+						<li>weather_foggyrain_goodtemp(OUTDOORS==Yes,tag=WeatherFogGoodtempNotEntombed)->Not only I'm getting all drenched, I can't see a [swearword] thing in this [swearword]fog!</li>					
+					<!-- ===Hunting skill (recipient)=== -->
+						<li>weather_foggyrain_goodtemp(RECIPIENT_shooting_level>=5,RECIPIENT_animals_level>=5,tag=HuntWithFog)->I guess this foggy rain means no hunting for you today?</li>
+					<!-- ===Trait==Wimp=== -->
+						<li>weather_foggyrain_goodtemp(INITIATOR_trait==wimp,tag=WeatherFogWimp)->I'm [scared]... what if some [horrible] [monster] suddenly comes out of this [eerie] rainy [mist]?</li>
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_fog(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_fog(TEMPERATURE>35)->[weather_toohot]</li>
+
+			<!-- ===HARD SNOW=== (p=2)-->
+				<li>r_logentry(p=2,WEATHER==hard snow)->[weather_hardsnow]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_hardsnow(TEMPERATURE>=-15,TEMPERATURE&lt;=40)->[weather_hardsnow_goodtemp]</li>
+					<!-- ===Undergrounder indoors (priority 2)=== -->
+						<li>weather_hardsnow_goodtemp(OUTDOORS==No,INITIATOR_trait==undergrounder,tag=StuckIndoors,priority=2)->It's so nice being indoors when there's such a strong wind blowing out there...</li>
+					<!-- ===Entombed indoors (priority 1)=== -->
+						<li>weather_hardsnow_goodtemp(OUTDOORS==No,INITIATOR_thoughtDefName==NeedOutdoors,tag=StuckIndoors,priority=1)->I can hear the wind is blowing very hard out there...</li>
+					<!-- ===Outdoors or indoors but not entombed (default)=== -->
+						<li>weather_hardsnow_goodtemp(tag=WeatherHardsnowGoodtempNotEntombed)->[weather_hardsnow_goodtemp_not_entombed]</li>
+						<!-- ===Initiator mood=== -->
+							<li>weather_hardsnow_goodtemp_not_entombed(INITIATOR_mood>=0.4)->There's quite the snowstorm [out_here_out_there]!</li>
+							<li>weather_hardsnow_goodtemp_not_entombed(INITIATOR_mood>=0.2,INITIATOR_mood&lt;0.4)->Walking in the [swearword]snowstorm [out_here_out_there] is almost impossible!</li>
+							<li>weather_hardsnow_goodtemp_not_entombed(INITIATOR_mood&lt;0.2)->[swearword]snowstorm! I almost slipped and fell! [damn_it]!</li>
+					<!-- ===Hunting skill (recipient)=== -->
+						<li>weather_hardsnow_goodtemp(RECIPIENT_shooting_level>=5,RECIPIENT_animals_level>=5,tag=HuntWithFog)->I guess this snowstorm means no hunting for you today?</li>
+					<!-- ===Trait==Too smart=== -->
+						<li>weather_hardsnow_goodtemp(INITIATOR_trait==too smart,tag=WeatherSnowstormToosmart)->[snowstorm_fact]</li>
+						<li>snowstorm_fact(INITIATOR_intellectual_level>=10)->Based on atmosphere's temperature profile, snow can be either wet or dry — the former being much more difficult to remove.</li>
+						<li>snowstorm_fact(INITIATOR_intellectual_level>=7)->Winter storm total precipitation is less than its rain counterpart — cold air can not hold as much moisture as warm air.</li>
+						<li>snowstorm_fact(INITIATOR_intellectual_level>=5)->Winter storms are formed when moist air rise up into the atmosphere, creating a low pressure near the ground and clouds up in the air.</li>
+						<li>snowstorm_fact->Winter storms with wind speed of more than 16 m/s and reduced visibility for 3 hours or more, are called blizzards.</li>
+
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_hardsnow(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_hardsnow(TEMPERATURE>35)->[weather_toohot]</li>			
+
+			<!-- ===GENTLE SNOW=== -->
+				<li>r_logentry(WEATHER==gentle snow)->[weather_softsnow]</li>
+				<!-- ===Good temperature for humans=== -->
+					<li>weather_softsnow(TEMPERATURE>=-10,TEMPERATURE&lt;=35)->[weather_softsnow_goodtemp]</li>
+					<!-- ===Undergrounder indoors (priority 2)=== -->
+						<li>weather_softsnow_goodtemp(OUTDOORS==No,INITIATOR_trait==undergrounder,priority=2)->[mood]</li>
+					<!-- ===Entombed indoors (priority 1)=== -->
+						<li>weather_softsnow_goodtemp(OUTDOORS==No,INITIATOR_thoughtDefName==NeedOutdoors,tag=StuckIndoors,priority=1)->I'm curious about what's the weather like out there.</li>
+					<!-- ===Outdoors or indoors but not entombed (default)=== -->
+						<li>weather_softsnow_goodtemp(tag=WeatherSoftsnowGoodtempNotEntombed)->[weather_softsnow_goodtemp_not_entombed]</li>
+						<!-- ===Mood=== -->
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood>=0.7)->It's snowing — how nice!</li>
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood>=0.7,OUTDOORS==Yes)->Look, I caught a snowflake — how beautiful!</li>
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood>=0.4,OUTDOORS==No)->Did you have a peek outdoors? It's snowing!</li>
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood>=0.4,OUTDOORS==Yes)->It's snowing!</li>
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood&lt;0.4,OUTDOORS==No)->[swearword]snow...</li>
+							<li>weather_softsnow_goodtemp_not_entombed(INITIATOR_mood&lt;0.4,OUTDOORS==Yes)->[damn_it] — a snowflake got in my eye...!</li>
+					<!-- ===Trait==Too smart=== -->
+						<li>weather_softsnow_goodtemp(INITIATOR_trait==too smart,OUTDOORS==Yes,tag=WeatherSnowToosmart)->[snow_fact]</li>
+						<li>snow_fact(INITIATOR_intellectual_level>=10)->Snowflakes form by attracting supercooled cloud water droplets, which freeze and accrete in crystal form.</li>
+						<li>snow_fact(INITIATOR_intellectual_level>=7)->Snowflakes nucleate around a dust particle in supersaturated air masses .</li>
+						<li>snow_fact(INITIATOR_intellectual_level>=5)->Snowflakes increase to millimeter size, precipitate and accumulate on surfaces, then metamorphose in place, and ultimately melt</li>
+						<li>snow_fact->Snowflakes consists of frozen crystalline water throughout its life cycle.</li>
+				<!-- ===Extreme cold for humans=== -->
+					<li>weather_softsnow(TEMPERATURE&lt;-10)->[weather_toocold]</li>
+				<!-- ===Extreme heat for humans=== -->
+					<li>weather_softsnow(TEMPERATURE>35)->[weather_toohot]</li>
+			
+			<!-- ===WILDCARDS=== -->
+				<!-- ===Extreme cold felt=== -->
+					<!-- ===Clothes are not enough=== -->
+						<li>weather_toocold(INITIATOR_thoughtLabel==chilly,priority=1)->I should get better clothing — I'm almost freezing.</li>
+						<li>weather_toocold(INITIATOR_thoughtLabel==cold,priority=1)->I should get better clothing — I'm cold!</li>
+						<li>weather_toocold(INITIATOR_thoughtLabel==numbing cold,priority=1)->I should get better clothing — I'm freezing!</li>
+						<li>weather_toocold(INITIATOR_thoughtLabel==absolutely freezing,priority=1)->I should get better clothing — I'm totally numbed by the cold!</li>
+					<!--Clothes are enough-->
+						<li>weather_toocold->Luckily, my gear is warm enough to protect me from this extreme cold!</li>
+				<!-- ===Extreme heat felt=== -->
+					<!-- ===Clothes are not enough=== -->
+						<li>weather_toohot(INITIATOR_thoughtLabel==sweaty,priority=1)->I should get better clothing — I'm sweating.</li>
+						<li>weather_toohot(INITIATOR_thoughtLabel==hot,priority=1)->I should get better clothing — I'm feeling very hot!</li>
+						<li>weather_toohot(INITIATOR_thoughtLabel==sweltering hot,priority=1)->I should get better clothing — I'm feeling extremely hot!</li>
+						<li>weather_toohot(INITIATOR_thoughtLabel==blistering hot,priority=1)->I should get better clothing — I'm melting!</li>
+					<!-- ===Clothes are enough=== -->
+						<li>weather_toohot->Luckily, my gear is good enough to protect me from this scorching heat!</li>
+				<!-- ===snowstorm=== -->
+					<li>snowstorm->snowstorm</li>
+					<li>snowstorm->blizzard</li>
+					<li>snowstorm->winter storm</li>
+				
+		</value>
+	</Operation>
+	
+</Patch>

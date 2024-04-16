@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "Insult"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+		<!-- == General == -->			
+			<!-- ===Ancestors=== -->
+				<li>r_logentry(tag=Insult_Ancestors)->[insult_ancestors]</li>
+				<li>insult_ancestors->Your ancestors' souls be damned!</li>
+				<li>insult_ancestors->Your most beloved ancestors' souls be damned!</li>
+				<li>insult_ancestors->Your eldest ancestors' souls be damned!</li>
+				<li>insult_ancestors->Your [bloody] ancestors' souls be damned!</li>
+			<!-- ===Miscellaneous=== -->
+				<li>r_logentry(p=5,tag=Insult_generic)->[generic]</li>
+				<li>generic->You're [insult_adj][insult] — that's what you are, [RECIPIENT_nameDef]!</li>
+				<li>generic->I hope Death finds you earlier than expected, [RECIPIENT_nameDef]!</li>
+				<li>generic->I hope a warg shreds you to pieces, [RECIPIENT_nameDef]!</li>
+				<li>generic->I hope a warg feasts on your dead body, [RECIPIENT_nameDef]!</li>
+				<li>generic->Hey, [RECIPIENT_nameDef] — can you just go die or something?!</li>
+				<li>generic->Hey, [RECIPIENT_nameDef]! Check the news — you're [insult_adj][insult]!</li>
+				<li>generic->[RECIPIENT_nameDef], I will be the first one at your funeral!</li>
+				<li>generic->Your face is like a fist magnet, [RECIPIENT_nameDef]!</li>
+				<li>generic->Your ass is like a foot magnet, [RECIPIENT_nameDef]!</li>
+				<li>generic(p=0.5,INITIATOR_mood&lt;=0.2)->[i_abrasive]</li>
+				<li>generic(INITIATOR_intellectual_level>=5)->I look forward to attending your funeral, [RECIPIENT_nameDef].</li>
+				<li>generic(INITIATOR_intellectual_level>=5)->The woman who breastfed you be damned, [RECIPIENT_nameDef]!</li>
+				<li>r_logentry(p=2,tag=Insult_generic)->[generic_short]</li>
+					<li>generic_short->you [bloody] [insult]!</li>
+					<li>generic_short(RECIPIENT_gender==Male)->you [bloody] son of a [bitch]!</li>
+
+		<!-- ===Recipient's trait/parameter=== -->
+			<!-- ===Ex-Lover/Spouse=== -->
+				<li>r_logentry(RECIPIENT_relationship==ExLover,tag=Insult_generic)->[ex]</li>
+				<li>r_logentry(RECIPIENT_relationship==ExSpouse,tag=Insult_generic)->[ex]</li>
+					<li>ex->If you are going to be two-faced, at least make one of them pretty!</li>
+			<!-- ===Sickly===  -->
+				<li>r_logentry(RECIPIENT_trait==sickly,tag=Insult_generic)->[trait_sickly]</li>		
+				<li>trait_sickly->Stay away from me, [RECIPIENT_nameDef] — you [plague_animal]!</li>
+				<li>trait_sickly->[plague_animal]s like you, [RECIPIENT_nameDef], should be exterminated!</li>
+				<li>trait_sickly->Why don't you keep your germs to yourself, [RECIPIENT_nameDef]? Stay away from me!</li>
+				<li>plague_animal->bubonic rat</li>
+				<li>plague_animal->malarial gnat</li>
+				<li>plague_animal->flu-ridden swine</li>
+			<!-- ===Ugly and staggering ugly=== -->
+				<li>r_logentry(RECIPIENT_trait==ugly,tag=Insult_generic)->Hey, [RECIPIENT_nameDef]! You're so ugly you scare the shit back into people!</li>
+				<li>r_logentry(RECIPIENT_trait==ugly,tag=Insult_generic)->On a scale of one to disgusting, [RECIPIENT_nameDef], you're pretty high up there!</li>
+				<li>r_logentry(RECIPIENT_trait==staggering ugly,tag=Insult_generic)->When you die, [RECIPIENT_nameDef], your rotten body will look better than you look now!</li>
+				<li>r_logentry(RECIPIENT_trait==staggering ugly,tag=Insult_generic)->You're so ugly, [RECIPIENT_nameDef], that when you walk through a haunted house, you come out with a paycheck.</li>
+			<!-- ===Age=== -->
+				<li>r_logentry(RECIPIENT_age>=60,tag=Insult_generic)->You old fart!</li>
+			<!-- ===Passion=== -->
+				<li>r_logentry(RECIPIENT_plants_passion!=None,tag=Insult_generic)->[plants_passion]</li>
+				<li>plants_passion->May your rotten body feed the plants you care so much about!</li>
+				<li>plants_passion->Go die in a [bloody] forest — go feed the trees you care so much about!</li>
+		<!-- ===Recipient's job=== -->
+				<li>r_logentry(RECIPIENT_jobText==vomiting.,priority=4,tag=Insult_generic)->I hope you choke on your vomit, [generic_short]</li>
+		<!-- ===Initiator's trait=== -->
+			<!-- ===Abrasive=== -->
+				<li>r_logentry(INITIATOR_trait==abrasive,tag=Insult_generic)->[i_abrasive]</li>
+				<li>i_abrasive->Fuck off, [RECIPIENT_nameDef]!</li>
+				<li>i_abrasive->You took so many cocks in your life that if you put a fence around your [intimate_hole] you'll get a neat chicken coop!</li>
+					<li>intimate_hole(RECIPIENT_gender==Female,priority=1)->pussy</li>
+					<li>intimate_hole->asshole</li>
+			<!-- ===Bloodlust=== -->
+				<li>r_logentry(INITIATOR_trait==bloodlust,tag=Insult_generic)->[bloodlust]</li>
+				<li>bloodlust->I wish I could kill you twice!</li>
+				<li>bloodlust->Soon enough your entrails will be a fine addition to my wardrobe!</li>
+				<li>bloodlust->Your dried-up skin will look great on me!</li>
+		<!-- ===Initiator's job=== -->
+			<!-- ===Social fight (priority 5)=== -->
+				<li>r_logentry(INITIATOR_jobDefName==SocialFight,priority=5)->[social_fight]</li>
+				<li>social_fight->I'll kick your sorry ass, [generic_short]</li>
+				<li>social_fight->I'll punch you in the throat, [generic_short]</li>
+				<li>social_fight->I'm gonna kill you, [generic_short]</li>
+				<li>social_fight->Come here, [generic_short] I'll punch that out of you!</li>
+				<li>social_fight->Ugh! Shut up, [generic_short] I'll show you!</li>
+				<li>social_fight->Have this knuckle sandwich, [generic_short]</li>
+				<li>social_fight->Die, [generic_short]</li>
+				<li>social_fight->Aaaurghh!</li>
+		<!--===WILDCARDS===-->
+			<li>insult(RECIPIENT_gender==Female)->[bitch]</li>
+			<li>insult(RECIPIENT_gender==Male)->[asshole]</li>
+			<li>insult->fart-hopper</li>
+			<li>insult->jerk</li>
+			<li>insult->asshole</li>
+			<li>insult(INITIATOR_intellectual_level>=5)->latrine dweller</li>
+			<li>asshole->arse-wipe</li>
+			<li>asshole->dickhead</li>
+			<li>asshole->prick</li>
+			<li>asshole->bastard</li>
+			<li>bitch->bitch</li>
+			<li>bitch->basic bitch</li>
+			<li>bitch->cunt</li>
+			<li>bitch->tart</li>
+			<li>bitch->whore</li>
+			<li>bitch->wench</li>
+			<li>bitch(INITIATOR_intellectual_level>=5)->courtesan</li>
+			<li>bitch(INITIATOR_intellectual_level>=10)->woman of ill repute</li>
+			<li>bloody->bloody</li>
+			<li>bloody->blasted</li>
+			<li>bloody->blighted</li>
+			<li>bloody->frigging</li>
+			<li>bloody->foul</li>
+			<li>bloody->sodding</li>
+			<li>bloody->wretched</li>
+			<li>bloody(p=2,INITIATOR_trait==abrasive)->fucking</li>
+			<li>bloody(INITIATOR_intellectual_level>=5)->accursed</li>
+			<li>bloody(INITIATOR_intellectual_level>=10)->despicable</li>
+			<li>bloody(INITIATOR_intellectual_level>=10)->execrable</li>
+			<li>bloody(INITIATOR_intellectual_level>=10)->ill-omened</li>
+			<li>insult_adj-></li>
+			<li>insult_adj->a big </li>
+			<li>insult_adj->a huge </li>
+			<li>insult_adj->a number-one </li>			
+			<li>insult_adj->a top-ranking </li>			
+			<li>insult_adj->an award-winning </li>
+			<li>insult_adj->a state-of-the-art </li>
+			<li>insult_adj->a world-class </li>
+			<li>insult_adj(INITIATOR_intellectual_level>=5)->a cutting-edge </li>
+			<li>insult_adj(INITIATOR_intellectual_level>=10)->a legally acknowledged </li>
+			</rulesStrings>
+		</value>
+	</Operation>	
+	
+</Patch>

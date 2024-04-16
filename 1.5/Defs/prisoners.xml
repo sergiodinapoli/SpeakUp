@@ -1,0 +1,1629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Build Rapport=== -->
+		<defName>PrisonerRapport</defName>
+		<label>prisoner — rapport</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(p=2,INITIATOR_trait==abrasive)->[bad_opinion]</li>
+					<li>good_opinion->I might consider it...</li>
+					<li>good_opinion->I'll consider it... but give me more time to think, okay?</li>
+					<li>good_opinion->I need more time to recollect my thoughts...</li>
+					<li>good_opinion->Please, just let me leave...</li>
+					<li>good_opinion->I... I don't know...</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Passion=== -->
+		<defName>PrisonerPassion</defName>
+		<label>prisoner — passion</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(INITIATOR_higherPassion==shooting)->During a fight, I enjoy shooting from a distance.</li>
+					<li>good_opinion(INITIATOR_higherPassion==melee,INITIATOR_trait==brawler,priority=1)->During a fight, I enjoy using punches and kicks.</li>
+					<li>good_opinion(INITIATOR_higherPassion==melee)->During a fight, I enjoy using melee weapons.</li>
+					<li>good_opinion(INITIATOR_higherPassion==construction)->I love masonry!</li>
+					<li>good_opinion(INITIATOR_higherPassion==construction)->I love carpentry!</li>
+					<li>good_opinion(INITIATOR_higherPassion==mining)->I love mining!</li>
+					<li>good_opinion(INITIATOR_higherPassion==cooking)->I love cooking!</li>
+					<li>good_opinion(INITIATOR_higherPassion==plants)->I love plants in general.</li>
+					<li>good_opinion(INITIATOR_higherPassion==plants)->I love farming!</li>
+					<li>good_opinion(INITIATOR_higherPassion==animals)->I love taking care of animals!</li>
+					<li>good_opinion(INITIATOR_higherPassion==animals)->I love animals!</li>
+					<li>good_opinion(INITIATOR_higherPassion==crafting)->I love crafting!</li>
+					<li>good_opinion(INITIATOR_higherPassion==artistic)->I love arts!</li>
+					<li>good_opinion(INITIATOR_higherPassion==medical)->I love taking care of other people!</li>
+					<li>good_opinion(INITIATOR_higherPassion==medical)->I love medicine!</li>
+					<li>good_opinion(INITIATOR_higherPassion==social)->I love being around people!</li>
+					<li>good_opinion(INITIATOR_higherPassion==social)->I love negotiating!</li>
+					<li>good_opinion(INITIATOR_higherPassion==intellectual)->I love logic and reasoning!</li>
+					<li>good_opinion(INITIATOR_higherPassion==intellectual)->I love conducting research projects!</li>
+					<li>good_opinion(priority=-1)->I have no preferred activities...</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===BestSkill=== -->
+		<defName>PrisonerBestSkill</defName>
+		<label>prisoner — best skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(INITIATOR_bestSkill==animals)->I'm best skilled at taking care of animals.</li>
+					<li>good_opinion(INITIATOR_bestSkill==plants)->I'm best skilled at farming.</li>
+					<li>good_opinion(INITIATOR_bestSkill==artistic)->I'm best skilled at arts.</li>
+					<li>good_opinion(INITIATOR_bestSkill==medical)->I'm best skilled at taking care of other people.</li>
+					<li>good_opinion(INITIATOR_bestSkill==medical)->I'm best skilled at medicine.</li>
+					<li>good_opinion(INITIATOR_bestSkill==social)->I'm best skilled at negotiating.</li>
+					<li>good_opinion(INITIATOR_bestSkill==social)->I'm best skilled at being around people.</li>
+					<li>good_opinion(INITIATOR_bestSkill==intellectual)->I'm best skilled at logic and reasoning.</li>
+					<li>good_opinion(INITIATOR_bestSkill==intellectual)->I'm best skilled at researching.</li>
+					<li>good_opinion(priority=-1)->I'm best skilled at [INITIATOR_bestSkill].</li>
+					
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>	
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Accepts=== -->
+		<defName>PrisonerAccepts</defName>
+		<label>prisoner — accepts</label>
+		<logRulesInitiator>
+			<rulesStrings>
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentDark,priority=1)->[dark_cell]</li>
+				<li>dark_cell(INITIATOR_trait==undergrounder)->[good_opinion]</li>
+				<li>dark_cell(INITIATOR_trait==night owl)->[good_opinion]</li>
+				<li>dark_cell(priority=-1)->I'm done with this dark cell — I'll join [RECIPIENT_factionName]!</li>
+			
+			<li>r_logentry(INITIATOR_thoughtLabel==hideous environment,priority=1)->[ugly_cell]</li>
+			<li>r_logentry(INITIATOR_thoughtLabel==ugly environment,priority=1)->[ugly_cell]</li>
+			<li>r_logentry(INITIATOR_thoughtLabel==unsightly environment,priority=1)->[ugly_cell]</li>
+				<li>ugly_cell->I'm done with this awful dungeon — I'll join [RECIPIENT_factionName]!</li>
+			
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentCold,priority=1)->I just want to get out of this cold. I'll do whatever — I'll join [RECIPIENT_factionName]!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==EnvironmentHot,priority=1)->I just want to get out of this heat. I'll do whatever — I'll join [RECIPIENT_factionName]!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==NeedFood,priority=1)->Now that I'm part of [RECIPIENT_factionName], I expect to be fed!</li>
+			<li>r_logentry(INITIATOR_thoughtDefName==MyOrganHarvested,priority=1)->Please! If it stops you from harvesting my organs, I'll join [RECIPIENT_factionName]!</li>
+			
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+				<li>bad_opinion->I hate to say this, but... you finally convinced me to join your filthy community.</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion->I'm ready to be part of [RECIPIENT_factionName].</li>
+					<li>good_opinion->You finally convinced me, [recipient].</li>
+					<li>good_opinion->Your arguments finally won me over, [recipient].</li>
+					<li>good_opinion->I finally understood [RECIPIENT_factionName] is a better choice for me.</li>
+					<li>good_opinion->I finally understood [RECIPIENT_factionName] can guarantee a better future for me.</li>
+					<li>good_opinion->You know what? Maybe youre not so bad after all — I'm ready to join [RECIPIENT_factionName].</li>
+					<li>good_opinion->Hmm... Okay, whatever. I'm in.</li>
+					<li>good_opinion->If joining [RECIPIENT_factionName] is what it takes to get out of this cell, then I might as well join.</li>
+					<li>good_opinion->I've thought about it, and I think I'm up for joining [RECIPIENT_factionName].</li>
+					<li>good_opinion->The food alone is worth staying — I'll join [RECIPIENT_factionName]!</li>
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Refuses=== -->
+		<defName>PrisonerRefuses</defName>
+		<label>prisoner — refuses</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>			
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+				<li>bad_opinion->[part1] [part2]</li>
+					<li>part1->Never!</li>
+					<li>part1->No way!</li>
+					<li>part1->Not at all!</li>
+					<li>part1->Not in a million years!</li>
+					<li>part1->Certainly not!</li>
+					<li>part1->Of course not!</li>
+					<li>part1(INITIATOR_intellectual_level>=5)->Not under any circumstances.</li>
+					<li>part1(INITIATOR_intellectual_level>=5)->In no circumstances.</li>
+					<li>part1(INITIATOR_intellectual_level>=5)->On no account.</li>
+					
+					<li>part2->I'd be a fool to join [RECIPIENT_factionName]!</li>
+					<li>part2->I'm sure my friends back at [INITIATOR_factionName] are sending a rescue party as we speak!</li>
+					<li>part2(INITIATOR_opinion&lt;=-25)->I'd never join a community that accepts lousy people like you!</li>
+					<li>part2(INITIATOR_opinion&lt;=-25)->[aggressive]</li>
+					<li>part2(INITIATOR_mood&lt;0.4)->[aggressive]</li>
+						<li>aggressive->I'd rather die than join your lousy [faction]!</li>
+						<li>aggressive->I'd rather die than join a [faction] full of scum!</li>
+						<li>aggressive->Your [faction] sucks!</li>
+						<li>aggressive->[RECIPIENT_factionName]'s rescue party is on its way and will kill you all!</li>
+					<li>part2->I don't want to join; I want to go back home!</li>
+					<li>part2(INITIATOR_thoughtDefName==NeedFood)->I'm starving here, and you want me to join you?! Get lost!</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion->No — I won't join [RECIPIENT_factionName]...</li>
+					<li>good_opinion->No — I'd rather go back to my community.</li>
+					<li>good_opinion->No — I'll be better off with [INITIATOR_factionName].</li>
+					<li>good_opinion->No — I won't betray [INITIATOR_factionName]'s trust.</li>
+					<li>good_opinion->I'm a loyal member of [INITIATOR_factionName] — I won't join your [faction].</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->Thanks for the offer, but no.</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->Nothing personal, [recipient] — but I won't join your [faction].</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->[nothingpersonal], [recipient] — but I won't join your [faction].</li>
+						<li>nothingpersonal->nothing personal</li>
+						<li>nothingpersonal->I do like you</li>
+						<li>nothingpersonal->I [like] [interaction]</li>
+						<li>nothingpersonal->I [like] [interaction]</li>
+							<li>like->like</li>
+							<li>like->enjoy</li>
+							<li>like->appreciate</li>
+							<li>interaction->our conversations</li>
+							<li>interaction->our talks</li>
+							<li>interaction->your company</li>
+						<li>faction->faction</li>
+						<li>faction->community</li>
+						
+					<li>good_opinion(INITIATOR_thoughtDefName==NeedFood)->I'd rather be with my community — they wouldn't let me starve...</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===End chat=== -->
+		<defName>PrisonerEndchat</defName>
+		<label>prisoner — end chat</label>
+		<logRulesInitiator>
+			<rulesStrings>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4)->[bad_opinion]</li>
+				<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion->...</li>
+					<li>bad_opinion(INITIATOR_opinion&lt;=-25)->Get lost...</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion->...</li>
+					<li>good_opinion(INITIATOR_opinion>=25)->See you later, [recipient].</li>
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+	
+
+<!-- ===TRAITS=== -->
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===PrisonerNeed=== -->
+		<defName>PrisonerNeed</defName>
+		<label>prisoner — need anything</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please [bring_me] me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please [bring_me] me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(p=2,INITIATOR_trait==abrasive)->[bad_opinion]</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==EnvironmentDark)->[environmentdark]</li>
+						<li>environmentdark(INITIATOR_trait==night owl,priority=2)->Don't set up any lights here — I feel more comfortable in darkness.</li>
+						<li>environmentdark(INITIATOR_trait==undergrounder,priority=1)->Darkness feels like home to me — but even so, I'd like to have some light here.</li>
+						<li>environmentdark->I'd like to have some light in here — it's too dark.</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==NeedFood,priority=1)->I need something to eat[needfood]</li>
+						<li>needfood->!</li>
+						<li>needfood(INITIATOR_trait==gourmand)-> — and I hope it will be prepared by a professional chef.</li>
+						<li>needfood(INITIATOR_trait==ascetic)-> — whatever meal you have, even raw food, is fine by me.</li>
+					<li>good_opinion(INITIATOR_trait==bloodlust)->I need to slit your throat and drink your hot blood.</li>
+					<li>good_opinion(INITIATOR_trait==masochist)->Punch me, kick me until I faint — I deserve it...</li>
+					<li>good_opinion(INITIATOR_trait==ascetic)->My only desire is getting out of here so I can live the simple life I wish for myself.</li>
+					<li>good_opinion(INITIATOR_trait==gourmand)->My stomach doesn't agree with low-quality food, so make sure I get properly cooked meals.</li>
+					<li>good_opinion(INITIATOR_trait==pyromaniac)->I'd like this room to have lit torches on the walls.</li>
+					<li>good_opinion(priority=-1)->Thanks, I'm fine.</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>	
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===PrisonerPsychic=== -->
+		<defName>PrisonerPsychic</defName>
+		<label>prisoner — psychic</label>
+		<logRulesInitiator>
+			<rulesStrings>
+			<!-- ===Psychic=== -->
+				<li>r_logentry(INITIATOR_trait==psychically sensitive,priority=1)->[psychic]</li>
+				<li>r_logentry(INITIATOR_trait==psychically hypersensitive,priority=1)->[psychic]</li>
+				
+				<!-- ===Bad opinion of recipient=== -->
+					<li>psychic(INITIATOR_opinion&lt;0)->[psy_bad_opinion]</li>
+					<li>psychic(INITIATOR_mood&lt;0.4,priority=1)->[psy_bad_opinion]</li>
+					<li>psychic(INITIATOR_trait==kind,priority=1)->[psy_good_opinion]</li>
+					<li>psychic(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>psychic(INITIATOR_trait==brawler)->[brawler]</li>
+						<li>psy_bad_opinion->What?! Your psychic readings are completely fake...</li>
+				<!-- ===Good opinion of recipient=== -->
+					<li>psychic(INITIATOR_opinion>=0)->[psy_good_opinion]</li>
+					<li>psy_good_opinion(p=2,INITIATOR_trait==abrasive)->[psy_bad_opinion]</li>
+					<li>psy_good_opinion->Yes — your psychic readings are correct.</li>
+					
+			<!-- ===Non psychic (default)=== -->
+				<li>r_logentry->[non_psychic]</li>
+					
+				<!-- ===Bad opinion of recipient=== -->
+					<li>non_psychic(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+						<li>bad_opinion->Shut up, you freak!</li>
+						<li>bad_opinion->Your [sorcery] won't scare me!</li>
+						<li>bad_opinion->Are you trying to scare me with your [sorcery]?</li>
+						<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<!-- ===Good opinion of recipient=== -->					
+					<li>non_psychic(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion->Wait... what?</li>
+					<li>good_opinion->What... what are you speaking about?</li>
+					<li>good_opinion->Come again?</li>
+					<li>good_opinion->Psychic aura... what is this?</li>
+					<li>good_opinion->Is that some sort of [sorcery]?</li>
+						<li>sorcery->sorcery</li>
+						<li>sorcery->black magic</li>
+						<li>sorcery->witchcraft</li>
+						<li>sorcery->mumbo-jumbo</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>psy_bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===PrisonerCV=== -->
+		<defName>PrisonerCV</defName>
+		<label>prisoner — cv</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+					
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(p=2,INITIATOR_trait==abrasive)->[bad_opinion]</li>
+					<li>good_opinion(INITIATOR_trait==bloodlust)->I love butchering my enemies.</li>
+					<li>good_opinion(INITIATOR_trait==bloodlust)->I love torturing people while watching their blood pooling around them.</li>					
+					<li>good_opinion(INITIATOR_trait==kind)->I believe much can be achieved with sincere smiles and kind words.</li>
+					<li>good_opinion(INITIATOR_trait==nimble)->I'm quite agile and can dodge melee blows with ease.</li>
+					<li>good_opinion(INITIATOR_trait==fast learner)->I'm an adaptive person — meaning that I can learn very quickly!</li>
+					<li>good_opinion(INITIATOR_trait==slow learner)->I like taking things slow, so I tend to need more time to learn new things.</li>
+					<li>good_opinion(INITIATOR_trait==body modder)->I think our bodies are feeble and need bio-enhancements.</li>
+					<li>good_opinion(INITIATOR_trait==body purist)->I believe our bodies are limited for a reason — bio-enhancements are disgusting and unethical.</li>
+					<li>good_opinion(INITIATOR_trait==night owl)->I like to work at night.</li>
+					<li>good_opinion(INITIATOR_trait==greedy)->I deserve only the best in my life — I won't accept lower standards.</li>
+					<li>good_opinion(INITIATOR_trait==jealous)->I never accept being given scraps when there's gold around — I am the one who deserves the best!</li>
+					<li>good_opinion(INITIATOR_trait==ascetic)->I enjoy the simple things of life and have no materialistic desires.</li>
+					<li>good_opinion(INITIATOR_trait==asexual)->I'm happily free from the sex drives that enslave most of our lives.</li>
+					<li>good_opinion(INITIATOR_trait==misandrist)->I firmly believe that men are all cruel and untrustworthy.</li>
+					<li>good_opinion(INITIATOR_trait==misogynist)->I firmly believe that women are all cruel and untrustworthy.</li>
+					<li>good_opinion(INITIATOR_trait==great memory)->I have a fantastic memory for detail.</li>
+					<li>good_opinion(INITIATOR_trait==tough)->I have thick skin, dense flesh and durable bones — killing me is no easy task.</li>
+					<li>good_opinion(INITIATOR_trait==gourmand)->Haute cuisine is one of my passions — I enjoy fancy meals!</li>
+					<li>good_opinion(INITIATOR_trait==quick sleeper)->I tend to need less sleep than the average person.</li>
+					<li>good_opinion(INITIATOR_trait==undergrounder)->I prefer living in undeground caverns.</li>
+					<li>good_opinion(INITIATOR_trait==tortured artist)->Nobody understands my creative energies, but I do have a great artistic potential...</li>
+					<li>good_opinion(INITIATOR_trait==teetotaler)->I abhor the idea of gaining pleasure from chemicals or alcoholic beverages.</li>
+					<li>good_opinion(INITIATOR_trait==industrious)->I have an easy time staying on-task and focused — I get things done much faster than the average person.</li>
+					<li>good_opinion(INITIATOR_trait==hard worker)->I am a natural hard worker and will finish tasks faster than most.</li>
+					<li>good_opinion(INITIATOR_trait==lazy)->People say I'm a little lazy...</li>
+					<li>good_opinion(INITIATOR_trait==slothful)->I just love sleeping, eating, relaxing and taking it easy — that's my ideal way of life.</li>
+					<li>good_opinion(INITIATOR_trait==sanguine)->No matter what it, I'm naturally upbeat about my situation — pretty much all the time.</li>
+					<li>good_opinion(INITIATOR_trait==optimist)->I'm naturally optimistic about life — it's hard to get me down.</li>
+					<li>good_opinion(INITIATOR_trait==pessimist)->The proverbial glass is always half empty for me.</li>
+					<li>good_opinion(INITIATOR_trait==depressive)->Happiness is just a fickle illusion in our wretched lives...</li>
+					<li>good_opinion(INITIATOR_trait==iron-willed)->My will is an iron shield — I keep going through thick and thin, when others broke down long before.</li>
+					<li>good_opinion(INITIATOR_trait==steadfast)->I'm mentally tough and won't break down under stresses that would crack most people.</li>
+					<li>good_opinion(INITIATOR_trait==nervous)->I tend to crack under pressure...</li>
+					<li>good_opinion(INITIATOR_trait==volatile)->I have mood swings sometimes — I'm the first to break in any tough situation.</li>
+					<li>good_opinion(INITIATOR_trait==neurotic)->I like to have things squared away — I will work harder than most to reach my aims, even if this could mean endagering my mental health.</li>
+					<li>good_opinion(INITIATOR_trait==very neurotic)->Things must be squared away — it's the only correct way to get work done. I will work hard to reach my aims, whatever the price.</li>
+					<li>good_opinion(INITIATOR_trait==super-immune)->I have a naturally powerful immune system — I can survive illnesses that would kill others.</li>
+					<li>good_opinion(INITIATOR_trait==sickly)->I have an awful immune system, so unfortunately I get sick more often than usual.</li>
+					<li>good_opinion(priority=-1)->There's nothing special about me, really...</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===PrisonerClothes=== -->
+		<defName>PrisonerClothes</defName>
+		<label>prisoner — clothes</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					<li>good_opinion(p=2,INITIATOR_trait==abrasive)->[bad_opinion]</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==ClothedNudist,priority=1)->Actually, I'd feel more at ease without these constraining clothes...</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==HappyNude,priority=1)->I'm perfectly fine — I don't need any clothes.</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==EnvironmentCold)->I'd like some warmer clothes...</li>
+					<li>good_opinion(INITIATOR_thoughtDefName==EnvironmentHot)->I'd like some lighter clothes...</li>
+					<li>good_opinion(priority=-1)->Thanks — I'm fine with what I'm wearing right now.</li>
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+
+<!-- ===SKILLS=== -->
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Fighting skills=== -->
+		<defName>PrisonerFightingSkills</defName>
+		<label>prisoner — fighting skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<!-- ===Melee=== -->
+					<li>good_opinion->[melee]</li>
+					<li>good_opinion(INITIATOR_trait==brawler)->[melee]</li>
+						<!-- ===Master=== -->
+						<li>melee(INITIATOR_melee_level>=15,priority=3)->[melee_master]</li>
+							<li>melee_master(INITIATOR_melee_passion==Minor)->Close combat has always been my preferred style — a style I now completely master.</li>
+							<li>melee_master(INITIATOR_melee_passion==Major)->I love being close up with my enemy — this is why I've easily mastered all melee arts.</li>
+							<li>melee_master(p=3,INITIATOR_trait==bloodlust)->My masterful and devastating onslaughts let me drink as much of my enemies' blood as I wish!</li>
+							<li>melee_master(p=3,INITIATOR_trait==brawler)->When I get close up with my enemies, I easily smash their face.</li>
+							<li>melee_master(p=3,INITIATOR_trait==nimble)->I tire my melee opponents by dodging their blows — and then I masterfully hit their weak spots.</li>
+							<li>melee_master(p=3,INITIATOR_trait==tough)->I know how to best withstand my opponents' blows — and how to masterfully hit their weak spots.</li>
+							<li>melee_master(p=3,INITIATOR_trait==wimp)->Even though I clearly am a masterful melee fighter, I can't endure long fights.</li>
+							<li>melee_master(priority=-1)->I'm a masterful melee fighter.</li>
+						<!-- ===Veteran=== -->
+						<li>melee(INITIATOR_melee_level>=10,priority=2)->[melee_veteran]</li>
+							<li>melee_veteran(INITIATOR_melee_passion==Minor)->Close combat has always been my preferred style — a style that lead me to many victories.</li>
+							<li>melee_veteran(INITIATOR_melee_passion==Major)->I love being close up with my enemy — and I'm quite skilled at this.</li>
+							<li>melee_veteran(p=3,INITIATOR_trait==bloodlust)->I love bathing my bare hands in my enemies' blood — and my melee skills gave me this pleasure many times!</li>
+							<li>melee_veteran(p=3,INITIATOR_trait==brawler)->If I manage to get close up with my enemies, I can skillfully cut them down.</li>
+							<li>melee_veteran(p=3,INITIATOR_trait==nimble)->I tire my melee opponents by dodging their blows — and then I aim at their weak spots.</li>
+							<li>melee_veteran(p=3,INITIATOR_trait==tough)->I'm skilled at enduring my opponents' blows — and then striking back at their weak spots.</li>
+							<li>melee_veteran(p=3,INITIATOR_trait==wimp)->Even though I clearly am a veteran melee fighter, I can't withstand long fights.</li>
+							<li>melee_veteran(priority=-1)->I'm a veteran melee fighter.</li>
+						<!-- ===Green=== -->
+						<li>melee(INITIATOR_melee_level>=5,priority=1)->[melee_green]</li>
+							<li>melee_green(INITIATOR_melee_passion==Minor)->Close combat has always been my preferred style — I still have to hone my skills, though.</li>
+							<li>melee_green(INITIATOR_melee_passion==Major)->I love being close up with my enemy — I still have lots to learn, though.</li>
+							<li>melee_green(p=3,INITIATOR_trait==bloodlust)->I'd love to get more close combat practice — and get more chances to watch my enemies as they choke in their own blood!</li>	
+							<li>melee_green(p=3,INITIATOR_trait==brawler)->I prefer close combat, but I still need some practice to get good at it.</li>
+							<li>melee_green(p=3,INITIATOR_trait==nimble)->I tire my opponents by dodging their blows — and then I try to aim at their weak spots.</li>
+							<li>melee_green(p=3,INITIATOR_trait==tough)->My thick skin, dense flesh, and durable bones let me endure many blows — but my melee skills aren't that good.</li>
+							<li>melee_green(p=3,INITIATOR_trait==wimp)->I can't withstand long fights.</li>
+							<li>melee_green(priority=-1)->I can handle close combat weapons.</li>
+						<!-- ===Unskilled=== -->
+						<li>melee->[melee_unskilled]</li>
+							<li>melee_unskilled(INITIATOR_melee_passion==Minor)->I like being in close combat, but I still need a lot of practice.</li>
+							<li>melee_unskilled(INITIATOR_melee_passion==Major)->I love being close up with my enemy — but I have almost no melee experience...</li>
+							<li>melee_unskilled(p=3,INITIATOR_trait==bloodlust)->I'd love to get lots of close combat practice — and get more chances to watch my enemies as they choke in their own blood!</li>
+							<li>melee_unskilled(p=3,INITIATOR_trait==brawler)->I prefer close combat, but I still need lots of practice to get good at it.</li>
+							<li>melee_unskilled(p=3,INITIATOR_trait==nimble)->I hope to tire my melee opponents by dodging their blows...</li>
+							<li>melee_unskilled(p=3,INITIATOR_trait==tough)->My thick skin, dense flesh, and durable bones let me endure many blows — but that's all.</li>
+							<li>melee_unskilled(p=3,INITIATOR_trait==wimp)->I always avoid violence — I can't endure pain!</li>
+							<li>melee_unskilled(priority=-1)->I have no experience whatsoever in close combat fighting.</li>
+							<li>melee_unskilled(priority=-1)->I have no close combat skills.</li>
+							
+					<!-- ===Shooting=== -->
+					<li>good_opinion->[shooting]</li>
+						<!-- ===Master=== -->
+						<li>shooting(INITIATOR_shooting_level>=15,priority=3)->[shooting_master]</li>
+							<li>shooting_master(INITIATOR_shooting_passion==Minor)->Ranged combat has always been my preferred style — a style I now completely master.</li>
+							<li>shooting_master(INITIATOR_shooting_passion==Major)->I love shooting at my enemy from a distance — this is why I've easily mastered all ranged arts.</li>
+							<li>shooting_master(p=3,INITIATOR_trait==bloodlust)->After my first shot, my enemy is choking in a pool of his own blood — a sight I cherish and love!</li>
+							<li>shooting_master(p=3,INITIATOR_trait==brawler)->I'm extremely good at ranged combat, but I totally hate it — I prefer melee combat!</li>
+							<li>shooting_master(p=3,INITIATOR_trait==tough)->Even if I get shot, I'm still perfectly capable of masterfully hitting my enemies' weak spots.</li>
+							<li>shooting_master(p=3,INITIATOR_trait==wimp)->Even though I clearly am a masterful marksman, I can't endure long fights.</li>
+							<li>shooting_master(p=3,INITIATOR_trait==careful shooter)->I believe a skilled marksman must aim long before taking a shot — that's what I am, that's what I do.</li>
+							<li>shooting_master(p=3,INITIATOR_trait==trigger-happy)->I can spray and pray — and still hit all the targets.</li>
+							<li>shooting_master(priority=-1)->I'm a masterful marksman.</li>
+						<!-- ===Veteran=== -->
+						<li>shooting(INITIATOR_shooting_level>=10,priority=2)->[shooting_veteran]</li>
+							<li>shooting_veteran(INITIATOR_shooting_passion==Minor)->Ranged combat has always been my preferred style — a style that lead me to many victories.</li>
+							<li>shooting_veteran(INITIATOR_shooting_passion==Major)->I love shooting at my enemy from a distance — and I'm quite skilled at this.</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==bloodlust)->I love watching my enemies' blood as it splashes everywhere — and my ranged skills gave me this pleasure many times!</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==brawler)->I had to learn how to use ranged weapons, but I hate them — I prefer melee combat!</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==tough)->Even if I get shot, I endure the pain and shoot back at my enemies.</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==wimp)->Even though I clearly am a veteran marksman, I can't endure long fights.</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==careful shooter)->I aim long before taking a shot — that's what makes me a pro shooter.</li>
+							<li>shooting_veteran(p=3,INITIATOR_trait==trigger-happy)->I can spray and pray — and still hit most of the targets.</li>
+							<li>shooting_veteran(priority=-1)->I'm a veteran marksman.</li>
+						<!-- ===Green=== -->
+						<li>shooting(INITIATOR_shooting_level>=5,priority=1)->[shooting_green]</li>
+							<li>shooting_green(INITIATOR_shooting_passion==Minor)->Ranged combat has always been my preferred style — I still have to hone my skills, though.</li>
+							<li>shooting_green(INITIATOR_shooting_passion==Major)->I love shooting at my enemy from a distance — I still have lots to learn, though.</li>
+							<li>shooting_green(p=3,INITIATOR_trait==bloodlust)->I'd love to get more ranged combat practice — and get more chances to watch my enemies as they choke in their own blood!</li>	
+							<li>shooting_green(p=3,INITIATOR_trait==brawler)->I have some ranged combat skills, but I hate it — I prefer melee combat!</li>
+							<li>shooting_green(p=3,INITIATOR_trait==tough)->My thick skin, dense flesh, and durable bones let me endure many shots — but my shooting skills aren't that good.</li>
+							<li>shooting_green(p=3,INITIATOR_trait==wimp)->I can't endure long fights.</li>
+							<li>shooting_green(p=3,INITIATOR_trait==careful shooter)->I aim long before taking a shot — that's what helps me hit my targets.</li>
+							<li>shooting_green(p=3,INITIATOR_trait==trigger-happy)->I spray and pray — I might miss some targets, but it gets the job done.</li>
+							<li>shooting_green(priority=-1)->I can handle ranged weapons.</li>
+						<!-- ===Unskilled=== -->
+						<li>shooting->[shooting_unskilled]</li>
+							<li>shooting_unskilled(INITIATOR_shooting_passion==Minor)->I prefer shooting at my enemy from a distance, but I still need a lot of practice.</li>
+							<li>shooting_unskilled(INITIATOR_shooting_passion==Major)->I love shooting at my enemy from a distance — but I have almost no shooting experience...</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==bloodlust)->I'd love to get lots of ranged combat practice — and get more chances to watch my enemies as they choke in their own blood!</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==brawler)->I'm totally useless with ranged weapons — I prefer fighting up close and personal.</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==tough)->My thick skin, dense flesh, and durable bones let me endure many shots — but that's all.</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==wimp)->I always avoid violence — I can't endure pain!</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==careful shooter)->I aim long before taking a shot — that's the only way I can hope to hit my targets.</li>
+							<li>shooting_unskilled(p=3,INITIATOR_trait==trigger-happy)->I just close my eyes and shoot as much as I can — it's the best I can do.</li>
+							<li>shooting_unskilled(priority=-1)->I have no experience whatsoever in ranged combat.</li>
+							<li>shooting_unskilled(priority=-1)->I have no ranged combat skills.</li>							
+			</rulesStrings>
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Construction skills=== -->
+		<defName>PrisonerConstructionSkills</defName>
+		<label>prisoner — construction skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[construction]</li>
+					
+					<!-- ===Master=== -->
+						<li>construction(INITIATOR_construction_level>=15,priority=3)->[construction_master]</li>
+							<li>construction_master(INITIATOR_construction_passion==Minor)->I enjoy building structures — and the ones I build are usually pretty impressive.</li>
+							<li>construction_master(INITIATOR_construction_passion==Major)->I just love building structures — and the ones I build are usually pretty impressive.</li>
+							<li>construction_master(p=3,INITIATOR_trait==ascetic)->When tasked by someone else, I can easily build structures of the greatest beauty and efficiency — yet, for myself, I prefer simpler things.</li>
+							<li>construction_master(p=3,INITIATOR_trait==greedy)->I am one of the few who can build structures of unsurpassed beauty and efficiency — and this is why I deserve them for myself.</li>
+							<li>construction_master(p=3,INITIATOR_trait==jealous)->I am one of the few who can build structures of unsurpassed beauty and efficiency — and this is why nobody else should have them but me.</li>
+							<li>construction_master(priority=-1)->Not to brag but I've achieved the highest skill levels in [performing] construction tasks.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>construction(INITIATOR_construction_level>=10,priority=2)->[construction_veteran]</li>
+							<li>construction_veteran(INITIATOR_construction_passion==Minor)->I enjoy building structures — and the ones I build are usually impressive.</li>
+							<li>construction_veteran(INITIATOR_construction_passion==Major)->I just love building structures — and the ones I build are usually impressive.</li>
+							<li>construction_veteran(p=3,INITIATOR_trait==ascetic)->When tasked by someone else, I can easily build quite beautiful and efficient structures — yet, for myself, I prefer simpler things.</li>
+							<li>construction_veteran(p=3,INITIATOR_trait==greedy)->Only few can build structures of great beauty and efficiency like I do — and this is why I think I deserve them for myself.</li>
+							<li>construction_veteran(p=3,INITIATOR_trait==jealous)->Only few can build structures of great beauty and efficiency like I do — and this is why nobody else should have them but me.</li>
+							<li>construction_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [performing] construction tasks.</li>
+						
+						<!-- ===Green=== -->
+						<li>construction(INITIATOR_construction_level>=5,priority=1)->[construction_green]</li>
+							<li>construction_green(INITIATOR_construction_passion==Minor)->I enjoy building structures.</li>
+							<li>construction_green(INITIATOR_construction_passion==Major)->I just love building structures!</li>
+							<li>construction_green(p=3,INITIATOR_trait==ascetic)->I can build decent structures — that, by the way, are the ones I prefer for myself.</li>
+							<li>construction_green(priority=-1)->I have some skills in [performing] construction tasks.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>construction->[construction_unskilled]</li>
+							<li>construction_unskilled(INITIATOR_construction_passion==Minor)->I enjoy building structures, but I still have a lot to learn.</li>
+							<li>construction_unskilled(INITIATOR_construction_passion==Major)->I just love building structures, but I still have a lot to learn.</li>
+							<li>construction_unskilled(p=3,INITIATOR_trait==ascetic)->I have all the construction skills I need to build the things as I like them — plain and simple.</li>
+							<li>construction_unskilled(priority=-1)->I have no skills in [performing] construction tasks.</li>
+					
+					<!-- ===WILDCARDS=== -->
+					<li>performing(INITIATOR_intellectual_level>=5)->executing</li>
+					<li>performing(INITIATOR_intellectual_level>=5)->conducting</li>
+					<li>performing(INITIATOR_intellectual_level>=10)->effectuating</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+		
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Mining skills=== -->
+		<defName>PrisonerMiningSkills</defName>
+		<label>prisoner — mining skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[mining]</li>
+					
+					<!-- ===Master=== -->
+						<li>mining(INITIATOR_mining_level>=15,priority=3)->[mining_master]</li>
+							<li>mining_master(INITIATOR_mining_passion==Minor)->I enjoy mining — and my yields are extremely high and valuable.</li>
+							<li>mining_master(INITIATOR_mining_passion==Major)->I just love mining — and my yields are extremely high and valuable.</li>
+							<li>mining_master(p=3,INITIATOR_trait==undergrounder)->My mining yields are extremely high and valuable, especially when deep mining.</li>
+							<li>mining_master(priority=-1)->Not to brag but I've achieved the highest skill levels in [performing] mining tasks.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>mining(INITIATOR_mining_level>=10,priority=2)->[mining_veteran]</li>
+							<li>mining_veteran(INITIATOR_mining_passion==Minor)->I enjoy mining — and my yields are quite high.</li>
+							<li>mining_veteran(INITIATOR_mining_passion==Major)->I just love mining — and my yields are quite high.</li>
+							<li>mining_veteran(p=3,INITIATOR_trait==undergrounder)->My mining yields are quite high, especially when deep mining.</li>
+							<li>mining_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [performing] mining tasks.</li>
+						
+						<!-- ===Green=== -->
+						<li>mining(INITIATOR_mining_level>=5,priority=1)->[mining_green]</li>
+							<li>mining_green(INITIATOR_mining_passion==Minor)->I enjoy mining.</li>
+							<li>mining_green(INITIATOR_mining_passion==Major)->I just love mining!</li>
+							<li>mining_green(p=3,INITIATOR_trait==undergrounder)->My mining yields are decent, especially when deep mining.</li>
+							<li>mining_green(priority=-1)->I have some skills in [performing] mining tasks.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>mining->[mining_unskilled]</li>
+							<li>mining_unskilled(INITIATOR_mining_passion==Minor)->I enjoy mining, but I still have a lot to learn.</li>
+							<li>mining_unskilled(INITIATOR_mining_passion==Major)->I just love mining, but I still have a lot to learn.</li>
+							<li>mining_unskilled(p=3,INITIATOR_trait==undergrounder)->My mining yields are poor, I admit — but when deep mining I usually perform better.</li>
+							<li>mining_unskilled(priority=-1)->I have no skills in [performing] mining tasks.</li>
+					
+					<!-- ===WILDCARDS=== -->
+					<li>performing(INITIATOR_intellectual_level>=5)->executing</li>
+					<li>performing(INITIATOR_intellectual_level>=5)->conducting</li>
+					<li>performing(INITIATOR_intellectual_level>=10)->effectuating</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Cooking skills=== -->
+		<defName>PrisonerCookingSkills</defName>
+		<label>prisoner — cooking skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[cooking]</li>
+					
+					<!-- ===Master=== -->
+						<li>cooking(INITIATOR_cooking_level>=15,priority=3)->[cooking_master]</li>
+							<li>cooking_master(INITIATOR_cooking_passion==Minor)->I enjoy cooking — and my dishes are like heaven for your soul and body.</li>
+							<li>cooking_master(INITIATOR_cooking_passion==Major)->I just love cooking — and my dishes are like heaven for your soul and body.</li>
+							<li>cooking_master(p=3,INITIATOR_trait==ascetic)->My dishes are extremely delicious, but I cook them for others to enjoy — I prefer simpler food for myself.</li>
+							<li>cooking_master(p=3,INITIATOR_trait==gourmand)->I've dedicated my entire life to gastronomy and haute cuisine — and my fancy unique dishes fully reflect this.</li>							
+							<li>cooking_master(priority=-1)->Not to brag but I'm considered to be one of the best chefs in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>cooking(INITIATOR_cooking_level>=10,priority=2)->[cooking_veteran]</li>
+							<li>cooking_veteran(INITIATOR_cooking_passion==Minor)->I enjoy cooking — and my dishes are quite delicious.</li>
+							<li>cooking_veteran(INITIATOR_cooking_passion==Major)->I just love cooking — and my dishes are quite delicious.</li>
+							<li>cooking_veteran(p=3,INITIATOR_trait==ascetic)->My dishes are quite delicious, but I cook them for others to enjoy — I prefer simpler food for myself.</li>
+							<li>cooking_veteran(p=3,INITIATOR_trait==gourmand)->I invested much of my time in gastronomy — and my fancy dishes fully reflect this.</li>
+							<li>cooking_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [performing] cooking tasks.</li>
+						
+						<!-- ===Green=== -->
+						<li>cooking(INITIATOR_cooking_level>=5,priority=1)->[cooking_green]</li>
+							<li>cooking_green(INITIATOR_cooking_passion==Minor)->I enjoy cooking.</li>
+							<li>cooking_green(INITIATOR_cooking_passion==Major)->I just love cooking!</li>
+							<li>cooking_green(p=3,INITIATOR_trait==ascetic)->I can cook fine dishes, but I prefer simpler food for myself.</li>
+							<li>cooking_green(p=3,INITIATOR_trait==gourmand)->I'm no professional chef, but I just love cooking and eating nice food!</li>
+							<li>cooking_green(priority=-1)->I have some skills in [performing] cooking tasks.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>cooking->[cooking_unskilled]</li>
+							<li>cooking_unskilled(INITIATOR_cooking_passion==Minor)->I enjoy cooking, but I still have a lot to learn.</li>
+							<li>cooking_unskilled(INITIATOR_cooking_passion==Major)->I just love cooking, but I still have a lot to learn.</li>
+							<li>cooking_unskilled(p=3,INITIATOR_trait==ascetic)->I have all the cooking skills I need to prepare meals the way I like them — plain and simple.</li>
+							<li>cooking_unskilled(p=3,INITIATOR_trait==gourmand)->I just love eating nice food — but I certainly rely on others to cook it!</li>
+							<li>cooking_unskilled(priority=-1)->I have no skills in [performing] cooking tasks.</li>
+					
+					<!-- ===WILDCARDS=== -->
+					<li>performing(INITIATOR_intellectual_level>=5)->executing</li>
+					<li>performing(INITIATOR_intellectual_level>=5)->conducting</li>
+					<li>performing(INITIATOR_intellectual_level>=10)->effectuating</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>			
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Plants skills=== -->
+		<defName>PrisonerPlantsSkills</defName>
+		<label>prisoner — plants skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[plants]</li>
+					
+					<!-- ===Master=== -->
+						<li>plants(INITIATOR_plants_level>=15,priority=3)->[plants_master]</li>
+							<li>plants_master(INITIATOR_plants_passion==Minor)->I enjoy farming — and, given the right conditions, I can guarantee lavishly abundant harvests.</li>
+							<li>plants_master(INITIATOR_plants_passion==Major)->I just love farming — and, given the right conditions, I can guarantee lavishly abundant harvests.</li>
+							<li>plants_master(p=3,INITIATOR_trait==undergrounder)->I can guarantee lavishly abundant harvests, especially from underground or artificial farming.</li>
+							<li>plants_master(p=3,INITIATOR_trait==gourmand)->As I'm accustomed to eating fancy meals, I must always know all the top-notch farming techniques — this way, I'm never short on good ingredients.</li>							
+							<li>plants_master(p=3,INITIATOR_trait==teetotaler)->I can guarantee lavishly abundant harvests — but I hate planting any drug plants.</li>
+							<li>plants_master(p=3,INITIATOR_trait==chemical fascination)->I can guarantee lavishly abundant harvests — especially for drug plants.</li>
+							<li>plants_master(p=3,INITIATOR_trait==chemical interest)->I can guarantee lavishly abundant harvests — especially for drug plants.</li>							
+							<li>plants_master(priority=-1)->Not to brag but I'm considered to be one of the best farmers in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>plants(INITIATOR_plants_level>=10,priority=2)->[plants_veteran]</li>
+							<li>plants_veteran(INITIATOR_plants_passion==Minor)->I enjoy farming — and, given the right conditions, I can provide abundant harvests.</li>
+							<li>plants_veteran(INITIATOR_plants_passion==Major)->I just love farming — and, given the right conditions, I can provide abundant harvests.</li>
+							<li>plants_veteran(p=3,INITIATOR_trait==undergrounder)->I can provide abundant harvests, especially from underground or artificial farming.</li>
+							<li>plants_veteran(p=3,INITIATOR_trait==gourmand)->As I'm accustomed to eating fancy meals, I must always know the best farming techniques — this way, I'm never short on good ingredients.</li>							
+							<li>plants_veteran(p=3,INITIATOR_trait==teetotaler)->I can provide abundant harvests — but I hate planting any drug plants.</li>
+							<li>plants_veteran(p=3,INITIATOR_trait==chemical fascination)->I can provide abundant harvests — especially for drug plants.</li>
+							<li>plants_veteran(p=3,INITIATOR_trait==chemical interest)->I can provide abundant harvests — especially for drug plants.</li>							
+							<li>plants_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [performing] [farming] tasks.</li>
+						
+						<!-- ===Green=== -->
+						<li>plants(INITIATOR_plants_level>=5,priority=1)->[plants_green]</li>
+							<li>plants_green(INITIATOR_plants_passion==Minor)->I enjoy farming.</li>
+							<li>plants_green(INITIATOR_plants_passion==Major)->I just love farming!</li>
+							<li>plants_green(p=3,INITIATOR_trait==undergrounder)->I can provide decent harvests, especially from underground or artificial farming.</li>
+							<li>plants_green(p=3,INITIATOR_trait==gourmand)->As I'm accustomed to eating fancy meals, I must always know some farming technique — this way, I'm never short on good ingredients.</li>							
+							<li>plants_green(p=3,INITIATOR_trait==teetotaler)->I can provide decent harvests — but I hate planting any drug plants.</li>
+							<li>plants_green(p=3,INITIATOR_trait==chemical fascination)->I can provide decent harvests — especially for drug plants.</li>
+							<li>plants_green(p=3,INITIATOR_trait==chemical interest)->I can provide decent harvests — especially for drug plants.</li>
+							<li>plants_green(priority=-1)->I have some skills in [performing] [farming] tasks.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>plants->[plants_unskilled]</li>
+							<li>plants_unskilled(INITIATOR_plants_passion==Minor)->I enjoy farming, but I still have a lot to learn.</li>
+							<li>plants_unskilled(INITIATOR_plants_passion==Major)->I just love farming, but I still have a lot to learn.</li>
+							<li>plants_unskilled(p=3,INITIATOR_trait==undergrounder)->I have little [farming] skills, but I certainly perform better in underground or artificial farming.</li>
+							<li>plants_unskilled(p=3,INITIATOR_trait==gourmand)->I have no [farming] skills, but I always make sure to have some pro farmers and cooks around — this way, I'll always have some fancy meals on my table.</li>							
+							<li>plants_unskilled(priority=-1)->I have no skills in [performing] [farming] tasks.</li>
+					
+					<!-- ===WILDCARDS=== -->
+					<li>performing(INITIATOR_intellectual_level>=5)->executing</li>
+					<li>performing(INITIATOR_intellectual_level>=5)->conducting</li>
+					<li>performing(INITIATOR_intellectual_level>=10)->effectuating</li>
+					<li>farming->farming</li>
+					<li>farming(INITIATOR_intellectual_level>=5)->agricultural</li>
+					<li>farming(INITIATOR_intellectual_level>=10)->agrarian</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Animals skills=== -->
+		<defName>PrisonerAnimalsSkills</defName>
+		<label>prisoner — animals skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[animals]</li>
+					
+					<!-- ===Master=== -->
+						<li>animals(INITIATOR_animals_level>=15,priority=3)->[animals_master]</li>
+							<li>animals_master(INITIATOR_animals_passion==Minor)->I enjoy [managing] animals — and I've achieved a very deep and fruitful bond with them.</li>
+							<li>animals_master(INITIATOR_animals_passion==Major)->I just love [managing] animals — and I've achieved a very deep and fruitful bond with them.</li>
+							<li>animals_master(p=3,INITIATOR_trait==ascetic)->As I enjoy living the simple life of animals, I've achieved a very deep and fruitful bond with them.</li>
+							<li>animals_master(priority=-1)->Not to brag but when it comes to [managing] animals, I'm considered to be one of the best in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>animals(INITIATOR_animals_level>=10,priority=2)->[animals_veteran]</li>
+							<li>animals_veteran(INITIATOR_animals_passion==Minor)->I enjoy [managing] animals — and I've achieved a fruitful bond with them.</li>
+							<li>animals_veteran(INITIATOR_animals_passion==Major)->I just love [managing] animals — and I've achieved a fruitful bond with them.</li>
+							<li>animals_veteran(p=3,INITIATOR_trait==ascetic)->As I enjoy living the simple life of animals, I've achieved a fruitful bond with them.</li>		
+							<li>animals_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [managing] animals.</li>
+						
+						<!-- ===Green=== -->
+						<li>animals(INITIATOR_animals_level>=5,priority=1)->[animals_green]</li>
+							<li>animals_green(INITIATOR_animals_passion==Minor)->I enjoy [managing] animals — and I've achieved some sort of bond with them.</li>
+							<li>animals_green(INITIATOR_animals_passion==Major)->I just love [managing] animals — and I've achieved some sort of bond with them.</li>
+							<li>animals_green(p=3,INITIATOR_trait==ascetic)->I enjoy living the simple life of animals — and I've achieved some sort of bond with them.</li>
+							<li>animals_green(priority=-1)->I have some skills in [managing] animals.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>animals->[animals_unskilled]</li>
+							<li>animals_unskilled(INITIATOR_animals_passion==Minor)->I enjoy [managing] animals — but I still have a lot to learn.</li>
+							<li>animals_unskilled(INITIATOR_animals_passion==Major)->I just love [managing] animals — but I still have a lot to learn.</li>
+							<li>animals_unskilled(p=3,INITIATOR_trait==ascetic)->I enjoy living the simple life of animals — but I still have a lot to learn about [managing] them.</li>							
+							<li>animals_unskilled(priority=-1)->I have no skills in [managing] animals.</li>
+					
+					<!-- ===WILDCARDS=== -->
+					<li>managing->managing</li>
+					<li>managing->looking after</li>
+					<li>managing->taking care of</li>
+					<li>managing->caring for</li>
+					<li>managing->handling</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Crafting skills=== -->
+		<defName>PrisonerCraftingSkills</defName>
+		<label>prisoner — crafting skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[crafting]</li>
+					
+					<!-- ===Master=== -->
+						<li>crafting(INITIATOR_crafting_level>=15,priority=3)->[crafting_master]</li>
+							<li>crafting_master(INITIATOR_crafting_passion==Minor)->I enjoy crafting — and my masterworks reflect my unrivaled craftsmanship.</li>
+							<li>crafting_master(INITIATOR_crafting_passion==Major)->I just love crafting — and my masterworks reflect my unrivaled craftsmanship.</li>
+							<li>crafting_master(p=3,INITIATOR_artistic_passion!=None)->Thanks to my artistic inspiration and my unrivaled craftsmanship, I can craft unique masterworks.</li>
+							<li>crafting_master(priority=-1)->Not to brag but my craftsmanship is considered to be one of the best in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>crafting(INITIATOR_crafting_level>=10,priority=2)->[crafting_veteran]</li>
+							<li>crafting_veteran(INITIATOR_crafting_passion==Minor)->I enjoy crafting — and my fine works reflect my craftsmanship.</li>
+							<li>crafting_veteran(INITIATOR_crafting_passion==Major)->I just love crafting — and my fine works reflect my craftsmanship.</li>
+							<li>crafting_veteran(p=3,INITIATOR_artistic_passion!=None)->Thanks to my artistic inspiration and my craftsmanship, I can craft excellent items.</li>
+							<li>crafting_veteran(priority=-1)->Not to brag but my craftsmanship is considered to be one of the best on this planet.</li>
+						
+						<!-- ===Green=== -->
+						<li>crafting(INITIATOR_crafting_level>=5,priority=1)->[crafting_green]</li>
+							<li>crafting_green(INITIATOR_crafting_passion==Minor)->I enjoy crafting.</li>
+							<li>crafting_green(INITIATOR_crafting_passion==Major)->I just love crafting!</li>
+							<li>crafting_green(p=3,INITIATOR_artistic_passion!=None)->Thanks to my artistic inspiration and my craftsmanship, I can craft decent items.</li>
+							<li>crafting_green(priority=-1)->I have some craftsmanship.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>crafting->[crafting_unskilled]</li>
+							<li>crafting_unskilled(INITIATOR_crafting_passion==Minor)->I enjoy crafting — but I still have a lot to learn.</li>
+							<li>crafting_unskilled(INITIATOR_crafting_passion==Major)->I just love crafting — but I still have a lot to learn.</li>
+							<li>crafting_unskilled(priority=-1)->I have no craftsmanship.</li>
+					
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Artistic skills=== -->
+		<defName>PrisonerArtisticSkills</defName>
+		<label>prisoner — artistic skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[artistic]</li>
+					
+					<!-- ===Master=== -->
+						<li>artistic(INITIATOR_artistic_level>=15,priority=3)->[artistic_master]</li>
+							<li>artistic_master(INITIATOR_artistic_passion==Minor)->My love for arts lets me create legendary masterworks.</li>
+							<li>artistic_master(INITIATOR_artistic_passion==Major)->My asbolute passion for arts lets me create legendary masterworks.</li>
+							<li>artistic_master(p=3,INITIATOR_trait==tortured artist)->My enlightened artistic perception is well beyond your primitive senses — and this tragically shreds my soul.</li>
+							<li>artistic_master(p=3,INITIATOR_trait==beautiful)->For my finest masterworks regarding the objective concept of beauty, I often use myself as an inspiration.</li>
+							<li>artistic_master(priority=-1)->Not to brag but I'm considered to be one of the best artists in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>artistic(INITIATOR_artistic_level>=10,priority=2)->[artistic_veteran]</li>
+							<li>artistic_veteran(INITIATOR_artistic_passion==Minor)->My love for arts lets me create fine masterworks.</li>
+							<li>artistic_veteran(INITIATOR_artistic_passion==Major)->My asbolute passion for arts lets me create fine masterworks.</li>
+							<li>artistic_veteran(p=3,INITIATOR_trait==tortured artist)->My artistic perception is well beyond your primitive senses — and this painfully cuts into my soul.</li>
+							<li>artistic_veteran(p=3,INITIATOR_trait==beautiful)->For my masterworks regarding the objective concept of beauty, I often use myself as an inspiration.</li>
+							<li>artistic_veteran(priority=-1)->Not to brag but I'm considered to be one of the best artists on this planet.</li>
+						
+						<!-- ===Green=== -->
+						<li>artistic(INITIATOR_artistic_level>=5,priority=1)->[artistic_green]</li>
+							<li>artistic_green(INITIATOR_artistic_passion==Minor)->I like arts.</li>
+							<li>artistic_green(INITIATOR_artistic_passion==Major)->I just love arts!</li>
+							<li>artistic_green(p=3,INITIATOR_trait==tortured artist)->My artistic perception is blatantly misunderstood — and this gives me so much pain...</li>
+							<li>artistic_green(p=3,INITIATOR_trait==beautiful)->Whenever I want to create some beautiful piece of art, I often use myself as an inspiration.</li>
+							<li>artistic_green(priority=-1)->I have some artistic skills.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>artistic->[artistic_unskilled]</li>
+							<li>artistic_unskilled(INITIATOR_artistic_passion==Minor)->I like arts — but I still have a lot to learn.</li>
+							<li>artistic_unskilled(INITIATOR_artistic_passion==Major)->I just love arts — but I still have a lot to learn.</li>
+							<li>artistic_unskilled(p=3,INITIATOR_trait==tortured artist)->One day my artistic insights will be eventually understood and loved by all — until then, only pain, disappointment and suffering await me.</li>
+							<li>artistic_unskilled(p=3,INITIATOR_trait==beautiful)->Whenever I try to create some beautiful piece of art, I often use myself as an inspiration.</li>
+							<li>artistic_unskilled(priority=-1)->I have no artistic skills.</li>
+					
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Medical skills=== -->
+		<defName>PrisonerMedicalSkills</defName>
+		<label>prisoner — medical skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[medical]</li>
+					
+					<!-- ===Master=== -->
+						<li>medical(INITIATOR_medical_level>=15,priority=3)->[medical_master]</li>
+							<li>medical_master(INITIATOR_medical_passion==Minor)->I like taking care of other people — and, even in the worst conditions, I can guarantee highly succesful surgeries and treatments.</li>
+							<li>medical_master(INITIATOR_medical_passion==Major)->I just love taking care of other people — and, even in the worst conditions, I can guarantee highly succesful surgeries and treatments.</li>
+							<li>medical_master(p=3,INITIATOR_trait==body modder)->There's no better physician than me if you want to improve your weak flesh with bio-enhancements or need to replace some part.</li>
+							<li>medical_master(p=3,INITIATOR_trait==body purist)->I've saved many lives thanks to my extremely advanced skills. But never ask me to implant some bio-enhancement or replace some part — I'll never do it!</li>							
+							<li>medical_master(priority=-1)->Not to brag but I'm considered to be one of the best physicians in the system.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>medical(INITIATOR_medical_level>=10,priority=2)->[medical_veteran]</li>
+							<li>medical_veteran(INITIATOR_medical_passion==Minor)->I like taking care of other people — and, given the right conditions, I can guarantee highly succesful surgeries and treatments.</li>
+							<li>medical_veteran(INITIATOR_medical_passion==Major)->I just love taking care of other people — and, given the right conditions, I can guarantee highly succesful surgeries and treatments.</li>
+							<li>medical_veteran(p=3,INITIATOR_trait==body modder)->I can certainly help you if you want to improve your weak flesh with bio-enhancements or need to replace some part.</li>
+							<li>medical_veteran(p=3,INITIATOR_trait==body purist)->I've saved many lives thanks to my high skills. But never ask me to implant some bio-enhancement or replace some part — I'll never do it!</li>
+							<li>medical_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in [performing] surgeries and treatments.</li>
+						
+						<!-- ===Green=== -->
+						<li>medical(INITIATOR_medical_level>=5,priority=1)->[medical_green]</li>
+							<li>medical_green(INITIATOR_medical_passion==Minor)->I like taking care of other people — and, given the right conditions, I can offer decent surgeries and treatments.</li>
+							<li>medical_green(INITIATOR_medical_passion==Major)->I just love taking care of other people — and, given the right conditions, I can offer decent surgeries and treatments.</li>
+							<li>medical_green(p=3,INITIATOR_trait==body modder)->I may help you if you want to improve your weak flesh with bio-enhancements or need to replace some part.</li>
+							<li>medical_green(p=3,INITIATOR_trait==body purist)->I have basic physician training. But never ask me to implant some bio-enhancement or replace some part — I'll never do it!</li>
+							<li>medical_green(priority=-1)->I have some skills in [performing] surgeries and treatments.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>medical->[medical_unskilled]</li>
+							<li>medical_unskilled(INITIATOR_medical_passion==Minor)->I like taking care of other people — but I just know the very basics.</li>
+							<li>medical_unskilled(INITIATOR_medical_passion==Major)->I just love taking care of other people — but I just know the very basics.</li>
+							<li>medical_unskilled(p=3,INITIATOR_trait==body modder)->I fancy bio-enhancements, but I know almost nothing about implanting them.</li>
+							<li>medical_unskilled(p=3,INITIATOR_trait==body purist)->I have no medical skills — I rely on physicians, but only on those who never resort to bio-enhancements.</li>
+							<li>medical_unskilled(priority=-1)->I have no skills in [performing] surgeries and treatments.</li>
+							<li>medical_unskilled(priority=-1)->I have no medical skills.</li>
+					<!-- ===WILDCARDS=== -->
+					<li>performing(INITIATOR_intellectual_level>=5)->executing</li>
+					<li>performing(INITIATOR_intellectual_level>=5)->conducting</li>
+					<li>performing(INITIATOR_intellectual_level>=10)->effectuating</li>
+
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Social skills=== -->
+		<defName>PrisonerSocialSkills</defName>
+		<label>prisoner — social skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[social]</li>
+					
+					<!-- ===Master=== -->
+						<li>social(INITIATOR_social_level>=15,priority=3)->[social_master]</li>
+							<li>social_master(INITIATOR_social_passion==Minor)->I enjoy being around people — and I can negotiate fruitful agreements even between hostile parties.</li>
+							<li>social_master(INITIATOR_social_passion==Major)->I just love being around people — and I can negotiate fruitful agreements even between hostile parties.</li>
+							<li>social_master(p=3,INITIATOR_trait==kind)->With a kind word and a reassuring smile, I can negotiate fruitful agreements even between hostile parties.</li>
+							<li>social_master(p=3,INITIATOR_trait==gourmand)->My sweet talk works magic — especially during fancy dinners.</li>
+							<li>social_master(p=3,INITIATOR_trait==chemical fascination)->My sweet talk works magic — especially when there's flake or yayo going around.</li>
+							<li>social_master(p=3,INITIATOR_trait==chemical interest)->My sweet talk works magic — especially when there's beer or smokeleaf going around.</li>
+							<li>social_master(priority=-1)->Not to brag but I've achieved the highest skill levels in diplomatic and social arts.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>social(INITIATOR_social_level>=10,priority=2)->[social_veteran]</li>
+							<li>social_veteran(INITIATOR_social_passion==Minor)->I enjoy being around people — and I can negotiate fruitful agreements even in sticky situations.</li>
+							<li>social_veteran(INITIATOR_social_passion==Major)->I just love being around people — and I can negotiate fruitful agreements even in sticky situations.</li>
+							<li>social_veteran(p=3,INITIATOR_trait==kind)->With a kind word and a reassuring smile, I can negotiate fruitful agreements even in sticky situations.</li>
+							<li>social_veteran(p=3,INITIATOR_trait==gourmand)->My sweet talk is very efficient — especially during fancy dinners.</li>
+							<li>social_veteran(p=3,INITIATOR_trait==chemical fascination)->My sweet talk is very efficient — especially when there's flake or yayo going around.</li>
+							<li>social_veteran(p=3,INITIATOR_trait==chemical interest)->My sweet talk is very efficient — especially when there's beer or smokeleaf going around.</li>
+							<li>social_veteran(priority=-1)->Not to brag but I've achieved very high skill levels in diplomatic and social arts.</li>
+						
+						<!-- ===Green=== -->
+						<li>social(INITIATOR_social_level>=5,priority=1)->[social_green]</li>
+							<li>social_green(INITIATOR_social_passion==Minor)->I enjoy being around people.</li>
+							<li>social_green(INITIATOR_social_passion==Major)->I just love being around people!</li>
+							<li>social_green(p=3,INITIATOR_trait==kind)->When negotiating, I usually rely on kind words and reassuring smiles.</li>
+							<li>social_green(p=3,INITIATOR_trait==gourmand)->I have some social skills — especially during fancy dinners.</li>
+							<li>social_green(p=3,INITIATOR_trait==chemical fascination)->I have some social skills — especially when there's flake or yayo going around.</li>
+							<li>social_green(p=3,INITIATOR_trait==chemical interest)->I have some social skills — especially when there's beer or smokeleaf going around.</li>
+							<li>social_green(priority=-1)->I have some social skills.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>social->[social_unskilled]</li>
+							<li>social_unskilled(INITIATOR_social_passion==Minor)->I enjoy being around people, but I still have a lot to learn.</li>
+							<li>social_unskilled(INITIATOR_social_passion==Major)->I just love being around people, but I still have a lot to learn.</li>
+							<li>social_unskilled(p=3,INITIATOR_trait==kind)->I have no social skills, but several times I got through with kind words and reassuring smiles.</li>
+							<li>social_unskilled(p=3,INITIATOR_trait==chemical fascination)->I have no social skills — but when there's flake or yayo going around, talks flow much better.</li>
+							<li>social_unskilled(p=3,INITIATOR_trait==chemical interest)->I have no social skills — but when there's beer or smokeleaf going around, talks flow much better.</li>
+							<li>social_unskilled(priority=-1)->I have no social skills.</li>
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+			</rulesFiles>			
+			
+		</logRulesInitiator>
+	</InteractionDef>
+	
+	<InteractionDef ParentName="SpeakUpReply"><!-- ===Intellectual skills=== -->
+		<defName>PrisonerIntellectualSkills</defName>
+		<label>prisoner — intellectual skill</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(INITIATOR_trait==sanguine)->[INITIATOR_factionName] sent a rescue party already, I'm sure of it — [optimist_comment]</li>
+				<li>r_logentry(INITIATOR_trait==optimist)->I'm quite sure [INITIATOR_factionName] sent a rescue party already — [optimist_comment]</li>
+					<li>optimist_comment(INITIATOR_trait==bloodlust,priority=1)->it will be glorious watching your people being butchered and tortured!</li>
+					<li>optimist_comment->so I need you to release me. This way, we can avoid unnecessary bloodshed among your people.</li>
+				<li>r_logentry(INITIATOR_trait==depressive)->[depressive]</li>
+				<li>r_logentry(INITIATOR_trait==pessimist)->[pessimist]</li>
+				<li>r_logentry(INITIATOR_trait==psychopath)->[psychopath]</li>
+				<li>r_logentry(INITIATOR_trait==creepy breathing)->*breathes heavily*</li>
+				<li>r_logentry(INITIATOR_trait==chemical fascination)->[chemical1]</li>
+				<li>r_logentry(INITIATOR_trait==chemical interest)->[chemical0]</li>
+					<li>chemical1->I'll be willing to cooperate more if you [bring_me] me some [drug1]...</li>
+					<li>chemical1->Please give me some [drug1]; I'll promise to cooperate more... I just need a fix, that's all.</li>
+					<li>chemical0->I'll be willing to cooperate more if you [bring_me] me some [drug0]...</li>
+					<li>chemical0->Please give me some [drug0]; I'll promise to cooperate more.</li>
+					<li>drug0->beer</li>
+					<li>drug0->smokeleaf</li>
+					<li>drug0->ambrosia</li>
+					<li>drug0->psychite tea</li>
+					<li>drug1->yayo</li>
+					<li>drug1->flake</li>
+					<li>drug1->go-juice</li>
+					<li>drug1->wake-up</li>					
+					<li>bring_me->bring</li>
+					<li>bring_me->hand</li>
+					<li>bring_me->pass</li>
+			<!-- ===Bad opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion&lt;0)->[bad_opinion]</li>
+				<li>r_logentry(INITIATOR_mood&lt;0.4,priority=1)->[bad_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==kind,priority=1)->[good_opinion]</li>
+					<li>bad_opinion(INITIATOR_trait==abrasive)->[abrasive]</li>
+					<li>bad_opinion(INITIATOR_trait==brawler)->[brawler]</li>
+			<!-- ===Good opinion of recipient=== -->
+				<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+					
+					<li>good_opinion->[intellectual]</li>
+					
+					<!-- ===Master=== -->
+						<li>intellectual(INITIATOR_intellectual_level>=15,priority=3)->[intellectual_master]</li>
+							<li>intellectual_master(INITIATOR_intellectual_passion==Minor)->I like pitting my wits against tricky problems — and thanks to my unsurpassed skills, I can solve any complex logic problem.</li>
+							<li>intellectual_master(INITIATOR_intellectual_passion==Major)->I just love pitting my wits against tricky problems — and thanks to my unsurpassed skills, I can solve any complex logic problem.</li>
+							<li>intellectual_master(p=3,INITIATOR_trait==too smart)->I've dedicated my whole life to pursue Knowledge — which, thanks to my unsurpassed logic and reasoning skills, I can efficiently store and organize in my superior brain.</li>
+							<li>intellectual_master(p=3,INITIATOR_trait==great memory)->My mnemonic techniques greatly help my unsurpassed logic and reasoning skills.</li>							
+							<li>intellectual_master(priority=-1)->The whole system probably knows of my unsurpassed logic and reasoning skills.</li>
+							
+						<!-- ===Veteran=== -->
+						<li>intellectual(INITIATOR_intellectual_level>=10,priority=2)->[intellectual_veteran]</li>
+							<li>intellectual_veteran(INITIATOR_intellectual_passion==Minor)->I like pitting my wits against tricky problems — and thanks to my mental prowess, I can solve any logic problem.</li>
+							<li>intellectual_veteran(INITIATOR_intellectual_passion==Major)->I just love pitting my wits against tricky problems — and thanks to my mental prowess, I can solve any logic problem.</li>
+							<li>intellectual_veteran(p=3,INITIATOR_trait==too smart)->I've dedicated my whole life to pursue Knowledge — which, thanks to my mental prowess, I can efficiently store and organize in my superior brain.</li>
+							<li>intellectual_veteran(p=3,INITIATOR_trait==great memory)->My mnemonic techniques greatly help my remarkable logic and reasoning skills.</li>
+							<li>intellectual_veteran(priority=-1)->The whole planet probably knows of my logic and reasoning skills.</li>
+						
+						<!-- ===Green=== -->
+						<li>intellectual(INITIATOR_intellectual_level>=5,priority=1)->[intellectual_green]</li>
+							<li>intellectual_green(INITIATOR_intellectual_passion==Minor)->I like pitting my wits against tricky problems.</li>
+							<li>intellectual_green(INITIATOR_intellectual_passion==Major)->I just love pitting my wits against tricky problems!</li>
+							<li>intellectual_green(p=3,INITIATOR_trait==too smart)->I've dedicated my whole life to pursue Knowledge — which, thanks to my honed mind, I can efficiently store and organize in my superior brain.</li>
+							<li>intellectual_green(p=3,INITIATOR_trait==great memory)->My memorization techniques greatly help my logic and reasoning skills.</li>
+							<li>intellectual_green(priority=-1)->I have good logic and reasoning skills.</li>
+							
+						<!-- ===Unskilled=== -->
+						<li>intellectual->[intellectual_unskilled]</li>
+							<li>intellectual_unskilled(INITIATOR_intellectual_passion==Minor)->I like pitting my wits against tricky problems, but I'm not very good at solving them — not yet at least.</li>
+							<li>intellectual_unskilled(INITIATOR_intellectual_passion==Major)->I just love pitting my wits against tricky problems, but I'm not very good at solving them — not yet at least.</li>
+							<li>intellectual_unskilled(p=3,INITIATOR_trait==too smart)->My quest to pursue Knowledge is at its very start — but I'm certain that I will be successful!</li>
+							<li>intellectual_unskilled(p=3,INITIATOR_trait==great memory)->My logic and reasoning skills are quite basic at the moment, but they'll surely benefit from my memorization techniques.</li>
+							<li>intellectual_unskilled(priority=-1)->I have only basic logic and reasoning skills.</li>
+
+			</rulesStrings>
+			
+			<rulesFiles>
+				<li>bad_opinion->Prisoners/BadOpinion</li>
+				<li>abrasive->Prisoners/Abrasive</li>
+				<li>brawler->Prisoners/Brawler</li>
+				<li>depressive->Prisoners/Depressive</li>
+				<li>pessimist->Prisoners/Pessimist</li>
+				<li>psychopath->Prisoners/Psychopath</li>
+				<li>performing->General/Performing</li>
+			</rulesFiles>
+			
+		</logRulesInitiator>
+	</InteractionDef>
+</Defs>

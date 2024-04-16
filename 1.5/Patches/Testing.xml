@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+<!-- === CHITCHAT === -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+
+
+			
+			
+			
+			<!-- COMMENT START 
+			<li>r_logentry(priority=10,INITIATOR_plants_passion!=None,OUTDOORS==Yes,tag=NearestPlant)->Mother Nature is so generous with us — look at that [NEAREST_plant]! Isn't it beautiful, [RECIPIENT_nameDef]?</li>
+			<li>r_logentry(RECIPIENT_title==janitor)->[RECIPIENT_nameDef]! Go clean my room — now!</li>
+			<li>r_logentry(INITIATOR_title==count,RECIPIENT_title==baron,tag=test_title)->Baron [RECIPIENT_nameDef], we are under attack! Have you rallied your troops?</li>
+			
+			<li>r_logentry(p=2)->test — [INITIATOR_jobDefName]</li>
+			
+			<li>sent(RECIPIENT_faction==TribeSavage,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==TribeRough,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==TribeCivil,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==Pirate,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==OutlanderCivil,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==OutlanderRough,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==AncientsHostile,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==Ancients,tag=PrisonerAccepts)-></li>
+			<li>sent(RECIPIENT_faction==Empire,tag=PrisonerAccepts)-></li>
+
+			<li>r_logentry->test - [INITIATOR_thoughtDefName]</li>
+			<li>r_logentry->I am [INITIATOR_trait].</li>
+			<li>r_logentry->Hey [RECIPIENT_nameDef], your love for [RECIPIENT_higherPassion] is inspiring!</li>
+			<li>r_logentry->I truly love [INITIATOR_higherPassion]!</li>
+			<li>r_logentry->I'm really good at [INITIATOR_bestSkill].</li>
+			<li>r_logentry->I suck at [INITIATOR_worstSkill].</li>
+			<li>r_logentry->Hey [RECIPIENT_nameDef], I think you're really good at [RECIPIENT_bestSkill].</li>
+			<li>r_logentry->Hey [RECIPIENT_nameDef], I think you suck at [RECIPIENT_worstSkill].</li>
+
+
+			==== COMMENT END -->
+		</value>
+	</Operation>
+	
+</Patch>

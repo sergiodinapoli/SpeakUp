@@ -1,0 +1,1333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<rulesStrings>
+				<!-- ===generic default=== -->
+					<li>r_logentry(p=0.1,tag=ChitChat_generic)->Hey, [recipient]!</li>
+				
+				<!-- ===Job Texts (initiator)=== -->
+					<!-- ===Aurora=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==watching the aurora.,INITIATOR_moving==No,tag=Aurora)->[watching_aurora]</li>
+							<li>watching_aurora->Auroras are so rare and stunningly beautiful...</li>
+							<li>watching_aurora(INITIATOR_artistic_passion!=None)->Auroras are so inspiring — I need to start an art piece before its image fades away from my memory...</li>
+							<li>watching_aurora(INITIATOR_artistic_passion!=None)->Auroras are so inspiring — I need to get its image on paper before it fades away from my memory...</li>
+							<li>watching_aurora->This aurora has got so many vibrant colors, but I'm in love with its [aurora_color] hues...</li>
+								<li>aurora_color->pink</li>
+								<li>aurora_color->green</li>
+								<li>aurora_color->yellow</li>
+								<li>aurora_color->blue</li>
+								<li>aurora_color->violet</li>
+								<li>aurora_color(p=0.2)->orange</li>
+								<li>aurora_color(p=0.2)->white</li>
+								
+					
+					<!-- ===BeatFire (priority 5)=== -->
+						<li>r_logentry(priority=5,INITIATOR_jobDefName==BeatFire,INITIATOR_moving==No,tag=BeatFireStatic)->[job_beatfire_static]</li>
+							<!-- ===BeatFire together=== -->
+							<li>job_beatfire_static(RECIPIENT_jobDefName==BeatFire,RECIPIENT_moving==No)->[job_beatfire_together]</li>
+								<li>job_beatfire_together->*coughs*</li>
+								<li>job_beatfire_together->[put_it_out]!</li>
+								<li>job_beatfire_together->Quick, [put_it_out]!</li>
+								<li>job_beatfire_together->Quick, before it spreads out!</li>
+								<li>job_beatfire_together->Let's [put_it_out]!</li>
+									<li>put_it_out->put it out</li>
+									<li>put_it_out->stamp it out</li>
+									<li>put_it_out->beat it out</li>
+									<li>put_it_out->smother it</li>
+									<li>put_it_out(INITIATOR_intellectual_level>=5)->extinguish it</li>
+							<li>job_beatfire_static(RECIPIENT_jobDefName==BeatFire,RECIPIENT_moving==Yes)->[job_beatfire_come]</li>
+								<li>job_beatfire_come->Quick, [recipient] — come here and help me [put_it_out]!</li>
+							<!-- ===BeatFire initiator only=== -->
+							<li>job_beatfire_static(RECIPIENT_jobDefName!=BeatFire,RECIPIENT_moving==No)->[job_beatfire_ignoring_static]</li>
+								<li>job_beatfire_ignoring_static->Don't just stand there, [recipient]! Come here and help me [put_it_out]!</li>
+							<li>job_beatfire_static(RECIPIENT_jobDefName!=BeatFire,RECIPIENT_moving==Yes)->[job_beatfire_ignoring]</li>
+								<li>job_beatfire_ignoring->Where are you going, [recipient]!? Come here and help me [put_it_out]!</li>
+					<!-- ===Going to BeatFire=== -->	
+						<li>r_logentry(priority=5,INITIATOR_jobDefName==BeatFire,INITIATOR_moving==Yes,RECIPIENT_moving==Yes,tag=BeatFireMoving)->[job_beatfire_letsgo]</li>
+							<li>job_beatfire_letsgo(RECIPIENT_jobDefName!=BeatFire,priority=1)->Where are you going, [recipient]!? The fire's over there — help me [put_it_out]!</li>
+							<li>job_beatfire_letsgo->Come on [recipient] — we got a fire to [fire_put_out]!</li>
+							<li>job_beatfire_letsgo->There's a fire over there, [recipient] — let's go [put_it_out]!</li>
+									<li>fire_put_out->put out</li>
+									<li>fire_put_out->stamp out</li>
+									<li>fire_put_out->beat out</li>
+									<li>fire_put_out->smother</li>
+									<li>fire_put_out(INITIATOR_intellectual_level>=5)->extinguish</li>
+									
+					<!-- ===Billiards=== -->
+						<li>r_logentry(INITIATOR_jobDefName==Play_Billiards,priority=4)->[game_billiards]</li>
+						<!-- ===Called shot=== -->
+						<li>game_billiards(INITIATOR_moving==No,RECIPIENT_jobDefName==Play_Billiards)->[billiards_calledshot]</li>
+							<!-- ===Smart move=== -->
+								<li>billiards_calledshot(INITIATOR_shooting_level>=0)->[billiards_smart]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level>=5)->[billiards_smart]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level>=10)->[billiards_smart]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level>=15)->[billiards_smart]</li>
+								<li>billiards_calledshot(p=2,INITIATOR_shooting_level>=RECIPIENT_shooting_level)->[billiards_smart]</li>
+									<li>billiards_smart(tag=Billiards_smart)->[billiards_shot_description]</li>
+							<!-- ===Blunder=== -->
+								<li>billiards_calledshot(p=2,INITIATOR_shooting_level&lt;=RECIPIENT_shooting_level)->[billiards_blunder]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level&lt;5)->[billiards_blunder]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level&lt;10)->[billiards_blunder]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level&lt;15)->[billiards_blunder]</li>
+								<li>billiards_calledshot(INITIATOR_shooting_level&lt;=20)->[billiards_blunder]</li>
+									<li>billiards_blunder(tag=Billiards_blunder)->[billiards_shot_description]</li>
+							
+							<li>billiards_shot_description->[billiards_calledshot_start] ball [billiards_ball] in that [billiards_pocket] pocket.</li>
+							<li>billiards_shot_description->Mmm, let me try this [billiards_shot_type] shot...</li>
+							<li>billiards_shot_description->Mmm, what if I try this [billiards_shot_type] shot...</li>
+							<li>billiards_shot_description->Maybe if I hit ball [billiards_ball] with the right cut-angle...</li>
+							<li>billiards_shot_description(INITIATOR_shooting_level>=10)->Just watch me — I'll [billiards_pot] ball [billiards_ball] in that [billiards_pocket] pocket.</li>
+							
+						<!-- ===Invitation=== -->
+						<li>game_billiards(RECIPIENT_jobDefName==Play_Billiards,INITIATOR_moving==Yes,tag=Invite_answer_yes)->[billiards_invite]</li>
+						<li>game_billiards(INITIATOR_moving==Yes,priority=-1,tag=Invite_answer_no)->[billiards_invite]</li>
+							<li>billiards_invite->I'm [gonna] start a new billiards game. [wanna] join me, [recipient]?</li>
+							<li>billiards_invite->[wanna] join me in a new billiards match, [recipient]?</li>
+							
+						<!-- ===Ready?=== -->
+							<li>game_billiards(p=0.5,RECIPIENT_jobDefName==Play_Billiards,tag=Billiards_ready)->[billiards_ready]</li>
+								<li>billiards_ready->Time to activate beast mode, [recipient]. Are you ready?</li>
+								<li>billiards_ready->Ready for a new game, [recipient]?</li>
+								<li>billiards_ready->Are you in for another game, [recipient]?</li>
+								<li>billiards_ready->Cue is chalked, rack is set up. Ready, [recipient]?</li>
+								<li>billiards_ready->[wanna] get started, [recipient]?</li>
+							
+							<!-- ===Wildcards=== -->
+							<li>billiards_ball->1</li>
+							<li>billiards_ball->2</li>
+							<li>billiards_ball->3</li>
+							<li>billiards_ball->4</li>
+							<li>billiards_ball->5</li>
+							<li>billiards_ball->6</li>
+							<li>billiards_ball->7</li>
+							<li>billiards_ball->9</li>
+							<li>billiards_ball->10</li>
+							<li>billiards_ball->11</li>
+							<li>billiards_ball->12</li>
+							<li>billiards_ball->13</li>
+							<li>billiards_ball->14</li>
+							<li>billiards_ball->15</li>
+							
+							<li>billiards_calledshot_start->I'll try [billiards_potting]</li>
+							<li>billiards_calledshot_start->[billiards_potting]</li>
+							<li>billiards_calledshot_start(INITIATOR_intellectual_level&lt;5)->I'm [gonna] [billiards_pot]</li>
+							<li>billiards_calledshot_start(INITIATOR_shooting_level&lt;5)->Mmm... what if I try [billiards_potting]</li>
+							
+							<li>billiards_pocket->corner</li>
+							<li>billiards_pocket->side</li>
+							
+							<li>billiards_pot->make</li>
+							<li>billiards_pot->pocket</li>
+							<li>billiards_pot->pot</li>
+							<li>billiards_pot->sink</li>
+							
+							<li>billiards_potting->making</li>
+							<li>billiards_potting->pocketing</li>
+							<li>billiards_potting->potting</li>
+							<li>billiards_potting->sinking</li>
+							
+							<li>billiards_shot_type->rail</li>
+							<li>billiards_shot_type->rail cut</li>
+							<li>billiards_shot_type->carom</li>
+
+					<!-- ===Chess=== -->
+						<!-- ===Invitation=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Chess,INITIATOR_moving==Yes)->[game_chess_going]</li>
+							<li>game_chess_going(RECIPIENT_jobDefName==Play_Chess,tag=Invite_answer_yes)->[game_chess_invite]</li>
+							<li>game_chess_going(RECIPIENT_jobDefName!=Play_Chess,tag=Invite_answer_no)->[game_chess_invite]</li>
+								<li>game_chess_invite->I'm [gonna] play chess. [wanna] join me, [recipient]?</li>
+								<li>game_chess_invite->[wanna] join me in a chess game, [recipient]?</li>
+						
+						<!-- ===Playing=== -->
+						<li>r_logentry(INITIATOR_jobDefName==Play_Chess,INITIATOR_seated==Yes,RECIPIENT_jobDefName==Play_Chess,RECIPIENT_seated==Yes,priority=4)->[game_chess]</li>
+							<!-- ===Smart move=== -->
+								<li>game_chess(INITIATOR_intellectual_level>=0)->[chess_smart]</li>
+								<li>game_chess(INITIATOR_intellectual_level>=5)->[chess_smart]</li>
+								<li>game_chess(INITIATOR_intellectual_level>=10)->[chess_smart]</li>
+								<li>game_chess(INITIATOR_intellectual_level>=15)->[chess_smart]</li>
+								<li>game_chess(p=2,INITIATOR_intellectual_level>=RECIPIENT_intellectual_level)->[chess_smart]</li>
+								<li>chess_smart(tag=Chess_smart)->[chess_neutral]</li>
+							<!-- ===Blunder=== -->
+								<li>game_chess(p=2,INITIATOR_intellectual_level&lt;=RECIPIENT_intellectual_level)->[chess_blunder]</li>
+								<li>game_chess(INITIATOR_intellectual_level&lt;5)->[chess_blunder]</li>
+								<li>game_chess(INITIATOR_intellectual_level&lt;10)->[chess_blunder]</li>
+								<li>game_chess(INITIATOR_intellectual_level&lt;15)->[chess_blunder]</li>
+								<li>game_chess(INITIATOR_intellectual_level&lt;=20)->[chess_blunder]</li>
+								<li>chess_blunder(tag=Chess_blunder)->[chess_neutral]</li>
+							<li>chess_neutral->[chess_piece] to [random_A_G][random_1_8].</li>
+							<li>chess_neutral->[chess_piece] takes [random_A_G][random_1_8].</li>
+							
+							<!-- ===Chess Other=== -->
+							<li>r_logentry(INITIATOR_jobDefName==Play_Chess,INITIATOR_seated==Yes,RECIPIENT_jobDefName==Play_Chess,RECIPIENT_seated==Yes,priority=4,tag=Chess_comment)->[chess_comment]</li>
+							<li>chess_comment(INITIATOR_artistic_passion!=None)->I think that while all artists are not chess players, all chess players are artists.</li>
+							<li>chess_comment(INITIATOR_trait==ascetic)->In life, as in chess, one's own pawns block one's way.</li>
+							<li>chess_comment(INITIATOR_intellectual_level&lt;5)->Every chess master was once a beginner.</li>
+							<li>chess_comment->I am convinced that the way one plays chess always reflects the player's personality.</li>
+							<li>chess_comment->Chess doesn't drive people mad, it keeps mad people sane.</li>
+							<li>chess_comment->Pawns are the soul of this game.</li>
+					
+					<!-- ===Clean=== -->
+					<li>r_logentry(p=3,INITIATOR_jobDefName==Clean,tag=Cleaning)->[job_clean]</li>
+						<li>job_clean(INITIATOR_moving==No)->[job_clean_static]</li>
+							<li>job_clean_static->Mmm... let's clean here.</li>
+							<li>job_clean_static->This place needs some [swearword][cleaning].</li>
+							<li>job_clean_static->Whoa — what a [swearword]mess. Let's clean it!</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning dirt.,OUTDOORS==No)->Who brought this [swearword]dirt inside? Sigh...</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning sand.,OUTDOORS==No)->Who brought this [swearword]sand inside? Sigh...</li>				
+							<li>job_clean_static(INITIATOR_jobText==cleaning trash.)->Who left this [swearword]trash around? Sigh...</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning blood.)->Whoa — that's a lot of [swearword]blood! Let's clean it!</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning rock rubble.)->Mmm... let's remove these rocks...</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning vomit.)->Eww... gross...</li>
+							<li>job_clean_static(INITIATOR_jobText==cleaning building rubble.)->Mmm... let's clean this debris...</li>
+						<li>job_clean(INITIATOR_moving==Yes)->[job_clean_going]</li>
+							<li>job_clean_going->There are so many [swearword][cleaning] chores to do around here...</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning dirt.)->[wipe_feet] [swearword]dirt...</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning sand.)->[wipe_feet] [swearword]sand...</li>				
+							<li>job_clean_going(INITIATOR_jobText==cleaning trash.)->Who left that [swearword]trash around? Sigh...</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning blood.)->I saw a lot of [swearword]blood over there — I'll go and clean it.</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning rock rubble.)->I'm going to remove those rocks...</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning vomit.)->Cleaning up vomit isn't nice, but someone has to do it...</li>
+							<li>job_clean_going(INITIATOR_jobText==cleaning building rubble.)->I'm going to clean that debris...</li>
+							<li>wipe_feet->Nobody ever wipes their feet, so here I go cleaning more</li>
+					
+					<!-- ===Cloudwatching=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==cloudwatching.,INITIATOR_moving==No,DAYPERIOD==morning,tag=CloudWatching)->[cloud_watching]</li>
+						<li>r_logentry(priority=4,INITIATOR_jobText==cloudwatching.,INITIATOR_moving==No,DAYPERIOD==afternoon,tag=CloudWatching)->[cloud_watching]</li>
+						<li>cloud_watching->Look at that cloud! Doesn't it [cloud_analogy] [a_cloudshape]?</li>
+						<li>a_cloudshape->a [Animal]</li>
+						<li>a_cloudshape->a [Apparel]</li>
+						<li>a_cloudshape->a [TreeType]</li>
+						<li>a_cloudshape->a [Vegetable]</li>
+						<li>a_cloudshape->a [Weapon]</li>
+						<li>cloud_analogy->just look like</li>
+						<li>cloud_analogy->remind you of</li>
+						<li>cloud_analogy(INITIATOR_intellectual_level>=5)->vaguely resemble</li>
+				
+					<!-- ===Eclipse=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==watching the eclipse.,INITIATOR_moving==No,tag=Eclipse)->[watching_eclipse]</li>
+							<li>watching_eclipse(INITIATOR_trait==night owl)->The longer this eclipse lasts, the wider my smile will be.</li>
+							<li>watching_eclipse(INITIATOR_artistic_passion!=None)->An elegant dance of celestial bodies brought us this stunning sky composition...</li>
+							<li>watching_eclipse->Eclipses are so peculiar — it seems like night, but it's [DAYPERIOD].</li>
+							<li>watching_eclipse->This eclipse is so fascinating...</li>
+					
+					<!-- ===Drinking beer=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==Drinking beer.,INITIATOR_moving==No,tag=DrinkBeer)->[drinking_beer]</li>
+							<li>drinking_beer->Cheers, [recipient]!</li>
+							<li>drinking_beer->Bottoms up!</li>
+							<li>drinking_beer->Here's to those who wish us well, all the rest can go to hell!</li>
+							<li>drinking_beer->Let's have a toast to the incompetence of our enemies!</li>
+							<li>drinking_beer->Fine beer for my real friends and real pain for my sham friends!</li>
+							<li>drinking_beer->Here's to the floor, who will hold you when no one else will!</li>
+							<li>drinking_beer->Over the teeth, over the gums — look out, stomach, here it comes!</li>
+							<li>drinking_beer->When the liquor is inside, the pain goes elsewhere!</li>
+							<li>drinking_beer(INITIATOR_social_level&lt;5)->*burps*</li>
+							<li>drinking_beer(INITIATOR_social_level&lt;3)->*burps savagely*</li>
+							<li>drinking_beer(INITIATOR_opinion>=0)->[beer_good_opinion]</li>
+								<li>beer_good_opinion->Here's to your liver, [recipient] — may it live as long as you last!</li>
+								<li>beer_good_opinion->Here's to stealing, cheating and lying, [recipient] — may you cheat death, steal hearts and lie with your love!</li>
+								<li>beer_good_opinion->May the face of every good news and the back of every bad news be towards us!</li>
+								<li>beer_good_opinion->May the roof above us never fall in — and may we friends gathered below never fall out!</li>
+								<li>beer_good_opinion->May you be in heaven a half an hour before the devil knows you're dead, [recipient]!</li>
+								<li>beer_good_opinion->May misfortune follow you the rest of your life — and never catch up, [recipient]!</li>
+							<li>drinking_beer(INITIATOR_opinion>=25)->Here's to your health, [recipient]!</li>
+							<li>drinking_beer->Here's to [beer_hope]!</li>
+								<li>beer_hope->our enemies' defeat!</li>
+								<li>beer_hope->abundant food on our table!</li>
+								<li>beer_hope->our good health!</li>
+								<li>beer_hope(INITIATOR_trait==kind)->friendship and smiles!</li>
+								<li>beer_hope(INITIATOR_mood&lt;0.4)->leaving this forsaken rimworld!</li>
+								
+					<!-- ===GameOfUr=== -->
+						<!-- ===Invitation=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==Yes)->[game_ur_going]</li>
+							<li>game_ur_going(RECIPIENT_jobDefName==Play_GameOfUr,tag=Invite_answer_yes)->[game_ur_invite]</li>
+							<li>game_ur_going(RECIPIENT_jobDefName!=Play_GameOfUr,tag=Invite_answer_no)->[game_ur_invite]</li>
+								<li>game_ur_invite->I'm [gonna] play a game of Ur. [wanna] join me, [recipient]?</li>
+								<li>game_ur_invite->[wanna] join me in a game of Ur, [recipient]?</li>
+						
+						<!-- ===Playing=== -->
+						<li>r_logentry(INITIATOR_jobDefName==Play_GameOfUr,INITIATOR_moving==No,RECIPIENT_jobDefName==Play_GameOfUr,RECIPIENT_moving==No,priority=4)->[game_ur]</li>
+							<!-- ===Smart move=== -->
+								<li>game_ur(INITIATOR_intellectual_level>=0)->[game_ur_smart]</li>
+								<li>game_ur(INITIATOR_intellectual_level>=5)->[game_ur_smart]</li>
+								<li>game_ur(INITIATOR_intellectual_level>=10)->[game_ur_smart]</li>
+								<li>game_ur(INITIATOR_intellectual_level>=15)->[game_ur_smart]</li>
+								<li>game_ur(p=2,INITIATOR_intellectual_level>=RECIPIENT_intellectual_level)->[game_ur_smart]</li>
+								<li>game_ur_smart(tag=GameOfUr_smart)->[game_ur_neutral]</li>
+							<!-- ===Blunder=== -->
+								<li>game_ur(p=2,INITIATOR_intellectual_level&lt;=RECIPIENT_intellectual_level)->[game_ur_blunder]</li>
+								<li>game_ur(INITIATOR_intellectual_level&lt;5)->[game_ur_blunder]</li>
+								<li>game_ur(INITIATOR_intellectual_level&lt;10)->[game_ur_blunder]</li>
+								<li>game_ur(INITIATOR_intellectual_level&lt;15)->[game_ur_blunder]</li>
+								<li>game_ur(INITIATOR_intellectual_level&lt;=20)->[game_ur_blunder]</li>
+								<li>game_ur_blunder(tag=GameOfUr_blunder)->[game_ur_neutral]</li>
+							<li>game_ur_neutral->I got [random_1_8] move points on the dice.</li>
+							<li>game_ur_neutral->I'll add a new racing piece.</li>
+							<li>game_ur_neutral->I'll move this piece.</li>
+							<li>game_ur_neutral->I'll move these pieces.</li>
+							
+							
+					<!-- ===Horseshoes and hoopstone=== -->
+						<!-- ===Invitation=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Hoopstone,INITIATOR_moving==Yes)->[game_hoopstone_going]</li>
+							<li>game_hoopstone_going(RECIPIENT_jobDefName==Play_Hoopstone,tag=Invite_answer_yes)->[game_hoopstone_invite]</li>
+							<li>game_hoopstone_going(RECIPIENT_jobDefName!=Play_Hoopstone,tag=Invite_answer_no)->[game_hoopstone_invite]</li>
+								<li>game_hoopstone_invite->I'm [gonna] play hoopstone. [wanna] join me, [recipient]?</li>
+								<li>game_hoopstone_invite->[wanna] join me in a hoopstone game, [recipient]?</li>
+
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Horseshoes,INITIATOR_moving==Yes)->[game_horseshoes_going]</li>
+							<li>game_horseshoes_going(RECIPIENT_jobDefName==Play_Horseshoes,tag=Invite_answer_yes)->[game_horseshoes_invite]</li>
+							<li>game_horseshoes_going(RECIPIENT_jobDefName!=Play_Horseshoes,tag=Invite_answer_no)->[game_horseshoes_invite]</li>
+								<li>game_horseshoes_invite->I'm [gonna] play horseshoes. [wanna] join me, [recipient]?</li>
+								<li>game_horseshoes_invite->[wanna] join me in a game of horseshoes, [recipient]?</li>
+								<li>game_horseshoes_invite->Care for a game of horseshoes, [recipient]?</li>
+							
+						<!-- ===Playing=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Hoopstone,INITIATOR_moving==No)->[game_horseshoes]</li>
+						<li>r_logentry(priority=4,INITIATOR_jobDefName==Play_Horseshoes,INITIATOR_moving==No)->[game_horseshoes]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level>=0)->[horseshoes_hit]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level>=5)->[horseshoes_hit]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level>=10)->[horseshoes_hit]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level>=15)->[horseshoes_hit]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level&lt;5)->[horseshoes_miss]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level&lt;10)->[horseshoes_miss]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level&lt;15)->[horseshoes_miss]</li>
+						<li>game_horseshoes(INITIATOR_shooting_level&lt;=20)->[horseshoes_miss]</li>
+						<!-- ===hit=== -->
+							<li>horseshoes_hit(tag=ShootingHit)->[shooting_hit]</li>
+							<li>shooting_hit->[hit_a][hit_b]</li>
+								<li>hit_a-></li>
+								<li>hit_a->Yes! </li>
+								<li>hit_a->Nice! </li>
+								<li>hit_a->Great! </li>
+								<li>hit_b->Got it!</li>
+								<li>hit_b->Nailed it!</li>
+								<li>hit_b->Aced it!</li>
+							<li>shooting_hit->Score!</li>
+							<li>shooting_hit->Right on target!</li>
+							<li>shooting_hit->Point for team [INITIATOR_nameDef]!</li>
+						<!-- ===high skill=== -->
+							<li>shooting_hit(INITIATOR_shooting_level>=5)->All skill, no luck!</li>
+							<li>shooting_hit(INITIATOR_shooting_level>=10)->Naturally...</li>
+							<li>shooting_hit(INITIATOR_shooting_level>=15)->Just another day at the office...</li>
+						<!-- ===low skill=== -->
+							<li>shooting_hit(INITIATOR_shooting_level&lt;5)->Lucky shot!</li>
+							<li>shooting_hit(INITIATOR_shooting_level&lt;5)->Haha! Somehow bounced off the ground onto it...</li>
+						<!-- ===miss=== -->
+							<li>horseshoes_miss(tag=ShootingMiss)->[shooting_miss]</li>
+							<li>shooting_miss->[miss_a][miss_b]</li>
+								<li>miss_a-></li>
+								<li>miss_a->Oops — </li>
+								<li>miss_a->[damn_it] — </li>
+								<li>miss_b->that was a miss!</li>
+								<li>miss_b->miss!</li>
+								<li>miss_b->I missed!</li>
+							<li>shooting_miss->Shoot—</li>
+							<li>shooting_miss->[damn_it]!</li>
+							<li>shooting_miss->Ugh, missed — [shooting_excuse]</li>
+								<li>shooting_excuse->a bug flew on my face!</li>
+								<li>shooting_excuse(OUTDOORS==Yes)->the wind is too strong!</li>
+								<li>shooting_excuse(OUTDOORS==Yes,DAYPERIOD==morning)->the sun was in my eye!</li>
+								<li>shooting_excuse(OUTDOORS==Yes,DAYPERIOD==afternoon)->the sun was in my eye!</li>
+						<!-- ===high skill=== -->
+							<li>shooting_miss(INITIATOR_shooting_level>=5)->Mmm... I must improve my aim...</li>
+							<li>shooting_miss(INITIATOR_shooting_level>=10)->How did I miss that?!</li>
+							<li>shooting_miss(INITIATOR_shooting_level>=15)->What?! I missed?!</li>
+						<!-- ===low skill=== -->
+							<li>shooting_miss(INITIATOR_shooting_level&lt;5)->Again... I missed...</li>
+							<li>shooting_miss(INITIATOR_shooting_level&lt;5)->This is way too hard...</li>
+
+					<!-- ===LayDown=== -->
+						<li>r_logentry(INITIATOR_jobDefName==LayDown,INITIATOR_moving==Yes,priority=4,tag=GoingToBed)->[going_to_bed]</li>
+						<li>going_to_bed->Well, [recipient] — I'm going to bed.</li>
+						<li>going_to_bed->Let's call it a day, [recipient] — I'm going to bed.</li>
+						<li>going_to_bed->Is it time for me to go to bed already? Take care, [recipient].</li>
+						<li>going_to_bed->I think I'm off to bed, [recipient]. Take care!</li>
+						<li>going_to_bed(INITIATOR_opinion>0)->Time for me to go to bed, [recipient] — hope you sleep well, too.</li>
+						<li>going_to_bed(INITIATOR_thoughtDefName==Sick,priority=1)->I'm not feeling well, [recipient] — I'm going to bed.</li>
+						<li>going_to_bed(INITIATOR_thoughtDefName==NeedRest,priority=1)->I'm so tired... I'm going to bed...</li>
+				
+					
+					<!-- ===Poker=== -->
+						<li>r_logentry(INITIATOR_jobDefName==Play_Poker,priority=4)->[game_poker]</li>
+						<!-- ===Both seated and playing=== -->
+							<li>game_poker(INITIATOR_seated==Yes,RECIPIENT_seated==Yes,RECIPIENT_jobDefName==Play_Poker)->[poker_endgame]</li>
+							<!-- ===Smart play=== -->
+								<li>poker_endgame(INITIATOR_intellectual_level>=0)->[poker_smart]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level>=5)->[poker_smart]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level>=10)->[poker_smart]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level>=15)->[poker_smart]</li>
+								<li>poker_endgame(p=2,INITIATOR_trait==great memory)->[poker_smart]</li>
+								<li>poker_endgame(p=2,INITIATOR_intellectual_level>=RECIPIENT_intellectual_level)->[poker_smart]</li>
+									<li>poker_smart(tag=Poker_smart)->[poker_endgame_description]</li>
+							<!-- ===Blunder=== -->
+								<li>poker_endgame(p=2,INITIATOR_intellectual_level&lt;=RECIPIENT_intellectual_level)->[poker_blunder]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level&lt;5)->[poker_blunder]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level&lt;10)->[poker_blunder]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level&lt;15)->[poker_blunder]</li>
+								<li>poker_endgame(INITIATOR_intellectual_level&lt;=20)->[poker_blunder]</li>
+								<li>poker_endgame(p=2,RECIPIENT_trait==great memory)->[poker_blunder]</li>
+									<li>poker_blunder(tag=Poker_blunder)->[poker_endgame_description]</li>
+							
+							<li>poker_endgame_description->[poker_endgame_start] [poker_score]</li>
+								<li>poker_endgame_start->I got</li>
+								
+								<li>poker_score(INITIATOR_intellectual_level>=0)->nothing.</li>
+								<li>poker_score(INITIATOR_intellectual_level>=0)->one pair.</li>
+								<li>poker_score(INITIATOR_intellectual_level>=0)->two pairs.</li>
+								<li>poker_score(INITIATOR_intellectual_level>=0)->three of a kind.</li>
+								<li>poker_score(INITIATOR_intellectual_level>=5)->a straight!</li>
+								<li>poker_score(INITIATOR_intellectual_level>=5)->a flush!</li>
+								<li>poker_score(INITIATOR_intellectual_level>=10)->a full house!</li>
+								<li>poker_score(INITIATOR_intellectual_level>=10)->four of a kind!</li>
+								<li>poker_score(INITIATOR_intellectual_level>=15)->a straight flush!</li>
+								<li>poker_score(INITIATOR_intellectual_level>=15)->a royal flush!</li>
+								<li>poker_score->nothing.</li>
+								<li>poker_score->one pair.</li>
+								<li>poker_score->two pairs.</li>
+								<li>poker_score->three of a kind.</li>
+								<li>poker_score->a straight!</li>
+								<li>poker_score->a flush!</li>
+								<li>poker_score->a full house!</li>
+								<li>poker_score->four of a kind!</li>
+								<li>poker_score->a straight flush!</li>
+								<li>poker_score->a royal flush!</li>
+								
+						<!-- ===Invitation=== -->
+						<li>game_poker(INITIATOR_seated==No,RECIPIENT_jobDefName==Play_Poker,tag=Invite_answer_yes)->[poker_invite]</li>
+						<li>game_poker(INITIATOR_seated==No,priority=-1,tag=Invite_answer_no)->[poker_invite]</li>
+							<li>poker_invite->I'm [gonna] start a poker game. [wanna] join me, [recipient]?</li>
+							<li>poker_invite->[wanna] join me in a poker game, [recipient]?</li>
+							
+						<!-- ===Ready?=== -->
+						<li>game_poker(p=0.5,RECIPIENT_jobDefName==Play_Poker,RECIPIENT_seated==Yes,tag=Poker_ready)->[poker_ready]</li>
+							<li>poker_ready->Ok, new round of betting. I'll deal, [recipient]. Ready?</li>
+							<li>poker_ready->My turn to deal. Ready for a new game, [recipient]?</li>
+							<li>poker_ready->Are you in for another game, [recipient]?</li>
+							<li>poker_ready->I cut and shuffled the deck. Are you ready, [recipient]?</li>					
+					
+					<!-- ===Television=== -->
+						<!-- ===Both sitting and watching (priority 4)=== -->
+						<li>r_logentry(INITIATOR_jobDefName==WatchTelevision,INITIATOR_moving==No,RECIPIENT_jobDefName==WatchTelevision,RECIPIENT_moving==No,priority=4)->[job_tv]</li>
+							<li>job_tv(tag=TV_newchannel)->[job_tv1]</li>
+								<li>job_tv1->Hmmm... should I change the channel to a [tv_show]?</li>
+								<li>job_tv1->Do you want me to switch the television to [tv_letters], [recipient]?</li>
+								<li>job_tv1->Seems like there's a new program airing... [tv_letters] [tv_news]. [recipient], [wanna] [tv_seeit] together?</li>
+								<li>job_tv1->Oooh! There's a new program: [tv_letters] [tv_news]. [wanna] [tv_seeit], [recipient]?</li>
+								<li>job_tv1->Hey, [recipient] — there's this program called [tv_letters] [tv_news] airing right now. [wanna] [tv_seeit]?</li>
+						
+							<li>job_tv(tag=TV_whatsthis)->[job_tv2]</li>
+								<li>job_tv2->Sorry... [tv_distraction] — what is it we're we watching now?</li>
+									<li>tv_distraction->I dozed off</li>
+									<li>tv_distraction->I fell asleep</li>
+									<li>tv_distraction->I was daydreaming</li>
+									<li>tv_distraction->I was lost in thought</li>
+									<li>tv_distraction->I got distracted</li>
+							
+							<li>job_tv(tag=TV_problem)->[job_tv3]</li>
+								<li>job_tv3->It's so quiet... [recipient], do you know how to turn up the volume on this thing?</li>
+								<li>job_tv3->I can't hear what the characters are saying. How do you turn on the subtitles?</li>
+								<li>job_tv3->Jeez — the television is really [tv_volume]. How do you turn down the volume?</li>
+								<li>job_tv3->The tv audio seems to be cutting off. Do you know how to [fix] it, [recipient]?</li>
+									<li>tv_volume->loud</li>
+									<li>tv_volume->noisy</li>
+									
+						<!-- ===Recipient sitting and watching (priority 3)=== -->							
+						<li>r_logentry(RECIPIENT_jobDefName==WatchTelevision,RECIPIENT_moving==No,priority=3,tag=TV_whatsthis)->[job_tv_whatsthis]</li>
+							<li>job_tv_whatsthis->What's this playing on the television, [recipient]?</li>
+							<li>job_tv_whatsthis->This program looks [intensifier][adj_tv]... what is it about, [recipient]?</li>	
+							<li>job_tv_whatsthis(INITIATOR_intellectual_level&lt;5)->Whatcha watching, [recipient]?</li>
+						
+						<!-- ===Wildcards=== -->						
+							<li>adj_tv->[adj_tv_good]</li>
+								<li>adj_tv_good->cool</li>
+								<li>adj_tv_good->good</li>
+								<li>adj_tv_good->interesting</li>
+								<li>adj_tv_good->intriguing</li>
+								<li>adj_tv_good->amusing</li>
+								<li>adj_tv_good->entertaining</li>								
+							<li>adj_tv->[adj_tv_weird]</li>
+								<li>adj_tv_weird->weird</li>
+								<li>adj_tv_weird->strange</li>
+								<li>adj_tv_weird->peculiar</li>
+								<li>adj_tv_weird->uncanny</li>
+								<li>adj_tv_weird->atypical</li>
+								<li>adj_tv_weird->unusual</li>
+					
+					<!-- ===Stargazing=== -->
+						<li>r_logentry(INITIATOR_jobText==stargazing.,INITIATOR_moving==No,priority=4,tag=Stargazing)->[job_stargazing]</li>
+						<li>job_stargazing->Hey — what's that bright flashing light I just saw?</li>
+						<li>job_stargazing(INITIATOR_intellectual_level>=5)->How interesting — that constellation there just looks like a [Animal]!</li>
+						<li>job_stargazing(DAYPERIOD==evening)->The stars looks so [stars_adj] this evening...</li>
+						<li>job_stargazing(DAYPERIOD==night)->The stars looks so [stars_adj] tonight...</li>
+							<li>stars_adj->beautiful</li>
+							<li>stars_adj->heavenly</li>
+							<li>stars_adj->magical</li>
+							<li>stars_adj->bright</li>							
+						
+					<!-- ===Sunrise=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==watching the sunrise.,INITIATOR_moving==No,tag=Sunrise)->[watching_sunrise]</li>
+							<li>watching_sunrise->I love watching the sunrise...</li>
+							<li>watching_sunrise->It's almost impossible to watch a sunrise and not dream...</li>
+							<li>watching_sunrise(INITIATOR_trait==kind)->The beauty of sunrise keeps my heart warm.</li>
+							<li>watching_sunrise(INITIATOR_artistic_passion!=None)->I always get excited when the sky turns pretty colors.</li>
+							<li>watching_sunrise(INITIATOR_artistic_passion!=None)->The blue sky paints itself with gold colors and joyfully dances to the music of a morning breeze...</li>
+							<li>watching_sunrise->A faint blush below the horizon, as the first kiss from the Sun wakes the Planet from its slumber.</li>
+							<li>watching_sunrise->When the sun rises, it rises for everyone.</li>
+							<li>watching_sunrise->What better way to start off the day than watching the sunrise?</li>
+							<li>watching_sunrise->How pretty... I'm speechless. Maybe the Rim isn't so bad, after all.</li>
+							<li>watching_sunrise->The sky is simply gorgeous today, and this sunrise only makes it prettier.</li>
+							<li>watching_sunrise(INITIATOR_trait==pyromaniac)->Good morning, my favorite fireball. Burn bright!</li>
+							
+					<!-- ===Sunset=== -->
+						<li>r_logentry(priority=4,INITIATOR_jobText==watching the sunset.,INITIATOR_moving==No,tag=Sunset)->[watching_sunset]</li>
+							<li>watching_sunset->I feel a wave of reassurance when I watch the sunset... as if everything will be okay tomorrow.</li>
+							<li>watching_sunset->I love watching the sunset...</li>
+							<li>watching_sunset->Look at those beautiful colors in the sky...</li>
+							<li>watching_sunset->Twilight drops her curtain down and pins it with a star.</li>
+							<li>watching_sunset->Sunset is when I get my chance to reset.</li>
+							<li>watching_sunset(INITIATOR_artistic_passion!=None)->Sunset is the opening music of the night.</li>
+							<li>watching_sunset->What better way to finish off the day than watching the sunset?</li>
+							<li>watching_sunset->How pretty... I'm speechless. Maybe the Rim isn't so bad, after all.</li>
+							<li>watching_sunset(INITIATOR_trait==ascetic)->The blessed Sun is going down. Sleep tight, Mother Nature.</li>
+							<li>watching_sunset->The sky is simply gorgeous today, and this sunset only makes it prettier.</li>
+							<li>watching_sunset(INITIATOR_trait==pyromaniac)->Goodnight, my favorite fireball. Burn bright!</li>
+							<li>watching_sunset->I feel as if all my suffering washes away when I gaze at the setting sun...</li>
+							
+					<!-- ===Telescope=== -->
+						<li>r_logentry(INITIATOR_jobText==using telescope.,INITIATOR_moving==No,priority=4,tag=Telescope)->[using_telescope]</li>
+						<li>using_telescope->Woah! I think I can see another planet!</li>
+						<li>using_telescope->I wonder how many moons this planet has...</li>
+						<li>using_telescope->Hey — what's that bright flashing light I just saw?</li>
+						<li>using_telescope(DAYPERIOD==evening)->The stars looks so [stars_adj] this evening...</li>
+						<li>using_telescope(DAYPERIOD==night)->The stars looks so [stars_adj] tonight...</li>
+							<li>stars_adj->beautiful</li>
+							<li>stars_adj->heavenly</li>
+							<li>stars_adj->magical</li>
+					
+					<!-- ===ViewArt=== -->
+						<li>r_logentry(INITIATOR_jobDefName==ViewArt,INITIATOR_moving==No,priority=4)->[job_viewart]</li>
+							<!-- ===How beautiful=== -->
+							<li>job_viewart(tag=Job_ViewArt1)->[job_viewart_1]</li>
+								<li>job_viewart_1->I like this [artwork]; it looks very [adj_artwork].</li>
+								<li>job_viewart_1->I like this [NEAREST_art]; it looks very [adj_artwork].</li>
+								<li>job_viewart_1->Such [a_adj_artwork] [artwork]!</li>
+								<li>job_viewart_1->Such [a_adj_artwork] [NEAREST_art]! </li>
+								<li>job_viewart_1->We're lucky to have such [a_adj_artwork] [artwork]!</li>
+								<li>job_viewart_1->How [adj_artwork]!</li>
+								<li>job_viewart_1->Look, [recipient]! Isn't it just so [adj_artwork]?</li>
+								<li>job_viewart_1->Look at this [NEAREST_art], [recipient]! Isn't it just so [adj_artwork]?</li>
+								<li>job_viewart_1(INITIATOR_artistic_passion!=None)->[artistic_passion]</li>
+									<li>artistic_passion->This [NEAREST_art] fosters my natural connection to Art, [recipient]. Isn't it just so [adj_artwork]?</li>
+									<li>artistic_passion->This [NEAREST_art] and its [adj_artwork] sprezzaturas visit my very soul...</li>
+									<li>artistic_passion->This [adj_artwork] [artwork] is a generous cornucopia for my eyes!</li>
+								<!-- ===No artistic passion (priority 1)=== -->
+								<li>job_viewart_1(INITIATOR_artistic_passion==None,priority=1)->[no_artistic_passion]</li>
+									<li>no_artistic_passion->[no_artistic_passion_start], but I find this [NEAREST_art] to be quite [adj_artwork]...</li>
+									<li>no_artistic_passion->[no_artistic_passion_start], but I find this [artwork] to be quite [adj_artwork]...</li>
+										<li>no_artistic_passion_start->I never understood arts</li>
+										<li>no_artistic_passion_start->I don't enjoy arts in general</li>
+										<li>no_artistic_passion_start->Normally no [artwork] interests me</li>
+										<li>no_artistic_passion_start->I never made efforts to understand and enjoy arts</li>
+										<li>no_artistic_passion_start->I never had the chance or will to develop my artistic sense</li>
+										<li>no_artistic_passion_start->I don't have an eye for art</li>
+										<li>no_artistic_passion_start->The arts really are not my thing</li>
+										
+								<li>adj_artwork->beautiful</li>
+								<li>adj_artwork->captivating</li>
+								<li>adj_artwork->charming</li>
+								<li>adj_artwork->delightful</li>
+								<li>adj_artwork->inspiring</li>
+								<li>adj_artwork->pretty</li>
+								
+								<li>a_adj_artwork->a beautiful</li>
+								<li>a_adj_artwork->a captivating</li>
+								<li>a_adj_artwork->a charming</li>
+								<li>a_adj_artwork->a delightful</li>
+								<li>a_adj_artwork->a pretty</li>
+								<li>a_adj_artwork->an inspiring</li>
+								
+								<li>artwork->art work</li>
+								<li>artwork->artistic production</li>
+								<li>artwork->artistic work</li>
+								<li>artwork->piece</li>
+								<li>artwork->creation</li>
+								<li>artwork->ornament</li>
+								<li>artwork->decoration</li>
+								<li>artwork->work of art</li>
+								<li>artwork(INITIATOR_intellectual_level>=5)->oeuvre</li>
+								<li>artwork(INITIATOR_intellectual_level>=5)->objet d'art</li>
+								<li>artwork(INITIATOR_intellectual_level>=10)->opus artis</li>
+								
+					<!-- ===VisitSickPawn=== -->
+						<li>r_logentry(INITIATOR_jobDefName==VisitSickPawn,INITIATOR_moving==No,priority=4)->[job_visitpawn]</li>
+						<li>job_visitpawn->[tell_joke]</li>
+						<li>job_visitpawn(tag=GetWell)->Don't worry, [recipient] — you'll get well very soon!</li>
+						<li>job_visitpawn(tag=GetWell)->I'm sure you'll be fine in no time, [recipient]!</li>
+						<li>job_visitpawn(p=0.5,tag=HowAreYou)->So, how is our patient doing?</li>
+						<li>job_visitpawn(tag=Thanks)->[visitpawn_thanks]</li>
+							<li>visitpawn_thanks->If you need anything, let me know — OK, [recipient]?</li>
+							<li>visitpawn_thanks->If I can do anything to help, let me know — OK, [recipient]?</li>
+							<li>visitpawn_thanks->Don't worry, [recipient] — [visitpawn_takecare]</li>
+								<li>visitpawn_takecare->I'll take care of you</li>
+								<li>visitpawn_takecare(INITIATOR_medical_level&lt;5)->I'll do my best to take care of you.</li>
+								<li>visitpawn_takecare(INITIATOR_medical_level>=5)->you're in good hands.</li>
+								<li>visitpawn_takecare(INITIATOR_medical_level>=10)->with my high medical skills, you'll get well in no time.</li>
+								
+				<!-- ===Job Texts (recipient)=== -->
+					<!-- ===Butchering=== -->
+						<li>r_logentry(RECIPIENT_jobText==Butchering.,tag=Job_ButcheringSkill)->[job_recipient_butchering]</li>
+						<li>job_recipient_butchering(RECIPIENT_cooking_level>=6)->Well, [recipient] — luckily for us, looks like you know how to properly butcher!</li>
+						<li>job_recipient_butchering(RECIPIENT_cooking_level&lt;6)->Mmm, [recipient]... looks like you're wasting good meat there...</li>
+					<!-- ===Vomiting (priority 4)=== -->
+						<li>r_logentry(priority=4,RECIPIENT_jobText==vomiting.)->[job_recipient_vomiting]</li>
+							<!-- ===gross=== -->
+								<li>job_recipient_vomiting(tag=Job_Vomiting)->[vomiting_gross][recipient]!</li>
+								<li>vomiting_gross->Gross, </li>
+								<li>vomiting_gross->Eww, </li>
+									<!-- ===dislike=== -->
+										<li>vomiting_gross(INITIATOR_opinion&lt;0)->[vomiting_gross_dislike]</li>
+										<li>vomiting_gross_dislike->That's disgusting, </li>
+										<li>vomiting_gross_dislike->I hope you're [gonna] clean up that mess, </li>
+							<!-- ===help offer=== -->
+								<li>job_recipient_vomiting(INITIATOR_opinion>=0,tag=Job_Vomiting_help)->[vomiting_help_offer]</li>
+								<li>job_recipient_vomiting(INITIATOR_trait==kind,tag=Job_Vomiting_help,priority=1)->[vomiting_help_offer]</li>
+								<li>vomiting_help_offer->Oh my, [recipient] — do you need help?</li>
+					<!-- ===Build snowman (priority 4)=== -->
+						<li>r_logentry(priority=4,RECIPIENT_jobDefName==BuildSnowman,tag=Job_BuildSnowman)->Well, [recipient] — [job_recipient_buildsnowman]</li>
+							<li>job_recipient_buildsnowman(RECIPIENT_artistic_level>=5)->[comment_nice_snowman]</li>
+								<li>comment_nice_snowman(INITIATOR_opinion>=0)->that's [gonna] be a beautiful snowman!</li>
+								<li>comment_nice_snowman(INITIATOR_opinion&lt;0)->are you actually building that... snowy mess on purpose?!</li>
+							<li>job_recipient_buildsnowman(RECIPIENT_artistic_level&lt;5)->[comment_ugly_snowman]</li>
+								<li>comment_ugly_snowman(INITIATOR_opinion>=0)->if it's not [gonna] be a nice snowman, it'll be a funny one at least!</li>
+								<li>comment_ugly_snowman(INITIATOR_opinion&lt;0)->what [horrible] [monster] are you trying to build there?</li>
+					<!-- ===Play_MusicalInstrument=== -->
+					<li>r_logentry(priority=4,RECIPIENT_jobDefName==Play_MusicalInstrument,RECIPIENT_moving==No)->[job_play_instrument]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level>=0)->[play_instrument_good]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level>=5)->[play_instrument_good]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level>=10)->[play_instrument_good]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level>=15)->[play_instrument_good]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level&lt;5)->[play_instrument_bad]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level&lt;10)->[play_instrument_bad]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level&lt;15)->[play_instrument_bad]</li>
+						<li>job_play_instrument(RECIPIENT_artistic_level&lt;=20)->[play_instrument_bad]</li>
+							<!-- ===Good performance=== -->
+								<!-- ===Compliment=== -->
+								<li>play_instrument_good(tag=Job_PlayMusic_compliment)->[play_instrument_compliment]</li>
+								<li>play_instrument_compliment->*claps*</li>
+								<li>play_instrument_compliment->Wow, [recipient] — what a great performance!</li>
+								<li>play_instrument_compliment->Please, [recipient] — play some more! It was so good!</li>
+								<li>play_instrument_compliment->That was some real inspired performance, [recipient]!</li>
+								<li>play_instrument_compliment->Ah, I love this part... and I love how you play it, [recipient]...</li>
+								<li>play_instrument_compliment(INITIATOR_opinion&lt;0,priority=1)->Mmm... at least you have some musical skills, [recipient]...</li>
+								<li>play_instrument_compliment(INITIATOR_intellectual_level>=5)->Bravo, [recipient]! Bravo!</li>
+								<li>play_instrument_compliment(INITIATOR_intellectual_level>=10)->Encore, [recipient]! Encore!</li>
+								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Minor)->I can feel all your passion in those sweet notes, [recipient]!</li>
+								<li>play_instrument_compliment(RECIPIENT_artistic_passion==Major)->Such a nice performance! It makes me feel all the joy and strenght of your artistic soul, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level>=5)->I know a good performer when I see one — and you're certainly that, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level>RECIPIENT_artistic_level)->Mmm... I have some hints for you about performing this music, but still — good job, [recipient]!</li>
+								<li>play_instrument_compliment(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->You're so talented, [recipient]! I hope someday you can teach me a thing or two about performing this music!</li>
+								<!-- ===Join in=== -->
+								<li>play_instrument_good(tag=Job_PlayMusic_join)->[play_instrument_join]</li>
+								<li>play_instrument_join->♪♫♪ hums along ♪♫♪</li>
+								<li>play_instrument_join(INITIATOR_artistic_passion!=None)->♪♫♪ sings along ♪♫♪</li>
+							<!-- ===Bad performance=== -->
+							<li>play_instrument_bad(tag=Job_PlayMusic_critic)->[play_instrument_critic]</li>
+							<li>play_instrument_critic->*sighs*</li>
+							<li>play_instrument_critic->Have you considered playing another instrument, [recipient]? This one doesn't seem to agree with you...</li>
+							<li>play_instrument_critic->Have you considered playing another music, [recipient]? This one seems to be too difficult for you...</li>
+							<li>play_instrument_critic->Well, [recipient] — no offense, but I don't believe this is your best performance...</li>
+							<li>play_instrument_critic->Mmm...</li>
+							<li>play_instrument_critic(RECIPIENT_artistic_level>=5)->Mmm, [recipient] — I know you can perform better than that...</li>
+							<li>play_instrument_critic(RECIPIENT_artistic_passion!=None)->I felt some passion in your performance, but... mmm... maybe you need more practicing to get it right, [recipient].</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level>=5,RECIPIENT_artistic_passion!=None)->The talent is there, [recipient] — I can see it clearly. But you need much more training still...</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->May I give you some hints about performing this music? No offense, [recipient] — but I think your performance is missing technical skill.</li>
+							<li>play_instrument_critic(INITIATOR_artistic_level&lt;RECIPIENT_artistic_level)->Was that your personal way of playing it, [recipient]? I couldn't understand what you were trying to do there...</li>
+								<!-- ===Hostile critic=== -->
+								<li>play_instrument_critic(INITIATOR_opinion&lt;0,priority=1)->[play_instrument_hostile_critic]</li>
+								<li>play_instrument_hostile_critic->What a lousy performance...</li>
+								<li>play_instrument_hostile_critic(INITIATOR_artistic_level&lt;5)->I'm no artist myself, but I can easily understand this is quite a bad performance!</li>
+								<li>play_instrument_hostile_critic(RECIPIENT_artistic_passion!=None)->Your raw skills sound horrible, [recipient] — and no amount of training can change that!</li>
+								<li>play_instrument_hostile_critic(INITIATOR_artistic_level>RECIPIENT_artistic_level)->And you call that a performance? Don't be around when I perform — I don't want to humiliate you, [recipient]!</li>
+								<!-- ===Kind=== -->
+								<li>play_instrument_critic(INITIATOR_trait==kind,priority=1)->[play_instrument_kindcomment]</li>
+								<li>play_instrument_kindcomment->Thanks for your — er — nice performance, [recipient].</li>
+								<li>play_instrument_kindcomment->Don't worry about that mistake [recipient] — it's just a very minor one.</li>
+								<li>play_instrument_kindcomment(INITIATOR_artistic_level>=5)->A minor mistake, [recipient] — easily corrected. Don't worry, play on!</li>
+					
+					
+					<!-- ===Cooking and gathering ingredients=== -->
+						<!--Simple meal (seated) 
+							<li>r_logentry(priority=4,INITIATOR_jobText==Cooking simple meal.,INITIATOR_seated==Yes)->[cooking_simplemeal]</li>
+							<li>cooking_simplemeal(INITIATOR_cooking_level>=6,priority=1)->A pity I don't have better ingredients to cook something tastier.</li>
+							<li>cooking_simplemeal->It's simple cooking, I know — but it will have to do for now.</li>-->
+
+				
+			<!-- ===MOOD=== -->
+				
+				<!-- ===Mood (Initiator)=== -->
+					<li>r_logentry->[mood]</li>
+					<li>mood(INITIATOR_mood>=0.4)->[mood_calm]</li>
+					<li>mood(INITIATOR_mood&lt;0.4)->[mood_stressed]</li>
+
+					<!-- ===Calm=== -->
+						<li>mood_calm(tag=Calm)->[calm_options]</li>
+						<li>calm_options->*smiles*</li>
+						<li>calm_options(INITIATOR_trait==psychopath,p=2)->*stares unexpressively*</li>
+						<li>calm_options(INITIATOR_mood>=0.6,INITIATOR_opinion>=0)->*beams a smile at [RECIPIENT_nameDef]*</li>
+						<li>calm_options(INITIATOR_mood>=0.7)->♪♫♪ hums a tune ♪♫♪</li>
+						<li>calm_options(INITIATOR_mood>=0.8)->♪♫♪ whistles a tune ♪♫♪</li>
+						<li>calm_options(INITIATOR_mood>=0.8)->What a wonderful world!</li>
+						
+					<!-- ===Stressed=== -->
+						<li>mood_stressed(tag=Stressed)->[stressed_options]</li>
+						<li>stressed_options->*scowls*</li>
+						<li>stressed_options->*glares*</li>
+						<li>stressed_options->*glowers*</li>
+						<li>stressed_options->*frowns*</li>
+						<li>stressed_options->Hmph...</li>
+						<li>stressed_options(INITIATOR_trait==psychopath,p=2)->*stares unexpressively*</li>
+						<li>stressed_options(INITIATOR_mood&lt;=0.2)->*mutters angrily*</li>
+						<li>stressed_options(INITIATOR_mood&lt;=0.3)->*grumbles*</li>
+
+					<!-- ===Singing=== -->
+						<li>r_logentry(INITIATOR_mood>=0.6,INITIATOR_artistic_passion!=None,tag=Singing)->♪♫♪ *sings* ♪♫♪</li>
+						<li>r_logentry(INITIATOR_mood>=0.6,INITIATOR_artistic_passion!=None,tag=Singing)->♪♫♪ tra la la! ♪♫♪</li>
+						<li>r_logentry(INITIATOR_mood>=0.6,INITIATOR_artistic_passion!=None,tag=Singing)->♪♫♪ do-re-mi! ♪♫♪</li>
+					
+				<!-- ===Mood (Recipient)=== -->
+					<li>r_logentry(INITIATOR_opinion>=0,tag=HowAreYou)->Hey, [recipient]. [howareyou]</li>
+					<li>howareyou->How are you?</li>
+					<li>howareyou->How are things?</li>
+					<li>howareyou->How have you been?</li>
+					<li>howareyou->How's life?</li>
+					<li>howareyou->How are you getting along?</li>
+					<li>howareyou(RECIPIENT_mood&lt;0.4)->Are you OK?</li>
+					
+				<!-- ===TRAITS=== -->
+					<!-- ===Ascetic=== -->
+						<li>r_logentry(INITIATOR_trait==ascetic,tag=AsceticWisdom)->[trait_ascetic]</li>
+						<li>trait_ascetic(INITIATOR_intellectual_level&lt;3,p=2)->[trait_ascetic_unintelligent]</li>
+							<!-- ===Ascetic (low intelligence, common but not exclusive) === -->
+							<li>trait_ascetic_unintelligent->Life's not easy, but we keep living.</li>
+							<li>trait_ascetic_unintelligent->Space is big, and people are small. That's not sad — it just is what it is.</li>
+							<li>trait_ascetic_unintelligent->You can observe a lot by just watching.</li>
+							<li>trait_ascetic_unintelligent->Remember — when you come to a fork in the road, then take it.</li>
+							<li>trait_ascetic_unintelligent->If the world were perfect, it wouldn't be.</li>
+						<li>trait_ascetic->Remember — one day you shall die. Shine today, at your best, while you can.</li>
+						<li>trait_ascetic->Look in the mirror — for that's where you can find the only person worth competing with.</li>
+						<li>trait_ascetic->Being truly rich is not about having great possessions — it's about having few wants.</li>
+						<li>trait_ascetic->He who fears death will never do anything worth of a man who is alive.</li>
+						<li>trait_ascetic->You can control your mind — not outside events. Absorb this, and you shall find strength.</li>
+						<li>trait_ascetic->One true mistake we can make in our lives — not strive to improve ourselves.</li>
+						<li>trait_ascetic(INITIATOR_animals_passion!=None)->Observe the [Animal] and its simpler life — there is a lot to learn from it.</li>
+						<!--Optimist & Sanguine-->
+						<li>r_logentry(INITIATOR_trait==optimist,tag=LuckyFuture)->[lucky_future]</li>
+						<li>r_logentry(INITIATOR_trait==sanguine,tag=LuckyFuture)->[lucky_future]</li>
+						<li>lucky_future(DAYPERIOD==night)->[can_feel_it] today [lucky_day]</li>
+						<li>lucky_future(DAYPERIOD==morning)->[can_feel_it] today [lucky_day]</li>
+						<li>lucky_future(DAYPERIOD==afternoon)->[can_feel_it] tomorrow [lucky_day]</li>
+						<li>lucky_future(DAYPERIOD==evening)->[can_feel_it] tomorrow [lucky_day]</li>
+						<li>can_feel_it->I can feel it —</li>
+						<li>can_feel_it->I have a feeling</li>
+						<li>can_feel_it->I just know that</li>
+						<li>can_feel_it->Something tells me that</li>
+						<li>can_feel_it->Somehow I feel like</li>
+						<li>lucky_day->will be my lucky day!</li>
+						<li>lucky_day->is [gonna] be my lucky day!</li>
+						<li>lucky_day->everything will go my way!</li>
+						<li>lucky_day->we're [gonna] have a lucky day!</li>
+						<li>lucky_day->fortune is [gonna] smile on us!</li>
+						<li>lucky_day->I'll be lucky!</li>
+						<li>lucky_day(INITIATOR_intellectual_level>5)->we'll experience fortune beyond measure!</li>
+						<li>lucky_day(INITIATOR_intellectual_level>5)->luck will be our constant companion!</li>
+					<!-- ===Psychically sensitive and hipersensitive=== -->
+					<!-- ===Good visions=== -->
+						<li>r_logentry(INITIATOR_trait==psychically sensitive)->[trait_psy_sensitive]</li>
+						<li>r_logentry(INITIATOR_trait==psychically hypersensitive)->[trait_psy_sensitive]</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveFriendly] [PersonJob] visiting a [AdjectiveFriendly] [Community].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveFriendly] [PersonJob] admiring a [nice] [TerrainFeature] from afar.</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveFriendly] [Color] [Animal] in a [AdjectiveLarge] [TreeType] forest.</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveFriendly] [Animal] eating [Vegetable]s.</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [Community] of [AdjectiveFriendly] [Color] [Animal]s.</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about [Quantity_adjphrase] [PersonJob]s who were [VerbFriendly] in a [AdjectiveFriendly] [Community].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveLarge] [Animal] saving a [AdjectiveAngsty] [Community] from a [AdjectiveBadass] [Enemy].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionGood)->[vision_start] about a [AdjectiveFriendly] [PersonJob] wearing a [Color] [Apparel].</li>
+					<!-- ===Visions=== -->
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [AdjectiveLarge] [AnimalGroup] of [Animal]s in a [TreeType] forest.</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about [Animal]-shaped clouds over a [AdjectiveAny] [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [Color] [Animal] and a [Color] [Animal] competing for the same [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [Color] [Animal] playing [Game].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [AdjectiveBadass] [Enemy] struggling against a [AdjectiveBadass] [Enemy].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [AdjectiveAny] [Apparel] dancing in the wind over a [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a group of [PersonJob]s visiting a [Community] to buy [AdjectiveAny] [Apparel]s.</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a [PersonJob] arguing with a [PersonJob] about a [AdjectiveAny] [Weapon].</li>
+						<li>trait_psy_sensitive(tag=PsyVision)->[vision_start] about a group of [PersonJob]s visiting a [Community] to buy [AdjectiveAny] [Weapon]s.</li>
+					<!-- ===Bad visions=== -->
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about a [AdjectiveBadass] [Enemy] with a [AdjectiveBadass] [Weapon] covered in [Gore].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about [Quantity_adjphrase] [AdjectiveBadass] [Enemy]s — and one of them wielded a [AdjectiveLarge] [AdjectiveBadass] [Weapon].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about a [AdjectiveAngsty] [PersonJob] running from a [AdjectiveBadass] [Enemy].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about a [AdjectiveBadass] [Mechanoid] chasing a group of [PersonJob]s into a [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about [AdjectiveBadass] [Mechanoid]s mercilessly destroying a [AdjectiveFriendly] [Community].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about a [AdjectiveAngsty] [Community] near a [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about a [AdjectiveAngsty] [PersonJob] near a [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about [Enemy]-shaped clouds over a [AdjectiveAngsty] [TerrainFeature].</li>
+						<li>trait_psy_sensitive(tag=PsyVisionBad)->[vision_start] about two coffins — one had a dead [PersonJob] in it, the other was empty.</li>
+						<li>vision_start->I just had a [vision_adj] vision</li>
+							<li>vision_adj->peculiar</li>
+							<li>vision_adj->startling</li>
+							<li>vision_adj->strange</li>
+							<li>vision_adj->fading</li>
+							<li>vision_adj->fleeting</li>
+							<li>vision_adj->sudden</li>
+							<li>vision_adj->momentary</li>
+							<li>vision_adj->colorful</li>
+							<li>vision_adj->clear</li>
+							<li>vision_adj->sudden</li>
+							<li>vision_adj->vivid</li>
+							<li>vision_adj->curious</li>
+							<li>vision_adj->hazy</li>
+							<li>vision_adj->flash of a</li>
+						
+				<!-- ===CHITCHAT WILDCARDS: dictionary=== -->
+					<!-- ===animal — cute=== -->
+						<li>animal_cute->bunny</li>
+						<li>animal_cute->chinchilla</li>
+						<li>animal_cute->honeybee</li>
+						<li>animal_cute->lamb</li>
+						<li>animal_cute->duckling</li>
+					<!-- ===animal — large=== -->
+						<li>animal_large->a horse</li>
+						<li>animal_large->a muffalo</li>
+						<li>animal_large->an elephant</li>
+						<li>animal_large(INITIATOR_intellectual_level&lt;7)->a rhino</li>
+						<li>animal_large(INITIATOR_intellectual_level>=7)->a rhinoceros</li>
+						<li>animal_large->a whale</li>
+						<li>animal_large->a grizzly bear</li>
+						<li>animal_large->a megasloth</li>
+					<!-- ===annoying=== -->
+						<li>annoying->annoying</li>
+						<li>annoying->bad</li>
+						<li>annoying->irritating</li>
+						<li>annoying->infuriating</li>
+						<li>annoying->maddening</li>
+						<li>annoying->bothersome</li>
+						<li>annoying->frustrating</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->[intensifier]annoying</li>
+						<li>annoying(INITIATOR_intellectual_level&lt;5)->[intensifier]bad</li>
+						<li>annoying(INITIATOR_intellectual_level>=5)->exasperating</li>
+						<li>annoying(INITIATOR_intellectual_level>=5)->ire-raising</li>
+						<li>annoying(INITIATOR_intellectual_level>=5)->vexing</li>
+					<!-- ===beautiful (person)=== -->
+						<li>beautiful_person->adorable</li>
+						<li>beautiful_person->alluring</li>
+						<li>beautiful_person->attractive</li>
+						<li>beautiful_person->beautiful</li>
+						<li>beautiful_person->cute</li>
+						<li>beautiful_person->good-looking</li>
+						<li>beautiful_person->gorgeous</li>
+						<li>beautiful_person->lovely</li>
+						<li>beautiful_person->pretty</li>
+						<li>beautiful_person(RECIPIENT_gender==Male,p=1)->handsome</li>
+						<li>beautiful_person(RECIPIENT_gender==Male)->hunky</li>
+						<li>beautiful_person(RECIPIENT_gender==Female)->buxom</li>
+						<li>beautiful_person(RECIPIENT_gender==Female,p=0.5)->handsome</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->bewitching</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->comely</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->pulchritudinous</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->resplendent</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->statuesque</li>
+						<li>beautiful_person(INITIATOR_intellectual_level>=7)->winsome</li>
+					<!-- ===cleaning (action)=== -->
+						<li>cleaning->cleaning</li>
+						<li>cleaning->scrubbing</li>
+						<li>cleaning->tidying</li>
+						<li>cleaning->washing</li>
+					<!-- ===disgusting (dead body/meal)=== -->
+						<li>disgusting->disgusting</li>
+						<li>disgusting->nauseating</li>
+						<li>disgusting->sickening</li>
+						<li>disgusting->gross</li>
+						<li>disgusting->nasty</li>
+						<li>disgusting->vile</li>
+						<li>disturbing(INITIATOR_intellectual_level&lt;=5)->gross</li>
+						<li>disgusting(INITIATOR_intellectual_level>=5)->revolting</li>
+						<li>disgusting(INITIATOR_intellectual_level>=5)->repellent</li>
+						<li>disgusting(INITIATOR_intellectual_level>=10)->repugnant</li>
+					<!-- ===disturbing (dead body)=== -->
+						<li>disturbing->disturbing</li>
+						<li>disturbing->unsettling</li>
+						<li>disturbing->gut-wrenching</li>
+						<li>disturbing->upsetting</li>
+						<li>disturbing->horrible</li>
+						<li>disturbing(INITIATOR_intellectual_level&lt;=5)->gross</li>
+						<li>disturbing(INITIATOR_intellectual_level>=5)->perturbing</li>
+						<li>disturbing(INITIATOR_intellectual_level>=5)->disquieting</li>
+						<li>disturbing(INITIATOR_intellectual_level>=10)->abhorrent</li>
+						<li>disturbing(INITIATOR_intellectual_level>=10)->abominable</li>
+					<!-- ===eerie=== -->
+						<li>eerie->strange</li>
+						<li>eerie->eerie</li>
+						<li>eerie->otherworldy</li>
+						<li>eerie->unearthly</li>
+						<li>eerie(INITIATOR_intellectual_level&lt;5)->spooky</li>
+						<li>eerie(INITIATOR_intellectual_level>5)->eldritch</li>
+					<!-- ===fix (verb, metaphoric)=== -->
+						<li>fix->fix</li>
+						<li>fix->manage</li>
+						<li>fix->handle</li>
+						<li>fix->deal with</li>
+						<li>fix->see to</li>
+						<li>fix->take care of</li>
+						<li>fix(INITIATOR_intellectual_level>=5)->remedy</li>
+						<li>fix(INITIATOR_intellectual_level>=10)->rectify</li>
+					<!-- ===horrible (monster)=== -->
+						<li>horrible->terrible</li>
+						<li>horrible->horrible</li>
+						<li>horrible->unholy</li>
+						<li>horrible->ugly</li>
+						<li>horrible->fearsome</li>
+						<li>horrible->frightening</li>
+						<li>horrible->ghastly</li>
+						<li>horrible->ghoulish</li>
+						<li>horrible->nightmarish</li>
+						<li>horrible->vile</li>
+						<li>horrible->bizarre</li>
+					<!-- ===humiliating=== -->
+						<li>humiliating->humiliating</li>
+						<li>humiliating->demeaning</li>
+						<li>humiliating->embarassing</li>
+						<li>humiliating->mortifying</li>
+						<li>humiliating(INITIATOR_intellectual_level>=5)->undignified</li>
+						<li>humiliating(INITIATOR_intellectual_level>=10)->discomfiting</li>
+						<li>humiliating(INITIATOR_intellectual_level>=10)->disgraceful</li>
+						<li>humiliating(INITIATOR_intellectual_level>=15)->ignominous</li>
+					<!-- ===intensifier=== (add space after word. should be more common for less intellectual pawns)-->
+						<li>intensifier(priority=-1,p=3)-></li>
+						<li>intensifier(priority=-1)->so </li>
+						<li>intensifier(priority=-1)->very </li>
+						<li>intensifier(priority=-1,p=0.5)->really </li>
+						<li>intensifier(priority=-1)->truly </li>
+						<li>intensifier(priority=-1,p=0.5)->so [intensifier]</li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=1)-></li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->so </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->very </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=2)->really </li>
+						<li>intensifier(INITIATOR_intellectual_level&lt;=3,p=1)->so [intensifier]</li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=5)-></li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->most </li>
+						<li>intensifier(INITIATOR_intellectual_level>=7,p=1)->quite </li>
+						<li>intensifier(INITIATOR_mood>=0.7)->super </li>
+					<!-- ===damned_intensifier=== -->
+						<li>damned_intensifier(p=2)-></li>
+						<li>damned_intensifier->damned </li>
+						<li>damned_intensifier->bloody </li>
+						<li>damned_intensifier->blasted </li>
+						<li>damned_intensifier->sodding </li>
+						<li>damned_intensifier(p=2,INITIATOR_trait==abrasive)->fucking </li>
+						<li>damned_intensifier(INITIATOR_trait==abrasive,INITIATOR_mood&lt;=0.5)->fucking [damned_intensifier]</li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->fucking </li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->frigging </li>
+						<li>damned_intensifier(p=2,INITIATOR_mood&lt;=0.4)->goddamned </li>
+						<li>damned_intensifier(p=2,INITIATOR_trait==abrasive,INITIATOR_mood&lt;=0.2)->fucking [damned_intensifier]</li>
+					<!-- ===mist=== -->
+						<li>mist->mist</li>
+						<li>mist->fog</li>				
+						<li>mist->haze</li>
+					<!-- ===monster=== -->
+						<li>monster->monster</li>
+						<li>monster->beast</li>
+						<li>monster->fiend</li>
+						<li>monster->abomination</li>
+						<li>monster->creature</li>
+						<li>monster->ghost</li>
+						<li>monster->alien</li>
+						<li>monster->freak</li>
+						<li>monster->terror</li>
+						<li>monster(p=0.2)->[horrible] [monster]</li>
+					<!-- === moderately attractive (to describe an object or room) === -->
+						<li>moderately_attractive_obj->pretty</li>
+						<li>moderately_attractive_obj->nice</li>
+						<li>moderately_attractive_obj->attractive</li>
+						<li>moderately_attractive_obj->charming</li>
+						<li>moderately_attractive_obj->lovely</li>
+						<li>moderately_attractive_obj->pleasant</li>
+					<!-- ===nice (weather)=== -->
+						<li>nice->nice</li>
+						<li>nice->good</li>
+						<li>nice->pleasant</li>
+						<li>nice->wonderful</li>
+						<li>nice->fair</li>
+						<li>nice->fine</li>
+					<!-- ===outdoors=== -->
+						<li>outdoors->outdoors</li>
+						<li>outdoors->in the open</li>
+						<li>outdoors->outside</li>
+					<!-- ===prisoner=== -->
+						<li>prisoner->prisoner</li>
+						<li>prisoner->captive</li>
+					<!-- ===proper=== -->
+						<li>proper->fitting</li>
+						<li>proper->suitable</li>
+						<li>proper->regular</li>
+						<li>proper->decent</li>
+						<li>proper->ordinary</li>
+						<li>proper->standard</li>
+						<li>proper(INITIATOR_intellectual_level>=5)->conventional</li>
+					<!-- ===scared=== -->
+						<li>scared->so scared</li>
+						<li>scared->scared stiff</li>
+						<li>scared->scared witless</li>
+						<li>scared->shaking like a leaf</li>
+						<li>scared->terrified</li>
+						<li>scared->worried</li>
+						<li>scared->frightened</li>
+						<li>scared(INITIATOR_intellectual_level&lt;=3)->spooked</li>
+						<li>scared(INITIATOR_intellectual_level>=5)->petrified</li>
+						<li>scared(INITIATOR_intellectual_level>=7)->nigh-hysterical</li>
+						<li>scared(INITIATOR_intellectual_level>=7)->terror-stricken</li>
+					<!-- ===swearword=== -->
+						<li>swearword(INITIATOR_mood>=0.4,priority=1)-></li>
+						<li>swearword-></li>
+						<li>swearword->blasted </li>
+						<li>swearword->blighted </li>
+						<li>swearword->bloody </li>
+						<li>swearword->damn </li>
+						<li>swearword->frigging </li>			
+						<li>swearword->sodding </li>
+						<li>swearword->wretched </li>
+						<li>swearword->darn </li>
+						<!-- ===abrasive=== -->
+							<li>swearword(INITIATOR_trait==abrasive)->[swearword_abrasive] </li>
+							<li>swearword_abrasive->frakking</li>
+							<li>swearword_abrasive->fucking</li>
+					<!-- ===swearword (adverb)=== -->
+						<li>swearword_adverb(INITIATOR_mood>=0.4,priority=1)-></li>
+						<li>swearword_adverb-></li>
+						<li>swearword_adverb->bloody </li>
+						<li>swearword_adverb->frigging </li>
+						<!-- ===abrasive=== -->
+							<li>swearword_adverb(INITIATOR_trait==abrasive)->[swearword_adverb_abrasive] </li>
+							<li>swearword_adverb_abrasive->frakking</li>
+							<li>swearword_adverb_abrasive->fucking</li>
+					<!-- ===stupid=== -->
+						<li>stupid->stupid</li>
+						<li>stupid->lame</li>
+						<li>stupid->dumb</li>
+						<li>stupid->ignorant</li>
+						<li>stupid->witless</li>
+						<li>stupid->boneheaded</li>
+						<li>stupid(INITIATOR_intellectual_level&lt;5)->dopey</li>
+						<li>stupid(INITIATOR_intellectual_level>=5)->imbecilic</li>
+						<li>stupid(INITIATOR_intellectual_level>=8)->fatuous</li>
+					<!-- ===surely=== -->
+						<li>surely->surely</li>
+						<li>surely->certainly</li>
+						<li>surely->obviously</li>
+						<li>surely->clearly</li>
+						<li>surely->definitely</li>
+						<li>surely(INITIATOR_intellectual_level>=10)->unquestionably</li>
+						<li>surely(INITIATOR_intellectual_level>=5)->undeniably</li>
+						<li>surely(INITIATOR_intellectual_level>=10)->indubitably</li>
+						<li>surely(INITIATOR_intellectual_level>=5)->doubtlessly</li>
+						<li>surely(INITIATOR_intellectual_level>=5)->inarguably</li>
+
+					<!-- ===tv letters=== -->					
+						<li>tv_letters->NTQ</li>
+						<li>tv_letters->SRA</li>
+						<li>tv_letters->NAO</li>
+						<li>tv_letters->CZ</li>
+						<li>tv_letters->RMA</li>
+						<li>tv_letters->OPY</li>
+						<li>tv_letters->WYO</li>
+						<li>tv_letters->LPZ</li>
+						<li>tv_letters->ZCV</li>
+						<li>tv_letters->BNV</li>
+						<li>tv_letters->UQY</li>
+						<li>tv_letters->PPT</li>
+						<li>tv_letters->NAP</li>
+						<li>tv_letters->SDN</li>
+						<li>tv_letters->JPT</li>
+
+					<!-- ===tv news=== -->
+						<li>tv_news->[tv_news1] [tv_news2]</li>
+							<li>tv_news1->Intergalactic</li>
+							<li>tv_news1->Urbworld</li>
+							<li>tv_news1->Midworld</li>
+							<li>tv_news1->Frontier Worlds</li>
+							<li>tv_news1->Outer Rim</li>
+							<li>tv_news1->Glitter</li>
+							<li>tv_news1->Rim</li>
+							
+							<li>tv_news2->Forecast</li>
+							<li>tv_news2->Daily</li>
+							<li>tv_news2->Post</li>
+							<li>tv_news2->Express</li>
+							<li>tv_news2->Weekly</li>
+							<li>tv_news2->News</li>
+							<li>tv_news2->Net</li>
+							<li>tv_news2->Broadcast</li>
+							<li>tv_news2(DAYPERIOD==night)->Nightly</li>
+							<li>tv_news2(DAYPERIOD==evening)->Nightly</li>
+					
+					<!-- ===tv show=== -->
+						<li>tv_show->show</li>
+						<li>tv_show->movie</li>
+						<li>tv_show->documentary</li>
+						<li>tv_show->report</li>
+						<li>tv_show->flick</li>
+		
+					<!-- ===ugly=== -->
+						<li>ugly->ugly</li>
+						<li>ugly->hideous</li>
+						<li>ugly->horrible</li>
+						<li>ugly->frightful</li>
+						<li>ugly->grisly</li>
+						<li>ugly->gruesome</li>
+						<li>ugly->grim</li>
+						<li>ugly(INITIATOR_intellectual_level>=5)->repugnant</li>
+						<li>ugly(INITIATOR_intellectual_level>=5)->vile</li>
+						<li>ugly(INITIATOR_intellectual_level>=5)->grotesque</li>
+						
+					<!-- ===unsightly=== -->
+						<li>unsightly->unsightly</li>
+						<li>unsightly->messy</li>
+						<li>unsightly->shabby</li>
+						<li>unsightly->sloppy</li>				
+						<li>unsightly->trashy</li>
+						<li>unsightly->trashed</li>
+						<li>unsightly->unkempt</li>
+						<li>unsightly->disheveled</li>
+						<li>unsightly->grubby</li>
+						<li>unsightly(INITIATOR_intellectual_level>=5)->unappealing</li>
+						<li>unsightly(INITIATOR_intellectual_level>=5)->unattractive</li>				
+						<li>unsightly(INITIATOR_intellectual_level>=7)->bedraggled</li>
+						<li>unsightly(INITIATOR_intellectual_level>=7)->slatternly</li>
+						<li>unsightly(INITIATOR_intellectual_level>=7)->slovenly</li>
+						
+				
+				<!-- ===CHITCHAT WILDCARDS: common sentences=== -->
+					<!-- ===accuses from misandrist/mysoginist=== -->
+						<li>accuse_gender_objective(INITIATOR_trait==misandrist)->him</li>
+						<li>accuse_gender_objective(INITIATOR_trait==misogynist)->her</li>
+						<li>accuse_gender_objective->him</li>
+						<li>accuse_gender_who(INITIATOR_trait==misandrist)->the [stupid] guy that</li>
+						<li>accuse_gender_who(INITIATOR_trait==misogynist)->the [stupid] bitch that</li>
+						<li>accuse_gender_who->who</li>						
+						<li>accuse_gender_someone(INITIATOR_trait==misandrist)->some [stupid] guy</li>
+						<li>accuse_gender_someone(INITIATOR_trait==misogynist)->some [stupid] bitch</li>
+						<li>accuse_gender_someone->someone</li>
+					<!-- ===chess pieces=== -->
+						<li>chess_piece->king</li>
+						<li>chess_piece->queen</li>
+						<li>chess_piece->rook</li>
+						<li>chess_piece->bishop</li>
+						<li>chess_piece->knight</li>
+						<li>chess_piece->pawn</li>
+					<!-- ===damn it!=== -->
+						<li>damn_it->damn</li>
+						<li>damn_it->damn it</li>				
+						<li>damn_it->darn</li>
+						<li>damn_it->darn it</li>
+						<li>damn_it->heck</li>
+						<li>damn_it->hell</li>
+							<!-- ===Abrasive=== -->
+								<li>damn_it(INITIATOR_trait==abrasive)->What the [swearword]fuck</li>
+							<!-- ===Low mood=== -->
+								<li>damn_it(INITIATOR_mood&lt;0.4)->[swearword]hell</li>
+					<!-- ===Out here or out there=== -->
+						<li>out_here_out_there(OUTDOORS==No)->out there</li>
+						<li>out_here_out_there(OUTDOORS==Yes)->out here</li>
+					<!-- ===Random ranges=== -->
+						<li>random_1_8->1</li>
+						<li>random_1_8->2</li>
+						<li>random_1_8->3</li>
+						<li>random_1_8->4</li>
+						<li>random_1_8->5</li>
+						<li>random_1_8->6</li>
+						<li>random_1_8->7</li>
+						<li>random_1_8->8</li>
+						<li>random_A_G->A</li>
+						<li>random_A_G->B</li>
+						<li>random_A_G->C</li>
+						<li>random_A_G->D</li>
+						<li>random_A_G->E</li>
+						<li>random_A_G->F</li>
+						<li>random_A_G->G</li>
+						<li>random_A_G->H</li>
+					
+					<!-- ===TV — see it?=== -->
+						<li>tv_seeit->see it</li>
+						<li>tv_seeit->watch their broadcast</li>
+						<li>tv_seeit->check it out</li>
+						<li>tv_seeit->take a look</li>
+						
+					<!-- ===Wanna? (directed at someone)=== -->
+						<li>wanna(INITIATOR_intellectual_level>=8,priority=1)->would you like to</li>
+						<li>wanna(INITIATOR_intellectual_level>=5)->would you like to</li>
+						<li>wanna(p=0.5)->want to</li>
+						<li>wanna(INITIATOR_intellectual_level&lt;5)->wanna</li>
+
+					<!-- ===Gonna (contraction of going to)=== -->
+						<li>gonna(INITIATOR_intellectual_level>=5)->going to</li>
+						<li>gonna(INITIATOR_intellectual_level&lt;5,p=2)->gonna</li>
+						<li>gonna(INITIATOR_intellectual_level&lt;5)->going to</li>
+							
+					<!-- ===What about yours?=== -->
+						<li>what_about_yours->What do you think of yours, [recipient]?</li>
+						
+					<!-- ===RECIPIENT=== -->		
+					<li>recipient(INITIATOR_opinion&lt;0,priority=2)->[RECIPIENT_nameDef]</li>
+
+					<li>recipient(p=4,INITIATOR_relationship==Lover)->[recipient_love]</li>
+					<li>recipient(p=3,INITIATOR_relationship==Fiance)->[recipient_love]</li>
+					<li>recipient(p=2,INITIATOR_relationship==Spouse)->[recipient_love]</li>
+						<li>recipient_love->honey</li>
+						<li>recipient_love->honey pot</li>
+						<li>recipient_love->love</li>
+						<li>recipient_love->lovebug</li>
+						<li>recipient_love->sweetie</li>
+						<li>recipient_love->sweetheart</li>
+						<li>recipient_love->babe</li>
+						<li>recipient_love->cutiepie</li>
+						<li>recipient_love->starshine</li>
+						<li>recipient_love->angelwing</li>
+						<li>recipient_love->gummybear</li>
+						<li>recipient_love->darling</li>
+						<li>recipient_love->dreamship</li>
+						<li>recipient_love(INITIATOR_intellectual_level>=5)->amore</li>
+						<li>recipient_love(INITIATOR_intellectual_level>=5)->amore mio</li>
+					
+					<li>recipient(INITIATOR_relationship==Sibling)->[recipient_sibling]</li>
+						<li>recipient_sibling(RECIPIENT_gender==Male)->[recipient_brother]</li>
+							<li>recipient_brother->brother</li>
+						<li>recipient_sibling(RECIPIENT_gender==Female)->[recipient_sister]</li>
+							<li>recipient_sister->sister</li>
+
+					<li>recipient(RECIPIENT_relationship==Parent,priority=1)->[recipient_parent]</li>
+						<li>recipient_parent(RECIPIENT_gender==Male)->[recipient_father]</li>
+							<li>recipient_father->father</li>
+							<li>recipient_father->dad</li>
+						<li>recipient_parent(RECIPIENT_gender==Female)->[recipient_mother]</li>
+							<li>recipient_mother->mother</li>
+							<li>recipient_mother->mum</li>
+
+					<li>recipient(INITIATOR_relationship==Parent)->[recipient_child]</li>
+						<li>recipient_child->my child</li>
+						<li>recipient_child(RECIPIENT_gender==Male)->[recipient_son]</li>
+							<li>recipient_son->son</li>
+							<li>recipient_son->my son</li>
+						<li>recipient_child(RECIPIENT_gender==Female)->[recipient_daughter]</li>
+							<li>recipient_daughter->daughter</li>
+							<li>recipient_daughter->my daughter</li>
+							
+					<li>recipient->[RECIPIENT_nameDef]</li>						
+					<!-- ===END RECIPIENT=== -->
+					
+						<li>what_about_yours->How do you like yours, [recipient]?</li>
+						<li>what_about_yours->What's your opinion of yours, [recipient]?</li>
+						<li>what_about_yours(INITIATOR_intellectual_level>=5,p=0.75)->Do share your opinion of your own, [recipient].</li>
+						<li>what_about_yours(INITIATOR_opinion&lt;0)->I guess I should ask: What about yours, [recipient]?</li>
+			</rulesStrings>
+
+<!--
+		    <rulesFiles>
+				<li>pasticcini->Cibo/Pasticcini</li>
+			</rulesFiles>
+-->
+
+		</value>
+	</Operation>
+
+<!-- ===XP change for chitchat=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/initiatorXpGainAmount</xpath>
+		<value>
+			<initiatorXpGainAmount>2</initiatorXpGainAmount>
+		</value>
+	</Operation>
+
+<!-- ===Sentence_RecruitAttemptAccepted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RecruitAttemptAccepted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent(priority=-1)-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_RecruitAttemptRejected=== (seems to be unreachable in vanilla) -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RecruitAttemptRejected"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent(priority=-1)-></li>
+			<li>sent(RECIPIENT_faction!=PlayerColony,tag=PrisonerRefuses)->I hope you're ready to join us?</li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_SocialFightStarted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_SocialFightStarted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_RomanceAttemptAccepted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RomanceAttemptAccepted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+
+<!-- ===Sentence_RomanceAttemptRejected=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_RomanceAttemptRejected"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+<!-- ===Sentence_MarriageProposalAccepted=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalAccepted"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+
+<!-- ===Sentence_MarriageProposalRejected=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalRejected"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>	
+	
+<!-- ===Sentence_MarriageProposalRejectedBrokeUp=== -->	
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/RulePackDef[defName = "Sentence_MarriageProposalRejectedBrokeUp"]/rulePack/rulesStrings</xpath>
+		<value>
+		  <rulesStrings>
+			<li>sent-></li>
+		  </rulesStrings>
+		</value>
+	</Operation>
+	
+</Patch>

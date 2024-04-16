@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<!-- ===Meaning of Life=== -->
+	<InteractionDef ParentName="SpeakUpReply">
+		<defName>MeaningOfLife</defName>
+		<label>react — meaning of life</label>
+		<logRulesInitiator>
+			<rulesStrings>
+			<li>r_logentry(INITIATOR_intellectual_level>=10)->42.</li>
+			<li>r_logentry(INITIATOR_trait==pessimist)->Everything we do is meaningless. So, why care answering that?</li>
+			<li>r_logentry(INITIATOR_trait==depressive)->Nothing we do will be remembered, eventually. So, why care answering that?</li>
+			<li>r_logentry(INITIATOR_trait==optimist)->Life is what you make of it — so make it good, today!</li>
+			<li>r_logentry(INITIATOR_trait==teetotaler)->I don't know its meaning — but I know it should be free of drugs.</li>
+			<li>r_logentry(INITIATOR_trait==chemical interest)->A nice beer and smokeleaf!</li>
+			<li>r_logentry(INITIATOR_trait==chemical fascination)->A line of yayo and some psychite tea!</li>
+			<li>r_logentry(INITIATOR_trait==industrious)->Working hard to achieve all our goals!</li>
+			<li>r_logentry(INITIATOR_trait==slothful)->I don't know its meaning — but I know it should be on a comfy couch.</li>
+			<li>r_logentry(INITIATOR_trait==bloodlust)->Meaning?! I live for the kill — that's meaning enough!</li>
+			<li>r_logentry(INITIATOR_trait==psychopath)->*Cackles maniacally*</li>
+			<li>r_logentry(INITIATOR_trait==psychopath)->*Stares in silence*</li>
+			<li>r_logentry(INITIATOR_trait==abrasive)->Wouldn't you like to know!</li>
+			<li>r_logentry(INITIATOR_trait==brawler)->I don't know its meaning — but a good fistfight gives meaning to my life!</li>
+			<li>r_logentry(INITIATOR_trait==masochist)->I don't know its meaning — but a little bit of pain always makes my life worth living.</li>
+			<li>r_logentry(INITIATOR_trait==body modder)->We must surpass our biological bodies and become the ultimate being!</li>
+			<li>r_logentry(INITIATOR_trait==body purist)->Life is about making sure we maximize our natural capabilities.</li>
+			<li>r_logentry(INITIATOR_trait==greedy)->Money, power, sex — these are what give meaning to our lives!</li>
+			<li>r_logentry(INITIATOR_trait==ascetic)->We live to revere the Cosmos — and the Cosmos lives to give meaning to our existence.</li>
+			<li>r_logentry(INITIATOR_trait==ascetic)->Freedom from suffering and having clear judgement — this is our ultimate goal.</li>
+			<li>r_logentry(INITIATOR_trait==gourmand)->I don't know its meaning — but I know food and drink are the purest forms of joy!</li>
+			<li>r_logentry(INITIATOR_trait==pyromaniac)->Life is about hungrily exploiting all that's around us, like a spreading wild fire!</li>
+			<li>r_logentry(INITIATOR_trait==tortured artist)->Does any of us really have a meaning to life?</li>
+			<li>r_logentry(INITIATOR_trait==kind)->Making other people's life happy and fulfilled — so that they can make us happy too.</li>
+			<li>r_logentry(DAYPERIOD==night)->Isn't it a bit too late for a question like that?!</li>
+			<li>r_logentry(INITIATOR_artistic_passion!=None)->Art and the true expression of oneself give full meaning to our lives.</li>
+			<li>r_logentry(INITIATOR_social_passion!=None)->I don't know its meaning — but I know a long conversation and a good soft drink make it much better!</li>
+			<li>r_logentry(INITIATOR_construction_passion!=None)->Creating lasting works to improve our surroundings and inspire future generations.</li>
+			<li>r_logentry(priority=-1)->Why ask me? I have no idea.</li>
+			<li>r_logentry(priority=-1)->I haven't the slightest idea.</li>
+			
+			<li>r_logentry(INITIATOR_opinion&lt;0)->Figure it out yourself, [recipient]!</li>
+			<li>r_logentry(INITIATOR_opinion&lt;0)->Why do you wonder that, if your life is obviously a meaningless sequence of failed efforts?</li>
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+	<!-- ===Childhood=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>ChildhoodDiscussions</defName>
+			<label>react - childhood discussion</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Childhood Checks=== -->
+						<li>r_logentry(INITIATOR_childhood==TribeChild40)->[tribe_child]</li>
+						<li>r_logentry(INITIATOR_childhood==AbandonedChild23)->[abandoned_child]</li>
+						<li>r_logentry(INITIATOR_childhood==ReclusiveChild81)->[reclusive_child]</li>
+						<li>r_logentry(INITIATOR_childhood==Herder19)->[herder]</li>
+						<li>r_logentry(INITIATOR_childhood==Scavenger22)->[scavenger]</li>
+						<li>r_logentry(INITIATOR_childhood==CaveChild30)->[cave_child]</li>
+						<li>r_logentry(INITIATOR_childhood==SoleSurvivor21)->[sole_survivor]</li>
+						<li>r_logentry(INITIATOR_childhood==VengefulChild43)->[vengeful_child]</li>
+						<li>r_logentry(INITIATOR_childhood==FireKepper44)->[fire_keeper]</li>
+						<li>r_logentry(INITIATOR_childhood==Hideaway7)->[hideaway]</li>
+						<li>r_logentry(INITIATOR_childhood==CrashBaby32)->[crash_baby]</li>
+						<li>r_logentry(INITIATOR_childhood==BuddingArtist44)->[budding_artist]</li>
+						<li>r_logentry(INITIATOR_childhood==Bully70)->[bully]</li>
+						<li>r_logentry(INITIATOR_childhood==Bookworm19)->[bookworm]</li>
+						<li>r_logentry(INITIATOR_childhood==IndustrialOrphan13)->[industrial_orphan]</li>
+						<li>r_logentry(INITIATOR_childhood==UrbworldUrchin61)->[urbworld_urchin]</li>
+						<li>r_logentry(INITIATOR_childhood==TestSubject15)->[test_subject]</li>
+						<li>r_logentry(INITIATOR_childhood==WreckageExplorer93)->[wreckage_explorer]</li>
+						<li>r_logentry(INITIATOR_childhood==ApocalypseSurvivor23)->[apocalypse_survivor]</li>
+						<li>r_logentry(INITIATOR_childhood==CaveworldTender20)->[caveworld_tender]</li>
+						<li>r_logentry(INITIATOR_childhood==CaveworldTunneler48)->[caveworld_tunneler]</li>
+						<li>r_logentry(INITIATOR_childhood==Scout44)->[scout]</li>
+						<li>r_logentry(INITIATOR_childhood==ShelterChild50)->[shelter_child]</li>
+						<li>r_logentry(INITIATOR_childhood==VatgrownSoldier8)->[vatgrown_soldier]</li>
+						<li>r_logentry(INITIATOR_childhood==SicklyChild55)->[sickly_child]</li>
+						<li>r_logentry(INITIATOR_childhood==FrightenedChild43)->[frightened_child]</li>
+						<li>r_logentry(INITIATOR_childhood==ComaChild57)->[coma_child]</li>
+						<li>r_logentry(INITIATOR_childhood==Pyromaniac18)->[pyromaniac]</li>
+						<li>r_logentry(INITIATOR_childhood==Mute34)->[mute]</li>
+						<li>r_logentry(INITIATOR_childhood==WarRefugee51)->[war_refugee]</li>
+						<li>r_logentry(INITIATOR_childhood==MusicalKid86)->[musical_kid]</li>
+						<li>r_logentry(INITIATOR_childhood==ChildStar74)->[child_star]</li>
+						<li>r_logentry(INITIATOR_childhood==ChildSpy47)->[child_spy]</li>
+						<li>r_logentry(INITIATOR_childhood==ShopKid36)->[shop_kid]</li>
+						<li>r_logentry(INITIATOR_childhood==OrganFarm67)->[organ_farm]</li>
+						<li>r_logentry(INITIATOR_childhood==MedicalAssistant12)->[medical_assistant]</li>
+						<li>r_logentry(INITIATOR_childhood==CultChild3)->[cult_child]</li>
+						<li>r_logentry(INITIATOR_childhood==StoryWriter67)->[story_writer]</li>
+						<li>r_logentry(INITIATOR_childhood==MedievalSlave49)->[medieval_slave]</li>
+						<li>r_logentry(INITIATOR_childhood==MedievalLordling19)->[medieval_lord]</li>
+						<li>r_logentry(INITIATOR_childhood==ConventChild16)->[convent_child]</li>
+						<li>r_logentry(INITIATOR_childhood==CountryLordling92)->[country_person]</li>
+						<li>r_logentry(INITIATOR_childhood==UrbanLordling82)->[urban_person]</li>
+						<li>r_logentry(INITIATOR_childhood==ShipboundLordling12)->[shipbound_person]</li>
+						<li>r_logentry(INITIATOR_childhood==PamperedLordling37)->[pampered_person]</li>
+						<li>r_logentry(INITIATOR_childhood==UnwantedSurvivor67)->[unwanted_survivor]</li>
+						<li>r_logentry(INITIATOR_childhood==ShipBoy89)->[ship_child]</li>
+						<li>r_logentry(INITIATOR_childhood==MilitaryCadet46)->[military_cadet]</li>
+						<li>r_logentry(INITIATOR_childhood==PoliticalCaptive7)->[political_captive]</li>
+						<li>r_logentry(INITIATOR_childhood==Delinquent13)->[delinquent]</li>
+						<li>r_logentry(INITIATOR_childhood==RichKid61)->[rich_kid]</li>
+						<li>r_logentry(INITIATOR_childhood==StreetRat81)->[street_rat]</li>
+						<li>r_logentry(INITIATOR_childhood==SoldiersKid55)->[soldier_kid]</li>
+						<li>r_logentry(INITIATOR_childhood==Machinist56)->[machinist]</li>
+						<li>r_logentry(INITIATOR_childhood==ServingBoy97)->[servant]</li>
+						<li>r_logentry(INITIATOR_childhood==RoyalBastard3)->[royal_bastard]</li>
+						<li>r_logentry(INITIATOR_childhood==WarBastard60)->[war_bastard]</li>
+
+					<!-- ===Default=== -->
+						<li>r_logentry(priority=-1)->I wouldn't like to speak about it...</li>
+
+					<!-- ===Tribe Child=== -->
+						<li>tribe_child->I had no technology during my childhood. We survived on the land and moved with the Muffalo, [recipient].</li>
+						<li>tribe_child->I lived a nomadic lifestyle — living off the land and moving alongside muffalos.</li>
+						<li>tribe_child->I miss being able to roam free with the Muffalo and playing sticks and stones.</li>
+						<li>tribe_child->My childhood was full of nature. These new technologies are both confusing and scary.</li>
+						<li>tribe_child->I grew up learning how to survive off the land and animals around us.</li>
+
+					<!-- ===Abandoned Child=== -->
+						<li>abandoned_child->When my parents had me, I was as sick as a dog and left me for dead. Through the powers that be, I managed to make it here today.</li>
+						<li>abandoned_child->It's a miracle I made it into adulthood. I was abandoned as a baby and, only through sheer luck, I lived.</li>
+						<li>abandoned_child->Well, [recipient]... Due to being abandoned by my parents, I really didn't have a childhood...</li>
+
+					<!-- ===Reclusive Child=== -->
+						<li>reclusive_child->I spent a majority of my childhood to myself, contemplating great wonders and whether or not the nearest berry would kill me!</li>
+						<li>reclusive_child->During my childhood, [recipient], I basically always stuck to myself.</li>
+						<li>reclusive_child->I often roamed around the woods for weeks at a time, much to my caretakers' dismay.</li>
+						<li>reclusive_child->I wasn't a very social child, [recipient]. I preferred to keep to myself.</li>
+
+					<!-- ===Herder=== -->
+						<li>herder->I spent most of my childhood tending to the Muffalo and the sick animals — quiet but honest work.</li>
+						<li>herder->I protected the Muffalo from both predators and nature itself — I had no time for childish games.</li>
+						<li>herder->The Tribe relied on me to keep the Muffalo safe from both sickness and predation.</li>
+						<li>herder->I disliked being around other people, [recipient] — but the Muffalo made great company.</li>
+						
+					<!-- ===Scavenger=== -->
+						<li>scavenger->I was a brave adventurer into the unknown, scavenging for treasure and trash alike!</li>
+						<li>scavenger->I avoided a lot of the grunt work — instead, I explored wrecks and ruins.</li>
+						<li>scavenger->During my childhood, I got into a lot of troublesome scavengings — but sometimes it paid off!</li>
+
+					<!-- ===Cave Child=== -->
+						<li>cave_child->I spent a lot of time in an elaborate cave system, helping develop it into a thriving Tribe!</li>
+						<li>cave_child->Well, [recipient] — I grew up in a mountain full of caves. It wasn't as cold and wet as it sounds.</li>
+						<li>cave_child->Growing mushrooms and cleaning mold out of caves was a normality for me. You wouldn't believe how fast those grow!</li>
+
+					<!-- ===Sole Survivor=== -->
+						<li>sole_survivor->After my original Tribe was wiped out, I was adopted by a new Tribe where I mostly farmed and cooked.</li>
+						<li>sole_survivor->I was nearly killed, [recipient] — and ever since then I spent most of my time tending the crops and helping cooking.</li>
+						<li>sole_survivor->I was the sole survivor of a horrific raid on my Tribe — it was tough, until I found a new Tribe...</li>
+
+					<!-- ===Vengeful Child=== -->
+						<li>vengeful_child->I swear I will eliminate every last one of those bandits that razed my village.</li>
+						<li>vengeful_child->If you ever meet one of those filthy bandits that razed my village, [recipient], I would love for you to tell me.</li>
+						<li>vengeful_child->I grew up in a lovely village [recipient] — at least it was beautiful until it was sacked and burned by bandits...</li>
+
+					<!-- ===Fire Keeper=== -->
+						<li>fire_keeper->I had the most important job one could have in a Tribe — firekeeping. Without me, we would have all died.</li>
+						<li>fire_keeper->Do you know what a fire keeper is, [recipient]? That was my childhood.</li>
+						<li>fire_keeper->Being a fire keeper meant I had to mature quickly and forgo regular childhood activities.</li>
+
+					<!-- ===Hideaway=== -->
+						<li>hideaway->My parents kept me at home all the time, so I focused on skills like crafting and my hobbies!</li>
+						<li>hideaway->I didn't really hang out with other children, [recipient] — instead I stayed home with my parents.</li>
+						<li>hideaway->As a child I mostly stayed at home, sheltered from the dangerous world we lived in.</li>
+
+					<!-- ===Crash Baby=== -->
+						<li>crash_baby->I crash landed from the stars as a baby. I was extremely lucky to have been found by my Tribe shortly after!</li>
+						<li>crash_baby->I was the only survivor of a horrific spacecraft crash as a baby, and luckily a local Tribe took me in.</li>
+						<li>crash_baby->I was adopted by a Tribe as a baby, [recipient]. Surviving the crash of the ship was pure luck.</li>
+
+					<!-- ===Budding Artist=== -->
+						<li>budding_artist->My childhood was full of art exhibits and selling art to societies from all over the galaxy.</li>
+						<li>budding_artist->Perhaps you have heard of me, [recipient] — I was a rather popular artist in my youth and now!</li>
+						<li>budding_artist->I spent most of my time creating art and talking to socialites about my art.</li>
+
+					<!-- ===Bully=== -->
+						<li>bully->I was forced to join a hunting party as a kid... I think this was because of how I acted around other children.</li>
+						<li>bully->I don't know why [recipient], but for some reason the elders put me on a hunting party at a young age.</li>
+						<li>bully->I spent a majority of my time hunting animals, and when I wasn't hunting animals I was roughing up other kids. *chuckles*</li>
+
+					<!-- ===Bookworm=== -->
+						<li>bookworm->I always had my face buried in a book, they are far more interesting than people.</li>
+						<li>bookworm->Most of my childhood was spent reading. While we are on the topic, do you have any books [recipient]?</li>
+						<li>bookworm->I stayed away from most other kids, preferring the wondrous lands and adventures only a book can supply.</li>
+
+					<!-- ===Industrial Orphan=== -->
+						<li>industrial_orphan->My oldest memories are of the drudgery in mines and workhouses. I don't even remember my parents.</li>
+						<li>industrial_orphan->I was adopted into the workforce of the industrial world. I never went to school, all I learned was what was needed for the job.</li>
+						<li>industrial_orphan->I worked in the mines for as long as I remember [recipient], leaving little time for me to be a kid.</li>
+
+					<!-- ===Urbworld Urchin=== -->
+						<li>urbworld_urchin->I am from an Urbworld, [recipient]. We don't speak about the things I had to do as a kid.</li>
+						<li>urbworld_urchin->I grew up in a true hellscape, fighting for food and survival. Survival of the fittest is a lie; it is all luck.</li>
+						<li>urbworld_urchin->My childhood planet was neglected and avoided by others, used solely for profit and exploitation of our people. There wasn't a single thing I never had to fight for.</li>
+
+					<!-- ===Test Subject=== -->
+						<li>test_subject->I was the test subject of a scientist on an urbworld — the experiments were torturous, cruel and unspeakable.</li>
+						<li>test_subject->My entire youth was spent participating in experiments by a dreaded urbworld scientist.</li>
+						<li>test_subject->[recipient], you do not want to know the horrors I faced as a child. Not even the scientist who experimented on me spoke of them after.</li>
+						<li>test_subject->Torture. There is no other word for what I grew up in, [recipient]. You would not understand.</li>
+						<li>test_subject->The horrors... You wouldn't believe me even if I had proof, [recipient].</li>
+
+					<!-- ===Wreckage Explorer=== -->
+						<li>wreckage_explorer->Instead of watching my family's herds, I spent a majority of my time exploring crashed warships.</li>
+						<li>wreckage_explorer->Have you ever explored a crashed warship, [recipient]? That's what I spent a majority of my childhood doing!</li>
+						<li>wreckage_explorer->Once, one of the animals I was herding ran away — eventually, it led me to a large crashed starship. That's when I found out I just loved wreckages!</li>
+
+					<!-- ===Apocalypse Survivor=== -->
+						<li>apocalypse_survivor->The planet I grew up on was destroyed by the very people that called it home. My parents and I had to go to extremes just to make it.</li>
+						<li>apocalypse_survivor->I watched my planet slowly starve due to the unrest in its society. It took everything we had to survive.</li>
+						<li>apocalypse_survivor->Our planet flooded and billions died, and it was a miracle my parents were able to support me.</li>
+
+					<!-- ===Caveworld Tender=== -->
+						<li>caveworld_tender->The planet I grew up on was inhospitable, so we lived in a cave complex beneath the surface.</li>
+						<li>caveworld_tender->I spent most of my time tending the fungus farms with the other children, it was quiet but honest work.</li>
+						<li>caveworld_tender->I was always around people my age, often playing and farming with them.</li>
+
+					<!-- ===Caveworld Tunneler=== -->
+						<li>caveworld_tunneler->My entire childhood consisted of working as a cave digger. If there's a cave, I can navigate it.</li>
+						<li>caveworld_tunneler->I know rocks better than I know myself. I spent most of my time as a kid exploring and digging caves in a Caveworld.</li>
+						<li>caveworld_tunneler->I spent my entire childhood in caves so I am not used to the sun [recipient].</li>
+
+					<!-- ===Scout=== -->
+						<li>scout->I was born to the administration of a rimworld colony. At a young age I was enrolled in a military scouting program.</li>
+						<li>scout->[recipient], I was raised to not ask questions and to follow orders.</li>
+						<li>scout->My childhood consisted of scouting for the military. Survival and obeying orders are the core of my education.</li>
+
+					<!-- ===Shelter Child=== -->
+						<li>shelter_child->I grew up in a large shelter deep under the surface, which provided me with great education opportunities.</li>
+						<li>shelter_child->I never got the chance to do any manual labor as a kid [recipient]. It may sound great but given our current situation it kinda sucks.</li>
+						<li>shelter_child->The planet I grew up on was a toxic wasteland, forcing us to live deep underground in a shelter.</li>
+
+					<!-- ===Vatgrown Soldier=== -->
+						<li>vatgrown_soldier->I had a very short childhood that consisted of mostly combat training in a bioweapons facility.</li>
+						<li>vatgrown_soldier->From birth I was trained with the intent to become an instrument of destruction with very little human contact.</li>
+						<li>vatgrown_soldier->[recipient], I didn't have a childhood — I was born and raised as a weapon, and nothing else.</li>
+						<li>vatgrown_soldier->I was created to be the ultimate weapon of destruction — [vatgrown_soldier_comment1]</li>	
+							<li>vatgrown_soldier_comment1(INITIATOR_trait==bloodlust,priority=1)->then I honed myself to become that ultimate weapon.</li>	
+							<li>vatgrown_soldier_comment1(INITIATOR_trait==kind,priority=1)->then I was forced into vicious military drills. It was terrible...</li>
+							<li>vatgrown_soldier_comment1(INITIATOR_trait==brawler,priority=1)->then I honed my close combat skills until I became that ultimate weapon.</li>
+							<li>vatgrown_soldier_comment1->then I was heavily trained to be one.</li>
+							
+					<!-- ===Sickly Child=== -->
+						<li>sickly_child->I was born with a rare disease that left me hospital ridden. I didn't have a big social life but I did learn a lot about science and medicine!</li>
+						<li>sickly_child->I had little contact with others throughout my childhood, [recipient]. This led me to be a bit of a recluse...</li>
+						<li>sickly_child->As a child I suffered from a rare disease, leaving me bed-ridden and unable to exercise.</li>
+
+					<!-- ===Frightened Child=== -->
+						<li>frightened_child->I am scared of telling you about my childhood [recipient]...</li>
+						<li>frightened_child->I never trusted doctors or food prepared by others, so I taught myself to cook and doctor myself from a young age.</li>
+						<li>frightened_child->My many fears and phobias from childhood still plague me today...</li>
+
+					<!-- ===Coma Child=== -->
+						<li>coma_child->I was in a coma for most of my childhood [recipient], thanks for asking.</li>
+						<li>coma_child->My body is still weak from my many years in a coma. It sucks, but that is the hand I was dealt.</li>
+						<li>coma_child->A terrible accident put me into a coma until my late teens. Enjoy what memories you have, not everyone has some.</li>
+
+					<!-- ===Pyromaniac=== -->
+						<li>pyromaniac->I've always liked fire [recipient]. Like, I REALLY like fire...</li>
+						<li>pyromaniac->Fire was an integral part of my upbringing, I even burned down my house once!</li>
+						<li>pyromaniac->I used to set fire to the garbage piles, they are so mesmerizing. Wouldn't you agree [recipient]?</li>
+						<li>pyromaniac->I was born in fire, I used to live near fire, and I can't keep away from fire.</li>
+
+					<!-- ===Mute=== -->
+						<li>mute->Animals have always been better companions than humans to me [recipient], especially when I was young.</li>
+						<li>mute->After what happened to me, I stuck to myself and didn't really speak to anyone.</li>
+						<li>mute->Aside from the incident that left me scarred for life, I had a relatively normal childhood.</li>
+
+					<!-- ===War Refugee=== -->
+						<li>war_refugee->After my homeworld became stricken with war, my parents took me and hid wherever they could, teaching me defense as we moved from area to area.</li>
+						<li>war_refugee->Most of my childhood was spent running from danger. I witnessed many great atrocities, and my conclusion is that violence is never the answer.</li>
+						<li>war_refugee->Well, [recipient], it was stricken with war and destruction.</li>
+
+					<!-- ===Musical Kid=== -->
+						<li>musical_kid->I always had a talent for instruments, and I spent a lot of time training and performing with lavish praise!</li>
+						<li>musical_kid->You may have heard of me, [recipient]. I was a very well known musician even as a child!</li>
+						<li>musical_kid->You don't know that I was a renowned musician even as a child [recipient]? You really missed out.</li>
+						<li>musical_kid->Being a musician was always my focus. I trained and performed until I became famous!</li>
+
+					<!-- ===Child Star=== -->
+						<li>child_star->I was a famous actor as a kid! It was fabulous, I met all sorts of people and ate all sorts of lavish foods.</li>
+						<li>child_star->You haven't heard of me, [recipient]? I was an extremely famous child actor!</li>
+						<li>child_star->Most of my time was spent in front of a camera, acting or being interviewed. I hadn't a large need for education.</li>
+
+					<!-- ===Child Spy=== -->
+						<li>child_spy->I was taught at a very young age the art of espionage. I was then put undercover for many years of my childhood.</li>
+						<li>child_spy->I was a spy, trained in the arts of lying and infiltration, so I really didn't get to have much of a childhood.</li>
+						<li>child_spy->I spent all my time infiltrating and spying for my superiors, [recipient]. If you need to discreetly obtain information, let me know.</li>
+
+					<!-- ===Shop Kid=== -->
+						<li>shop_kid->I mostly ran the shop for my mom when she would get sick, we sold some interesting artifacts, but I learned far more about trade than the items themselves.</li>
+						<li>shop_kid->My mother was almost always sick, so even as a kid the responsibility of running the family store fell on me.</li>
+						<li>shop_kid->[recipient], I ran my mother's shop most of the time, which let me learn a great deal about a wide variety of exotic artifacts.</li>
+
+					<!-- ===Organ Farm=== -->
+						<li>organ_farm->I was raised in an organ farm where my body was used to grow implants for wounded mercenaries, and although it is quite gruesome I learned a lot about medicine during it all.</li>
+						<li>organ_farm->Well [recipient], I was raised and used to grow body parts for wounded mercenaries. Did you really want to know?</li>
+						<li>organ_farm->Violence is what led to me being used as a body part farm, so really we should avoid it at all costs.</li>
+
+					<!-- ===Medical Assistant=== -->
+						<li>medical_assistant->Growing up I saw what horrors and terrible things fire does to people. I will never be able to face fire, [recipient] — not after what I saw...</li>
+						<li>medical_assistant->I was born during a horrible war full of incendiary weapons, and during my youth I helped tend to the patients in the infirmary.</li>
+						<li>medical_assistant->Have you ever tended to the severely burned [recipient]? It leaves you scarred, it really changes something in you.</li>
+
+					<!-- ===Cult Child=== -->
+						<li>cult_child->I was raised to hate technology by my cult, but when I was able to see the real world I left it immediately.</li>
+						<li>cult_child->Have you ever been part of a cult, [recipient]? You probably wouldn't understand.</li>
+						<li>cult_child->I was always told that any illness was solvable through soul-cleansing rituals.</li>
+
+					<!-- ===Story Writer=== -->
+						<li>story_writer->I used to spend all my time at the local library until it closed down. Once that happened, I began writing my own books.</li>
+						<li>story_writer->Books have always been my addiction, so one day I decided to start making my own!</li>
+						<li>story_writer->I have always loved books, and when I couldn't find more to read I started to create my own.</li>
+
+					<!-- ===Medieval Slave=== -->
+						<li>medieval_slave->I was born and raised into slavery, I have the scars and the work ethic to prove it.</li>
+						<li>medieval_slave->Have you heard of the worlds stuck in the medieval ages [recipient]? I was a slave on one of those.</li>
+						<li>medieval_slave->I grew up digging holes and pushing carts for my slave owners.</li>
+
+					<!-- ===Medieval Lord/Lady=== -->
+						<li>medieval_lord->On my planet I was a noble, being pampered from my youth to adulthood with fine food and entertainment by my servants.</li>
+						<li>medieval_lord->I've never really been a fan of manual labor [recipient], my servants always did it for me.</li>
+						<li>medieval_lord->Can you believe we aren't waited on hand and foot? It's quite offensive!</li>
+
+					<!-- ===Convent Child=== -->
+						<li>convent_child->I cannot believe we are using any sort of technology! It's all heresy, just ask the nuns that raised me!</li>
+						<li>convent_child->I was born under an affair and sent off to be raised at a convent. Hard work and submission are the most important qualities one can have.</li>
+						<li>convent_child->Well [recipient], I was raised by nuns in a convent. What more can I say?</li>
+
+					<!-- ===Country Lord/Lady=== -->
+						<li>country_person->I was part of a noble family, being taught horseback riding, politics, and religion.</li>
+						<li>country_person->Even though I was part of a royal house, I spent more time breaking the rules and running through the fields with friends than anything else.</li>
+						<li>country_person->I was part of a strict royal house. Although they tried hard to properly educate me for rulership, I still broke many rules.</li>
+
+					<!-- ===Urban Lady/Lordling=== -->
+						<li>urban_person->I was born in a massive city, to a royal house with a grand manor. You would not believe the riches we had!</li>
+						<li>urban_person->Part of my youth was spent learning politics, the other part I spent exploring the half-built buildings in the strolling metropolis.</li>
+						<li>urban_person->I miss the city I grew up in. my family owned a rather nice manor there.</li>
+
+					<!-- ===Shipbound Lady/Lordling=== -->
+						<li>shipbound_person->I grew up on a powerful ship [recipient]. It was a grand starship, of the likes you have probably never seen!</li>
+						<li>shipbound_person->I was taught politics, shipboard life, and interstellar battle and orbital invasions tactics in my youth.</li>
+						<li>shipbound_person->I was raised on a starship and I spent my entire childhood there. I miss the sound of atmosphere regulators in the evening...</li>
+
+					<!-- ===Pampered Prince/Princess=== -->
+						<li>pampered_person->As a child I never had to do anything and all I could ever want was at my finger-tips. Look at how things are now!</li>
+						<li>pampered_person->I was what most would call a spoiled brat, but I did learn a thing or two about manipulation from the royal staff.</li>
+						<li>pampered_person->My brother was my parents favorite, he was set to be their heir. Truly, I came out on top as I got all the royal benefits without the politics!</li>
+
+					<!-- ===Unwanted Survivor=== -->
+						<li>unwanted_survivor->My noble family did their best to try and kill me by giving me tasks without proper preparation, but honestly all they did was make me stronger.</li>
+						<li>unwanted_survivor->From a very young age I was in jousting competitions [recipient], even as a kid!</li>
+						<li>unwanted_survivor->I was often sent into dangerous warzones to deal with political matters by my family. Sometimes I think they wanted to get rid of me...</li>
+						<li>unwanted_survivor->Have you ever participated in a riverrun [recipient]? I almost died in four different ones!</li>
+
+					<!-- ===Ship Boy/Girl=== -->
+						<li>ship_child->Growing up I had never even seen a plant or animal, and to this day they still creep me out!</li>
+						<li>ship_child->I was born to servants on a starship [recipient]. Believe it or not, those machine personas can be quite the parental figure.</li>
+						<li>ship_child->Growing up with the starships crafting crew was like having another family.</li>
+
+					<!-- ===Military Cadet=== -->
+						<li>military_cadet->As a child I was enlisted to become a soldier with my peers. While it sounds bad, sometimes they let us escape and roam the wider world.</li>
+						<li>military_cadet->I was a military cadet [recipient]. That is all.</li>
+						<li>military_cadet->Starting at a young age I was taught the intricacies of being a soldier. Duty, weapons, pain, and victory were drilled into our personalities.</li>
+
+					<!-- ===Political Captive=== -->
+						<li>political_captive->A rival family held me for ransom for a large part of my childhood. It was quite lonely.</li>
+						<li>political_captive->During my time being held for ransom by a rival family, I studied martial arts and any other book I could get my hands on.</li>
+						<!-- ===Pawn in this sentence is defined as a person used by others for their own purposes=== -->
+						<li>political_captive->Have you ever been a political pawn [recipient]? They treat you surprisingly well until they don't need you anymore...</li>
+
+					<!-- ===Delinquent=== -->
+						<li>delinquent->I was always a rule breaker, [recipient]. I spent more time in jail than out.</li>
+						<li>delinquent->I failed an attempt to escape prison just once, after that they forced me into military service.</li>
+						<li>delinquent->I'd much rather have spent more of my childhood breaking laws than serving in the military.</li>
+						<li>delinquent->I was nearly always in prison, where [delinquent_comment1]</li>	
+							<li>delinquent_comment1(INITIATOR_trait==masochist,INITIATOR_opinion>=25,priority=1)->I was physically abused so much, I eventually grew to love it!</li>	
+							<li>delinquent_comment1->I learnt the hard way how much being in jail really sucks.</li>
+							
+					<!-- ===Rich Kid=== -->
+						<li>rich_kid->I was born into extreme wealth and influence. If only that carried over to this planet...</li>
+						<li>rich_kid->Unfortunately [recipient], I did not carry any of my wealth over from my youth to this planet.</li>
+						<li>rich_kid->Thanks to my wealthy family bloodline, I had the finest education in dueling, leadership, and military strategy.</li>
+
+					<!-- ===Street Rat=== -->
+						<li>street_rat->I spent a lot of my youth stealing and getting high on any drug I could find. Hopefully we have some drugs here...</li>
+						<li>street_rat->Well [recipient], I was born to a street gang. Violence and theft are my middle name.</li>
+						<li>street_rat->We can talk about my time in the gang after a good smokeleaf!</li>
+
+					<!-- ===Soldier's Kid=== -->
+						<li>soldier_kid->I lived on a starship with my parents, both of whom were in the military. We followed a strict routine.</li>
+						<li>soldier_kid->As a child I learned quickly not to misbehave [recipient], my parents would often resort to strict discipline.</li>
+						<li>soldier_kid->I learned gun operations and maintenance from the soldiers on the starship my parents lived on, perhaps it was not the best place to raise a child.</li>
+
+					<!-- ===Machinist=== -->
+						<li>machinist->I showed particularly good skill for machinery and I used that to help my family make money.</li>
+						<li>machinist->I repaired and modified black market weapons as a child, these skills will come in handy here.</li>
+						<li>machinist->I grew up around gun parts and machinery, thus I am no stranger to making weapons.</li>
+
+					<!-- ===Servant Boy/Girl=== -->
+						<li>servant->I was born into a family of servants, so my childhood was full of serving the royal family we worked for.</li>
+						<li>servant->I spent a lot of time polishing silverware and carrying miscellaneous things for the lords, [recipient].</li>
+						<li>servant->I was born a servant, raised a servant, and worked a servant's life.</li>
+
+					<!-- ===Royal Bastard=== -->
+						<li>royal_bastard->I was born a bastard, working for the brothel where my mother worked.</li>
+						<li>royal_bastard->I always felt like I was destined for more, but even if my father's line was strong, I could never ask for a title.</li>
+						<li>royal_bastard->What do you think of prostitutes, [recipient]? I hope you don't judge them — my mother was one.</li>
+
+					<!-- ===War Bastard (misandrist)-->
+						<li>war_bastard->My father was a soldier who conquered our town. That is all I know of him.</li>
+						<li>war_bastard->I was born into a war ravaged town, and during my childhood there wasn't a single person who treated me well.</li>
+						<li>war_bastard(INITIATOR_animals_passion!=None,priority=1)->My pet rabbit was my best friend. I miss them.</li>
+						
+						<li>war_bastard->War, men... My early years taught me [war_bastard_comment1]</li>
+							<li>war_bastard_comment1(INITIATOR_trait==bloodlust,priority=1)->to love war and despise men!</li>
+							<li>war_bastard_comment1->they're both disgusting!</li>
+						
+						<li>war_bastard->My mother taught me that men are the vile of this earth, and so is war. [war_bastard_comment2]</li>
+							<li>war_bastard_comment2(INITIATOR_trait==bloodlust,priority=1)->She was wrong — about war.</li>
+							<li>war_bastard_comment2->She was totally right.</li>
+
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+	
+	<!-- ===Dreams=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>WhatDream</defName>
+			<label>what dream</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0)->[good_opinion]</li>
+						<li>good_opinion(tag=Dream_nice)->Oh... And what was this dream about, [recipient]?</li>
+						<li>good_opinion(tag=Dream_nice)->What was your dream about, [recipient]?</li>
+						<li>good_opinion(tag=Dream_nice)->Really, [recipient]? What was your dream about?</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+	<!-- ===Random DeepTalk conversation=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>DeepTalkConvo</defName>
+			<label>random deeptalk topic</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0)->Hmph...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,RECIPIENT_intellectual_level&lt;=3)->I don't want to discuss that with a pea-brain like you, [RECIPIENT_nameDef].</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,INITIATOR_trait==kind,priority=1)->Not right now, [recipient].</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,INITIATOR_trait==kind,priority=1)->...</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0,tag=DeepTalkConvoResponse)->[good_opinion]</li>
+						<li>good_opinion->Interesting, [recipient]... I think it's very complicated.</li>
+						<li>good_opinion->Hmm... I haven't thought about that lately, [recipient]!</li>
+						<li>good_opinion->To be honest, [recipient], that always reminds me of [TalkTopicLight][deepTalkSoftenSentenceEnd]</li>
+						<li>good_opinion->I think that you could compare it to [TalkTopicLight][deepTalkSoftenSentenceEnd]</li>
+						<li>good_opinion->I don't know, [recipient], I really prefer to focus on [TalkTopicHeavy][deepTalkSoftenSentenceEnd]</li>
+						<!-- ===DeepTalk Soften Sentence End (, you know?)=== -->
+						<li>deepTalkSoftenSentenceEnd(p=2)->.</li>
+						<li>deepTalkSoftenSentenceEnd->, you know?</li>
+						<li>deepTalkSoftenSentenceEnd->. Is that weird?</li>
+						<li>deepTalkSoftenSentenceEnd->. But that's just what I think.</li>
+						<li>deepTalkSoftenSentenceEnd->. Is that just me?</li>
+						<li>deepTalkSoftenSentenceEnd->. Do you know what I mean?</li>
+						<li>deepTalkSoftenSentenceEnd->. I just like thinking about it.</li>
+						<li>deepTalkSoftenSentenceEnd->. Don't you think so?</li>
+						<li>deepTalkSoftenSentenceEnd(INITIATOR_trait==abrasive,priority=2)->.</li> <!--Abrasive should never soften their sentence-->
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+		
+	<!-- ===Random DeepTalk conversation reply part 2=== -->
+		<InteractionDef ParentName="SpeakUpReply">
+			<defName>DeepTalkConvoResponse</defName>
+			<label>random deeptalk topic response</label>
+			<logRulesInitiator>
+				<rulesStrings>
+					<!-- ===Bad opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion&lt;0)->...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0)->Hmph...</li>
+						<li>r_logentry(INITIATOR_opinion&lt;0,INITIATOR_trait==kind,priority=1)->[deepTalkConclusion]</li>
+					<!-- ===Good opinion of recipient=== -->
+						<li>r_logentry(INITIATOR_opinion>=0)->[deepTalkConclusion]</li>
+						<li>deepTalkConclusion->I [wanna] learn more about that.</li>
+						<li>deepTalkConclusion->This is [intensifer]thought-provoking!</li>
+						<li>deepTalkConclusion->I wonder if we can find a book about that?</li>
+						<li>deepTalkConclusion->At least we can all agree on [TalkTopicLight]!</li>
+						<li>deepTalkConclusion(INITIATOR_intellectual_level>=5)->I wonder if we can write a book about that?</li>
+						<li>deepTalkConclusion(INITIATOR_opinion>=50)->I love talking to you about things, [recipient]!</li>
+				</rulesStrings>
+			</logRulesInitiator>
+		</InteractionDef>
+</Defs>

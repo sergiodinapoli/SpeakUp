@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/InteractionDef[defName = "Chitchat"]/logRulesInitiator/rulesStrings</xpath>
+		<value>
+			<!-- ===PLANTS - TEMPERATE - TREES=== -->
+				<li>r_logentry(OUTDOORS==Yes,INITIATOR_plants_passion!=None)->[nearest_plant_outdoors]</li>
+				<li>nearest_plant_outdoors(tag=NearestPlant)->[nearest_plant_outdoors_tag]</li>
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==birch tree)->What a generous birch we have here!</li>
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==oak tree)->What a proud oak we have here!</li>
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==pine tree)->What a magnificent pine tree we have here!</li>
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==poplar tree)->What a charming poplar we have here!</li>
+			<!-- ===GRASS=== -->
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==grass)->[grasses]</li>
+				<li>nearest_plant_outdoors_tag(NEAREST_plant==tall grass)->[grasses]</li>
+					<li>grasses->Look at this grass — [grass_comment]!</li>
+						<li>grass_comment->I love its smell</li>
+						<li>grass_comment->I love its green color</li>
+						<li>grass_comment->I love how green it is</li>
+						<li>grass_comment(INITIATOR_intellectual_level>=10)->I admire its vibrancy</li>
+			<!-- ===Default=== -->
+				<li>nearest_plant_outdoors->[mood]</li>
+
+		</value>
+	</Operation>
+	
+</Patch>

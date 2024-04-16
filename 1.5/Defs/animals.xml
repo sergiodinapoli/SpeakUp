@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<!-- ===animal reaction=== -->
+	<InteractionDef ParentName="SpeakUpReply">
+		<defName>Animal_Reaction</defName>
+		<label>animal reaction</label>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->*stares [stare_adv]at [RECIPIENT_nameDef]*</li>
+				<li>r_logentry(INITIATOR_kind==husky)->[dog]</li>
+				<li>r_logentry(INITIATOR_kind==labrador retriever)->[dog]</li>
+				<li>r_logentry(INITIATOR_kind==yorkshire terrier)->[dog]</li>
+				
+				<li>dog->*barks*</li>
+				<li>dog->*barks twice*</li>
+				<li>dog->*pants*</li>
+				<li>dog->*sits*</li>
+				<li>dog->*whines*</li>
+				<li>dog->*drools*</li>
+				
+				<li>stare_adv-></li>
+				<li>stare_adv->attentively </li>
+				<li>stare_adv->thoughtfully </li>
+				<li>stare_adv->watchfully </li>
+				<li>stare_adv->obligingly </li>
+				<li>stare_adv->faithfully </li>
+				<li>stare_adv->caringly </li>
+				<li>stare_adv->devotedly </li>
+				<li>stare_adv->fixedly </li>
+				<li>stare_adv->dutifully </li>
+				<li>stare_adv->understandingly </li>
+				<li>stare_adv->responsively </li>
+				<li>stare_adv->cheerfully </li>
+				<li>stare_adv->dutifully </li>
+				<li>stare_adv->charmingly </li>
+				<li>stare_adv->chummily </li>
+				<li>stare_adv->engagingly </li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+	</InteractionDef>
+
+
+</Defs>
