@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,101 +8,84 @@ using Verse.Grammar;
 
 namespace SpeakUp
 {
-    //Expands the rule constraint check to go beyond the constants
-    [HarmonyPatch(typeof(GrammarResolver.RuleEntry), "ValidateConstantConstraints")]
-    public class RuleEntry_ValidateConstantConstraints
-    {
-        public static bool validationFeedback = false;
+	//Expands the rule constraint check to go beyond the constants
+	[HarmonyPatch(typeof(GrammarResolver.RuleEntry), "ValidateConstantConstraints")]
+	public class RuleEntry_ValidateConstantConstraints
+	{
+		public static bool validationFeedback = false;
 
-        //NOTE: Tynan called the parameter for this method "constraints", but actually it means "constants".
-        //The real constraints are at rule.constantConstraints. Very confusing!
+		//NOTE: Tynan called the parameter for this method "constraints", but actually it means "constants".
+		//The real constraints are at rule.constantConstraints. Very confusing!
 
-        private static bool Prefix(GrammarResolver.RuleEntry __instance, ref bool __result, Dictionary<string, string> constraints, ref bool ___constantConstraintsChecked, ref bool ___constantConstraintsValid)
+		private static bool Prefix(GrammarResolver.RuleEntry __instance, ref bool __result, Dictionary<string, string> constraints, ref bool ___constantConstraintsChecked, ref bool ___constantConstraintsValid)
 		{
 			var currentRules = GrammarResolver_RandomPossiblyResolvableEntry.CurrentRules;
 			var constants = constraints; //see note above
 			var actualConstraints = __instance.rule.constantConstraints;
-			__result = ValidateRulesConstraints(actualConstraints, currentRules, ref ___constantConstraintsChecked, ref ___constantConstraintsValid);
+
+			if (!___constantConstraintsChecked)
+			{
+				___constantConstraintsValid = ValidateRulesConstraints(actualConstraints, currentRules);
+				___constantConstraintsChecked = true;
+			}
+
+			__result = ___constantConstraintsValid;
+
 			if (validationFeedback)
-            {
-                string result = __result ? "success" : "failed";
-                StringBuilder feedback = new StringBuilder();
-                feedback.Append($"{result.ToUpper()} validating constraints for {__instance.rule.keyword}:");
+			{
+				string result = __result ? "SUCCESS" : "FAILED";
+				StringBuilder feedback = new StringBuilder();
+				feedback.Append($"{result} validating constraints for {__instance.rule.keyword}:");
 				if (actualConstraints != null)
 				{
 					feedback.AppendInNewLine($"{actualConstraints.Select(x => $"\"{x.key} {x.type.ToString().ToLower()} {x.value}\"").ToStringSafeEnumerable()}");
 				}
 				feedback.AppendInNewLine($"The rule text is \"{__instance.rule}\".");
-                feedback.AppendInNewLine($"\nChecked against {currentRules.Count} rules:\n" +
-                    $"{(currentRules.EnumerableNullOrEmpty() ? "none" : currentRules.Select(x => $"{x.Key}: {x.Value.ResolveTags()}").ToLineList())}");
-                Log.Message(feedback.ToString());
-                validationFeedback = false;
-            }
-            return false;
+				feedback.AppendInNewLine($"\nChecked against {currentRules.Count} rules:\n" +
+					$"{(currentRules.EnumerableNullOrEmpty() ? "none" : currentRules.Select(x => $"{x.Key}: {x.Value.ResolveTags()}").ToLineList())}");
+				Log.Message(feedback.ToString());
+				validationFeedback = false;
+			}
+
+			return false;
 		}
 
-		private static bool ValidateRulesConstraints(List<Rule.ConstantConstraint> constraints, List<KeyValuePair<string, string>> rules, ref bool ConstraintsChecked, ref bool ConstraintsValid)
+		private static bool ValidateRulesConstraints(List<Rule.ConstantConstraint> constraints, List<KeyValuePair<string, string>> rules)
 		{
-			if (!ConstraintsChecked)
+			return constraints == null || constraints.All(constraint =>
 			{
-				ConstraintsValid = true;
-				if (constraints != null)
+				// Is this still needed?
+				if (constraint.key == "deserters")
 				{
-					var length = constraints.Count;
-					for (int i = 0; i < length; i++)
-					{
-						Rule.ConstantConstraint constraint = constraints[i];
-						bool match = false;
-
-						var length2 = rules.Count;
-						for (int j = 0; j < length2; j++)
-						{
-							var entry = rules[j];
-							// Checks if the current constraint is the current key. Custom check for the deserters mod. Not elegant, but until there are more mods that have this issue this soluton will work
-							if (entry.Key != constraint.key)
-								if(constraint.key != "deserters") continue;
-							
-							string text = entry.Value ?? "";
-							float value = 0f;
-							float expected = 0f;
-							bool ruleIsvalid = !text.NullOrEmpty() && !constraint.value.NullOrEmpty() && float.TryParse(text, out value) && float.TryParse(constraint.value, out expected);
-							switch (constraint.type)
-							{
-								case Rule.ConstantConstraint.Type.Equal:
-									match = text.EqualsIgnoreCase(constraint.value);
-									break;
-								case Rule.ConstantConstraint.Type.NotEqual:
-									match = !text.EqualsIgnoreCase(constraint.value);
-									break;
-								case Rule.ConstantConstraint.Type.Less:
-									match = (ruleIsvalid && value < expected);
-									break;
-								case Rule.ConstantConstraint.Type.Greater:
-									match = (ruleIsvalid && value > expected);
-									break;
-								case Rule.ConstantConstraint.Type.LessOrEqual:
-									match = (ruleIsvalid && value <= expected);
-									break;
-								case Rule.ConstantConstraint.Type.GreaterOrEqual:
-									match = (ruleIsvalid && value >= expected);
-									break;
-								default:
-									Log.Error("Unknown ConstantConstraint type: " + constraint.type);
-									match = false;
-									break;
-							}
-							if (match) break;
-						}
-						if (!match)
-						{
-							ConstraintsValid = false;
-							break;
-						}
-					}
+					return true;
 				}
-				ConstraintsChecked = true;
-			}
-			return ConstraintsValid;
+
+				string key = constraint.key;
+				string value = constraint.value;
+				IEnumerable<string> texts = rules.Where(p => p.Key == key).Select(p => p.Value);
+				bool compareAsString() => texts.Any(text => text.EqualsIgnoreCase(value));
+				bool compareAsFloat(Func<float, float, bool> f) => texts.Any(text => float.TryParse(text, out float lhs) && float.TryParse(value, out float rhs) && f(lhs, rhs));
+
+				switch (constraint.type)
+				{
+					case Rule.ConstantConstraint.Type.Equal:
+						return compareAsString();
+					case Rule.ConstantConstraint.Type.NotEqual:
+						return !compareAsString();
+					case Rule.ConstantConstraint.Type.Less:
+						return compareAsFloat((lhs, rhs) => lhs < rhs);
+					case Rule.ConstantConstraint.Type.Greater:
+						return compareAsFloat((lhs, rhs) => lhs > rhs);
+					case Rule.ConstantConstraint.Type.LessOrEqual:
+						return compareAsFloat((lhs, rhs) => lhs <= rhs);
+					case Rule.ConstantConstraint.Type.GreaterOrEqual:
+						return compareAsFloat((lhs, rhs) => lhs >= rhs);
+					default:
+						Log.Error($"Unknown ConstantConstraint type: {constraint.type}");
+
+						return false;
+				}
+			});
 		}
 	}
 }
